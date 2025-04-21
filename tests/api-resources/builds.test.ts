@@ -28,6 +28,7 @@ describe('resource builds', () => {
       allow_empty: true,
       branch: 'branch',
       commit_message: 'commit_message',
+      parent_build_id: 'parent_build_id',
       targets: ['node'],
     });
   });

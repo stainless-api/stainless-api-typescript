@@ -268,6 +268,12 @@ export interface BuildCreateParams {
   commit_message?: string;
 
   /**
+   * Parent build ID. Cannot be specified if branch is main. Defaults to last build
+   * on branch.
+   */
+  parent_build_id?: string;
+
+  /**
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
