@@ -44,9 +44,9 @@ export namespace BuildTargetOutputRetrieveResponse {
     ref: string;
 
     /**
-     * Full repository name (owner/repo)
+     * URL to git remote
      */
-    repo: string;
+    url: string;
   }
 }
 
