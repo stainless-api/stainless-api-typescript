@@ -301,9 +301,9 @@ export interface BuildListParams {
   branch?: string;
 
   /**
-   * Config commit SHA
+   * Hash of the Stainless config used for the build
    */
-  config_commit?: string;
+  config_hash?: string;
 
   /**
    * Pagination cursor from a previous response
@@ -314,6 +314,11 @@ export interface BuildListParams {
    * Maximum number of builds to return, defaults to 10
    */
   limit?: number;
+
+  /**
+   * Hash of the OpenAPI spec used for the build
+   */
+  spec_hash?: string;
 }
 
 export declare namespace Builds {

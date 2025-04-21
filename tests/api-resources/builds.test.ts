@@ -62,9 +62,10 @@ describe('resource builds', () => {
     const response = await client.builds.list({
       project: 'project',
       branch: 'branch',
-      config_commit: 'config_commit',
+      config_hash: 'config_hash',
       cursor: 'cursor',
       limit: 0,
+      spec_hash: 'spec_hash',
     });
   });
 });
