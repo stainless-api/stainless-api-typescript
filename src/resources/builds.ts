@@ -97,16 +97,20 @@ export namespace BuildTarget {
       commit: Completed.Commit | null;
 
       conclusion:
+        | 'success'
+        | 'failure'
+        | 'skipped'
+        | 'cancelled'
+        | 'action_required'
+        | 'neutral'
+        | 'timed_out'
         | 'error'
         | 'warning'
         | 'note'
-        | 'success'
         | 'merge_conflict'
         | 'upstream_merge_conflict'
         | 'fatal'
         | 'payment_required'
-        | 'cancelled'
-        | 'timed_out'
         | 'noop'
         | 'version_bump';
 
@@ -173,7 +177,16 @@ export namespace BuildTarget {
         | 'cancelled'
         | 'action_required'
         | 'neutral'
-        | 'timed_out';
+        | 'timed_out'
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'noop'
+        | 'version_bump';
     }
   }
 
@@ -204,7 +217,16 @@ export namespace BuildTarget {
         | 'cancelled'
         | 'action_required'
         | 'neutral'
-        | 'timed_out';
+        | 'timed_out'
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'noop'
+        | 'version_bump';
     }
   }
 }
