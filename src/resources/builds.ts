@@ -268,9 +268,14 @@ export interface BuildListParams {
   project: string;
 
   /**
-   * Branch name, defaults to "main"
+   * Branch name
    */
   branch?: string;
+
+  /**
+   * Config commit SHA
+   */
+  config_commit?: string;
 
   /**
    * Pagination cursor from a previous response
