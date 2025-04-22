@@ -63,6 +63,8 @@ export interface BranchCreateParams {
   branch: string;
 
   branch_from: string;
+
+  force?: boolean;
 }
 
 export interface BranchRetrieveParams {
