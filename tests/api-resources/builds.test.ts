@@ -28,7 +28,6 @@ describe('resource builds', () => {
       allow_empty: true,
       branch: 'branch',
       commit_message: 'commit_message',
-      parent_build_id: 'parent_build_id',
       targets: ['node'],
     });
   });
@@ -62,10 +61,9 @@ describe('resource builds', () => {
     const response = await client.builds.list({
       project: 'project',
       branch: 'branch',
-      config_hash: 'config_hash',
       cursor: 'cursor',
       limit: 0,
-      spec_hash: 'spec_hash',
+      revision: 'string',
     });
   });
 });

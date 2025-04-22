@@ -268,12 +268,6 @@ export interface BuildCreateParams {
   commit_message?: string;
 
   /**
-   * Parent build ID. Cannot be specified if branch is main. Defaults to last build
-   * on branch.
-   */
-  parent_build_id?: string;
-
-  /**
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
@@ -301,11 +295,6 @@ export interface BuildListParams {
   branch?: string;
 
   /**
-   * Hash of the Stainless config used for the build
-   */
-  config_hash?: string;
-
-  /**
    * Pagination cursor from a previous response
    */
   cursor?: string;
@@ -316,9 +305,18 @@ export interface BuildListParams {
   limit?: number;
 
   /**
-   * Hash of the OpenAPI spec used for the build
+   * A config commit SHA used for the build
    */
-  spec_hash?: string;
+  revision?: string | Record<string, BuildListParams.unnamed_schema_with_map_parent_1>;
+}
+
+export namespace BuildListParams {
+  export interface unnamed_schema_with_map_parent_1 {
+    /**
+     * File content hash
+     */
+    hash: string;
+  }
 }
 
 export declare namespace Builds {

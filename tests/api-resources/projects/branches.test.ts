@@ -28,6 +28,7 @@ describe('resource branches', () => {
     const response = await client.projects.branches.create('project', {
       branch: 'branch',
       branch_from: 'branch_from',
+      force: true,
     });
   });
 
