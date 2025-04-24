@@ -21,6 +21,18 @@ Methods:
 - <code title="post /v0/projects/{project}/branches">client.projects.branches.<a href="./src/resources/projects/branches.ts">create</a>(project, { ...params }) -> ProjectBranch</code>
 - <code title="get /v0/projects/{project}/branches/{branch}">client.projects.branches.<a href="./src/resources/projects/branches.ts">retrieve</a>(branch, { ...params }) -> ProjectBranch</code>
 
+## Configs
+
+Types:
+
+- <code><a href="./src/resources/projects/configs.ts">ConfigRetrieveResponse</a></code>
+- <code><a href="./src/resources/projects/configs.ts">ConfigGuessResponse</a></code>
+
+Methods:
+
+- <code title="get /v0/projects/{project}/configs">client.projects.configs.<a href="./src/resources/projects/configs.ts">retrieve</a>(project, { ...params }) -> ConfigRetrieveResponse</code>
+- <code title="post /v0/projects/{project}/configs/guess">client.projects.configs.<a href="./src/resources/projects/configs.ts">guess</a>(project, { ...params }) -> ConfigGuessResponse</code>
+
 # Builds
 
 Types:
