@@ -11,6 +11,8 @@ import {
   ConfigRetrieveResponse,
   Configs,
 } from './configs';
+import * as SnippetsAPI from './snippets';
+import { SnippetCreateRequestParams, SnippetCreateRequestResponse, Snippets } from './snippets';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -18,6 +20,7 @@ import { path } from '../../internal/utils/path';
 export class Projects extends APIResource {
   branches: BranchesAPI.Branches = new BranchesAPI.Branches(this._client);
   configs: ConfigsAPI.Configs = new ConfigsAPI.Configs(this._client);
+  snippets: SnippetsAPI.Snippets = new SnippetsAPI.Snippets(this._client);
 
   /**
    * TODO
@@ -35,6 +38,13 @@ export class Projects extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ProjectUpdateResponse> {
     return this._client.patch(path`/v0/projects/${projectName}`, { body, ...options });
+  }
+
+  /**
+   * TODO
+   */
+  list(query: ProjectListParams, options?: RequestOptions): APIPromise<ProjectListResponse> {
+    return this._client.get('/v0/projects', { query, ...options });
   }
 }
 
@@ -62,18 +72,57 @@ export interface ProjectUpdateResponse {
   slug: string;
 }
 
+export interface ProjectListResponse {
+  data: Array<ProjectListResponse.Data>;
+
+  has_more: boolean;
+
+  next_cursor?: string;
+}
+
+export namespace ProjectListResponse {
+  export interface Data {
+    config_repo: string;
+
+    display_name: string | null;
+
+    object: 'project';
+
+    org: string;
+
+    slug: string;
+  }
+}
+
 export interface ProjectUpdateParams {
   display_name?: string | null;
 }
 
+export interface ProjectListParams {
+  org: string;
+
+  /**
+   * Pagination cursor from a previous response
+   */
+  cursor?: string;
+
+  /**
+   * Maximum number of projects to return, defaults to 10 (maximum: 100)
+   */
+  limit?: number;
+}
+
 Projects.Branches = Branches;
 Projects.Configs = Configs;
+Projects.Snippets = Snippets;
 
 export declare namespace Projects {
   export {
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
+    type ProjectListResponse as ProjectListResponse,
     type ProjectUpdateParams as ProjectUpdateParams,
+    type ProjectListParams as ProjectListParams,
   };
 
   export {
@@ -89,5 +138,11 @@ export declare namespace Projects {
     type ConfigGuessResponse as ConfigGuessResponse,
     type ConfigRetrieveParams as ConfigRetrieveParams,
     type ConfigGuessParams as ConfigGuessParams,
+  };
+
+  export {
+    Snippets as Snippets,
+    type SnippetCreateRequestResponse as SnippetCreateRequestResponse,
+    type SnippetCreateRequestParams as SnippetCreateRequestParams,
   };
 }

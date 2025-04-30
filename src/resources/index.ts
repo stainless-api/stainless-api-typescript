@@ -13,9 +13,12 @@ export {
   type BuildCreateParams,
   type BuildListParams,
 } from './builds';
+export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
 export {
   Projects,
   type ProjectRetrieveResponse,
   type ProjectUpdateResponse,
+  type ProjectListResponse,
   type ProjectUpdateParams,
+  type ProjectListParams,
 } from './projects/projects';

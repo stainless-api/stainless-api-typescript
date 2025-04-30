@@ -34,10 +34,13 @@ import {
   BuildTarget,
   Builds,
 } from './resources/builds';
+import { OrgListResponse, OrgRetrieveResponse, Orgs } from './resources/orgs';
 import { readEnv } from './internal/utils/env';
 import { formatRequestDetails, loggerFor } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 import {
+  ProjectListParams,
+  ProjectListResponse,
   ProjectRetrieveResponse,
   ProjectUpdateParams,
   ProjectUpdateResponse,
@@ -46,7 +49,7 @@ import {
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env['STAINLESS_API_KEY'].
+   * Defaults to process.env['STAINLESS_V0_API_KEY'].
    */
   apiKey?: string | null | undefined;
 
@@ -138,7 +141,7 @@ export class StainlessV0 {
   /**
    * API Client for interfacing with the Stainless V0 API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_API_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_V0_API_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['STAINLESS_V0_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -149,7 +152,7 @@ export class StainlessV0 {
    */
   constructor({
     baseURL = readEnv('STAINLESS_V0_BASE_URL'),
-    apiKey = readEnv('STAINLESS_API_KEY') ?? null,
+    apiKey = readEnv('STAINLESS_V0_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
     const options: ClientOptions = {
@@ -686,10 +689,12 @@ export class StainlessV0 {
   projects: API.Projects = new API.Projects(this);
   builds: API.Builds = new API.Builds(this);
   buildTargetOutputs: API.BuildTargetOutputs = new API.BuildTargetOutputs(this);
+  orgs: API.Orgs = new API.Orgs(this);
 }
 StainlessV0.Projects = Projects;
 StainlessV0.Builds = Builds;
 StainlessV0.BuildTargetOutputs = BuildTargetOutputs;
+StainlessV0.Orgs = Orgs;
 export declare namespace StainlessV0 {
   export type RequestOptions = Opts.RequestOptions;
 
@@ -697,7 +702,9 @@ export declare namespace StainlessV0 {
     Projects as Projects,
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
+    type ProjectListResponse as ProjectListResponse,
     type ProjectUpdateParams as ProjectUpdateParams,
+    type ProjectListParams as ProjectListParams,
   };
 
   export {
@@ -713,5 +720,11 @@ export declare namespace StainlessV0 {
     BuildTargetOutputs as BuildTargetOutputs,
     type BuildTargetOutputRetrieveResponse as BuildTargetOutputRetrieveResponse,
     type BuildTargetOutputRetrieveParams as BuildTargetOutputRetrieveParams,
+  };
+
+  export {
+    Orgs as Orgs,
+    type OrgRetrieveResponse as OrgRetrieveResponse,
+    type OrgListResponse as OrgListResponse,
   };
 }

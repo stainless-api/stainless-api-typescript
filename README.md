@@ -26,7 +26,7 @@ The full API of this library can be found in [api.md](api.md).
 import StainlessV0 from 'stainless-v0';
 
 const client = new StainlessV0({
-  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
@@ -47,7 +47,7 @@ This library includes TypeScript definitions for all request params and response
 import StainlessV0 from 'stainless-v0';
 
 const client = new StainlessV0({
-  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {

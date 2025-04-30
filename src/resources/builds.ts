@@ -36,6 +36,10 @@ export interface BuildObject {
 
   object: 'build';
 
+  org: string;
+
+  project: string;
+
   targets: BuildObject.Targets;
 }
 
@@ -300,7 +304,7 @@ export interface BuildListParams {
   cursor?: string;
 
   /**
-   * Maximum number of builds to return, defaults to 10
+   * Maximum number of builds to return, defaults to 10 (maximum: 100)
    */
   limit?: number;
 
