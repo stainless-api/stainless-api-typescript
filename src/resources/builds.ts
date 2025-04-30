@@ -8,21 +8,21 @@ import { path } from '../internal/utils/path';
 
 export class Builds extends APIResource {
   /**
-   * TODO
+   * Create a new build
    */
   create(body: BuildCreateParams, options?: RequestOptions): APIPromise<BuildObject> {
     return this._client.post('/v0/builds', { body, ...options });
   }
 
   /**
-   * TODO
+   * Retrieve a build by ID
    */
   retrieve(buildID: string, options?: RequestOptions): APIPromise<BuildObject> {
     return this._client.get(path`/v0/builds/${buildID}`, options);
   }
 
   /**
-   * TODO
+   * List builds for a project
    */
   list(query: BuildListParams, options?: RequestOptions): APIPromise<BuildListResponse> {
     return this._client.get('/v0/builds', { query, ...options });
