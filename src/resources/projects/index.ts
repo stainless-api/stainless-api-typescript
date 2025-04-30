@@ -12,5 +12,8 @@ export {
   Projects,
   type ProjectRetrieveResponse,
   type ProjectUpdateResponse,
+  type ProjectListResponse,
   type ProjectUpdateParams,
+  type ProjectListParams,
 } from './projects';
+export { Snippets, type SnippetCreateRequestResponse, type SnippetCreateRequestParams } from './snippets';

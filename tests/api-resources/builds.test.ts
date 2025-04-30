@@ -62,7 +62,7 @@ describe('resource builds', () => {
       project: 'project',
       branch: 'branch',
       cursor: 'cursor',
-      limit: 0,
+      limit: 1,
       revision: 'string',
     });
   });
