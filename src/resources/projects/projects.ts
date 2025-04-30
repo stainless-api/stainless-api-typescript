@@ -23,14 +23,14 @@ export class Projects extends APIResource {
   snippets: SnippetsAPI.Snippets = new SnippetsAPI.Snippets(this._client);
 
   /**
-   * TODO
+   * Retrieve a project by name
    */
   retrieve(projectName: string, options?: RequestOptions): APIPromise<ProjectRetrieveResponse> {
     return this._client.get(path`/v0/projects/${projectName}`, options);
   }
 
   /**
-   * TODO
+   * Update a project's properties
    */
   update(
     projectName: string,
@@ -41,7 +41,7 @@ export class Projects extends APIResource {
   }
 
   /**
-   * TODO
+   * List projects in an organization
    */
   list(query: ProjectListParams, options?: RequestOptions): APIPromise<ProjectListResponse> {
     return this._client.get('/v0/projects', { query, ...options });

@@ -7,7 +7,7 @@ import { path } from '../../internal/utils/path';
 
 export class Configs extends APIResource {
   /**
-   * TODO
+   * Retrieve configuration files for a project
    */
   retrieve(
     project: string,
@@ -18,7 +18,7 @@ export class Configs extends APIResource {
   }
 
   /**
-   * TODO
+   * Generate configuration suggestions based on an OpenAPI spec
    */
   guess(project: string, body: ConfigGuessParams, options?: RequestOptions): APIPromise<ConfigGuessResponse> {
     return this._client.post(path`/v0/projects/${project}/configs/guess`, { body, ...options });

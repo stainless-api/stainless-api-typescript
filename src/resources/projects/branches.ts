@@ -8,14 +8,14 @@ import { path } from '../../internal/utils/path';
 
 export class Branches extends APIResource {
   /**
-   * TODO
+   * Create a new branch for a project
    */
   create(project: string, body: BranchCreateParams, options?: RequestOptions): APIPromise<ProjectBranch> {
     return this._client.post(path`/v0/projects/${project}/branches`, { body, ...options });
   }
 
   /**
-   * TODO
+   * Retrieve a project branch
    */
   retrieve(
     branch: string,

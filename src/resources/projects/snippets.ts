@@ -6,9 +6,6 @@ import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 export class Snippets extends APIResource {
-  /**
-   * TODO
-   */
   createRequest(
     projectName: string,
     body: SnippetCreateRequestParams,
