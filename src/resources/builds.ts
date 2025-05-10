@@ -8,21 +8,21 @@ import { path } from '../internal/utils/path';
 
 export class Builds extends APIResource {
   /**
-   * TODO
+   * Create a new build
    */
   create(body: BuildCreateParams, options?: RequestOptions): APIPromise<BuildObject> {
     return this._client.post('/v0/builds', { body, ...options });
   }
 
   /**
-   * TODO
+   * Retrieve a build by ID
    */
   retrieve(buildID: string, options?: RequestOptions): APIPromise<BuildObject> {
     return this._client.get(path`/v0/builds/${buildID}`, options);
   }
 
   /**
-   * TODO
+   * List builds for a project
    */
   list(query: BuildListParams, options?: RequestOptions): APIPromise<BuildListResponse> {
     return this._client.get('/v0/builds', { query, ...options });
@@ -35,6 +35,10 @@ export interface BuildObject {
   config_commit: string;
 
   object: 'build';
+
+  org: string;
+
+  project: string;
 
   targets: BuildObject.Targets;
 }
@@ -295,19 +299,28 @@ export interface BuildListParams {
   branch?: string;
 
   /**
-   * Config commit SHA
-   */
-  config_commit?: string;
-
-  /**
    * Pagination cursor from a previous response
    */
   cursor?: string;
 
   /**
-   * Maximum number of builds to return, defaults to 10
+   * Maximum number of builds to return, defaults to 10 (maximum: 100)
    */
   limit?: number;
+
+  /**
+   * A config commit SHA used for the build
+   */
+  revision?: string | Record<string, BuildListParams.unnamed_schema_with_map_parent_1>;
+}
+
+export namespace BuildListParams {
+  export interface unnamed_schema_with_map_parent_1 {
+    /**
+     * File content hash
+     */
+    hash: string;
+  }
 }
 
 export declare namespace Builds {

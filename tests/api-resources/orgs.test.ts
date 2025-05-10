@@ -7,13 +7,10 @@ const client = new StainlessV0({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource branches', () => {
+describe('resource orgs', () => {
   // skipped: tests are disabled for the time being
-  test.skip('create: only required params', async () => {
-    const responsePromise = client.projects.branches.create('project', {
-      branch: 'branch',
-      branch_from: 'branch_from',
-    });
+  test.skip('retrieve', async () => {
+    const responsePromise = client.orgs.retrieve('orgName');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,17 +21,8 @@ describe('resource branches', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('create: required and optional params', async () => {
-    const response = await client.projects.branches.create('project', {
-      branch: 'branch',
-      branch_from: 'branch_from',
-      force: true,
-    });
-  });
-
-  // skipped: tests are disabled for the time being
-  test.skip('retrieve: only required params', async () => {
-    const responsePromise = client.projects.branches.retrieve('branch', { project: 'project' });
+  test.skip('list', async () => {
+    const responsePromise = client.orgs.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,10 +30,5 @@ describe('resource branches', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // skipped: tests are disabled for the time being
-  test.skip('retrieve: required and optional params', async () => {
-    const response = await client.projects.branches.retrieve('branch', { project: 'project' });
   });
 });

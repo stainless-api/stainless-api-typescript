@@ -6,7 +6,7 @@ import { RequestOptions } from '../internal/request-options';
 
 export class BuildTargetOutputs extends APIResource {
   /**
-   * TODO
+   * Download the output of a build target
    */
   retrieve(
     query: BuildTargetOutputRetrieveParams,
