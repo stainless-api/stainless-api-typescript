@@ -66,4 +66,30 @@ describe('resource builds', () => {
       revision: 'string',
     });
   });
+
+  // skipped: tests are disabled for the time being
+  test.skip('compare: only required params', async () => {
+    const responsePromise = client.builds.compare({
+      base: { revision: 'string' },
+      head: { revision: 'string' },
+      project: 'project',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // skipped: tests are disabled for the time being
+  test.skip('compare: required and optional params', async () => {
+    const response = await client.builds.compare({
+      base: { revision: 'string', branch: 'branch', commit_message: 'commit_message' },
+      head: { revision: 'string', branch: 'branch', commit_message: 'commit_message' },
+      project: 'project',
+      targets: ['node'],
+    });
+  });
 });

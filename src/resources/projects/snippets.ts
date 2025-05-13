@@ -20,7 +20,18 @@ export interface SnippetCreateRequestResponse {
 }
 
 export interface SnippetCreateRequestParams {
-  language: 'node' | 'typescript' | 'python' | 'go' | 'java' | 'kotlin' | 'ruby' | 'terraform' | 'cli';
+  language:
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp';
 
   request: SnippetCreateRequestParams.Request;
 

@@ -59,7 +59,18 @@ export interface BuildTargetOutputRetrieveParams {
   /**
    * SDK language target name
    */
-  target: 'node' | 'typescript' | 'python' | 'go' | 'java' | 'kotlin' | 'ruby' | 'terraform' | 'cli';
+  target:
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp';
 
   /**
    * Type of output to download: source code
