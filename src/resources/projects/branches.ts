@@ -60,10 +60,19 @@ export namespace ProjectBranch {
 }
 
 export interface BranchCreateParams {
+  /**
+   * Name of the new project branch.
+   */
   branch: string;
 
+  /**
+   * Branch or commit SHA to branch from.
+   */
   branch_from: string;
 
+  /**
+   * Whether to throw an error if the branch already exists. Defaults to false.
+   */
   force?: boolean;
 }
 

@@ -27,6 +27,8 @@ import {
   BuildTargetOutputs,
 } from './resources/build-target-outputs';
 import {
+  BuildCompareParams,
+  BuildCompareResponse,
   BuildCreateParams,
   BuildListParams,
   BuildListResponse,
@@ -729,8 +731,10 @@ export declare namespace StainlessV0 {
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
     type BuildListResponse as BuildListResponse,
+    type BuildCompareResponse as BuildCompareResponse,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
+    type BuildCompareParams as BuildCompareParams,
   };
 
   export {

@@ -10,8 +10,10 @@ export {
   type BuildObject,
   type BuildTarget,
   type BuildListResponse,
+  type BuildCompareResponse,
   type BuildCreateParams,
   type BuildListParams,
+  type BuildCompareParams,
 } from './builds';
 export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
 export {
