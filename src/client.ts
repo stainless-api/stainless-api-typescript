@@ -12,6 +12,7 @@ import type { APIResponseProps } from './internal/parse';
 import { getPlatformHeaders } from './internal/detect-platform';
 import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
+import * as qs from './internal/qs';
 import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
@@ -26,6 +27,8 @@ import {
   BuildTargetOutputs,
 } from './resources/build-target-outputs';
 import {
+  BuildCompareParams,
+  BuildCompareResponse,
   BuildCreateParams,
   BuildListParams,
   BuildListResponse,
@@ -33,10 +36,13 @@ import {
   BuildTarget,
   Builds,
 } from './resources/builds';
+import { OrgListResponse, OrgRetrieveResponse, Orgs } from './resources/orgs';
 import { readEnv } from './internal/utils/env';
 import { formatRequestDetails, loggerFor } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 import {
+  ProjectListParams,
+  ProjectListResponse,
   ProjectRetrieveResponse,
   ProjectUpdateParams,
   ProjectUpdateResponse,
@@ -177,6 +183,23 @@ export class StainlessV0 {
     this.apiKey = apiKey;
   }
 
+  /**
+   * Create a new client instance re-using the same options given to the current client with optional overriding.
+   */
+  withOptions(options: Partial<ClientOptions>): this {
+    return new (this.constructor as any as new (props: ClientOptions) => typeof this)({
+      ...this._options,
+      baseURL: this.baseURL,
+      maxRetries: this.maxRetries,
+      timeout: this.timeout,
+      logger: this.logger,
+      logLevel: this.logLevel,
+      fetchOptions: this.fetchOptions,
+      apiKey: this.apiKey,
+      ...options,
+    });
+  }
+
   protected defaultQuery(): Record<string, string | undefined> | undefined {
     return this._options.defaultQuery;
   }
@@ -201,24 +224,8 @@ export class StainlessV0 {
     return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
   }
 
-  /**
-   * Basic re-implementation of `qs.stringify` for primitive types.
-   */
   protected stringifyQuery(query: Record<string, unknown>): string {
-    return Object.entries(query)
-      .filter(([_, value]) => typeof value !== 'undefined')
-      .map(([key, value]) => {
-        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-          return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-        }
-        if (value === null) {
-          return `${encodeURIComponent(key)}=`;
-        }
-        throw new Errors.StainlessV0Error(
-          `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
-        );
-      })
-      .join('&');
+    return qs.stringify(query, { arrayFormat: 'comma' });
   }
 
   private getUserAgent(): string {
@@ -493,12 +500,12 @@ export class StainlessV0 {
       fetchOptions.method = method.toUpperCase();
     }
 
-    return (
+    try {
       // use undefined this binding; fetch errors if bound to something else in browser/cloudflare
-      this.fetch.call(undefined, url, fetchOptions).finally(() => {
-        clearTimeout(timeout);
-      })
-    );
+      return await this.fetch.call(undefined, url, fetchOptions);
+    } finally {
+      clearTimeout(timeout);
+    }
   }
 
   private shouldRetry(response: Response): boolean {
@@ -701,10 +708,12 @@ export class StainlessV0 {
   projects: API.Projects = new API.Projects(this);
   builds: API.Builds = new API.Builds(this);
   buildTargetOutputs: API.BuildTargetOutputs = new API.BuildTargetOutputs(this);
+  orgs: API.Orgs = new API.Orgs(this);
 }
 StainlessV0.Projects = Projects;
 StainlessV0.Builds = Builds;
 StainlessV0.BuildTargetOutputs = BuildTargetOutputs;
+StainlessV0.Orgs = Orgs;
 export declare namespace StainlessV0 {
   export type RequestOptions = Opts.RequestOptions;
 
@@ -712,7 +721,9 @@ export declare namespace StainlessV0 {
     Projects as Projects,
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
+    type ProjectListResponse as ProjectListResponse,
     type ProjectUpdateParams as ProjectUpdateParams,
+    type ProjectListParams as ProjectListParams,
   };
 
   export {
@@ -720,13 +731,21 @@ export declare namespace StainlessV0 {
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
     type BuildListResponse as BuildListResponse,
+    type BuildCompareResponse as BuildCompareResponse,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
+    type BuildCompareParams as BuildCompareParams,
   };
 
   export {
     BuildTargetOutputs as BuildTargetOutputs,
     type BuildTargetOutputRetrieveResponse as BuildTargetOutputRetrieveResponse,
     type BuildTargetOutputRetrieveParams as BuildTargetOutputRetrieveParams,
+  };
+
+  export {
+    Orgs as Orgs,
+    type OrgRetrieveResponse as OrgRetrieveResponse,
+    type OrgListResponse as OrgListResponse,
   };
 }

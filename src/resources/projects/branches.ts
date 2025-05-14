@@ -8,14 +8,14 @@ import { path } from '../../internal/utils/path';
 
 export class Branches extends APIResource {
   /**
-   * TODO
+   * Create a new branch for a project
    */
   create(project: string, body: BranchCreateParams, options?: RequestOptions): APIPromise<ProjectBranch> {
     return this._client.post(path`/v0/projects/${project}/branches`, { body, ...options });
   }
 
   /**
-   * TODO
+   * Retrieve a project branch
    */
   retrieve(
     branch: string,
@@ -60,9 +60,20 @@ export namespace ProjectBranch {
 }
 
 export interface BranchCreateParams {
+  /**
+   * Name of the new project branch.
+   */
   branch: string;
 
+  /**
+   * Branch or commit SHA to branch from.
+   */
   branch_from: string;
+
+  /**
+   * Whether to throw an error if the branch already exists. Defaults to false.
+   */
+  force?: boolean;
 }
 
 export interface BranchRetrieveParams {

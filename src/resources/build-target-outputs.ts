@@ -6,7 +6,7 @@ import { RequestOptions } from '../internal/request-options';
 
 export class BuildTargetOutputs extends APIResource {
   /**
-   * TODO
+   * Download the output of a build target
    */
   retrieve(
     query: BuildTargetOutputRetrieveParams,
@@ -59,7 +59,18 @@ export interface BuildTargetOutputRetrieveParams {
   /**
    * SDK language target name
    */
-  target: 'node' | 'typescript' | 'python' | 'go' | 'java' | 'kotlin' | 'ruby' | 'terraform' | 'cli';
+  target:
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp';
 
   /**
    * Type of output to download: source code

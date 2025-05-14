@@ -8,24 +8,31 @@ import { path } from '../internal/utils/path';
 
 export class Builds extends APIResource {
   /**
-   * TODO
+   * Create a new build
    */
   create(body: BuildCreateParams, options?: RequestOptions): APIPromise<BuildObject> {
     return this._client.post('/v0/builds', { body, ...options });
   }
 
   /**
-   * TODO
+   * Retrieve a build by ID
    */
   retrieve(buildID: string, options?: RequestOptions): APIPromise<BuildObject> {
     return this._client.get(path`/v0/builds/${buildID}`, options);
   }
 
   /**
-   * TODO
+   * List builds for a project
    */
   list(query: BuildListParams, options?: RequestOptions): APIPromise<BuildListResponse> {
     return this._client.get('/v0/builds', { query, ...options });
+  }
+
+  /**
+   * Creates two builds whose outputs can be compared directly
+   */
+  compare(body: BuildCompareParams, options?: RequestOptions): APIPromise<BuildCompareResponse> {
+    return this._client.post('/v0/builds/compare', { body, ...options });
   }
 }
 
@@ -36,12 +43,18 @@ export interface BuildObject {
 
   object: 'build';
 
+  org: string;
+
+  project: string;
+
   targets: BuildObject.Targets;
 }
 
 export namespace BuildObject {
   export interface Targets {
     cli?: BuildsAPI.BuildTarget;
+
+    csharp?: BuildsAPI.BuildTarget;
 
     go?: BuildsAPI.BuildTarget;
 
@@ -50,6 +63,8 @@ export namespace BuildObject {
     kotlin?: BuildsAPI.BuildTarget;
 
     node?: BuildsAPI.BuildTarget;
+
+    php?: BuildsAPI.BuildTarget;
 
     python?: BuildsAPI.BuildTarget;
 
@@ -239,6 +254,12 @@ export interface BuildListResponse {
   next_cursor?: string;
 }
 
+export interface BuildCompareResponse {
+  base: BuildObject;
+
+  head: BuildObject;
+}
+
 export interface BuildCreateParams {
   /**
    * Project name
@@ -271,7 +292,19 @@ export interface BuildCreateParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<'node' | 'typescript' | 'python' | 'go' | 'java' | 'kotlin' | 'ruby' | 'terraform' | 'cli'>;
+  targets?: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export namespace BuildCreateParams {
@@ -295,19 +328,125 @@ export interface BuildListParams {
   branch?: string;
 
   /**
-   * Config commit SHA
-   */
-  config_commit?: string;
-
-  /**
    * Pagination cursor from a previous response
    */
   cursor?: string;
 
   /**
-   * Maximum number of builds to return, defaults to 10
+   * Maximum number of builds to return, defaults to 10 (maximum: 100)
    */
   limit?: number;
+
+  /**
+   * A config commit SHA used for the build
+   */
+  revision?: string | Record<string, BuildListParams.unnamed_schema_with_map_parent_1>;
+}
+
+export namespace BuildListParams {
+  export interface unnamed_schema_with_map_parent_1 {
+    /**
+     * File content hash
+     */
+    hash: string;
+  }
+}
+
+export interface BuildCompareParams {
+  /**
+   * Parameters for the base build
+   */
+  base: BuildCompareParams.Base;
+
+  /**
+   * Parameters for the head build
+   */
+  head: BuildCompareParams.Head;
+
+  /**
+   * Project name
+   */
+  project: string;
+
+  /**
+   * Optional list of SDK targets to build. If not specified, all configured targets
+   * will be built.
+   */
+  targets?: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
+}
+
+export namespace BuildCompareParams {
+  /**
+   * Parameters for the base build
+   */
+  export interface Base {
+    /**
+     * Specifies what to build: a branch name, a commit SHA, or file contents
+     */
+    revision: string | Record<string, Base.unnamed_schema_with_map_parent_2>;
+
+    /**
+     * Optional branch to use. If not specified, defaults to "main". When using a
+     * branch name as revision, this must match or be omitted.
+     */
+    branch?: string;
+
+    /**
+     * Optional commit message to use when creating a new commit.
+     */
+    commit_message?: string;
+  }
+
+  export namespace Base {
+    export interface unnamed_schema_with_map_parent_2 {
+      /**
+       * The file content
+       */
+      content: string;
+    }
+  }
+
+  /**
+   * Parameters for the head build
+   */
+  export interface Head {
+    /**
+     * Specifies what to build: a branch name, a commit SHA, or file contents
+     */
+    revision: string | Record<string, Head.unnamed_schema_with_map_parent_3>;
+
+    /**
+     * Optional branch to use. If not specified, defaults to "main". When using a
+     * branch name as revision, this must match or be omitted.
+     */
+    branch?: string;
+
+    /**
+     * Optional commit message to use when creating a new commit.
+     */
+    commit_message?: string;
+  }
+
+  export namespace Head {
+    export interface unnamed_schema_with_map_parent_3 {
+      /**
+       * The file content
+       */
+      content: string;
+    }
+  }
 }
 
 export declare namespace Builds {
@@ -315,7 +454,9 @@ export declare namespace Builds {
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
     type BuildListResponse as BuildListResponse,
+    type BuildCompareResponse as BuildCompareResponse,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
+    type BuildCompareParams as BuildCompareParams,
   };
 }
