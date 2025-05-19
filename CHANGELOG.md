@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-05-19)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Features
+
+* **api:** add documented spec to build object ([1ba5502](https://github.com/stainless-api/stainless-api-typescript/commit/1ba5502e4aa1d7d73593ad456140c64956aceb5d))
+
 ## 0.1.0-alpha.2 (2025-05-13)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
