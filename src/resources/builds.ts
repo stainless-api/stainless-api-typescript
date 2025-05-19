@@ -41,6 +41,8 @@ export interface BuildObject {
 
   config_commit: string;
 
+  documented_spec: BuildObject.UnionMember0 | BuildObject.UnionMember1 | null;
+
   object: 'build';
 
   org: string;
@@ -51,6 +53,18 @@ export interface BuildObject {
 }
 
 export namespace BuildObject {
+  export interface UnionMember0 {
+    content: string;
+
+    type: 'content';
+  }
+
+  export interface UnionMember1 {
+    type: 'url';
+
+    url: string;
+  }
+
   export interface Targets {
     cli?: BuildsAPI.BuildTarget;
 
