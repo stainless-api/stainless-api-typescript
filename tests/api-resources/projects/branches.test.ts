@@ -4,16 +4,14 @@ import StainlessV0 from 'stainless-v0';
 
 const client = new StainlessV0({
   apiKey: 'My API Key',
+  project: 'example-project',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource branches', () => {
   // skipped: tests are disabled for the time being
   test.skip('create: only required params', async () => {
-    const responsePromise = client.projects.branches.create('project', {
-      branch: 'branch',
-      branch_from: 'branch_from',
-    });
+    const responsePromise = client.projects.branches.create({ branch: 'branch', branch_from: 'branch_from' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -25,7 +23,8 @@ describe('resource branches', () => {
 
   // skipped: tests are disabled for the time being
   test.skip('create: required and optional params', async () => {
-    const response = await client.projects.branches.create('project', {
+    const response = await client.projects.branches.create({
+      project: 'project',
       branch: 'branch',
       branch_from: 'branch_from',
       force: true,
@@ -34,7 +33,7 @@ describe('resource branches', () => {
 
   // skipped: tests are disabled for the time being
   test.skip('retrieve: only required params', async () => {
-    const responsePromise = client.projects.branches.retrieve('branch', { project: 'project' });
+    const responsePromise = client.projects.branches.retrieve('branch');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -47,5 +46,17 @@ describe('resource branches', () => {
   // skipped: tests are disabled for the time being
   test.skip('retrieve: required and optional params', async () => {
     const response = await client.projects.branches.retrieve('branch', { project: 'project' });
+  });
+
+  // skipped: tests are disabled for the time being
+  test.skip('retrieve: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.projects.branches.retrieve(
+        'branch',
+        { project: 'project' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(StainlessV0.NotFoundError);
   });
 });

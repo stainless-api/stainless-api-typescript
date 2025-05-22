@@ -10,17 +10,18 @@ export class Configs extends APIResource {
    * Retrieve configuration files for a project
    */
   retrieve(
-    project: string,
-    query: ConfigRetrieveParams | null | undefined = {},
+    params: ConfigRetrieveParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<ConfigRetrieveResponse> {
+    const { project = this._client.project, ...query } = params ?? {};
     return this._client.get(path`/v0/projects/${project}/configs`, { query, ...options });
   }
 
   /**
    * Generate configuration suggestions based on an OpenAPI spec
    */
-  guess(project: string, body: ConfigGuessParams, options?: RequestOptions): APIPromise<ConfigGuessResponse> {
+  guess(params: ConfigGuessParams, options?: RequestOptions): APIPromise<ConfigGuessResponse> {
+    const { project = this._client.project, ...body } = params;
     return this._client.post(path`/v0/projects/${project}/configs/guess`, { body, ...options });
   }
 }
@@ -55,19 +56,29 @@ export namespace ConfigGuessResponse {
 
 export interface ConfigRetrieveParams {
   /**
-   * Branch name, defaults to "main"
+   * Path param:
+   */
+  project?: string;
+
+  /**
+   * Query param: Branch name, defaults to "main"
    */
   branch?: string;
 }
 
 export interface ConfigGuessParams {
   /**
-   * OpenAPI spec
+   * Path param:
+   */
+  project?: string;
+
+  /**
+   * Body param: OpenAPI spec
    */
   spec: string;
 
   /**
-   * Branch name
+   * Body param: Branch name
    */
   branch?: string;
 }

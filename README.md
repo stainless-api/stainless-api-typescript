@@ -26,11 +26,12 @@ The full API of this library can be found in [api.md](api.md).
 import StainlessV0 from 'stainless-v0';
 
 const client = new StainlessV0({
+  project: 'example-project',
   apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
-  const buildObject = await client.builds.create({ project: 'project', revision: 'string' });
+  const buildObject = await client.builds.create({ revision: 'string' });
 
   console.log(buildObject.id);
 }
@@ -47,11 +48,12 @@ This library includes TypeScript definitions for all request params and response
 import StainlessV0 from 'stainless-v0';
 
 const client = new StainlessV0({
+  project: 'example-project',
   apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
-  const params: StainlessV0.BuildCreateParams = { project: 'project', revision: 'string' };
+  const params: StainlessV0.BuildCreateParams = { revision: 'string' };
   const buildObject: StainlessV0.BuildObject = await client.builds.create(params);
 }
 
@@ -69,17 +71,15 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const buildObject = await client.builds
-    .create({ project: 'project', revision: 'string' })
-    .catch(async (err) => {
-      if (err instanceof StainlessV0.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
+  const buildObject = await client.builds.create({ revision: 'string' }).catch(async (err) => {
+    if (err instanceof StainlessV0.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 }
 
 main();
@@ -110,11 +110,12 @@ You can use the `maxRetries` option to configure or disable this:
 ```js
 // Configure the default for all requests:
 const client = new StainlessV0({
+  project: 'example-project',
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await client.builds.create({ project: 'project', revision: 'string' }, {
+await client.builds.create({ revision: 'string' }, {
   maxRetries: 5,
 });
 ```
@@ -127,11 +128,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 ```ts
 // Configure the default for all requests:
 const client = new StainlessV0({
+  project: 'example-project',
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await client.builds.create({ project: 'project', revision: 'string' }, {
+await client.builds.create({ revision: 'string' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -154,12 +156,12 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new StainlessV0();
 
-const response = await client.builds.create({ project: 'project', revision: 'string' }).asResponse();
+const response = await client.builds.create({ revision: 'string' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: buildObject, response: raw } = await client.builds
-  .create({ project: 'project', revision: 'string' })
+  .create({ revision: 'string' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(buildObject.id);
