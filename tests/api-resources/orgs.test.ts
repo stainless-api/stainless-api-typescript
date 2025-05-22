@@ -4,6 +4,7 @@ import StainlessV0 from 'stainless-v0';
 
 const client = new StainlessV0({
   apiKey: 'My API Key',
+  project: 'example-project',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 

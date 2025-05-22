@@ -21,6 +21,7 @@ export {
   type ProjectRetrieveResponse,
   type ProjectUpdateResponse,
   type ProjectListResponse,
+  type ProjectRetrieveParams,
   type ProjectUpdateParams,
   type ProjectListParams,
 } from './projects/projects';
