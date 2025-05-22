@@ -10,7 +10,7 @@ const client = new StainlessV0({
 describe('resource projects', () => {
   // skipped: tests are disabled for the time being
   test.skip('retrieve', async () => {
-    const responsePromise = client.projects.retrieve('projectName');
+    const responsePromise = client.projects.retrieve('project');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +22,7 @@ describe('resource projects', () => {
 
   // skipped: tests are disabled for the time being
   test.skip('update', async () => {
-    const responsePromise = client.projects.update('projectName');
+    const responsePromise = client.projects.update('project');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -37,7 +37,7 @@ describe('resource projects', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.projects.update(
-        'projectName',
+        'project',
         { display_name: 'display_name' },
         { path: '/_stainless_unknown_path' },
       ),

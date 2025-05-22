@@ -11,9 +11,7 @@ describe('resource snippets', () => {
   // skipped: tests are disabled for the time being
   test.skip('createRequest: only required params', async () => {
     const responsePromise = client.projects.snippets.createRequest('projectName', {
-      language: 'node',
       request: { method: 'method', parameters: [{ in: 'path', name: 'name' }], path: 'path' },
-      version: 'next',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -27,13 +25,14 @@ describe('resource snippets', () => {
   // skipped: tests are disabled for the time being
   test.skip('createRequest: required and optional params', async () => {
     const response = await client.projects.snippets.createRequest('projectName', {
-      language: 'node',
       request: {
         method: 'method',
         parameters: [{ in: 'path', name: 'name', value: {} }],
         path: 'path',
         body: { fileParam: 'fileParam', filePath: 'filePath' },
       },
+      har: null,
+      language: 'node',
       version: 'next',
     });
   });

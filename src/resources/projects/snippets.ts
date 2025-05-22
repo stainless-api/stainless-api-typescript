@@ -19,49 +19,122 @@ export interface SnippetCreateRequestResponse {
   snippet: string;
 }
 
-export interface SnippetCreateRequestParams {
-  language:
-    | 'node'
-    | 'typescript'
-    | 'python'
-    | 'go'
-    | 'java'
-    | 'kotlin'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'php'
-    | 'csharp';
+export type SnippetCreateRequestParams =
+  | SnippetCreateRequestParams.Variant0
+  | SnippetCreateRequestParams.Variant1;
 
-  request: SnippetCreateRequestParams.Request;
+export declare namespace SnippetCreateRequestParams {
+  export interface Variant0 {
+    request: Variant0.Request;
 
-  version: 'next' | 'latest_released';
-}
+    har?: null;
 
-export namespace SnippetCreateRequestParams {
-  export interface Request {
-    method: string;
+    language?:
+      | 'node'
+      | 'typescript'
+      | 'python'
+      | 'go'
+      | 'java'
+      | 'kotlin'
+      | 'ruby'
+      | 'terraform'
+      | 'cli'
+      | 'php'
+      | 'csharp';
 
-    parameters: Array<Request.Parameter>;
-
-    path: string;
-
-    body?: Request.Body;
+    version?: 'next' | 'latest_released';
   }
 
-  export namespace Request {
-    export interface Parameter {
-      in: 'path' | 'query' | 'header' | 'cookie';
+  export namespace Variant0 {
+    export interface Request {
+      method: string;
 
-      name: string;
+      parameters: Array<Request.Parameter>;
 
-      value?: unknown;
+      path: string;
+
+      body?: Request.Body;
     }
 
-    export interface Body {
-      fileParam?: string;
+    export namespace Request {
+      export interface Parameter {
+        in: 'path' | 'query' | 'header' | 'cookie';
 
-      filePath?: string;
+        name: string;
+
+        value?: unknown;
+      }
+
+      export interface Body {
+        fileParam?: string;
+
+        filePath?: string;
+      }
+    }
+  }
+
+  export interface Variant1 {
+    har: Variant1.Har;
+
+    language?:
+      | 'node'
+      | 'typescript'
+      | 'python'
+      | 'go'
+      | 'java'
+      | 'kotlin'
+      | 'ruby'
+      | 'terraform'
+      | 'cli'
+      | 'php'
+      | 'csharp';
+
+    request?: null;
+
+    version?: 'next' | 'latest_released';
+  }
+
+  export namespace Variant1 {
+    export interface Har {
+      log: Har.Log;
+    }
+
+    export namespace Har {
+      export interface Log {
+        entries: Array<Log.Entry>;
+      }
+
+      export namespace Log {
+        export interface Entry {
+          request: Entry.Request;
+        }
+
+        export namespace Entry {
+          export interface Request {
+            method: string;
+
+            queryString: Array<Request.QueryString>;
+
+            url: string;
+
+            postData?: Request.PostData;
+          }
+
+          export namespace Request {
+            export interface QueryString {
+              name: string;
+
+              value: string;
+            }
+
+            export interface PostData {
+              mimeType: string;
+
+              text: string;
+            }
+          }
+        }
+      }
     }
   }
 }

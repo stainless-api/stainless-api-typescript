@@ -8,8 +8,8 @@ Types:
 
 Methods:
 
-- <code title="get /v0/projects/{projectName}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>(projectName) -> ProjectRetrieveResponse</code>
-- <code title="patch /v0/projects/{projectName}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>(projectName, { ...params }) -> ProjectUpdateResponse</code>
+- <code title="get /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>(project) -> ProjectRetrieveResponse</code>
+- <code title="patch /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>(project, { ...params }) -> ProjectUpdateResponse</code>
 - <code title="get /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectListResponse</code>
 
 ## Branches

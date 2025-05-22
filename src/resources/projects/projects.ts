@@ -25,19 +25,19 @@ export class Projects extends APIResource {
   /**
    * Retrieve a project by name
    */
-  retrieve(projectName: string, options?: RequestOptions): APIPromise<ProjectRetrieveResponse> {
-    return this._client.get(path`/v0/projects/${projectName}`, options);
+  retrieve(project: string, options?: RequestOptions): APIPromise<ProjectRetrieveResponse> {
+    return this._client.get(path`/v0/projects/${project}`, options);
   }
 
   /**
    * Update a project's properties
    */
   update(
-    projectName: string,
+    project: string,
     body: ProjectUpdateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<ProjectUpdateResponse> {
-    return this._client.patch(path`/v0/projects/${projectName}`, { body, ...options });
+    return this._client.patch(path`/v0/projects/${project}`, { body, ...options });
   }
 
   /**
