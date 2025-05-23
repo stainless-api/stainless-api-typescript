@@ -10,8 +10,9 @@ export class Builds extends APIResource {
   /**
    * Create a new build
    */
-  create(body: BuildCreateParams, options?: RequestOptions): APIPromise<BuildObject> {
-    return this._client.post('/v0/builds', { body, ...options });
+  create(params: BuildCreateParams, options?: RequestOptions): APIPromise<BuildObject> {
+    const { project = this._client.project, ...body } = params;
+    return this._client.post('/v0/builds', { body: { project, ...body }, ...options });
   }
 
   /**
@@ -24,15 +25,20 @@ export class Builds extends APIResource {
   /**
    * List builds for a project
    */
-  list(query: BuildListParams, options?: RequestOptions): APIPromise<BuildListResponse> {
-    return this._client.get('/v0/builds', { query, ...options });
+  list(
+    params: BuildListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BuildListResponse> {
+    const { project = this._client.project, ...query } = params ?? {};
+    return this._client.get('/v0/builds', { query: { project, ...query }, ...options });
   }
 
   /**
    * Creates two builds whose outputs can be compared directly
    */
-  compare(body: BuildCompareParams, options?: RequestOptions): APIPromise<BuildCompareResponse> {
-    return this._client.post('/v0/builds/compare', { body, ...options });
+  compare(params: BuildCompareParams, options?: RequestOptions): APIPromise<BuildCompareResponse> {
+    const { project = this._client.project, ...body } = params;
+    return this._client.post('/v0/builds/compare', { body: { project, ...body }, ...options });
   }
 }
 
@@ -278,7 +284,7 @@ export interface BuildCreateParams {
   /**
    * Project name
    */
-  project: string;
+  project?: string;
 
   /**
    * Specifies what to build: a branch name, commit SHA, merge command
@@ -334,7 +340,7 @@ export interface BuildListParams {
   /**
    * Project name
    */
-  project: string;
+  project?: string;
 
   /**
    * Branch name
@@ -380,7 +386,7 @@ export interface BuildCompareParams {
   /**
    * Project name
    */
-  project: string;
+  project?: string;
 
   /**
    * Optional list of SDK targets to build. If not specified, all configured targets

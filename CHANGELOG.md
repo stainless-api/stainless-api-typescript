@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-05-23)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* **api:** change v0 path param projectName -&gt; project ([40cb0cc](https://github.com/stainless-api/stainless-api-typescript/commit/40cb0cc18df86f0a17b5a57a9e84c8bb3e0e8e5a))
+* **api:** manual updates ([56c37c6](https://github.com/stainless-api/stainless-api-typescript/commit/56c37c6452fae494d814550eb29318d76a4b04d1))
+
+
+### Chores
+
+* **docs:** grammar improvements ([22df641](https://github.com/stainless-api/stainless-api-typescript/commit/22df641caf538870dae2ad5763492a936e355de3))
+* **internal:** codegen related update ([1d0e5ff](https://github.com/stainless-api/stainless-api-typescript/commit/1d0e5ff513aebb3d8df7a16c2645a11399122157))
+
 ## 0.1.0-alpha.3 (2025-05-19)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)

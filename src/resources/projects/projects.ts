@@ -25,19 +25,23 @@ export class Projects extends APIResource {
   /**
    * Retrieve a project by name
    */
-  retrieve(projectName: string, options?: RequestOptions): APIPromise<ProjectRetrieveResponse> {
-    return this._client.get(path`/v0/projects/${projectName}`, options);
+  retrieve(
+    params: ProjectRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectRetrieveResponse> {
+    const { project = this._client.project } = params ?? {};
+    return this._client.get(path`/v0/projects/${project}`, options);
   }
 
   /**
    * Update a project's properties
    */
   update(
-    projectName: string,
-    body: ProjectUpdateParams | null | undefined = {},
+    params: ProjectUpdateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<ProjectUpdateResponse> {
-    return this._client.patch(path`/v0/projects/${projectName}`, { body, ...options });
+    const { project = this._client.project, ...body } = params ?? {};
+    return this._client.patch(path`/v0/projects/${project}`, { body, ...options });
   }
 
   /**
@@ -94,7 +98,19 @@ export namespace ProjectListResponse {
   }
 }
 
+export interface ProjectRetrieveParams {
+  project?: string;
+}
+
 export interface ProjectUpdateParams {
+  /**
+   * Path param:
+   */
+  project?: string;
+
+  /**
+   * Body param:
+   */
   display_name?: string | null;
 }
 
@@ -121,6 +137,7 @@ export declare namespace Projects {
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,
   };

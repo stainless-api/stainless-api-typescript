@@ -10,7 +10,8 @@ export class Branches extends APIResource {
   /**
    * Create a new branch for a project
    */
-  create(project: string, body: BranchCreateParams, options?: RequestOptions): APIPromise<ProjectBranch> {
+  create(params: BranchCreateParams, options?: RequestOptions): APIPromise<ProjectBranch> {
+    const { project = this._client.project, ...body } = params;
     return this._client.post(path`/v0/projects/${project}/branches`, { body, ...options });
   }
 
@@ -19,10 +20,10 @@ export class Branches extends APIResource {
    */
   retrieve(
     branch: string,
-    params: BranchRetrieveParams,
+    params: BranchRetrieveParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<ProjectBranch> {
-    const { project } = params;
+    const { project = this._client.project } = params ?? {};
     return this._client.get(path`/v0/projects/${project}/branches/${branch}`, options);
   }
 }
@@ -61,23 +62,29 @@ export namespace ProjectBranch {
 
 export interface BranchCreateParams {
   /**
-   * Name of the new project branch.
+   * Path param:
+   */
+  project?: string;
+
+  /**
+   * Body param: Name of the new project branch.
    */
   branch: string;
 
   /**
-   * Branch or commit SHA to branch from.
+   * Body param: Branch or commit SHA to branch from.
    */
   branch_from: string;
 
   /**
-   * Whether to throw an error if the branch already exists. Defaults to false.
+   * Body param: Whether to throw an error if the branch already exists. Defaults to
+   * false.
    */
   force?: boolean;
 }
 
 export interface BranchRetrieveParams {
-  project: string;
+  project?: string;
 }
 
 export declare namespace Branches {

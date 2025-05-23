@@ -43,6 +43,7 @@ import { isEmptyObj } from './internal/utils/values';
 import {
   ProjectListParams,
   ProjectListResponse,
+  ProjectRetrieveParams,
   ProjectRetrieveResponse,
   ProjectUpdateParams,
   ProjectUpdateResponse,
@@ -54,6 +55,8 @@ export interface ClientOptions {
    * Defaults to process.env['STAINLESS_V0_API_KEY'].
    */
   apiKey?: string | null | undefined;
+
+  project: string;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -127,6 +130,7 @@ export interface ClientOptions {
  */
 export class StainlessV0 {
   apiKey: string | null;
+  project: string;
 
   baseURL: string;
   maxRetries: number;
@@ -144,6 +148,7 @@ export class StainlessV0 {
    * API Client for interfacing with the Stainless V0 API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_V0_API_KEY'] ?? null]
+   * @param {string} opts.project
    * @param {string} [opts.baseURL=process.env['STAINLESS_V0_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -155,10 +160,18 @@ export class StainlessV0 {
   constructor({
     baseURL = readEnv('STAINLESS_V0_BASE_URL'),
     apiKey = readEnv('STAINLESS_V0_API_KEY') ?? null,
+    project,
     ...opts
-  }: ClientOptions = {}) {
+  }: ClientOptions) {
+    if (project === undefined) {
+      throw new Errors.StainlessV0Error(
+        "Missing required client option project; you need to instantiate the StainlessV0 client with an project option, like new StainlessV0({ project: 'example-project' }).",
+      );
+    }
+
     const options: ClientOptions = {
       apiKey,
+      project,
       ...opts,
       baseURL: baseURL || `https://api.stainless.com`,
     };
@@ -181,6 +194,7 @@ export class StainlessV0 {
     this._options = options;
 
     this.apiKey = apiKey;
+    this.project = project;
   }
 
   /**
@@ -196,6 +210,7 @@ export class StainlessV0 {
       logLevel: this.logLevel,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
+      project: this.project,
       ...options,
     });
   }
@@ -722,6 +737,7 @@ export declare namespace StainlessV0 {
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,
   };

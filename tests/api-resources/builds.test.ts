@@ -4,13 +4,14 @@ import StainlessV0 from 'stainless-v0';
 
 const client = new StainlessV0({
   apiKey: 'My API Key',
+  project: 'example-project',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource builds', () => {
   // skipped: tests are disabled for the time being
   test.skip('create: only required params', async () => {
-    const responsePromise = client.builds.create({ project: 'project', revision: 'string' });
+    const responsePromise = client.builds.create({ revision: 'string' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -46,7 +47,7 @@ describe('resource builds', () => {
 
   // skipped: tests are disabled for the time being
   test.skip('list: only required params', async () => {
-    const responsePromise = client.builds.list({ project: 'project' });
+    const responsePromise = client.builds.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -68,11 +69,21 @@ describe('resource builds', () => {
   });
 
   // skipped: tests are disabled for the time being
+  test.skip('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.builds.list(
+        { project: 'project', branch: 'branch', cursor: 'cursor', limit: 1, revision: 'string' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(StainlessV0.NotFoundError);
+  });
+
+  // skipped: tests are disabled for the time being
   test.skip('compare: only required params', async () => {
     const responsePromise = client.builds.compare({
       base: { revision: 'string' },
       head: { revision: 'string' },
-      project: 'project',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
