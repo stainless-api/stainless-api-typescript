@@ -61,7 +61,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['STAINLESS_V0_BASE_URL'].
+   * Defaults to process.env['STAINLESS_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -113,7 +113,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['STAINLESS_V0_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['STAINLESS_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -126,9 +126,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Stainless V0 API.
+ * API Client for interfacing with the Stainless API.
  */
-export class StainlessV0 {
+export class Stainless {
   apiKey: string | null;
   project: string;
 
@@ -145,11 +145,11 @@ export class StainlessV0 {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Stainless V0 API.
+   * API Client for interfacing with the Stainless API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_V0_API_KEY'] ?? null]
    * @param {string} opts.project
-   * @param {string} [opts.baseURL=process.env['STAINLESS_V0_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['STAINLESS_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -158,14 +158,14 @@ export class StainlessV0 {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('STAINLESS_V0_BASE_URL'),
+    baseURL = readEnv('STAINLESS_BASE_URL'),
     apiKey = readEnv('STAINLESS_V0_API_KEY') ?? null,
     project,
     ...opts
   }: ClientOptions) {
     if (project === undefined) {
-      throw new Errors.StainlessV0Error(
-        "Missing required client option project; you need to instantiate the StainlessV0 client with an project option, like new StainlessV0({ project: 'example-project' }).",
+      throw new Errors.StainlessError(
+        "Missing required client option project; you need to instantiate the Stainless client with an project option, like new Stainless({ project: 'example-project' }).",
       );
     }
 
@@ -177,14 +177,14 @@ export class StainlessV0 {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? StainlessV0.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? Stainless.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('STAINLESS_V0_LOG'), "process.env['STAINLESS_V0_LOG']", this) ??
+      parseLogLevel(readEnv('STAINLESS_LOG'), "process.env['STAINLESS_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -701,10 +701,10 @@ export class StainlessV0 {
     }
   }
 
-  static StainlessV0 = this;
+  static Stainless = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static StainlessV0Error = Errors.StainlessV0Error;
+  static StainlessError = Errors.StainlessError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -725,11 +725,11 @@ export class StainlessV0 {
   buildTargetOutputs: API.BuildTargetOutputs = new API.BuildTargetOutputs(this);
   orgs: API.Orgs = new API.Orgs(this);
 }
-StainlessV0.Projects = Projects;
-StainlessV0.Builds = Builds;
-StainlessV0.BuildTargetOutputs = BuildTargetOutputs;
-StainlessV0.Orgs = Orgs;
-export declare namespace StainlessV0 {
+Stainless.Projects = Projects;
+Stainless.Builds = Builds;
+Stainless.BuildTargetOutputs = BuildTargetOutputs;
+Stainless.Orgs = Orgs;
+export declare namespace Stainless {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
