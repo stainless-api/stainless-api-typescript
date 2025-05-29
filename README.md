@@ -1,8 +1,8 @@
-# Stainless V0 TypeScript API Library
+# Stainless TypeScript API Library
 
 [![NPM version](https://img.shields.io/npm/v/stainless-v0.svg)](https://npmjs.org/package/stainless-v0) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/stainless-v0)
 
-This library provides convenient access to the Stainless V0 REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Stainless REST API from server-side TypeScript or JavaScript.
 
 The full API of this library can be found in [api.md](api.md).
 
@@ -23,9 +23,9 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 
-const client = new StainlessV0({
+const client = new Stainless({
   project: 'example-project',
   apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
 });
@@ -45,16 +45,16 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 
-const client = new StainlessV0({
+const client = new Stainless({
   project: 'example-project',
   apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
-  const params: StainlessV0.BuildCreateParams = { revision: 'string' };
-  const buildObject: StainlessV0.BuildObject = await client.builds.create(params);
+  const params: Stainless.BuildCreateParams = { revision: 'string' };
+  const buildObject: Stainless.BuildObject = await client.builds.create(params);
 }
 
 main();
@@ -72,7 +72,7 @@ a subclass of `APIError` will be thrown:
 ```ts
 async function main() {
   const buildObject = await client.builds.create({ revision: 'string' }).catch(async (err) => {
-    if (err instanceof StainlessV0.APIError) {
+    if (err instanceof Stainless.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
@@ -109,7 +109,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new StainlessV0({
+const client = new Stainless({
   project: 'example-project',
   maxRetries: 0, // default is 2
 });
@@ -127,7 +127,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new StainlessV0({
+const client = new Stainless({
   project: 'example-project',
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
@@ -154,7 +154,7 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 
 <!-- prettier-ignore -->
 ```ts
-const client = new StainlessV0();
+const client = new Stainless();
 
 const response = await client.builds.create({ revision: 'string' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
@@ -177,13 +177,13 @@ console.log(buildObject.id);
 
 The log level can be configured in two ways:
 
-1. Via the `STAINLESS_V0_LOG` environment variable
+1. Via the `STAINLESS_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 
-const client = new StainlessV0({
+const client = new Stainless({
   logLevel: 'debug', // Show all log messages
 });
 ```
@@ -209,13 +209,13 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 import pino from 'pino';
 
 const logger = pino();
 
-const client = new StainlessV0({
-  logger: logger.child({ name: 'StainlessV0' }),
+const client = new Stainless({
+  logger: logger.child({ name: 'Stainless' }),
   logLevel: 'debug', // Send all messages to pino, allowing it to filter
 });
 ```
@@ -279,10 +279,10 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 import fetch from 'my-fetch';
 
-const client = new StainlessV0({ fetch });
+const client = new Stainless({ fetch });
 ```
 
 ### Fetch options
@@ -290,9 +290,9 @@ const client = new StainlessV0({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 
-const client = new StainlessV0({
+const client = new Stainless({
   fetchOptions: {
     // `RequestInit` options
   },
@@ -307,11 +307,11 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
-const client = new StainlessV0({
+const client = new Stainless({
   fetchOptions: {
     dispatcher: proxyAgent,
   },
@@ -321,9 +321,9 @@ const client = new StainlessV0({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 
-const client = new StainlessV0({
+const client = new Stainless({
   fetchOptions: {
     proxy: 'http://localhost:8888',
   },
@@ -333,10 +333,10 @@ const client = new StainlessV0({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import StainlessV0 from 'npm:stainless-v0';
+import Stainless from 'npm:stainless-v0';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
-const client = new StainlessV0({
+const client = new Stainless({
   fetchOptions: {
     client: httpClient,
   },

@@ -3,7 +3,7 @@
 import { APIPromise } from 'stainless-v0/core/api-promise';
 
 import util from 'node:util';
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 import { APIUserAbortError } from 'stainless-v0';
 const defaultFetch = fetch;
 
@@ -20,7 +20,7 @@ describe('instantiate client', () => {
   });
 
   describe('defaultHeaders', () => {
-    const client = new StainlessV0({
+    const client = new Stainless({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
       apiKey: 'My API Key',
@@ -55,14 +55,14 @@ describe('instantiate client', () => {
 
     beforeEach(() => {
       process.env = { ...env };
-      process.env['STAINLESS_V0_LOG'] = undefined;
+      process.env['STAINLESS_LOG'] = undefined;
     });
 
     afterEach(() => {
       process.env = env;
     });
 
-    const forceAPIResponseForClient = async (client: StainlessV0) => {
+    const forceAPIResponseForClient = async (client: Stainless) => {
       await new APIPromise(
         client,
         Promise.resolve({
@@ -88,7 +88,7 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new StainlessV0({
+      const client = new Stainless({
         logger: logger,
         logLevel: 'debug',
         apiKey: 'My API Key',
@@ -100,7 +100,7 @@ describe('instantiate client', () => {
     });
 
     test('default logLevel is warn', async () => {
-      const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project' });
+      const client = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
       expect(client.logLevel).toBe('warn');
     });
 
@@ -113,7 +113,7 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new StainlessV0({
+      const client = new Stainless({
         logger: logger,
         logLevel: 'info',
         apiKey: 'My API Key',
@@ -133,8 +133,8 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      process.env['STAINLESS_V0_LOG'] = 'debug';
-      const client = new StainlessV0({ logger: logger, apiKey: 'My API Key', project: 'example-project' });
+      process.env['STAINLESS_LOG'] = 'debug';
+      const client = new Stainless({ logger: logger, apiKey: 'My API Key', project: 'example-project' });
       expect(client.logLevel).toBe('debug');
 
       await forceAPIResponseForClient(client);
@@ -150,11 +150,11 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      process.env['STAINLESS_V0_LOG'] = 'not a log level';
-      const client = new StainlessV0({ logger: logger, apiKey: 'My API Key', project: 'example-project' });
+      process.env['STAINLESS_LOG'] = 'not a log level';
+      const client = new Stainless({ logger: logger, apiKey: 'My API Key', project: 'example-project' });
       expect(client.logLevel).toBe('warn');
       expect(warnMock).toHaveBeenCalledWith(
-        'process.env[\'STAINLESS_V0_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]',
+        'process.env[\'STAINLESS_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]',
       );
     });
 
@@ -167,8 +167,8 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      process.env['STAINLESS_V0_LOG'] = 'debug';
-      const client = new StainlessV0({
+      process.env['STAINLESS_LOG'] = 'debug';
+      const client = new Stainless({
         logger: logger,
         logLevel: 'off',
         apiKey: 'My API Key',
@@ -188,8 +188,8 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      process.env['STAINLESS_V0_LOG'] = 'not a log level';
-      const client = new StainlessV0({
+      process.env['STAINLESS_LOG'] = 'not a log level';
+      const client = new Stainless({
         logger: logger,
         logLevel: 'debug',
         apiKey: 'My API Key',
@@ -202,7 +202,7 @@ describe('instantiate client', () => {
 
   describe('defaultQuery', () => {
     test('with null query params given', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
         apiKey: 'My API Key',
@@ -212,7 +212,7 @@ describe('instantiate client', () => {
     });
 
     test('multiple default query params', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
         apiKey: 'My API Key',
@@ -222,7 +222,7 @@ describe('instantiate client', () => {
     });
 
     test('overriding with `undefined`', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
         apiKey: 'My API Key',
@@ -233,7 +233,7 @@ describe('instantiate client', () => {
   });
 
   test('custom fetch', async () => {
-    const client = new StainlessV0({
+    const client = new Stainless({
       baseURL: 'http://localhost:5000/',
       apiKey: 'My API Key',
       project: 'example-project',
@@ -252,7 +252,7 @@ describe('instantiate client', () => {
 
   test('explicit global fetch', async () => {
     // make sure the global fetch type is assignable to our Fetch type
-    const client = new StainlessV0({
+    const client = new Stainless({
       baseURL: 'http://localhost:5000/',
       apiKey: 'My API Key',
       project: 'example-project',
@@ -261,7 +261,7 @@ describe('instantiate client', () => {
   });
 
   test('custom signal', async () => {
-    const client = new StainlessV0({
+    const client = new Stainless({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
       apiKey: 'My API Key',
       project: 'example-project',
@@ -294,7 +294,7 @@ describe('instantiate client', () => {
       return new Response(JSON.stringify({}), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new StainlessV0({
+    const client = new Stainless({
       baseURL: 'http://localhost:5000/',
       apiKey: 'My API Key',
       project: 'example-project',
@@ -307,7 +307,7 @@ describe('instantiate client', () => {
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'http://localhost:5000/custom/path/',
         apiKey: 'My API Key',
         project: 'example-project',
@@ -316,7 +316,7 @@ describe('instantiate client', () => {
     });
 
     test('no trailing slash', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'http://localhost:5000/custom/path',
         apiKey: 'My API Key',
         project: 'example-project',
@@ -325,11 +325,11 @@ describe('instantiate client', () => {
     });
 
     afterEach(() => {
-      process.env['STAINLESS_V0_BASE_URL'] = undefined;
+      process.env['STAINLESS_BASE_URL'] = undefined;
     });
 
     test('explicit option', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'https://example.com',
         apiKey: 'My API Key',
         project: 'example-project',
@@ -338,36 +338,36 @@ describe('instantiate client', () => {
     });
 
     test('env variable', () => {
-      process.env['STAINLESS_V0_BASE_URL'] = 'https://example.com/from_env';
-      const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project' });
+      process.env['STAINLESS_BASE_URL'] = 'https://example.com/from_env';
+      const client = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
-      process.env['STAINLESS_V0_BASE_URL'] = ''; // empty
-      const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project' });
+      process.env['STAINLESS_BASE_URL'] = ''; // empty
+      const client = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
       expect(client.baseURL).toEqual('https://api.stainless.com');
     });
 
     test('blank env variable', () => {
-      process.env['STAINLESS_V0_BASE_URL'] = '  '; // blank
-      const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project' });
+      process.env['STAINLESS_BASE_URL'] = '  '; // blank
+      const client = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
       expect(client.baseURL).toEqual('https://api.stainless.com');
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new StainlessV0({ maxRetries: 4, apiKey: 'My API Key', project: 'example-project' });
+    const client = new Stainless({ maxRetries: 4, apiKey: 'My API Key', project: 'example-project' });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new StainlessV0({ apiKey: 'My API Key', project: 'example-project' });
+    const client2 = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
     expect(client2.maxRetries).toEqual(2);
   });
 
   describe('withOptions', () => {
     test('creates a new client with overridden options', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'http://localhost:5000/',
         maxRetries: 3,
         apiKey: 'My API Key',
@@ -393,7 +393,7 @@ describe('instantiate client', () => {
     });
 
     test('inherits options from the parent client', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'http://localhost:5000/',
         defaultHeaders: { 'X-Test-Header': 'test-value' },
         defaultQuery: { 'test-param': 'test-value' },
@@ -413,7 +413,7 @@ describe('instantiate client', () => {
     });
 
     test('respects runtime property changes when creating new client', () => {
-      const client = new StainlessV0({
+      const client = new Stainless({
         baseURL: 'http://localhost:5000/',
         timeout: 1000,
         apiKey: 'My API Key',
@@ -447,7 +447,7 @@ describe('instantiate client', () => {
   test('with environment variable arguments', () => {
     // set options via env var
     process.env['STAINLESS_V0_API_KEY'] = 'My API Key';
-    const client = new StainlessV0({ project: 'example-project' });
+    const client = new Stainless({ project: 'example-project' });
     expect(client.apiKey).toBe('My API Key');
     expect(client.project).toBe('example-project');
   });
@@ -455,14 +455,14 @@ describe('instantiate client', () => {
   test('with overridden environment variable arguments', () => {
     // set options via env var
     process.env['STAINLESS_V0_API_KEY'] = 'another My API Key';
-    const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project' });
+    const client = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
     expect(client.apiKey).toBe('My API Key');
     expect(client.project).toBe('example-project');
   });
 });
 
 describe('request building', () => {
-  const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project' });
+  const client = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
 
   describe('custom headers', () => {
     test('handles undefined', () => {
@@ -481,7 +481,7 @@ describe('request building', () => {
 });
 
 describe('default encoder', () => {
-  const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project' });
+  const client = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
 
   class Serializable {
     toJSON() {
@@ -566,7 +566,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new StainlessV0({
+    const client = new Stainless({
       apiKey: 'My API Key',
       project: 'example-project',
       timeout: 10,
@@ -601,7 +601,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new StainlessV0({
+    const client = new Stainless({
       apiKey: 'My API Key',
       project: 'example-project',
       fetch: testFetch,
@@ -630,7 +630,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new StainlessV0({
+    const client = new Stainless({
       apiKey: 'My API Key',
       project: 'example-project',
       fetch: testFetch,
@@ -664,7 +664,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new StainlessV0({
+    const client = new Stainless({
       apiKey: 'My API Key',
       project: 'example-project',
       fetch: testFetch,
@@ -698,7 +698,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new StainlessV0({
+    const client = new Stainless({
       apiKey: 'My API Key',
       project: 'example-project',
       fetch: testFetch,
@@ -733,7 +733,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project', fetch: testFetch });
+    const client = new Stainless({ apiKey: 'My API Key', project: 'example-project', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -763,7 +763,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new StainlessV0({ apiKey: 'My API Key', project: 'example-project', fetch: testFetch });
+    const client = new Stainless({ apiKey: 'My API Key', project: 'example-project', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
