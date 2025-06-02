@@ -47,7 +47,10 @@ export class Projects extends APIResource {
   /**
    * List projects in an organization
    */
-  list(query: ProjectListParams, options?: RequestOptions): APIPromise<ProjectListResponse> {
+  list(
+    query: ProjectListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectListResponse> {
     return this._client.get('/v0/projects', { query, ...options });
   }
 }
@@ -115,8 +118,6 @@ export interface ProjectUpdateParams {
 }
 
 export interface ProjectListParams {
-  org: string;
-
   /**
    * Pagination cursor from a previous response
    */
@@ -126,6 +127,8 @@ export interface ProjectListParams {
    * Maximum number of projects to return, defaults to 10 (maximum: 100)
    */
   limit?: number;
+
+  org?: string;
 }
 
 Projects.Branches = Branches;

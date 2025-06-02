@@ -150,6 +150,8 @@ export namespace BuildTarget {
         | 'version_bump';
 
       merge_conflict_pr: Completed.MergeConflictPr | null;
+
+      diagnostics?: Array<unknown>;
     }
 
     export namespace Completed {
