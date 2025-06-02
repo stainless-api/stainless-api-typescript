@@ -96,43 +96,31 @@ export declare namespace SnippetCreateRequestParams {
 
   export namespace Variant1 {
     export interface Har {
-      log: Har.Log;
+      request: Har.Request;
     }
 
     export namespace Har {
-      export interface Log {
-        entries: Array<Log.Entry>;
+      export interface Request {
+        method: string;
+
+        queryString: Array<Request.QueryString>;
+
+        url: string;
+
+        postData?: Request.PostData;
       }
 
-      export namespace Log {
-        export interface Entry {
-          request: Entry.Request;
+      export namespace Request {
+        export interface QueryString {
+          name: string;
+
+          value: string;
         }
 
-        export namespace Entry {
-          export interface Request {
-            method: string;
+        export interface PostData {
+          mimeType: string;
 
-            queryString: Array<Request.QueryString>;
-
-            url: string;
-
-            postData?: Request.PostData;
-          }
-
-          export namespace Request {
-            export interface QueryString {
-              name: string;
-
-              value: string;
-            }
-
-            export interface PostData {
-              mimeType: string;
-
-              text: string;
-            }
-          }
+          text: string;
         }
       }
     }
