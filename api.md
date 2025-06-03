@@ -49,27 +49,27 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/builds.ts">BuildObject</a></code>
-- <code><a href="./src/resources/builds.ts">BuildTarget</a></code>
-- <code><a href="./src/resources/builds.ts">BuildListResponse</a></code>
-- <code><a href="./src/resources/builds.ts">BuildCompareResponse</a></code>
+- <code><a href="./src/resources/builds/builds.ts">BuildObject</a></code>
+- <code><a href="./src/resources/builds/builds.ts">BuildTarget</a></code>
+- <code><a href="./src/resources/builds/builds.ts">BuildListResponse</a></code>
+- <code><a href="./src/resources/builds/builds.ts">BuildCompareResponse</a></code>
 
 Methods:
 
-- <code title="post /v0/builds">client.builds.<a href="./src/resources/builds.ts">create</a>({ ...params }) -> BuildObject</code>
-- <code title="get /v0/builds/{buildId}">client.builds.<a href="./src/resources/builds.ts">retrieve</a>(buildID) -> BuildObject</code>
-- <code title="get /v0/builds">client.builds.<a href="./src/resources/builds.ts">list</a>({ ...params }) -> BuildListResponse</code>
-- <code title="post /v0/builds/compare">client.builds.<a href="./src/resources/builds.ts">compare</a>({ ...params }) -> BuildCompareResponse</code>
+- <code title="post /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">create</a>({ ...params }) -> BuildObject</code>
+- <code title="get /v0/builds/{buildId}">client.builds.<a href="./src/resources/builds/builds.ts">retrieve</a>(buildID) -> BuildObject</code>
+- <code title="get /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">list</a>({ ...params }) -> BuildListResponse</code>
+- <code title="post /v0/builds/compare">client.builds.<a href="./src/resources/builds/builds.ts">compare</a>({ ...params }) -> BuildCompareResponse</code>
 
-# BuildTargetOutputs
+## TargetOutputs
 
 Types:
 
-- <code><a href="./src/resources/build-target-outputs.ts">BuildTargetOutputRetrieveResponse</a></code>
+- <code><a href="./src/resources/builds/target-outputs.ts">TargetOutputRetrieveResponse</a></code>
 
 Methods:
 
-- <code title="get /v0/build_target_outputs">client.buildTargetOutputs.<a href="./src/resources/build-target-outputs.ts">retrieve</a>({ ...params }) -> BuildTargetOutputRetrieveResponse</code>
+- <code title="get /v0/build_target_outputs">client.builds.targetOutputs.<a href="./src/resources/builds/target-outputs.ts">retrieve</a>({ ...params }) -> TargetOutputRetrieveResponse</code>
 
 # Orgs
 
