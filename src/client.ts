@@ -21,11 +21,10 @@ import { APIPromise } from './core/api-promise';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
-import {
-  BuildTargetOutputRetrieveParams,
-  BuildTargetOutputRetrieveResponse,
-  BuildTargetOutputs,
-} from './resources/build-target-outputs';
+import { OrgListResponse, OrgRetrieveResponse, Orgs } from './resources/orgs';
+import { readEnv } from './internal/utils/env';
+import { formatRequestDetails, loggerFor } from './internal/utils/log';
+import { isEmptyObj } from './internal/utils/values';
 import {
   BuildCompareParams,
   BuildCompareResponse,
@@ -35,11 +34,7 @@ import {
   BuildObject,
   BuildTarget,
   Builds,
-} from './resources/builds';
-import { OrgListResponse, OrgRetrieveResponse, Orgs } from './resources/orgs';
-import { readEnv } from './internal/utils/env';
-import { formatRequestDetails, loggerFor } from './internal/utils/log';
-import { isEmptyObj } from './internal/utils/values';
+} from './resources/builds/builds';
 import {
   ProjectListParams,
   ProjectListResponse,
@@ -722,12 +717,10 @@ export class Stainless {
 
   projects: API.Projects = new API.Projects(this);
   builds: API.Builds = new API.Builds(this);
-  buildTargetOutputs: API.BuildTargetOutputs = new API.BuildTargetOutputs(this);
   orgs: API.Orgs = new API.Orgs(this);
 }
 Stainless.Projects = Projects;
 Stainless.Builds = Builds;
-Stainless.BuildTargetOutputs = BuildTargetOutputs;
 Stainless.Orgs = Orgs;
 export declare namespace Stainless {
   export type RequestOptions = Opts.RequestOptions;
@@ -751,12 +744,6 @@ export declare namespace Stainless {
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
     type BuildCompareParams as BuildCompareParams,
-  };
-
-  export {
-    BuildTargetOutputs as BuildTargetOutputs,
-    type BuildTargetOutputRetrieveResponse as BuildTargetOutputRetrieveResponse,
-    type BuildTargetOutputRetrieveParams as BuildTargetOutputRetrieveParams,
   };
 
   export {
