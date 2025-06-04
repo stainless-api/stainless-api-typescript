@@ -19,110 +19,73 @@ export interface SnippetCreateRequestResponse {
   snippet: string;
 }
 
-export type SnippetCreateRequestParams =
-  | SnippetCreateRequestParams.Variant0
-  | SnippetCreateRequestParams.Variant1;
+export interface SnippetCreateRequestParams {
+  language:
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp';
 
-export declare namespace SnippetCreateRequestParams {
-  export interface Variant0 {
-    request: Variant0.Request;
+  request: SnippetCreateRequestParams.UnionMember0 | SnippetCreateRequestParams.UnionMember1;
 
-    har?: null;
+  version: 'next' | 'latest_released';
+}
 
-    language?:
-      | 'node'
-      | 'typescript'
-      | 'python'
-      | 'go'
-      | 'java'
-      | 'kotlin'
-      | 'ruby'
-      | 'terraform'
-      | 'cli'
-      | 'php'
-      | 'csharp';
+export namespace SnippetCreateRequestParams {
+  export interface UnionMember0 {
+    method: string;
 
-    version?: 'next' | 'latest_released';
+    parameters: Array<UnionMember0.Parameter>;
+
+    path: string;
+
+    body?: UnionMember0.Body;
   }
 
-  export namespace Variant0 {
-    export interface Request {
-      method: string;
+  export namespace UnionMember0 {
+    export interface Parameter {
+      in: 'path' | 'query' | 'header' | 'cookie';
 
-      parameters: Array<Request.Parameter>;
+      name: string;
 
-      path: string;
-
-      body?: Request.Body;
+      value?: unknown;
     }
 
-    export namespace Request {
-      export interface Parameter {
-        in: 'path' | 'query' | 'header' | 'cookie';
+    export interface Body {
+      fileParam?: string;
 
-        name: string;
-
-        value?: unknown;
-      }
-
-      export interface Body {
-        fileParam?: string;
-
-        filePath?: string;
-      }
+      filePath?: string;
     }
   }
 
-  export interface Variant1 {
-    har: Variant1.Har;
+  export interface UnionMember1 {
+    method: string;
 
-    language?:
-      | 'node'
-      | 'typescript'
-      | 'python'
-      | 'go'
-      | 'java'
-      | 'kotlin'
-      | 'ruby'
-      | 'terraform'
-      | 'cli'
-      | 'php'
-      | 'csharp';
+    queryString: Array<UnionMember1.QueryString>;
 
-    request?: null;
+    url: string;
 
-    version?: 'next' | 'latest_released';
+    postData?: UnionMember1.PostData;
   }
 
-  export namespace Variant1 {
-    export interface Har {
-      request: Har.Request;
+  export namespace UnionMember1 {
+    export interface QueryString {
+      name: string;
+
+      value: string;
     }
 
-    export namespace Har {
-      export interface Request {
-        method: string;
+    export interface PostData {
+      mimeType: string;
 
-        queryString: Array<Request.QueryString>;
-
-        url: string;
-
-        postData?: Request.PostData;
-      }
-
-      export namespace Request {
-        export interface QueryString {
-          name: string;
-
-          value: string;
-        }
-
-        export interface PostData {
-          mimeType: string;
-
-          text: string;
-        }
-      }
+      text: string;
     }
   }
 }
