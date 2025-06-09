@@ -23,6 +23,13 @@ export class Projects extends APIResource {
   snippets: SnippetsAPI.Snippets = new SnippetsAPI.Snippets(this._client);
 
   /**
+   * Create a new project
+   */
+  create(body: ProjectCreateParams, options?: RequestOptions): APIPromise<ProjectCreateResponse> {
+    return this._client.post('/v0/projects', { body, ...options });
+  }
+
+  /**
    * Retrieve a project by name
    */
   retrieve(
@@ -55,6 +62,20 @@ export class Projects extends APIResource {
   }
 }
 
+export interface ProjectCreateResponse {
+  config_repo: string;
+
+  display_name: string | null;
+
+  object: 'project';
+
+  org: string;
+
+  slug: string;
+
+  targets: Array<string>;
+}
+
 export interface ProjectRetrieveResponse {
   config_repo: string;
 
@@ -65,6 +86,8 @@ export interface ProjectRetrieveResponse {
   org: string;
 
   slug: string;
+
+  targets: Array<string>;
 }
 
 export interface ProjectUpdateResponse {
@@ -77,6 +100,8 @@ export interface ProjectUpdateResponse {
   org: string;
 
   slug: string;
+
+  targets: Array<string>;
 }
 
 export interface ProjectListResponse {
@@ -98,6 +123,44 @@ export namespace ProjectListResponse {
     org: string;
 
     slug: string;
+
+    targets: Array<string>;
+  }
+}
+
+export interface ProjectCreateParams {
+  /**
+   * Human-readable project name
+   */
+  display_name: string;
+
+  /**
+   * Organization name
+   */
+  org: string;
+
+  /**
+   * File contents to commit
+   */
+  revision: Record<string, ProjectCreateParams.Revision>;
+
+  /**
+   * Project name/slug
+   */
+  slug: string;
+
+  /**
+   * Targets to generate for
+   */
+  targets: Array<string>;
+}
+
+export namespace ProjectCreateParams {
+  export interface Revision {
+    /**
+     * File content
+     */
+    content: string;
   }
 }
 
@@ -137,9 +200,11 @@ Projects.Snippets = Snippets;
 
 export declare namespace Projects {
   export {
+    type ProjectCreateResponse as ProjectCreateResponse,
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,

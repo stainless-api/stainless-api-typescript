@@ -13,9 +13,11 @@ export {
 export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
 export {
   Projects,
+  type ProjectCreateResponse,
   type ProjectRetrieveResponse,
   type ProjectUpdateResponse,
   type ProjectListResponse,
+  type ProjectCreateParams,
   type ProjectRetrieveParams,
   type ProjectUpdateParams,
   type ProjectListParams,

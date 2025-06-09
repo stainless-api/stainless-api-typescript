@@ -10,6 +10,35 @@ const client = new Stainless({
 
 describe('resource projects', () => {
   // skipped: tests are disabled for the time being
+  test.skip('create: only required params', async () => {
+    const responsePromise = client.projects.create({
+      display_name: 'display_name',
+      org: 'org',
+      revision: { foo: { content: 'content' } },
+      slug: 'slug',
+      targets: ['string'],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // skipped: tests are disabled for the time being
+  test.skip('create: required and optional params', async () => {
+    const response = await client.projects.create({
+      display_name: 'display_name',
+      org: 'org',
+      revision: { foo: { content: 'content' } },
+      slug: 'slug',
+      targets: ['string'],
+    });
+  });
+
+  // skipped: tests are disabled for the time being
   test.skip('retrieve: only required params', async () => {
     const responsePromise = client.projects.retrieve();
     const rawResponse = await responsePromise.asResponse();

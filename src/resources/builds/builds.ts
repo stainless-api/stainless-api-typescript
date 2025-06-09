@@ -336,7 +336,7 @@ export interface BuildCreateParams {
 export namespace BuildCreateParams {
   export interface unnamed_schema_with_map_parent_0 {
     /**
-     * The file content
+     * File content
      */
     content: string;
   }
@@ -438,7 +438,7 @@ export namespace BuildCompareParams {
   export namespace Base {
     export interface unnamed_schema_with_map_parent_2 {
       /**
-       * The file content
+       * File content
        */
       content: string;
     }
@@ -468,7 +468,7 @@ export namespace BuildCompareParams {
   export namespace Head {
     export interface unnamed_schema_with_map_parent_3 {
       /**
-       * The file content
+       * File content
        */
       content: string;
     }
