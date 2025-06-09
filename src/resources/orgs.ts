@@ -9,8 +9,8 @@ export class Orgs extends APIResource {
   /**
    * Retrieve an organization by name
    */
-  retrieve(orgName: string, options?: RequestOptions): APIPromise<OrgRetrieveResponse> {
-    return this._client.get(path`/v0/orgs/${orgName}`, options);
+  retrieve(org: string, options?: RequestOptions): APIPromise<OrgRetrieveResponse> {
+    return this._client.get(path`/v0/orgs/${org}`, options);
   }
 
   /**

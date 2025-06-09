@@ -2,12 +2,14 @@
 
 Types:
 
+- <code><a href="./src/resources/projects/projects.ts">ProjectCreateResponse</a></code>
 - <code><a href="./src/resources/projects/projects.ts">ProjectRetrieveResponse</a></code>
 - <code><a href="./src/resources/projects/projects.ts">ProjectUpdateResponse</a></code>
 - <code><a href="./src/resources/projects/projects.ts">ProjectListResponse</a></code>
 
 Methods:
 
+- <code title="post /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">create</a>({ ...params }) -> ProjectCreateResponse</code>
 - <code title="get /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>({ ...params }) -> ProjectRetrieveResponse</code>
 - <code title="patch /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>({ ...params }) -> ProjectUpdateResponse</code>
 - <code title="get /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectListResponse</code>
@@ -80,5 +82,5 @@ Types:
 
 Methods:
 
-- <code title="get /v0/orgs/{orgName}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(orgName) -> OrgRetrieveResponse</code>
+- <code title="get /v0/orgs/{org}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(org) -> OrgRetrieveResponse</code>
 - <code title="get /v0/orgs">client.orgs.<a href="./src/resources/orgs.ts">list</a>() -> OrgListResponse</code>

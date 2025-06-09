@@ -36,6 +36,8 @@ import {
   Builds,
 } from './resources/builds/builds';
 import {
+  ProjectCreateParams,
+  ProjectCreateResponse,
   ProjectListParams,
   ProjectListResponse,
   ProjectRetrieveParams,
@@ -727,9 +729,11 @@ export declare namespace Stainless {
 
   export {
     Projects as Projects,
+    type ProjectCreateResponse as ProjectCreateResponse,
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,

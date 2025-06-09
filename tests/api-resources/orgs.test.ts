@@ -11,7 +11,7 @@ const client = new Stainless({
 describe('resource orgs', () => {
   // skipped: tests are disabled for the time being
   test.skip('retrieve', async () => {
-    const responsePromise = client.orgs.retrieve('orgName');
+    const responsePromise = client.orgs.retrieve('org');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
