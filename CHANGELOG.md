@@ -1,5 +1,45 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-06-16)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* **api:** add diagnostics to build object ([754154c](https://github.com/stainless-api/stainless-api-typescript/commit/754154c87ae5a1a792fa30dabdad78203d8ccfde))
+* **api:** add v0 project create api ([f7be25c](https://github.com/stainless-api/stainless-api-typescript/commit/f7be25cf7cc90a662296b31cecd3ba48dc93a7d7))
+* **api:** change v0 path param projectName -&gt; project ([40cb0cc](https://github.com/stainless-api/stainless-api-typescript/commit/40cb0cc18df86f0a17b5a57a9e84c8bb3e0e8e5a))
+* **api:** manual updates ([130dd92](https://github.com/stainless-api/stainless-api-typescript/commit/130dd92c7fe4444059daf5ea17a2611abe75997e))
+* **api:** manual updates ([56c37c6](https://github.com/stainless-api/stainless-api-typescript/commit/56c37c6452fae494d814550eb29318d76a4b04d1))
+
+
+### Bug Fixes
+
+* changes har request format for snippets API some more ([619c784](https://github.com/stainless-api/stainless-api-typescript/commit/619c78412f187ab66b699ad7a7718117c9561dd0))
+* compat with more runtimes ([9ce1204](https://github.com/stainless-api/stainless-api-typescript/commit/9ce1204a42b43ed81684ce0af602907d6b19f71f))
+* publish script — handle NPM errors correctly ([cbc3fcc](https://github.com/stainless-api/stainless-api-typescript/commit/cbc3fcc2d669ed33212ece031289342ac547e4ff))
+
+
+### Chores
+
+* adjust eslint.config.mjs ignore pattern ([39b2b88](https://github.com/stainless-api/stainless-api-typescript/commit/39b2b88709ce1110380d26aac89ff0a5d44eecc4))
+* avoid type error in certain environments ([0e2a217](https://github.com/stainless-api/stainless-api-typescript/commit/0e2a2175e83b686df6e108777cb72a74adcb3959))
+* **deps:** bump eslint-plugin-prettier ([7e0d104](https://github.com/stainless-api/stainless-api-typescript/commit/7e0d10495fcc59a4e341985846d5a70d817eb9a0))
+* **docs:** grammar improvements ([22df641](https://github.com/stainless-api/stainless-api-typescript/commit/22df641caf538870dae2ad5763492a936e355de3))
+* **docs:** use top-level-await in example snippets ([563dbc4](https://github.com/stainless-api/stainless-api-typescript/commit/563dbc495a320b64620a41f394e7d982cc486a98))
+* improve publish-npm script --latest tag logic ([81c8585](https://github.com/stainless-api/stainless-api-typescript/commit/81c8585dd62ec5d85dfebf5b1b7ee631107512c2))
+* **internal:** add pure annotations, make base APIResource abstract ([a0ed564](https://github.com/stainless-api/stainless-api-typescript/commit/a0ed564beee9f24c10a90eae200cb9df18957c2d))
+* **internal:** codegen related update ([434dc67](https://github.com/stainless-api/stainless-api-typescript/commit/434dc67c5acbd6852218902314b644b0a7974c24))
+* **internal:** codegen related update ([9c78aaf](https://github.com/stainless-api/stainless-api-typescript/commit/9c78aaf1bd5d24e869670608af35c882f0628b2a))
+* **internal:** codegen related update ([1d0e5ff](https://github.com/stainless-api/stainless-api-typescript/commit/1d0e5ff513aebb3d8df7a16c2645a11399122157))
+* **internal:** fix readablestream types in node 20 ([29ec6b7](https://github.com/stainless-api/stainless-api-typescript/commit/29ec6b7a76282680c8ba3c4974b5931d780834cf))
+* **internal:** update jest config ([1870539](https://github.com/stainless-api/stainless-api-typescript/commit/1870539fbe04bda0311d932b9136569d0708cad7))
+
+
+### Refactors
+
+* move build_target_outputs to builds.target_outputs ([ad9735f](https://github.com/stainless-api/stainless-api-typescript/commit/ad9735f453e17f1a518c159eea09c49a5171bbab))
+
 ## 0.1.0-alpha.3 (2025-05-19)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)

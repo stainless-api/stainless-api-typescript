@@ -1,6 +1,6 @@
 {
   "name": "stainless-v0",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "description": "The official TypeScript library for the Stainless API",
   "author": "Stainless <>",
   "types": "dist/index.d.ts",
