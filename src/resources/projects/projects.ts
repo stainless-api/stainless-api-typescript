@@ -11,8 +11,6 @@ import {
   ConfigRetrieveResponse,
   Configs,
 } from './configs';
-import * as SnippetsAPI from './snippets';
-import { SnippetCreateRequestParams, SnippetCreateRequestResponse, Snippets } from './snippets';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -20,7 +18,6 @@ import { path } from '../../internal/utils/path';
 export class Projects extends APIResource {
   branches: BranchesAPI.Branches = new BranchesAPI.Branches(this._client);
   configs: ConfigsAPI.Configs = new ConfigsAPI.Configs(this._client);
-  snippets: SnippetsAPI.Snippets = new SnippetsAPI.Snippets(this._client);
 
   /**
    * Create a new project
@@ -196,7 +193,6 @@ export interface ProjectListParams {
 
 Projects.Branches = Branches;
 Projects.Configs = Configs;
-Projects.Snippets = Snippets;
 
 export declare namespace Projects {
   export {
@@ -223,11 +219,5 @@ export declare namespace Projects {
     type ConfigGuessResponse as ConfigGuessResponse,
     type ConfigRetrieveParams as ConfigRetrieveParams,
     type ConfigGuessParams as ConfigGuessParams,
-  };
-
-  export {
-    Snippets as Snippets,
-    type SnippetCreateRequestResponse as SnippetCreateRequestResponse,
-    type SnippetCreateRequestParams as SnippetCreateRequestParams,
   };
 }
