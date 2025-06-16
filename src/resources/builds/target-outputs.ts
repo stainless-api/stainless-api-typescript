@@ -1,26 +1,26 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
-import { RequestOptions } from '../internal/request-options';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
-export class BuildTargetOutputs extends APIResource {
+export class TargetOutputs extends APIResource {
   /**
    * Download the output of a build target
    */
   retrieve(
-    query: BuildTargetOutputRetrieveParams,
+    query: TargetOutputRetrieveParams,
     options?: RequestOptions,
-  ): APIPromise<BuildTargetOutputRetrieveResponse> {
+  ): APIPromise<TargetOutputRetrieveResponse> {
     return this._client.get('/v0/build_target_outputs', { query, ...options });
   }
 }
 
-export type BuildTargetOutputRetrieveResponse =
-  | BuildTargetOutputRetrieveResponse.UnionMember0
-  | BuildTargetOutputRetrieveResponse.UnionMember1;
+export type TargetOutputRetrieveResponse =
+  | TargetOutputRetrieveResponse.UnionMember0
+  | TargetOutputRetrieveResponse.UnionMember1;
 
-export namespace BuildTargetOutputRetrieveResponse {
+export namespace TargetOutputRetrieveResponse {
   export interface UnionMember0 {
     output: 'url';
 
@@ -50,7 +50,7 @@ export namespace BuildTargetOutputRetrieveResponse {
   }
 }
 
-export interface BuildTargetOutputRetrieveParams {
+export interface TargetOutputRetrieveParams {
   /**
    * Build ID
    */
@@ -83,9 +83,9 @@ export interface BuildTargetOutputRetrieveParams {
   output?: 'url' | 'git';
 }
 
-export declare namespace BuildTargetOutputs {
+export declare namespace TargetOutputs {
   export {
-    type BuildTargetOutputRetrieveResponse as BuildTargetOutputRetrieveResponse,
-    type BuildTargetOutputRetrieveParams as BuildTargetOutputRetrieveParams,
+    type TargetOutputRetrieveResponse as TargetOutputRetrieveResponse,
+    type TargetOutputRetrieveParams as TargetOutputRetrieveParams,
   };
 }

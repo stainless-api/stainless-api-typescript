@@ -10,9 +10,12 @@ export {
 } from './configs';
 export {
   Projects,
+  type ProjectCreateResponse,
   type ProjectRetrieveResponse,
   type ProjectUpdateResponse,
   type ProjectListResponse,
+  type ProjectCreateParams,
+  type ProjectRetrieveParams,
   type ProjectUpdateParams,
   type ProjectListParams,
 } from './projects';

@@ -33,23 +33,23 @@ export interface SnippetCreateRequestParams {
     | 'php'
     | 'csharp';
 
-  request: SnippetCreateRequestParams.Request;
+  request: SnippetCreateRequestParams.UnionMember0 | SnippetCreateRequestParams.UnionMember1;
 
   version: 'next' | 'latest_released';
 }
 
 export namespace SnippetCreateRequestParams {
-  export interface Request {
+  export interface UnionMember0 {
     method: string;
 
-    parameters: Array<Request.Parameter>;
+    parameters: Array<UnionMember0.Parameter>;
 
     path: string;
 
-    body?: Request.Body;
+    body?: UnionMember0.Body;
   }
 
-  export namespace Request {
+  export namespace UnionMember0 {
     export interface Parameter {
       in: 'path' | 'query' | 'header' | 'cookie';
 
@@ -62,6 +62,30 @@ export namespace SnippetCreateRequestParams {
       fileParam?: string;
 
       filePath?: string;
+    }
+  }
+
+  export interface UnionMember1 {
+    method: string;
+
+    queryString: Array<UnionMember1.QueryString>;
+
+    url: string;
+
+    postData?: UnionMember1.PostData;
+  }
+
+  export namespace UnionMember1 {
+    export interface QueryString {
+      name: string;
+
+      value: string;
+    }
+
+    export interface PostData {
+      mimeType: string;
+
+      text: string;
     }
   }
 }

@@ -2,14 +2,16 @@
 
 Types:
 
+- <code><a href="./src/resources/projects/projects.ts">ProjectCreateResponse</a></code>
 - <code><a href="./src/resources/projects/projects.ts">ProjectRetrieveResponse</a></code>
 - <code><a href="./src/resources/projects/projects.ts">ProjectUpdateResponse</a></code>
 - <code><a href="./src/resources/projects/projects.ts">ProjectListResponse</a></code>
 
 Methods:
 
-- <code title="get /v0/projects/{projectName}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>(projectName) -> ProjectRetrieveResponse</code>
-- <code title="patch /v0/projects/{projectName}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>(projectName, { ...params }) -> ProjectUpdateResponse</code>
+- <code title="post /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">create</a>({ ...params }) -> ProjectCreateResponse</code>
+- <code title="get /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>({ ...params }) -> ProjectRetrieveResponse</code>
+- <code title="patch /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>({ ...params }) -> ProjectUpdateResponse</code>
 - <code title="get /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectListResponse</code>
 
 ## Branches
@@ -20,7 +22,7 @@ Types:
 
 Methods:
 
-- <code title="post /v0/projects/{project}/branches">client.projects.branches.<a href="./src/resources/projects/branches.ts">create</a>(project, { ...params }) -> ProjectBranch</code>
+- <code title="post /v0/projects/{project}/branches">client.projects.branches.<a href="./src/resources/projects/branches.ts">create</a>({ ...params }) -> ProjectBranch</code>
 - <code title="get /v0/projects/{project}/branches/{branch}">client.projects.branches.<a href="./src/resources/projects/branches.ts">retrieve</a>(branch, { ...params }) -> ProjectBranch</code>
 
 ## Configs
@@ -32,8 +34,8 @@ Types:
 
 Methods:
 
-- <code title="get /v0/projects/{project}/configs">client.projects.configs.<a href="./src/resources/projects/configs.ts">retrieve</a>(project, { ...params }) -> ConfigRetrieveResponse</code>
-- <code title="post /v0/projects/{project}/configs/guess">client.projects.configs.<a href="./src/resources/projects/configs.ts">guess</a>(project, { ...params }) -> ConfigGuessResponse</code>
+- <code title="get /v0/projects/{project}/configs">client.projects.configs.<a href="./src/resources/projects/configs.ts">retrieve</a>({ ...params }) -> ConfigRetrieveResponse</code>
+- <code title="post /v0/projects/{project}/configs/guess">client.projects.configs.<a href="./src/resources/projects/configs.ts">guess</a>({ ...params }) -> ConfigGuessResponse</code>
 
 ## Snippets
 
@@ -49,27 +51,27 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/builds.ts">BuildObject</a></code>
-- <code><a href="./src/resources/builds.ts">BuildTarget</a></code>
-- <code><a href="./src/resources/builds.ts">BuildListResponse</a></code>
-- <code><a href="./src/resources/builds.ts">BuildCompareResponse</a></code>
+- <code><a href="./src/resources/builds/builds.ts">BuildObject</a></code>
+- <code><a href="./src/resources/builds/builds.ts">BuildTarget</a></code>
+- <code><a href="./src/resources/builds/builds.ts">BuildListResponse</a></code>
+- <code><a href="./src/resources/builds/builds.ts">BuildCompareResponse</a></code>
 
 Methods:
 
-- <code title="post /v0/builds">client.builds.<a href="./src/resources/builds.ts">create</a>({ ...params }) -> BuildObject</code>
-- <code title="get /v0/builds/{buildId}">client.builds.<a href="./src/resources/builds.ts">retrieve</a>(buildID) -> BuildObject</code>
-- <code title="get /v0/builds">client.builds.<a href="./src/resources/builds.ts">list</a>({ ...params }) -> BuildListResponse</code>
-- <code title="post /v0/builds/compare">client.builds.<a href="./src/resources/builds.ts">compare</a>({ ...params }) -> BuildCompareResponse</code>
+- <code title="post /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">create</a>({ ...params }) -> BuildObject</code>
+- <code title="get /v0/builds/{buildId}">client.builds.<a href="./src/resources/builds/builds.ts">retrieve</a>(buildID) -> BuildObject</code>
+- <code title="get /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">list</a>({ ...params }) -> BuildListResponse</code>
+- <code title="post /v0/builds/compare">client.builds.<a href="./src/resources/builds/builds.ts">compare</a>({ ...params }) -> BuildCompareResponse</code>
 
-# BuildTargetOutputs
+## TargetOutputs
 
 Types:
 
-- <code><a href="./src/resources/build-target-outputs.ts">BuildTargetOutputRetrieveResponse</a></code>
+- <code><a href="./src/resources/builds/target-outputs.ts">TargetOutputRetrieveResponse</a></code>
 
 Methods:
 
-- <code title="get /v0/build_target_outputs">client.buildTargetOutputs.<a href="./src/resources/build-target-outputs.ts">retrieve</a>({ ...params }) -> BuildTargetOutputRetrieveResponse</code>
+- <code title="get /v0/build_target_outputs">client.builds.targetOutputs.<a href="./src/resources/builds/target-outputs.ts">retrieve</a>({ ...params }) -> TargetOutputRetrieveResponse</code>
 
 # Orgs
 
@@ -80,5 +82,5 @@ Types:
 
 Methods:
 
-- <code title="get /v0/orgs/{orgName}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(orgName) -> OrgRetrieveResponse</code>
+- <code title="get /v0/orgs/{org}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(org) -> OrgRetrieveResponse</code>
 - <code title="get /v0/orgs">client.orgs.<a href="./src/resources/orgs.ts">list</a>() -> OrgListResponse</code>

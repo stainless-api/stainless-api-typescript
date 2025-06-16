@@ -1,11 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
-  BuildTargetOutputs,
-  type BuildTargetOutputRetrieveResponse,
-  type BuildTargetOutputRetrieveParams,
-} from './build-target-outputs';
-export {
   Builds,
   type BuildObject,
   type BuildTarget,
@@ -14,13 +9,16 @@ export {
   type BuildCreateParams,
   type BuildListParams,
   type BuildCompareParams,
-} from './builds';
+} from './builds/builds';
 export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
 export {
   Projects,
+  type ProjectCreateResponse,
   type ProjectRetrieveResponse,
   type ProjectUpdateResponse,
   type ProjectListResponse,
+  type ProjectCreateParams,
+  type ProjectRetrieveParams,
   type ProjectUpdateParams,
   type ProjectListParams,
 } from './projects/projects';

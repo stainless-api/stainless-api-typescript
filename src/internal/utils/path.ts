@@ -1,4 +1,4 @@
-import { StainlessV0Error } from '../../core/error';
+import { StainlessError } from '../../core/error';
 
 /**
  * Percent-encode everything that isn't safe to have in a path without encoding safe chars.
@@ -51,7 +51,7 @@ export const createPathTagFunction = (pathEncoder = encodeURIPath) =>
         return acc + spaces + arrows;
       }, '');
 
-      throw new StainlessV0Error(
+      throw new StainlessError(
         `Path parameters result in path with invalid segments:\n${path}\n${underline}`,
       );
     }

@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import StainlessV0 from 'stainless-v0';
+import Stainless from 'stainless-v0';
 
-const client = new StainlessV0({
+const client = new Stainless({
   apiKey: 'My API Key',
+  project: 'example-project',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 

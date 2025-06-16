@@ -23,29 +23,57 @@ export class Projects extends APIResource {
   snippets: SnippetsAPI.Snippets = new SnippetsAPI.Snippets(this._client);
 
   /**
+   * Create a new project
+   */
+  create(body: ProjectCreateParams, options?: RequestOptions): APIPromise<ProjectCreateResponse> {
+    return this._client.post('/v0/projects', { body, ...options });
+  }
+
+  /**
    * Retrieve a project by name
    */
-  retrieve(projectName: string, options?: RequestOptions): APIPromise<ProjectRetrieveResponse> {
-    return this._client.get(path`/v0/projects/${projectName}`, options);
+  retrieve(
+    params: ProjectRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectRetrieveResponse> {
+    const { project = this._client.project } = params ?? {};
+    return this._client.get(path`/v0/projects/${project}`, options);
   }
 
   /**
    * Update a project's properties
    */
   update(
-    projectName: string,
-    body: ProjectUpdateParams | null | undefined = {},
+    params: ProjectUpdateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<ProjectUpdateResponse> {
-    return this._client.patch(path`/v0/projects/${projectName}`, { body, ...options });
+    const { project = this._client.project, ...body } = params ?? {};
+    return this._client.patch(path`/v0/projects/${project}`, { body, ...options });
   }
 
   /**
    * List projects in an organization
    */
-  list(query: ProjectListParams, options?: RequestOptions): APIPromise<ProjectListResponse> {
+  list(
+    query: ProjectListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectListResponse> {
     return this._client.get('/v0/projects', { query, ...options });
   }
+}
+
+export interface ProjectCreateResponse {
+  config_repo: string;
+
+  display_name: string | null;
+
+  object: 'project';
+
+  org: string;
+
+  slug: string;
+
+  targets: Array<string>;
 }
 
 export interface ProjectRetrieveResponse {
@@ -58,6 +86,8 @@ export interface ProjectRetrieveResponse {
   org: string;
 
   slug: string;
+
+  targets: Array<string>;
 }
 
 export interface ProjectUpdateResponse {
@@ -70,6 +100,8 @@ export interface ProjectUpdateResponse {
   org: string;
 
   slug: string;
+
+  targets: Array<string>;
 }
 
 export interface ProjectListResponse {
@@ -91,16 +123,64 @@ export namespace ProjectListResponse {
     org: string;
 
     slug: string;
+
+    targets: Array<string>;
   }
 }
 
+export interface ProjectCreateParams {
+  /**
+   * Human-readable project name
+   */
+  display_name: string;
+
+  /**
+   * Organization name
+   */
+  org: string;
+
+  /**
+   * File contents to commit
+   */
+  revision: Record<string, ProjectCreateParams.Revision>;
+
+  /**
+   * Project name/slug
+   */
+  slug: string;
+
+  /**
+   * Targets to generate for
+   */
+  targets: Array<string>;
+}
+
+export namespace ProjectCreateParams {
+  export interface Revision {
+    /**
+     * File content
+     */
+    content: string;
+  }
+}
+
+export interface ProjectRetrieveParams {
+  project?: string;
+}
+
 export interface ProjectUpdateParams {
+  /**
+   * Path param:
+   */
+  project?: string;
+
+  /**
+   * Body param:
+   */
   display_name?: string | null;
 }
 
 export interface ProjectListParams {
-  org: string;
-
   /**
    * Pagination cursor from a previous response
    */
@@ -110,6 +190,8 @@ export interface ProjectListParams {
    * Maximum number of projects to return, defaults to 10 (maximum: 100)
    */
   limit?: number;
+
+  org?: string;
 }
 
 Projects.Branches = Branches;
@@ -118,9 +200,12 @@ Projects.Snippets = Snippets;
 
 export declare namespace Projects {
   export {
+    type ProjectCreateResponse as ProjectCreateResponse,
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectCreateParams as ProjectCreateParams,
+    type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,
   };
