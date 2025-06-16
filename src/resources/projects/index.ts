@@ -19,4 +19,3 @@ export {
   type ProjectUpdateParams,
   type ProjectListParams,
 } from './projects';
-export { Snippets, type SnippetCreateRequestResponse, type SnippetCreateRequestParams } from './snippets';

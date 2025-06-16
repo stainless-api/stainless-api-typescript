@@ -37,16 +37,6 @@ Methods:
 - <code title="get /v0/projects/{project}/configs">client.projects.configs.<a href="./src/resources/projects/configs.ts">retrieve</a>({ ...params }) -> ConfigRetrieveResponse</code>
 - <code title="post /v0/projects/{project}/configs/guess">client.projects.configs.<a href="./src/resources/projects/configs.ts">guess</a>({ ...params }) -> ConfigGuessResponse</code>
 
-## Snippets
-
-Types:
-
-- <code><a href="./src/resources/projects/snippets.ts">SnippetCreateRequestResponse</a></code>
-
-Methods:
-
-- <code title="post /v0/projects/{projectName}/snippets/request">client.projects.snippets.<a href="./src/resources/projects/snippets.ts">createRequest</a>(projectName, { ...params }) -> SnippetCreateRequestResponse</code>
-
 # Builds
 
 Types:
