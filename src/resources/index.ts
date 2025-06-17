@@ -10,6 +10,7 @@ export {
   type BuildListParams,
   type BuildCompareParams,
 } from './builds/builds';
+export { Generate, type GenerateCreateSpecResponse, type GenerateCreateSpecParams } from './generate';
 export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
 export {
   Projects,

@@ -110,6 +110,10 @@ export interface BuildTarget {
   status: 'not_started' | 'codegen' | 'postgen' | 'completed';
 
   test: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
+
+  build?: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
+
+  upload?: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 }
 
 export namespace BuildTarget {
@@ -188,6 +192,86 @@ export namespace BuildTarget {
           owner: string;
         }
       }
+    }
+  }
+
+  export interface NotStarted {
+    status: 'not_started';
+  }
+
+  export interface Queued {
+    status: 'queued';
+  }
+
+  export interface InProgress {
+    status: 'in_progress';
+  }
+
+  export interface Completed {
+    completed: Completed.Completed;
+
+    status: 'completed';
+  }
+
+  export namespace Completed {
+    export interface Completed {
+      conclusion:
+        | 'success'
+        | 'failure'
+        | 'skipped'
+        | 'cancelled'
+        | 'action_required'
+        | 'neutral'
+        | 'timed_out'
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'noop'
+        | 'version_bump';
+    }
+  }
+
+  export interface NotStarted {
+    status: 'not_started';
+  }
+
+  export interface Queued {
+    status: 'queued';
+  }
+
+  export interface InProgress {
+    status: 'in_progress';
+  }
+
+  export interface Completed {
+    completed: Completed.Completed;
+
+    status: 'completed';
+  }
+
+  export namespace Completed {
+    export interface Completed {
+      conclusion:
+        | 'success'
+        | 'failure'
+        | 'skipped'
+        | 'cancelled'
+        | 'action_required'
+        | 'neutral'
+        | 'timed_out'
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'noop'
+        | 'version_bump';
     }
   }
 
