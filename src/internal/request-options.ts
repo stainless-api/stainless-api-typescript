@@ -20,7 +20,6 @@ export type RequestOptions = {
   fetchOptions?: MergedRequestInit;
   signal?: AbortSignal | undefined | null;
   idempotencyKey?: string;
-  defaultBaseURL?: string | undefined;
 
   __binaryResponse?: boolean | undefined;
 };

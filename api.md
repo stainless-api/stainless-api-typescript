@@ -74,3 +74,13 @@ Methods:
 
 - <code title="get /v0/orgs/{org}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(org) -> OrgRetrieveResponse</code>
 - <code title="get /v0/orgs">client.orgs.<a href="./src/resources/orgs.ts">list</a>() -> OrgListResponse</code>
+
+# Generate
+
+Types:
+
+- <code><a href="./src/resources/generate.ts">GenerateCreateSpecResponse</a></code>
+
+Methods:
+
+- <code title="post /v0/generate/spec">client.generate.<a href="./src/resources/generate.ts">createSpec</a>({ ...params }) -> GenerateCreateSpecResponse</code>
