@@ -70,7 +70,19 @@ export interface ProjectCreateResponse {
 
   slug: string;
 
-  targets: Array<string>;
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export interface ProjectRetrieveResponse {
@@ -84,7 +96,19 @@ export interface ProjectRetrieveResponse {
 
   slug: string;
 
-  targets: Array<string>;
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export interface ProjectUpdateResponse {
@@ -98,7 +122,19 @@ export interface ProjectUpdateResponse {
 
   slug: string;
 
-  targets: Array<string>;
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export interface ProjectListResponse {
@@ -121,7 +157,19 @@ export namespace ProjectListResponse {
 
     slug: string;
 
-    targets: Array<string>;
+    targets: Array<
+      | 'node'
+      | 'typescript'
+      | 'python'
+      | 'go'
+      | 'java'
+      | 'kotlin'
+      | 'ruby'
+      | 'terraform'
+      | 'cli'
+      | 'php'
+      | 'csharp'
+    >;
   }
 }
 
@@ -139,7 +187,7 @@ export interface ProjectCreateParams {
   /**
    * File contents to commit
    */
-  revision: Record<string, ProjectCreateParams.Revision>;
+  revision: Record<string, ProjectCreateParams.Content | ProjectCreateParams.URL>;
 
   /**
    * Project name/slug
@@ -149,15 +197,34 @@ export interface ProjectCreateParams {
   /**
    * Targets to generate for
    */
-  targets: Array<string>;
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export namespace ProjectCreateParams {
-  export interface Revision {
+  export interface Content {
     /**
      * File content
      */
     content: string;
+  }
+
+  export interface URL {
+    /**
+     * URL to fetch file content from
+     */
+    url: string;
   }
 }
 

@@ -380,7 +380,7 @@ export interface BuildCreateParams {
    * Specifies what to build: a branch name, commit SHA, merge command
    * ("base..head"), or file contents
    */
-  revision: string | Record<string, BuildCreateParams.unnamed_schema_with_map_parent_0>;
+  revision: string | Record<string, BuildCreateParams.Content | BuildCreateParams.URL>;
 
   /**
    * Whether to allow empty commits (no changes). Defaults to false.
@@ -418,11 +418,18 @@ export interface BuildCreateParams {
 }
 
 export namespace BuildCreateParams {
-  export interface unnamed_schema_with_map_parent_0 {
+  export interface Content {
     /**
      * File content
      */
     content: string;
+  }
+
+  export interface URL {
+    /**
+     * URL to fetch file content from
+     */
+    url: string;
   }
 }
 
@@ -450,11 +457,11 @@ export interface BuildListParams {
   /**
    * A config commit SHA used for the build
    */
-  revision?: string | Record<string, BuildListParams.unnamed_schema_with_map_parent_1>;
+  revision?: string | Record<string, BuildListParams.unnamed_schema_with_map_parent_0>;
 }
 
 export namespace BuildListParams {
-  export interface unnamed_schema_with_map_parent_1 {
+  export interface unnamed_schema_with_map_parent_0 {
     /**
      * File content hash
      */
@@ -505,7 +512,7 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
-    revision: string | Record<string, Base.unnamed_schema_with_map_parent_2>;
+    revision: string | Record<string, Base.Content | Base.URL>;
 
     /**
      * Optional branch to use. If not specified, defaults to "main". When using a
@@ -520,11 +527,18 @@ export namespace BuildCompareParams {
   }
 
   export namespace Base {
-    export interface unnamed_schema_with_map_parent_2 {
+    export interface Content {
       /**
        * File content
        */
       content: string;
+    }
+
+    export interface URL {
+      /**
+       * URL to fetch file content from
+       */
+      url: string;
     }
   }
 
@@ -535,7 +549,7 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
-    revision: string | Record<string, Head.unnamed_schema_with_map_parent_3>;
+    revision: string | Record<string, Head.Content | Head.URL>;
 
     /**
      * Optional branch to use. If not specified, defaults to "main". When using a
@@ -550,11 +564,18 @@ export namespace BuildCompareParams {
   }
 
   export namespace Head {
-    export interface unnamed_schema_with_map_parent_3 {
+    export interface Content {
       /**
        * File content
        */
       content: string;
+    }
+
+    export interface URL {
+      /**
+       * URL to fetch file content from
+       */
+      url: string;
     }
   }
 }
