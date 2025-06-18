@@ -1,6 +1,6 @@
 # Stainless TypeScript API Library
 
-[![NPM version](<https://img.shields.io/npm/v/stainless-v0.svg?label=npm%20(stable)>)](https://npmjs.org/package/stainless-v0) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/stainless-v0)
+[![NPM version](https://img.shields.io/npm/v/stainless-v0.svg)](https://npmjs.org/package/stainless-v0) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/stainless-v0)
 
 This library provides convenient access to the Stainless REST API from server-side TypeScript or JavaScript.
 
@@ -30,9 +30,13 @@ const client = new Stainless({
   apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
 });
 
-const buildObject = await client.builds.create({ revision: 'string' });
+async function main() {
+  const buildObject = await client.builds.create({ revision: 'string' });
 
-console.log(buildObject.id);
+  console.log(buildObject.id);
+}
+
+main();
 ```
 
 ### Request & Response types
@@ -48,8 +52,12 @@ const client = new Stainless({
   apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
 });
 
-const params: Stainless.BuildCreateParams = { revision: 'string' };
-const buildObject: Stainless.BuildObject = await client.builds.create(params);
+async function main() {
+  const params: Stainless.BuildCreateParams = { revision: 'string' };
+  const buildObject: Stainless.BuildObject = await client.builds.create(params);
+}
+
+main();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -62,15 +70,19 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const buildObject = await client.builds.create({ revision: 'string' }).catch(async (err) => {
-  if (err instanceof Stainless.APIError) {
-    console.log(err.status); // 400
-    console.log(err.name); // BadRequestError
-    console.log(err.headers); // {server: 'nginx', ...}
-  } else {
-    throw err;
-  }
-});
+async function main() {
+  const buildObject = await client.builds.create({ revision: 'string' }).catch(async (err) => {
+    if (err instanceof Stainless.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
+}
+
+main();
 ```
 
 Error codes are as follows:

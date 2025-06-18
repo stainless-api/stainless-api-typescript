@@ -16,7 +16,7 @@ describe('resource projects', () => {
       org: 'org',
       revision: { foo: { content: 'content' } },
       slug: 'slug',
-      targets: ['string'],
+      targets: ['node'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -34,7 +34,7 @@ describe('resource projects', () => {
       org: 'org',
       revision: { foo: { content: 'content' } },
       slug: 'slug',
-      targets: ['string'],
+      targets: ['node'],
     });
   });
 
