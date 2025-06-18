@@ -2,7 +2,7 @@
 
 import type { Stainless } from '../client';
 
-export class APIResource {
+export abstract class APIResource {
   protected _client: Stainless;
 
   constructor(client: Stainless) {
