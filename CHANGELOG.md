@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2025-06-19)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **api:** generate mcp server ([6b532b4](https://github.com/stainless-api/stainless-api-typescript/commit/6b532b4594963fcbeaf912ecb25dd50d8ead24b3))
+* **api:** manual updates ([1c332fb](https://github.com/stainless-api/stainless-api-typescript/commit/1c332fb9e2858a2cded00c620ebedba036392876))
+* **api:** update environment variable ([bec2915](https://github.com/stainless-api/stainless-api-typescript/commit/bec291514b8b286f36435e454a5ba7e75a386d8e))
+* **client:** add support for endpoint-specific base URLs ([3680772](https://github.com/stainless-api/stainless-api-typescript/commit/3680772bd86cbf0e07c500d1c5fa9f87b5f54a2e))
+* sdkjson generation API ([d941cc7](https://github.com/stainless-api/stainless-api-typescript/commit/d941cc7c8351e7a0fe3efd942673a4ff791153c7))
+
+
+### Bug Fixes
+
+* **ci:** fix v0 oas generation ([4d5b7fd](https://github.com/stainless-api/stainless-api-typescript/commit/4d5b7fdeda500c8199e91ed7e565a153aa98f1ad))
+* **cli:** fix cli headers ([f1ced7c](https://github.com/stainless-api/stainless-api-typescript/commit/f1ced7cb8811c245ccb960418814dad79ebe7c8e))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([a410c3d](https://github.com/stainless-api/stainless-api-typescript/commit/a410c3d0594fe89e2fdb47b0535bb85e29c4d927))
+* **client:** refactor imports ([27b8362](https://github.com/stainless-api/stainless-api-typescript/commit/27b8362a331a880f4b3e001d8cf02d97fc82405a))
+* **internal:** codegen related update ([722916f](https://github.com/stainless-api/stainless-api-typescript/commit/722916f36df94c403ccfa1c65cbfec28623cab3d))
+* **internal:** codegen related update ([a1b163b](https://github.com/stainless-api/stainless-api-typescript/commit/a1b163b42c493e334ea6d5f0d5541d14d5006d99))
+* **internal:** codegen related update ([530c73a](https://github.com/stainless-api/stainless-api-typescript/commit/530c73a63a5632f1dc8a5a196739a4fbb65e2f13))
+* **readme:** update badges ([17986b2](https://github.com/stainless-api/stainless-api-typescript/commit/17986b20e4bda5ef69b6d8d7184c1a7603cd9a74))
+* **readme:** use better example snippet for undocumented params ([4b6a614](https://github.com/stainless-api/stainless-api-typescript/commit/4b6a614b86934815a4aa9e33b254739e45926314))
+
 ## 0.1.0-alpha.4 (2025-06-16)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
