@@ -27,7 +27,7 @@ import Stainless from 'stainless-v0';
 
 const client = new Stainless({
   project: 'example-project',
-  apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
 });
 
 const buildObject = await client.builds.create({ revision: 'string' });
@@ -45,7 +45,7 @@ import Stainless from 'stainless-v0';
 
 const client = new Stainless({
   project: 'example-project',
-  apiKey: process.env['STAINLESS_V0_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
 });
 
 const params: Stainless.BuildCreateParams = { revision: 'string' };

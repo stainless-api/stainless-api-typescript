@@ -19,7 +19,7 @@ cd stainless-api-typescript
 
 ```sh
 # set env vars as needed
-export STAINLESS_V0_API_KEY="My API Key"
+export STAINLESS_API_KEY="My API Key"
 export STAINLESS_PROJECT="example-project"
 node ./packages/mcp-server/dist/index.js
 ```
@@ -47,7 +47,7 @@ For clients with a configuration JSON, it might look something like this:
         "--tools=all"
       ],
       "env": {
-        "STAINLESS_V0_API_KEY": "My API Key",
+        "STAINLESS_API_KEY": "My API Key",
         "STAINLESS_PROJECT": "example-project"
       }
     }
