@@ -472,7 +472,7 @@ describe('instantiate client', () => {
 
   test('with environment variable arguments', () => {
     // set options via env var
-    process.env['STAINLESS_V0_API_KEY'] = 'My API Key';
+    process.env['STAINLESS_API_KEY'] = 'My API Key';
     const client = new Stainless({ project: 'example-project' });
     expect(client.apiKey).toBe('My API Key');
     expect(client.project).toBe('example-project');
@@ -480,7 +480,7 @@ describe('instantiate client', () => {
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
-    process.env['STAINLESS_V0_API_KEY'] = 'another My API Key';
+    process.env['STAINLESS_API_KEY'] = 'another My API Key';
     const client = new Stainless({ apiKey: 'My API Key', project: 'example-project' });
     expect(client.apiKey).toBe('My API Key');
     expect(client.project).toBe('example-project');
