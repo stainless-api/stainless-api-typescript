@@ -59,7 +59,7 @@ export interface ClientOptions {
    */
   apiKey?: string | null | undefined;
 
-  project: string;
+  project?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -133,7 +133,7 @@ export interface ClientOptions {
  */
 export class Stainless {
   apiKey: string | null;
-  project: string;
+  project: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -151,7 +151,7 @@ export class Stainless {
    * API Client for interfacing with the Stainless API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_API_KEY'] ?? null]
-   * @param {string} opts.project
+   * @param {string | null | undefined} [opts.project]
    * @param {string} [opts.baseURL=process.env['STAINLESS_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -163,15 +163,9 @@ export class Stainless {
   constructor({
     baseURL = readEnv('STAINLESS_BASE_URL'),
     apiKey = readEnv('STAINLESS_API_KEY') ?? null,
-    project,
+    project = null,
     ...opts
-  }: ClientOptions) {
-    if (project === undefined) {
-      throw new Errors.StainlessError(
-        "Missing required client option project; you need to instantiate the Stainless client with an project option, like new Stainless({ project: 'example-project' }).",
-      );
-    }
-
+  }: ClientOptions = {}) {
     const options: ClientOptions = {
       apiKey,
       project,
