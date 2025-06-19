@@ -55,7 +55,7 @@ import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env['STAINLESS_V0_API_KEY'].
+   * Defaults to process.env['STAINLESS_API_KEY'].
    */
   apiKey?: string | null | undefined;
 
@@ -150,7 +150,7 @@ export class Stainless {
   /**
    * API Client for interfacing with the Stainless API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_V0_API_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_API_KEY'] ?? null]
    * @param {string} opts.project
    * @param {string} [opts.baseURL=process.env['STAINLESS_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
@@ -162,7 +162,7 @@ export class Stainless {
    */
   constructor({
     baseURL = readEnv('STAINLESS_BASE_URL'),
-    apiKey = readEnv('STAINLESS_V0_API_KEY') ?? null,
+    apiKey = readEnv('STAINLESS_API_KEY') ?? null,
     project,
     ...opts
   }: ClientOptions) {
