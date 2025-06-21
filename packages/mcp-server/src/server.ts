@@ -26,7 +26,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'stainless_v0_api',
-    version: '0.1.0-alpha.5',
+    version: '0.1.0-alpha.6',
   },
   {
     capabilities: {
@@ -67,10 +67,7 @@ export function init(params: {
 
   const client =
     params.client ||
-    new Stainless({
-      project: readEnvOrError('STAINLESS_PROJECT'),
-      defaultHeaders: { 'X-Stainless-MCP': 'true' },
-    });
+    new Stainless({ project: readEnv('STAINLESS_PROJECT'), defaultHeaders: { 'X-Stainless-MCP': 'true' } });
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
