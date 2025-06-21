@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2025-06-21)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Features
+
+* **api:** make project nullable ([4606cf0](https://github.com/stainless-api/stainless-api-typescript/commit/4606cf04e7865acf5cd2ea4588206b06c63ec55f))
+
+
+### Bug Fixes
+
+* **client:** explicitly copy fetch in withOptions ([a5ba371](https://github.com/stainless-api/stainless-api-typescript/commit/a5ba37150d2b318efa3f4c0859fc10d9673d440a))
+
+
+### Chores
+
+* change publish docs url ([1a84be8](https://github.com/stainless-api/stainless-api-typescript/commit/1a84be8296f278d1566aa2e677cf2c795bcc1ced))
+
 ## 0.1.0-alpha.5 (2025-06-19)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)

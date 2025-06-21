@@ -26,7 +26,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'stainless_v0_api',
-    version: '0.1.0-alpha.5',
+    version: '0.1.0-alpha.6',
   },
   {
     capabilities: {
