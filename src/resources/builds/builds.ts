@@ -2,6 +2,8 @@
 
 import { APIResource } from '../../core/resource';
 import * as BuildsAPI from './builds';
+import * as DiagnosticsAPI from './diagnostics';
+import { DiagnosticListParams, DiagnosticListResponse, Diagnostics } from './diagnostics';
 import * as TargetOutputsAPI from './target-outputs';
 import { TargetOutputRetrieveParams, TargetOutputRetrieveResponse, TargetOutputs } from './target-outputs';
 import { APIPromise } from '../../core/api-promise';
@@ -9,6 +11,7 @@ import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 export class Builds extends APIResource {
+  diagnostics: DiagnosticsAPI.Diagnostics = new DiagnosticsAPI.Diagnostics(this._client);
   targetOutputs: TargetOutputsAPI.TargetOutputs = new TargetOutputsAPI.TargetOutputs(this._client);
 
   /**
@@ -578,6 +581,7 @@ export namespace BuildCompareParams {
   }
 }
 
+Builds.Diagnostics = Diagnostics;
 Builds.TargetOutputs = TargetOutputs;
 
 export declare namespace Builds {
@@ -589,6 +593,12 @@ export declare namespace Builds {
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
     type BuildCompareParams as BuildCompareParams,
+  };
+
+  export {
+    Diagnostics as Diagnostics,
+    type DiagnosticListResponse as DiagnosticListResponse,
+    type DiagnosticListParams as DiagnosticListParams,
   };
 
   export {

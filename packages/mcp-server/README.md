@@ -210,6 +210,10 @@ The following tools are available in this MCP server.
 - `list_builds` (`read`): List builds for a project
 - `compare_builds` (`write`): Creates two builds whose outputs can be compared directly
 
+### Resource `builds.diagnostics`:
+
+- `list_builds_diagnostics` (`read`): Get diagnostics for a build
+
 ### Resource `builds.target_outputs`:
 
 - `retrieve_builds_target_outputs` (`read`): Download the output of a build target

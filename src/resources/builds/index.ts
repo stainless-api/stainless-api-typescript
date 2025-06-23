@@ -10,6 +10,7 @@ export {
   type BuildListParams,
   type BuildCompareParams,
 } from './builds';
+export { Diagnostics, type DiagnosticListResponse, type DiagnosticListParams } from './diagnostics';
 export {
   TargetOutputs,
   type TargetOutputRetrieveResponse,
