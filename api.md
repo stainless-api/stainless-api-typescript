@@ -53,6 +53,16 @@ Methods:
 - <code title="get /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">list</a>({ ...params }) -> BuildListResponse</code>
 - <code title="post /v0/builds/compare">client.builds.<a href="./src/resources/builds/builds.ts">compare</a>({ ...params }) -> BuildCompareResponse</code>
 
+## Diagnostics
+
+Types:
+
+- <code><a href="./src/resources/builds/diagnostics.ts">DiagnosticListResponse</a></code>
+
+Methods:
+
+- <code title="get /v0/builds/{buildId}/diagnostics">client.builds.diagnostics.<a href="./src/resources/builds/diagnostics.ts">list</a>(buildID, { ...params }) -> DiagnosticListResponse</code>
+
 ## TargetOutputs
 
 Types:
