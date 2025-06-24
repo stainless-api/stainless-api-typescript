@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2025-06-24)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Features
+
+* **api:** add diagnostics endpoint ([3363b54](https://github.com/stainless-api/stainless-api-typescript/commit/3363b5472c55301fc2ddf46cf781bcfa06b5a1b3))
+* **api:** api update ([1f0826e](https://github.com/stainless-api/stainless-api-typescript/commit/1f0826e57fcea2c20ce9fc408b5b479bd21e5ff8))
+* **api:** make project nullable ([4606cf0](https://github.com/stainless-api/stainless-api-typescript/commit/4606cf04e7865acf5cd2ea4588206b06c63ec55f))
+
+
+### Bug Fixes
+
+* **client:** explicitly copy fetch in withOptions ([a5ba371](https://github.com/stainless-api/stainless-api-typescript/commit/a5ba37150d2b318efa3f4c0859fc10d9673d440a))
+
+
+### Chores
+
+* change publish docs url ([1a84be8](https://github.com/stainless-api/stainless-api-typescript/commit/1a84be8296f278d1566aa2e677cf2c795bcc1ced))
+
+
+### Refactors
+
+* **types:** replace Record with mapped types ([79d023f](https://github.com/stainless-api/stainless-api-typescript/commit/79d023feaf318a60a5fc880043a85ec731ae9f83))
+
 ## 0.1.0-alpha.5 (2025-06-19)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
