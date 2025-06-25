@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^stainless-v0(/.*)?',
+              regex: '^@stainless-api/sdk(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

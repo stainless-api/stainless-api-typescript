@@ -4,8 +4,8 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { Endpoint, endpoints, HandlerFunction, query } from './tools';
 import { CallToolRequestSchema, ListToolsRequestSchema, Tool } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from 'stainless-v0';
-import Stainless from 'stainless-v0';
+import { ClientOptions } from '@stainless-api/sdk';
+import Stainless from '@stainless-api/sdk';
 import {
   applyCompatibilityTransformations,
   ClientCapabilities,
@@ -19,13 +19,13 @@ import { McpOptions } from './options';
 export { McpOptions } from './options';
 export { ClientType } from './compat';
 export { Filter } from './tools';
-export { ClientOptions } from 'stainless-v0';
+export { ClientOptions } from '@stainless-api/sdk';
 export { endpoints } from './tools';
 
 // Create server instance
 export const server = new McpServer(
   {
-    name: 'stainless_v0_api',
+    name: 'stainless_api_sdk_api',
     version: '0.1.0-alpha.5',
   },
   {
