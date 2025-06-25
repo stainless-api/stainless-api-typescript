@@ -9,8 +9,8 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "stainless-v0/*": ["src/*"],
-      "stainless-v0": ["src/index.ts"]
+      "@stainless-api/sdk/*": ["src/*"],
+      "@stainless-api/sdk": ["src/index.ts"]
     },
     "noEmit": true,
 

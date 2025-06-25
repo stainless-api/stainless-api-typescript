@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'stainless-v0/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from '@stainless-api/sdk/internal/utils/path';
 import { inspect } from 'node:util';
 
 describe('path template tag function', () => {

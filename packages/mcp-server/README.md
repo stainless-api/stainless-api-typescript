@@ -4,32 +4,17 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
-### Building
+### Direct invocation
 
-Because it's not published yet, clone the repo and build it:
-
-```sh
-git clone git@github.com:stainless-api/stainless-api-typescript.git
-cd stainless-api-typescript
-./scripts/bootstrap
-./scripts/build
-```
-
-### Running
+You can run the MCP Server directly via `npx`:
 
 ```sh
-# set env vars as needed
 export STAINLESS_API_KEY="My API Key"
 export STAINLESS_PROJECT="example-project"
-node ./packages/mcp-server/dist/index.js
+npx -y @stainless-api/mcp@latest
 ```
 
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npx -y stainless-v0-mcp`
-
 ### Via MCP Client
-
-[Build the project](#building) as mentioned above.
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
@@ -39,13 +24,9 @@ For clients with a configuration JSON, it might look something like this:
 ```json
 {
   "mcpServers": {
-    "stainless_v0_api": {
-      "command": "node",
-      "args": [
-        "/path/to/local/stainless-api-typescript/packages/mcp-server",
-        "--client=claude",
-        "--tools=all"
-      ],
+    "stainless_api_sdk_api": {
+      "command": "npx",
+      "args": ["-y", "@stainless-api/mcp", "--client=claude", "--tools=all"],
       "env": {
         "STAINLESS_API_KEY": "My API Key",
         "STAINLESS_PROJECT": "example-project"
@@ -151,10 +132,10 @@ over time, you can manually enable or disable certain capabilities:
 
 ```js
 // Import the server, generated endpoints, or the init function
-import { server, endpoints, init } from "stainless-v0-mcp/server";
+import { server, endpoints, init } from "@stainless-api/mcp/server";
 
 // import a specific tool
-import createProjects from "stainless-v0-mcp/tools/projects/create-projects";
+import createProjects from "@stainless-api/mcp/tools/projects/create-projects";
 
 // initialize the server and all endpoints
 init({ server, endpoints });
