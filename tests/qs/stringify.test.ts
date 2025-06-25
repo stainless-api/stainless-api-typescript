@@ -1,7 +1,7 @@
 import iconv from 'iconv-lite';
-import { stringify } from 'stainless-v0/internal/qs';
-import { encode } from 'stainless-v0/internal/qs/utils';
-import { StringifyOptions } from 'stainless-v0/internal/qs/types';
+import { stringify } from '@stainless-api/sdk/internal/qs';
+import { encode } from '@stainless-api/sdk/internal/qs/utils';
+import { StringifyOptions } from '@stainless-api/sdk/internal/qs/types';
 import { empty_test_cases } from './empty-keys-cases';
 import assert from 'assert';
 

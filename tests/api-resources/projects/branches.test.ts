@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Stainless from 'stainless-v0';
+import Stainless from '@stainless-api/sdk';
 
 const client = new Stainless({
   apiKey: 'My API Key',

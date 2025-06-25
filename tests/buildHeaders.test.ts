@@ -1,5 +1,5 @@
 import { inspect } from 'node:util';
-import { buildHeaders, type HeadersLike, type NullableHeaders } from 'stainless-v0/internal/headers';
+import { buildHeaders, type HeadersLike, type NullableHeaders } from '@stainless-api/sdk/internal/headers';
 
 function inspectNullableHeaders(headers: NullableHeaders) {
   return `NullableHeaders {${[

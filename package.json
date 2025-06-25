@@ -1,5 +1,5 @@
 {
-  "name": "stainless-v0",
+  "name": "@stainless-api/sdk",
   "version": "0.1.0-alpha.5",
   "description": "The official TypeScript library for the Stainless API",
   "author": "Stainless <>",
@@ -47,8 +47,8 @@
     "typescript": "5.8.3"
   },
   "imports": {
-    "stainless-v0": ".",
-    "stainless-v0/*": "./src/*"
+    "@stainless-api/sdk": ".",
+    "@stainless-api/sdk/*": "./src/*"
   },
   "exports": {
     ".": {

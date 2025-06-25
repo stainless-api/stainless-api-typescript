@@ -1,4 +1,4 @@
-import Stainless from 'stainless-v0';
+import Stainless from '@stainless-api/sdk';
 import { Endpoint, asTextContentResult, ToolCallResult } from './tools/types';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { z } from 'zod';
