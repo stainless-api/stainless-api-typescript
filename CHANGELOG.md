@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2025-06-27)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Bug Fixes
+
+* handle docker image not existing yet ([5a8c85e](https://github.com/stainless-api/stainless-api-typescript/commit/5a8c85e5da937dbf9d22fb3b5dddc2076699aeb2))
+
 ## 0.1.0-alpha.7 (2025-06-27)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
