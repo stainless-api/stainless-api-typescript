@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2025-06-27)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([4bdea81](https://github.com/stainless-api/stainless-api-typescript/commit/4bdea818f51c152264231c4a3af07a6e5f16bfdd))
+* **client:** get fetchOptions type more reliably ([3c84e34](https://github.com/stainless-api/stainless-api-typescript/commit/3c84e34d3e1a00c1c8a156ef5ac9c73aa4b6376e))
+
+
+### Chores
+
+* enable MCP docker publishing ([e2a5578](https://github.com/stainless-api/stainless-api-typescript/commit/e2a5578d75cf1c2d98d90675cccb6b47e4f5317a))
+
 ## 0.1.0-alpha.6 (2025-06-25)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
