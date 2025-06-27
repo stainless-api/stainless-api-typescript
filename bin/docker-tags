@@ -37,6 +37,13 @@ while true; do
     exit 1
   fi
 
+  # Check for 404 error - repository doesn't exist yet
+  if echo "$RESPONSE" | jq -e '.message == "httperror 404: object not found"' >/dev/null 2>&1; then
+    # Repository doesn't exist, no stable releases
+    HAS_STABLE_RELEASE=false
+    break
+  fi
+
   if ! echo "$RESPONSE" | jq -e '.results' >/dev/null 2>&1; then
     echo "ERROR: Invalid JSON response from Docker Hub" >&2
     echo "Response: $RESPONSE" >&2
