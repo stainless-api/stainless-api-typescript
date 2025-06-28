@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-06-28)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([9f9f180](https://github.com/stainless-api/stainless-api-typescript/commit/9f9f180c2fe3919de021486b7602550a085b6388))
+
 ## 0.1.0-alpha.8 (2025-06-27)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
