@@ -12,6 +12,7 @@ import {
   Configs,
 } from './configs';
 import { APIPromise } from '../../core/api-promise';
+import { List, type ListParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -54,10 +55,12 @@ export class Projects extends APIResource {
   list(
     query: ProjectListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<ProjectListResponse> {
-    return this._client.get('/v0/projects', { query, ...options });
+  ): PagePromise<ProjectListResponsesList, ProjectListResponse> {
+    return this._client.getAPIList('/v0/projects', List<ProjectListResponse>, { query, ...options });
   }
 }
+
+export type ProjectListResponsesList = List<ProjectListResponse>;
 
 export interface ProjectCreateResponse {
   config_repo: string;
@@ -138,39 +141,29 @@ export interface ProjectUpdateResponse {
 }
 
 export interface ProjectListResponse {
-  data: Array<ProjectListResponse.Data>;
+  config_repo: string;
 
-  has_more: boolean;
+  display_name: string | null;
 
-  next_cursor?: string;
-}
+  object: 'project';
 
-export namespace ProjectListResponse {
-  export interface Data {
-    config_repo: string;
+  org: string;
 
-    display_name: string | null;
+  slug: string;
 
-    object: 'project';
-
-    org: string;
-
-    slug: string;
-
-    targets: Array<
-      | 'node'
-      | 'typescript'
-      | 'python'
-      | 'go'
-      | 'java'
-      | 'kotlin'
-      | 'ruby'
-      | 'terraform'
-      | 'cli'
-      | 'php'
-      | 'csharp'
-    >;
-  }
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export interface ProjectCreateParams {
@@ -244,17 +237,7 @@ export interface ProjectUpdateParams {
   display_name?: string | null;
 }
 
-export interface ProjectListParams {
-  /**
-   * Pagination cursor from a previous response
-   */
-  cursor?: string;
-
-  /**
-   * Maximum number of projects to return, defaults to 10 (maximum: 100)
-   */
-  limit?: number;
-
+export interface ProjectListParams extends ListParams {
   org?: string;
 }
 
@@ -267,6 +250,7 @@ export declare namespace Projects {
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectListResponsesList as ProjectListResponsesList,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,

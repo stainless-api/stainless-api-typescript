@@ -4,11 +4,11 @@ export {
   Builds,
   type BuildObject,
   type BuildTarget,
-  type BuildListResponse,
   type BuildCompareResponse,
   type BuildCreateParams,
   type BuildListParams,
   type BuildCompareParams,
+  type BuildObjectsList,
 } from './builds/builds';
 export { Generate, type GenerateCreateSpecResponse, type GenerateCreateSpecParams } from './generate';
 export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
@@ -22,4 +22,5 @@ export {
   type ProjectRetrieveParams,
   type ProjectUpdateParams,
   type ProjectListParams,
+  type ProjectListResponsesList,
 } from './projects/projects';
