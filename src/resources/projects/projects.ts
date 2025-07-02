@@ -12,7 +12,6 @@ import {
   Configs,
 } from './configs';
 import { APIPromise } from '../../core/api-promise';
-import { List, type ListParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -50,17 +49,15 @@ export class Projects extends APIResource {
   }
 
   /**
-   * List projects in an organization, from oldest to newest
+   * List projects in an organization
    */
   list(
     query: ProjectListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<ProjectListResponsesList, ProjectListResponse> {
-    return this._client.getAPIList('/v0/projects', List<ProjectListResponse>, { query, ...options });
+  ): APIPromise<ProjectListResponse> {
+    return this._client.get('/v0/projects', { query, ...options });
   }
 }
-
-export type ProjectListResponsesList = List<ProjectListResponse>;
 
 export interface ProjectCreateResponse {
   config_repo: string;
@@ -141,29 +138,39 @@ export interface ProjectUpdateResponse {
 }
 
 export interface ProjectListResponse {
-  config_repo: string;
+  data: Array<ProjectListResponse.Data>;
 
-  display_name: string | null;
+  has_more: boolean;
 
-  object: 'project';
+  next_cursor?: string;
+}
 
-  org: string;
+export namespace ProjectListResponse {
+  export interface Data {
+    config_repo: string;
 
-  slug: string;
+    display_name: string | null;
 
-  targets: Array<
-    | 'node'
-    | 'typescript'
-    | 'python'
-    | 'go'
-    | 'java'
-    | 'kotlin'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'php'
-    | 'csharp'
-  >;
+    object: 'project';
+
+    org: string;
+
+    slug: string;
+
+    targets: Array<
+      | 'node'
+      | 'typescript'
+      | 'python'
+      | 'go'
+      | 'java'
+      | 'kotlin'
+      | 'ruby'
+      | 'terraform'
+      | 'cli'
+      | 'php'
+      | 'csharp'
+    >;
+  }
 }
 
 export interface ProjectCreateParams {
@@ -237,7 +244,17 @@ export interface ProjectUpdateParams {
   display_name?: string | null;
 }
 
-export interface ProjectListParams extends ListParams {
+export interface ProjectListParams {
+  /**
+   * Pagination cursor from a previous response
+   */
+  cursor?: string;
+
+  /**
+   * Maximum number of projects to return, defaults to 10 (maximum: 100)
+   */
+  limit?: number;
+
   org?: string;
 }
 
@@ -250,7 +267,6 @@ export declare namespace Projects {
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
-    type ProjectListResponsesList as ProjectListResponsesList,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
