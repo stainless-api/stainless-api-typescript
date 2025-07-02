@@ -381,7 +381,7 @@ export interface BuildCreateParams {
    * Specifies what to build: a branch name, commit SHA, merge command
    * ("base..head"), or file contents
    */
-  revision: string | Record<string, BuildCreateParams.Content | BuildCreateParams.URL>;
+  revision: string | { [key: string]: BuildCreateParams.Content | BuildCreateParams.URL };
 
   /**
    * Whether to allow empty commits (no changes). Defaults to false.
@@ -458,7 +458,7 @@ export interface BuildListParams {
   /**
    * A config commit SHA used for the build
    */
-  revision?: string | Record<string, BuildListParams.unnamed_schema_with_map_parent_0>;
+  revision?: string | { [key: string]: BuildListParams.unnamed_schema_with_map_parent_0 };
 }
 
 export namespace BuildListParams {
@@ -513,7 +513,7 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
-    revision: string | Record<string, Base.Content | Base.URL>;
+    revision: string | { [key: string]: Base.Content | Base.URL };
 
     /**
      * Optional branch to use. If not specified, defaults to "main". When using a
@@ -550,7 +550,7 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
-    revision: string | Record<string, Head.Content | Head.URL>;
+    revision: string | { [key: string]: Head.Content | Head.URL };
 
     /**
      * Optional branch to use. If not specified, defaults to "main". When using a
