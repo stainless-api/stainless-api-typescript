@@ -29,7 +29,7 @@ export class Configs extends APIResource {
 /**
  * Config files contents
  */
-export type ConfigRetrieveResponse = { [key: string]: ConfigRetrieveResponse.item };
+export type ConfigRetrieveResponse = Record<string, ConfigRetrieveResponse.item>;
 
 export namespace ConfigRetrieveResponse {
   export interface item {
@@ -43,7 +43,7 @@ export namespace ConfigRetrieveResponse {
 /**
  * Config files contents
  */
-export type ConfigGuessResponse = { [key: string]: ConfigGuessResponse.item };
+export type ConfigGuessResponse = Record<string, ConfigGuessResponse.item>;
 
 export namespace ConfigGuessResponse {
   export interface item {
@@ -64,6 +64,11 @@ export interface ConfigRetrieveParams {
    * Query param: Branch name, defaults to "main"
    */
   branch?: string;
+
+  /**
+   * Query param:
+   */
+  include?: string;
 }
 
 export interface ConfigGuessParams {

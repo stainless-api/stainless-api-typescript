@@ -30,7 +30,7 @@ export const tool: Tool = {
       },
       limit: {
         type: 'number',
-        description: 'Maximum number of diagnostics to return, defaults to 10 (maximum: 100)',
+        description: 'Maximum number of diagnostics to return, defaults to 100 (maximum: 100)',
       },
       severity: {
         type: 'string',

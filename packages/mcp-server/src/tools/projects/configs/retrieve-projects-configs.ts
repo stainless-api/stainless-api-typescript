@@ -27,6 +27,9 @@ export const tool: Tool = {
         type: 'string',
         description: 'Branch name, defaults to "main"',
       },
+      include: {
+        type: 'string',
+      },
     },
   },
 };
