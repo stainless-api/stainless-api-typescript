@@ -14,6 +14,8 @@ import * as Opts from './internal/request-options';
 import * as qs from './internal/qs';
 import { VERSION } from './version';
 import * as Errors from './core/error';
+import * as Pagination from './core/pagination';
+import { AbstractPage, type ListParams, ListResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
@@ -24,8 +26,8 @@ import {
   BuildCompareResponse,
   BuildCreateParams,
   BuildListParams,
-  BuildListResponse,
   BuildObject,
+  BuildObjectsList,
   BuildTarget,
   Builds,
 } from './resources/builds/builds';
@@ -34,6 +36,7 @@ import {
   ProjectCreateResponse,
   ProjectListParams,
   ProjectListResponse,
+  ProjectListResponsesList,
   ProjectRetrieveParams,
   ProjectRetrieveResponse,
   ProjectUpdateParams,
@@ -522,6 +525,25 @@ export class Stainless {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
+  getAPIList<Item, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
+    path: string,
+    Page: new (...args: any[]) => PageClass,
+    opts?: RequestOptions,
+  ): Pagination.PagePromise<PageClass, Item> {
+    return this.requestAPIList(Page, { method: 'get', path, ...opts });
+  }
+
+  requestAPIList<
+    Item = unknown,
+    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
+  >(
+    Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
+    options: FinalRequestOptions,
+  ): Pagination.PagePromise<PageClass, Item> {
+    const request = this.makeRequest(options, null, undefined);
+    return new Pagination.PagePromise<PageClass, Item>(this as any as Stainless, request, Page);
+  }
+
   async fetchWithTimeout(
     url: RequestInfo,
     init: RequestInit | undefined,
@@ -766,12 +788,16 @@ Stainless.Generate = Generate;
 export declare namespace Stainless {
   export type RequestOptions = Opts.RequestOptions;
 
+  export import List = Pagination.List;
+  export { type ListParams as ListParams, type ListResponse as ListResponse };
+
   export {
     Projects as Projects,
     type ProjectCreateResponse as ProjectCreateResponse,
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectListResponsesList as ProjectListResponsesList,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
@@ -782,8 +808,8 @@ export declare namespace Stainless {
     Builds as Builds,
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
-    type BuildListResponse as BuildListResponse,
     type BuildCompareResponse as BuildCompareResponse,
+    type BuildObjectsList as BuildObjectsList,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
     type BuildCompareParams as BuildCompareParams,
