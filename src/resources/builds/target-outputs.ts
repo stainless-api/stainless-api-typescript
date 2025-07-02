@@ -24,21 +24,6 @@ export namespace TargetOutputRetrieveResponse {
   export interface UnionMember0 {
     output: 'url';
 
-    target:
-      | 'node'
-      | 'typescript'
-      | 'python'
-      | 'go'
-      | 'java'
-      | 'kotlin'
-      | 'ruby'
-      | 'terraform'
-      | 'cli'
-      | 'php'
-      | 'csharp';
-
-    type: 'source' | 'dist' | 'wheel';
-
     /**
      * URL for direct download
      */
@@ -57,21 +42,6 @@ export namespace TargetOutputRetrieveResponse {
      * Git reference (commit SHA, branch, or tag)
      */
     ref: string;
-
-    target:
-      | 'node'
-      | 'typescript'
-      | 'python'
-      | 'go'
-      | 'java'
-      | 'kotlin'
-      | 'ruby'
-      | 'terraform'
-      | 'cli'
-      | 'php'
-      | 'csharp';
-
-    type: 'source' | 'dist' | 'wheel';
 
     /**
      * URL to git remote
@@ -102,7 +72,10 @@ export interface TargetOutputRetrieveParams {
     | 'php'
     | 'csharp';
 
-  type: 'source' | 'dist' | 'wheel';
+  /**
+   * Type of output to download: source code
+   */
+  type: 'source';
 
   /**
    * Output format: url (download URL) or git (temporary access token)

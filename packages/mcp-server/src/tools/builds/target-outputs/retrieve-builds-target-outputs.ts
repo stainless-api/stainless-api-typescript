@@ -43,7 +43,8 @@ export const tool: Tool = {
       },
       type: {
         type: 'string',
-        enum: ['source', 'dist', 'wheel'],
+        description: 'Type of output to download: source code',
+        enum: ['source'],
       },
       output: {
         type: 'string',
