@@ -55,6 +55,7 @@ import {
   parseLogLevel,
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
+import { unwrapFile } from './lib/unwrap';
 
 const environments = {
   production: 'https://api.stainless.com',
@@ -775,6 +776,7 @@ export class Stainless {
   static UnprocessableEntityError = Errors.UnprocessableEntityError;
 
   static toFile = Uploads.toFile;
+  static unwrapFile = unwrapFile;
 
   projects: API.Projects = new API.Projects(this);
   builds: API.Builds = new API.Builds(this);

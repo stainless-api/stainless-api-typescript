@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2025-07-02)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Features
+
+* add unwrapFile ([#2](https://github.com/stainless-api/stainless-api-typescript/issues/2)) ([75f71a2](https://github.com/stainless-api/stainless-api-typescript/commit/75f71a2486ef8db3c6c3c2684bf4edaba6fc758b))
+
 ## 0.1.0-alpha.9 (2025-07-02)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
