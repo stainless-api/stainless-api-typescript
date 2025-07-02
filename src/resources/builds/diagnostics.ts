@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
+import { List, type ListParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -13,30 +13,19 @@ export class Diagnostics extends APIResource {
     buildID: string,
     query: DiagnosticListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<DiagnosticListResponse> {
-    return this._client.get(path`/v0/builds/${buildID}/diagnostics`, { query, ...options });
+  ): PagePromise<DiagnosticListResponsesList, DiagnosticListResponse> {
+    return this._client.getAPIList(path`/v0/builds/${buildID}/diagnostics`, List<DiagnosticListResponse>, {
+      query,
+      ...options,
+    });
   }
 }
 
-export interface DiagnosticListResponse {
-  data: Array<unknown>;
+export type DiagnosticListResponsesList = List<DiagnosticListResponse>;
 
-  has_more: boolean;
+export type DiagnosticListResponse = unknown;
 
-  next_cursor?: string;
-}
-
-export interface DiagnosticListParams {
-  /**
-   * Pagination cursor from a previous response
-   */
-  cursor?: string;
-
-  /**
-   * Maximum number of diagnostics to return, defaults to 10 (maximum: 100)
-   */
-  limit?: number;
-
+export interface DiagnosticListParams extends ListParams {
   /**
    * Includes the given severity and above (fatal > error > warning > note).
    */
@@ -63,6 +52,7 @@ export interface DiagnosticListParams {
 export declare namespace Diagnostics {
   export {
     type DiagnosticListResponse as DiagnosticListResponse,
+    type DiagnosticListResponsesList as DiagnosticListResponsesList,
     type DiagnosticListParams as DiagnosticListParams,
   };
 }
