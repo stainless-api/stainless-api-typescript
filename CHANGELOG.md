@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-07-02)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Features
+
+* **api:** add proper pagination ([0cf6809](https://github.com/stainless-api/stainless-api-typescript/commit/0cf680917852d9757f157d38ee608039abff8f50))
+* **api:** add staging environment ([4b6d770](https://github.com/stainless-api/stainless-api-typescript/commit/4b6d77045a3b9c0683fb0fee8cdf900d34f53e27))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([9f9f180](https://github.com/stainless-api/stainless-api-typescript/commit/9f9f180c2fe3919de021486b7602550a085b6388))
+* **client:** improve path param validation ([b9f7c44](https://github.com/stainless-api/stainless-api-typescript/commit/b9f7c446279fa9f216c8d57d82c919f029275321))
+* **internal:** codegen related update ([3e3dc52](https://github.com/stainless-api/stainless-api-typescript/commit/3e3dc5259ed5f54d45635b084b3506d91c6692a2))
+
 ## 0.1.0-alpha.8 (2025-06-27)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
