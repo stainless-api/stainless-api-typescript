@@ -49,7 +49,7 @@ export class Projects extends APIResource {
   }
 
   /**
-   * List projects in an organization
+   * List projects in an organization, from oldest to newest
    */
   list(
     query: ProjectListParams | null | undefined = {},
