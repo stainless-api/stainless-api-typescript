@@ -11,7 +11,7 @@ You can run the MCP Server directly via `npx`:
 ```sh
 export STAINLESS_API_KEY="My API Key"
 export STAINLESS_PROJECT="example-project"
-npx -y @stainless-api/mcp@latest
+npx -y @stainless-api/sdk-mcp@latest
 ```
 
 ### Via MCP Client
@@ -26,7 +26,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "stainless_api_sdk_api": {
       "command": "npx",
-      "args": ["-y", "@stainless-api/mcp", "--client=claude", "--tools=all"],
+      "args": ["-y", "@stainless-api/sdk-mcp", "--client=claude", "--tools=all"],
       "env": {
         "STAINLESS_API_KEY": "My API Key",
         "STAINLESS_PROJECT": "example-project"
@@ -132,10 +132,10 @@ over time, you can manually enable or disable certain capabilities:
 
 ```js
 // Import the server, generated endpoints, or the init function
-import { server, endpoints, init } from "@stainless-api/mcp/server";
+import { server, endpoints, init } from "@stainless-api/sdk-mcp/server";
 
 // import a specific tool
-import createProjects from "@stainless-api/mcp/tools/projects/create-projects";
+import createProjects from "@stainless-api/sdk-mcp/tools/projects/create-projects";
 
 // initialize the server and all endpoints
 init({ server, endpoints });
