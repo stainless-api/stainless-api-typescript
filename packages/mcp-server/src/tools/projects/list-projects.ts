@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@stainless-api/mcp/tools/types';
+import { asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'list_projects',
-  description: 'List projects in an organization',
+  description: 'List projects in an organization, from oldest to newest',
   inputSchema: {
     type: 'object',
     properties: {

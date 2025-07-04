@@ -315,19 +315,6 @@ describe('instantiate client', () => {
       expect(client.baseURL).toEqual('https://api.stainless.com');
     });
 
-    test('env variable with environment', () => {
-      process.env['STAINLESS_BASE_URL'] = 'https://example.com/from_env';
-
-      expect(
-        () => new Stainless({ apiKey: 'My API Key', environment: 'production' }),
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"Ambiguous URL; The \`baseURL\` option (or STAINLESS_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
-      );
-
-      const client = new Stainless({ apiKey: 'My API Key', baseURL: null, environment: 'production' });
-      expect(client.baseURL).toEqual('https://api.stainless.com');
-    });
-
     test('in request options', () => {
       const client = new Stainless({ apiKey: 'My API Key' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(

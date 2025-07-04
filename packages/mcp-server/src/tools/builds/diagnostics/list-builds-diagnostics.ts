@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@stainless-api/mcp/tools/types';
+import { asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../../';
@@ -30,7 +30,7 @@ export const tool: Tool = {
       },
       limit: {
         type: 'number',
-        description: 'Maximum number of diagnostics to return, defaults to 10 (maximum: 100)',
+        description: 'Maximum number of diagnostics to return, defaults to 100 (maximum: 100)',
       },
       severity: {
         type: 'string',
@@ -63,7 +63,7 @@ export const tool: Tool = {
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
   const { buildId, ...body } = args as any;
-  return asTextContentResult((await client.builds.diagnostics.list(buildId, body)) as object);
+  return asTextContentResult(await client.builds.diagnostics.list(buildId, body));
 };
 
 export default { metadata, tool, handler };
