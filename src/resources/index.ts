@@ -8,7 +8,7 @@ export {
   type BuildCreateParams,
   type BuildListParams,
   type BuildCompareParams,
-  type BuildObjectsList,
+  type BuildObjectsPage,
 } from './builds/builds';
 export { Generate, type GenerateCreateSpecResponse, type GenerateCreateSpecParams } from './generate';
 export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
@@ -22,5 +22,5 @@ export {
   type ProjectRetrieveParams,
   type ProjectUpdateParams,
   type ProjectListParams,
-  type ProjectListResponsesList,
+  type ProjectListResponsesPage,
 } from './projects/projects';

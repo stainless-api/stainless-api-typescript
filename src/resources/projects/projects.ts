@@ -12,7 +12,7 @@ import {
   Configs,
 } from './configs';
 import { APIPromise } from '../../core/api-promise';
-import { List, type ListParams, PagePromise } from '../../core/pagination';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -50,17 +50,17 @@ export class Projects extends APIResource {
   }
 
   /**
-   * List projects in an organization
+   * List projects in an organization, from oldest to newest
    */
   list(
     query: ProjectListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<ProjectListResponsesList, ProjectListResponse> {
-    return this._client.getAPIList('/v0/projects', List<ProjectListResponse>, { query, ...options });
+  ): PagePromise<ProjectListResponsesPage, ProjectListResponse> {
+    return this._client.getAPIList('/v0/projects', Page<ProjectListResponse>, { query, ...options });
   }
 }
 
-export type ProjectListResponsesList = List<ProjectListResponse>;
+export type ProjectListResponsesPage = Page<ProjectListResponse>;
 
 export interface ProjectCreateResponse {
   config_repo: string;
@@ -237,7 +237,12 @@ export interface ProjectUpdateParams {
   display_name?: string | null;
 }
 
-export interface ProjectListParams extends ListParams {
+export interface ProjectListParams extends PageParams {
+  /**
+   * Maximum number of projects to return, defaults to 10 (maximum: 100)
+   */
+  limit?: number;
+
   org?: string;
 }
 
@@ -250,7 +255,7 @@ export declare namespace Projects {
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
-    type ProjectListResponsesList as ProjectListResponsesList,
+    type ProjectListResponsesPage as ProjectListResponsesPage,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,

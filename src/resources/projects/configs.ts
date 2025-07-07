@@ -64,6 +64,11 @@ export interface ConfigRetrieveParams {
    * Query param: Branch name, defaults to "main"
    */
   branch?: string;
+
+  /**
+   * Query param:
+   */
+  include?: string;
 }
 
 export interface ConfigGuessParams {

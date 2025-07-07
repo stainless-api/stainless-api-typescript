@@ -107,24 +107,22 @@ export class PagePromise<
   }
 }
 
-export interface ListResponse<Item> {
+export interface PageResponse<Item> {
   data: Array<Item>;
 
   next_cursor: string;
 }
 
-export interface ListParams {
+export interface PageParams {
   cursor?: string;
-
-  limit?: number;
 }
 
-export class List<Item> extends AbstractPage<Item> implements ListResponse<Item> {
+export class Page<Item> extends AbstractPage<Item> implements PageResponse<Item> {
   data: Array<Item>;
 
   next_cursor: string;
 
-  constructor(client: Stainless, response: Response, body: ListResponse<Item>, options: FinalRequestOptions) {
+  constructor(client: Stainless, response: Response, body: PageResponse<Item>, options: FinalRequestOptions) {
     super(client, response, body, options);
 
     this.data = body.data || [];

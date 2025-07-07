@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@stainless-api/mcp/tools/types';
+import { asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../../';
@@ -43,8 +43,7 @@ export const tool: Tool = {
       },
       type: {
         type: 'string',
-        description: 'Type of output to download: source code',
-        enum: ['source'],
+        enum: ['source', 'dist', 'wheel'],
       },
       output: {
         type: 'string',

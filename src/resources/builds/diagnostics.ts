@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { List, type ListParams, PagePromise } from '../../core/pagination';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -13,19 +13,36 @@ export class Diagnostics extends APIResource {
     buildID: string,
     query: DiagnosticListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<DiagnosticListResponsesList, DiagnosticListResponse> {
-    return this._client.getAPIList(path`/v0/builds/${buildID}/diagnostics`, List<DiagnosticListResponse>, {
+  ): PagePromise<DiagnosticListResponsesPage, DiagnosticListResponse> {
+    return this._client.getAPIList(path`/v0/builds/${buildID}/diagnostics`, Page<DiagnosticListResponse>, {
       query,
       ...options,
     });
   }
 }
 
-export type DiagnosticListResponsesList = List<DiagnosticListResponse>;
+export type DiagnosticListResponsesPage = Page<DiagnosticListResponse>;
 
-export type DiagnosticListResponse = unknown;
+export interface DiagnosticListResponse {
+  code: string;
 
-export interface DiagnosticListParams extends ListParams {
+  ignored: boolean;
+
+  level: 'fatal' | 'error' | 'warning' | 'note';
+
+  message: string;
+
+  config_ref?: string;
+
+  oas_ref?: string;
+}
+
+export interface DiagnosticListParams extends PageParams {
+  /**
+   * Maximum number of diagnostics to return, defaults to 100 (maximum: 100)
+   */
+  limit?: number;
+
   /**
    * Includes the given severity and above (fatal > error > warning > note).
    */
@@ -52,7 +69,7 @@ export interface DiagnosticListParams extends ListParams {
 export declare namespace Diagnostics {
   export {
     type DiagnosticListResponse as DiagnosticListResponse,
-    type DiagnosticListResponsesList as DiagnosticListResponsesList,
+    type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
     type DiagnosticListParams as DiagnosticListParams,
   };
 }

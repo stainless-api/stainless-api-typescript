@@ -6,13 +6,13 @@ import * as DiagnosticsAPI from './diagnostics';
 import {
   DiagnosticListParams,
   DiagnosticListResponse,
-  DiagnosticListResponsesList,
+  DiagnosticListResponsesPage,
   Diagnostics,
 } from './diagnostics';
 import * as TargetOutputsAPI from './target-outputs';
 import { TargetOutputRetrieveParams, TargetOutputRetrieveResponse, TargetOutputs } from './target-outputs';
 import { APIPromise } from '../../core/api-promise';
-import { List, type ListParams, PagePromise } from '../../core/pagination';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -41,9 +41,9 @@ export class Builds extends APIResource {
   list(
     params: BuildListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<BuildObjectsList, BuildObject> {
+  ): PagePromise<BuildObjectsPage, BuildObject> {
     const { project = this._client.project, ...query } = params ?? {};
-    return this._client.getAPIList('/v0/builds', List<BuildObject>, {
+    return this._client.getAPIList('/v0/builds', Page<BuildObject>, {
       query: { project, ...query },
       ...options,
     });
@@ -58,7 +58,7 @@ export class Builds extends APIResource {
   }
 }
 
-export type BuildObjectsList = List<BuildObject>;
+export type BuildObjectsPage = Page<BuildObject>;
 
 export interface BuildObject {
   id: string;
@@ -84,6 +84,8 @@ export namespace BuildObject {
   }
 
   export interface UnionMember1 {
+    expires: string;
+
     type: 'url';
 
     url: string;
@@ -244,6 +246,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -284,6 +288,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -324,6 +330,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -364,6 +372,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 }
@@ -437,7 +447,7 @@ export namespace BuildCreateParams {
   }
 }
 
-export interface BuildListParams extends ListParams {
+export interface BuildListParams extends PageParams {
   /**
    * Project name
    */
@@ -447,6 +457,11 @@ export interface BuildListParams extends ListParams {
    * Branch name
    */
   branch?: string;
+
+  /**
+   * Maximum number of builds to return, defaults to 10 (maximum: 100)
+   */
+  limit?: number;
 
   /**
    * A config commit SHA used for the build
@@ -582,7 +597,7 @@ export declare namespace Builds {
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
     type BuildCompareResponse as BuildCompareResponse,
-    type BuildObjectsList as BuildObjectsList,
+    type BuildObjectsPage as BuildObjectsPage,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
     type BuildCompareParams as BuildCompareParams,
@@ -591,7 +606,7 @@ export declare namespace Builds {
   export {
     Diagnostics as Diagnostics,
     type DiagnosticListResponse as DiagnosticListResponse,
-    type DiagnosticListResponsesList as DiagnosticListResponsesList,
+    type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
     type DiagnosticListParams as DiagnosticListParams,
   };
 

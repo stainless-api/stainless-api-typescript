@@ -8,13 +8,13 @@ export {
   type BuildCreateParams,
   type BuildListParams,
   type BuildCompareParams,
-  type BuildObjectsList,
+  type BuildObjectsPage,
 } from './builds';
 export {
   Diagnostics,
   type DiagnosticListResponse,
   type DiagnosticListParams,
-  type DiagnosticListResponsesList,
+  type DiagnosticListResponsesPage,
 } from './diagnostics';
 export {
   TargetOutputs,

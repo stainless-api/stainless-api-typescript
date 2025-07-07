@@ -12,7 +12,7 @@ Methods:
 - <code title="post /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">create</a>({ ...params }) -> ProjectCreateResponse</code>
 - <code title="get /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>({ ...params }) -> ProjectRetrieveResponse</code>
 - <code title="patch /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>({ ...params }) -> ProjectUpdateResponse</code>
-- <code title="get /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectListResponsesList</code>
+- <code title="get /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectListResponsesPage</code>
 
 ## Branches
 
@@ -49,7 +49,7 @@ Methods:
 
 - <code title="post /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">create</a>({ ...params }) -> BuildObject</code>
 - <code title="get /v0/builds/{buildId}">client.builds.<a href="./src/resources/builds/builds.ts">retrieve</a>(buildID) -> BuildObject</code>
-- <code title="get /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">list</a>({ ...params }) -> BuildObjectsList</code>
+- <code title="get /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">list</a>({ ...params }) -> BuildObjectsPage</code>
 - <code title="post /v0/builds/compare">client.builds.<a href="./src/resources/builds/builds.ts">compare</a>({ ...params }) -> BuildCompareResponse</code>
 
 ## Diagnostics
@@ -60,7 +60,7 @@ Types:
 
 Methods:
 
-- <code title="get /v0/builds/{buildId}/diagnostics">client.builds.diagnostics.<a href="./src/resources/builds/diagnostics.ts">list</a>(buildID, { ...params }) -> DiagnosticListResponsesList</code>
+- <code title="get /v0/builds/{buildId}/diagnostics">client.builds.diagnostics.<a href="./src/resources/builds/diagnostics.ts">list</a>(buildID, { ...params }) -> DiagnosticListResponsesPage</code>
 
 ## TargetOutputs
 
