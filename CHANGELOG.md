@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2025-07-07)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Features
+
+* add multipart form support to HAR snippets ([c043687](https://github.com/stainless-api/stainless-api-typescript/commit/c043687d7e799e4cb1b1fb3382f3649d459f6299))
+* **api:** manual updates ([6c0b3ca](https://github.com/stainless-api/stainless-api-typescript/commit/6c0b3ca6afb8e7ea6fd8dffeb3b5f6dc8c463ccf))
+* **api:** punch v0 api for sdk previews ([2b37773](https://github.com/stainless-api/stainless-api-typescript/commit/2b37773f2e5ac7ce0d698e4a989107fac977ebf3))
+* **api:** sort org projects by creation time ([eb5909e](https://github.com/stainless-api/stainless-api-typescript/commit/eb5909ebb4e9ac06b008625e778a45590aedb2a3))
+* make build api return documented specs as urls ([a25d287](https://github.com/stainless-api/stainless-api-typescript/commit/a25d287a46b99eb56a378086aac917b2ede3612e))
+
+
+### Chores
+
+* add docs to RequestOptions type ([f8c8bdc](https://github.com/stainless-api/stainless-api-typescript/commit/f8c8bdc65a046977d5fc007b9c5668d813286fc4))
+* configure new SDK language ([5623733](https://github.com/stainless-api/stainless-api-typescript/commit/5623733743fb753fb66d2447b18afd1919335bc6))
+* **internal:** codegen related update ([f00bea3](https://github.com/stainless-api/stainless-api-typescript/commit/f00bea39ea62699b4b2fb8904ee7ebed98b8b8e6))
+* **internal:** codegen related update ([d7c6cea](https://github.com/stainless-api/stainless-api-typescript/commit/d7c6ceaccee206d3056a8cdf73c4a626179535e1))
+
 ## 0.1.0-alpha.10 (2025-07-02)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
