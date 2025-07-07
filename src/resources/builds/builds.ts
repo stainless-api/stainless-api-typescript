@@ -3,10 +3,16 @@
 import { APIResource } from '../../core/resource';
 import * as BuildsAPI from './builds';
 import * as DiagnosticsAPI from './diagnostics';
-import { DiagnosticListParams, DiagnosticListResponse, Diagnostics } from './diagnostics';
+import {
+  DiagnosticListParams,
+  DiagnosticListResponse,
+  DiagnosticListResponsesPage,
+  Diagnostics,
+} from './diagnostics';
 import * as TargetOutputsAPI from './target-outputs';
 import { TargetOutputRetrieveParams, TargetOutputRetrieveResponse, TargetOutputs } from './target-outputs';
 import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -35,9 +41,12 @@ export class Builds extends APIResource {
   list(
     params: BuildListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<BuildListResponse> {
+  ): PagePromise<BuildObjectsPage, BuildObject> {
     const { project = this._client.project, ...query } = params ?? {};
-    return this._client.get('/v0/builds', { query: { project, ...query }, ...options });
+    return this._client.getAPIList('/v0/builds', Page<BuildObject>, {
+      query: { project, ...query },
+      ...options,
+    });
   }
 
   /**
@@ -48,6 +57,8 @@ export class Builds extends APIResource {
     return this._client.post('/v0/builds/compare', { body: { project, ...body }, ...options });
   }
 }
+
+export type BuildObjectsPage = Page<BuildObject>;
 
 export interface BuildObject {
   id: string;
@@ -367,14 +378,6 @@ export namespace BuildTarget {
   }
 }
 
-export interface BuildListResponse {
-  data: Array<BuildObject>;
-
-  has_more: boolean;
-
-  next_cursor?: string;
-}
-
 export interface BuildCompareResponse {
   base: BuildObject;
 
@@ -444,7 +447,7 @@ export namespace BuildCreateParams {
   }
 }
 
-export interface BuildListParams {
+export interface BuildListParams extends PageParams {
   /**
    * Project name
    */
@@ -454,11 +457,6 @@ export interface BuildListParams {
    * Branch name
    */
   branch?: string;
-
-  /**
-   * Pagination cursor from a previous response
-   */
-  cursor?: string;
 
   /**
    * Maximum number of builds to return, defaults to 10 (maximum: 100)
@@ -598,8 +596,8 @@ export declare namespace Builds {
   export {
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
-    type BuildListResponse as BuildListResponse,
     type BuildCompareResponse as BuildCompareResponse,
+    type BuildObjectsPage as BuildObjectsPage,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
     type BuildCompareParams as BuildCompareParams,
@@ -608,6 +606,7 @@ export declare namespace Builds {
   export {
     Diagnostics as Diagnostics,
     type DiagnosticListResponse as DiagnosticListResponse,
+    type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
     type DiagnosticListParams as DiagnosticListParams,
   };
 

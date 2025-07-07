@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -13,41 +13,31 @@ export class Diagnostics extends APIResource {
     buildID: string,
     query: DiagnosticListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<DiagnosticListResponse> {
-    return this._client.get(path`/v0/builds/${buildID}/diagnostics`, { query, ...options });
+  ): PagePromise<DiagnosticListResponsesPage, DiagnosticListResponse> {
+    return this._client.getAPIList(path`/v0/builds/${buildID}/diagnostics`, Page<DiagnosticListResponse>, {
+      query,
+      ...options,
+    });
   }
 }
+
+export type DiagnosticListResponsesPage = Page<DiagnosticListResponse>;
 
 export interface DiagnosticListResponse {
-  data: Array<DiagnosticListResponse.Data>;
+  code: string;
 
-  has_more: boolean;
+  ignored: boolean;
 
-  next_cursor?: string;
+  level: 'fatal' | 'error' | 'warning' | 'note';
+
+  message: string;
+
+  config_ref?: string;
+
+  oas_ref?: string;
 }
 
-export namespace DiagnosticListResponse {
-  export interface Data {
-    code: string;
-
-    ignored: boolean;
-
-    level: 'fatal' | 'error' | 'warning' | 'note';
-
-    message: string;
-
-    config_ref?: string;
-
-    oas_ref?: string;
-  }
-}
-
-export interface DiagnosticListParams {
-  /**
-   * Pagination cursor from a previous response
-   */
-  cursor?: string;
-
+export interface DiagnosticListParams extends PageParams {
   /**
    * Maximum number of diagnostics to return, defaults to 100 (maximum: 100)
    */
@@ -79,6 +69,7 @@ export interface DiagnosticListParams {
 export declare namespace Diagnostics {
   export {
     type DiagnosticListResponse as DiagnosticListResponse,
+    type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
     type DiagnosticListParams as DiagnosticListParams,
   };
 }
