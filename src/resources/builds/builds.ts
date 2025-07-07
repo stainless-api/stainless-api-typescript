@@ -235,6 +235,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -275,6 +277,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -315,6 +319,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -355,6 +361,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 }

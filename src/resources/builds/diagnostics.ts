@@ -19,11 +19,27 @@ export class Diagnostics extends APIResource {
 }
 
 export interface DiagnosticListResponse {
-  data: Array<unknown>;
+  data: Array<DiagnosticListResponse.Data>;
 
   has_more: boolean;
 
   next_cursor?: string;
+}
+
+export namespace DiagnosticListResponse {
+  export interface Data {
+    code: string;
+
+    ignored: boolean;
+
+    level: 'fatal' | 'error' | 'warning' | 'note';
+
+    message: string;
+
+    config_ref?: string;
+
+    oas_ref?: string;
+  }
 }
 
 export interface DiagnosticListParams {
