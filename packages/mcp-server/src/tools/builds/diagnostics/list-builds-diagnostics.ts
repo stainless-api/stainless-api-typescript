@@ -63,7 +63,7 @@ export const tool: Tool = {
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
   const { buildId, ...body } = args as any;
-  return asTextContentResult(await client.builds.diagnostics.list(buildId, body));
+  return asTextContentResult((await client.builds.diagnostics.list(buildId, body)) as object);
 };
 
 export default { metadata, tool, handler };

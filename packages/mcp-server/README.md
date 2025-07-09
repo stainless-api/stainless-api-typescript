@@ -183,7 +183,7 @@ The following tools are available in this MCP server.
 - `create_projects` (`write`): Create a new project
 - `retrieve_projects` (`read`): Retrieve a project by name
 - `update_projects` (`write`): Update a project's properties
-- `list_projects` (`read`): List projects in an organization, from oldest to newest
+- `list_projects` (`read`): List projects in an organization
 
 ### Resource `projects.branches`:
 
