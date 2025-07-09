@@ -23,19 +23,7 @@ export class Diagnostics extends APIResource {
 
 export type DiagnosticListResponsesPage = Page<DiagnosticListResponse>;
 
-export interface DiagnosticListResponse {
-  code: string;
-
-  ignored: boolean;
-
-  level: 'fatal' | 'error' | 'warning' | 'note';
-
-  message: string;
-
-  config_ref?: string;
-
-  oas_ref?: string;
-}
+export type DiagnosticListResponse = unknown;
 
 export interface DiagnosticListParams extends PageParams {
   /**

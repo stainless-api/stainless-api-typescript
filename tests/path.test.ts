@@ -1,6 +1,5 @@
 import { createPathTagFunction, encodeURIPath } from '@stainless-api/sdk/internal/utils/path';
 import { inspect } from 'node:util';
-import { runInNewContext } from 'node:vm';
 
 describe('path template tag function', () => {
   test('validates input', () => {
@@ -33,113 +32,8 @@ describe('path template tag function', () => {
       return testParams.flatMap((e) => rest.map((r) => [e, ...r]));
     }
 
-    // We need to test how %2E is handled, so we use a custom encoder that does no escaping.
+    // we need to test how %2E is handled so we use a custom encoder that does no escaping
     const rawPath = createPathTagFunction((s) => s);
-
-    const emptyObject = {};
-    const mathObject = Math;
-    const numberObject = new Number();
-    const stringObject = new String();
-    const basicClass = new (class {})();
-    const classWithToString = new (class {
-      toString() {
-        return 'ok';
-      }
-    })();
-
-    // Invalid values
-    expect(() => rawPath`/a/${null}/b`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value of type Null is not a valid path parameter\n' +
-        '/a/null/b\n' +
-        '   ^^^^',
-    );
-    expect(() => rawPath`/a/${undefined}/b`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value of type Undefined is not a valid path parameter\n' +
-        '/a/undefined/b\n' +
-        '   ^^^^^^^^^',
-    );
-    expect(() => rawPath`/a/${emptyObject}/b`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value of type Object is not a valid path parameter\n' +
-        '/a/[object Object]/b\n' +
-        '   ^^^^^^^^^^^^^^^',
-    );
-    expect(() => rawPath`?${mathObject}`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value of type Math is not a valid path parameter\n' +
-        '?[object Math]\n' +
-        ' ^^^^^^^^^^^^^',
-    );
-    expect(() => rawPath`/${basicClass}`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value of type Object is not a valid path parameter\n' +
-        '/[object Object]\n' +
-        ' ^^^^^^^^^^^^^^',
-    );
-    expect(() => rawPath`/../${''}`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value ".." can\'t be safely passed as a path parameter\n' +
-        '/../\n' +
-        ' ^^',
-    );
-    expect(() => rawPath`/../${{}}`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value ".." can\'t be safely passed as a path parameter\n' +
-        'Value of type Object is not a valid path parameter\n' +
-        '/../[object Object]\n' +
-        ' ^^ ^^^^^^^^^^^^^^',
-    );
-
-    // Valid values
-    expect(rawPath`/${0}`).toBe('/0');
-    expect(rawPath`/${''}`).toBe('/');
-    expect(rawPath`/${numberObject}`).toBe('/0');
-    expect(rawPath`${stringObject}/`).toBe('/');
-    expect(rawPath`/${classWithToString}`).toBe('/ok');
-
-    // We need to check what happens with cross-realm values, which we might get from
-    // Jest or other frames in a browser.
-
-    const newRealm = runInNewContext('globalThis');
-    expect(newRealm.Object).not.toBe(Object);
-
-    const crossRealmObject = newRealm.Object();
-    const crossRealmMathObject = newRealm.Math;
-    const crossRealmNumber = new newRealm.Number();
-    const crossRealmString = new newRealm.String();
-    const crossRealmClass = new (class extends newRealm.Object {})();
-    const crossRealmClassWithToString = new (class extends newRealm.Object {
-      toString() {
-        return 'ok';
-      }
-    })();
-
-    // Invalid cross-realm values
-    expect(() => rawPath`/a/${crossRealmObject}/b`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value of type Object is not a valid path parameter\n' +
-        '/a/[object Object]/b\n' +
-        '   ^^^^^^^^^^^^^^^',
-    );
-    expect(() => rawPath`?${crossRealmMathObject}`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value of type Math is not a valid path parameter\n' +
-        '?[object Math]\n' +
-        ' ^^^^^^^^^^^^^',
-    );
-    expect(() => rawPath`/${crossRealmClass}`).toThrow(
-      'Path parameters result in path with invalid segments:\n' +
-        'Value of type Object is not a valid path parameter\n' +
-        '/[object Object]\n' +
-        ' ^^^^^^^^^^^^^^^',
-    );
-
-    // Valid cross-realm values
-    expect(rawPath`/${crossRealmNumber}`).toBe('/0');
-    expect(rawPath`${crossRealmString}/`).toBe('/');
-    expect(rawPath`/${crossRealmClassWithToString}`).toBe('/ok');
 
     const results: {
       [pathParts: string]: {
@@ -191,7 +85,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E%2e" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2E%2e/a\n' +
             '             ^^^^^^',
         },
@@ -199,7 +92,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2E/a\n' +
             '             ^^^',
         },
@@ -211,7 +103,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2e%2E" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2e%2E/\n' +
             '             ^^^^^^',
         },
@@ -219,7 +110,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2e" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2e/\n' +
             '             ^^^',
         },
@@ -231,7 +121,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2E\n' +
             '             ^^^',
         },
@@ -239,7 +128,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E%2e" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2E%2e\n' +
             '             ^^^^^^',
         },
@@ -249,17 +137,11 @@ describe('path template tag function', () => {
         '["x"]': { valid: true, result: 'x/a' },
         '["%2E"]': {
           valid: false,
-          error:
-            'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E" can\'t be safely passed as a path parameter\n%2E/a\n^^^',
+          error: 'Error: Path parameters result in path with invalid segments:\n%2E/a\n^^^',
         },
         '["%2e%2E"]': {
           valid: false,
-          error:
-            'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2e%2E" can\'t be safely passed as a path parameter\n' +
-            '%2e%2E/a\n' +
-            '^^^^^^',
+          error: 'Error: Path parameters result in path with invalid segments:\n' + '%2e%2E/a\n' + '^^^^^^',
         },
       },
       '["","/"]': {
@@ -267,18 +149,11 @@ describe('path template tag function', () => {
         '[""]': { valid: true, result: '/' },
         '["%2E%2e"]': {
           valid: false,
-          error:
-            'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E%2e" can\'t be safely passed as a path parameter\n' +
-            '%2E%2e/\n' +
-            '^^^^^^',
+          error: 'Error: Path parameters result in path with invalid segments:\n' + '%2E%2e/\n' + '^^^^^^',
         },
         '["."]': {
           valid: false,
-          error:
-            'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "." can\'t be safely passed as a path parameter\n' +
-            './\n^',
+          error: 'Error: Path parameters result in path with invalid segments:\n./\n^',
         },
       },
       '["",""]': {
@@ -286,17 +161,11 @@ describe('path template tag function', () => {
         '["x"]': { valid: true, result: 'x' },
         '[".."]': {
           valid: false,
-          error:
-            'Error: Path parameters result in path with invalid segments:\n' +
-            'Value ".." can\'t be safely passed as a path parameter\n' +
-            '..\n^^',
+          error: 'Error: Path parameters result in path with invalid segments:\n..\n^^',
         },
         '["."]': {
           valid: false,
-          error:
-            'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "." can\'t be safely passed as a path parameter\n' +
-            '.\n^',
+          error: 'Error: Path parameters result in path with invalid segments:\n.\n^',
         },
       },
       '["a"]': {},
@@ -316,7 +185,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E%2E" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2E%2E?beta=true\n' +
             '             ^^^^^^',
         },
@@ -324,7 +192,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2e%2E" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2e%2E?beta=true\n' +
             '             ^^^^^^',
         },
@@ -336,7 +203,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "." can\'t be safely passed as a path parameter\n' +
             '/path_params/.?beta=true\n' +
             '             ^',
         },
@@ -344,7 +210,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2e." can\'t be safely passed as a path parameter\n' +
             '/path_params/%2e.?beta=true\n' +
             '             ^^^^',
         },
@@ -356,8 +221,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "." can\'t be safely passed as a path parameter\n' +
-            'Value "%2e" can\'t be safely passed as a path parameter\n' +
             '/path_params/./%2e/download\n' +
             '             ^ ^^^',
         },
@@ -365,8 +228,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E%2e" can\'t be safely passed as a path parameter\n' +
-            'Value "%2e" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2E%2e/%2e/download\n' +
             '             ^^^^^^ ^^^',
         },
@@ -382,7 +243,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E" can\'t be safely passed as a path parameter\n' +
             '/path_params/%2E/download\n' +
             '             ^^^',
         },
@@ -390,7 +250,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "%2E." can\'t be safely passed as a path parameter\n' +
             '/path_params/%2E./download\n' +
             '             ^^^^',
         },
@@ -402,7 +261,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value "." can\'t be safely passed as a path parameter\n' +
             '/path_params/./download\n' +
             '             ^',
         },
@@ -410,7 +268,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value ".." can\'t be safely passed as a path parameter\n' +
             '/path_params/../download\n' +
             '             ^^',
         },
@@ -422,7 +279,6 @@ describe('path template tag function', () => {
           valid: false,
           error:
             'Error: Path parameters result in path with invalid segments:\n' +
-            'Value ".." can\'t be safely passed as a path parameter\n' +
             '/path_params/../download\n' +
             '             ^^',
         },
