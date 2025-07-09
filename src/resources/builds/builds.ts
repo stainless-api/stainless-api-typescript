@@ -65,8 +65,6 @@ export interface BuildObject {
 
   config_commit: string;
 
-  created_at: string;
-
   documented_spec: BuildObject.UnionMember0 | BuildObject.UnionMember1 | null;
 
   object: 'build';
@@ -76,8 +74,6 @@ export interface BuildObject {
   project: string;
 
   targets: BuildObject.Targets;
-
-  updated_at: string;
 }
 
 export namespace BuildObject {
@@ -88,6 +84,8 @@ export namespace BuildObject {
   }
 
   export interface UnionMember1 {
+    expires: string;
+
     type: 'url';
 
     url: string;
@@ -248,6 +246,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -288,6 +288,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -328,6 +330,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 
@@ -368,6 +372,8 @@ export namespace BuildTarget {
         | 'payment_required'
         | 'noop'
         | 'version_bump';
+
+      url: string | null;
     }
   }
 }
