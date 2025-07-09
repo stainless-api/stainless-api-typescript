@@ -19,7 +19,6 @@ import { AbstractPage, type PageParams, PageResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Generate, GenerateCreateSpecParams, GenerateCreateSpecResponse } from './resources/generate';
 import { OrgListResponse, OrgRetrieveResponse, Orgs } from './resources/orgs';
 import {
   BuildCompareParams,
@@ -755,12 +754,10 @@ export class Stainless {
   projects: API.Projects = new API.Projects(this);
   builds: API.Builds = new API.Builds(this);
   orgs: API.Orgs = new API.Orgs(this);
-  generate: API.Generate = new API.Generate(this);
 }
 Stainless.Projects = Projects;
 Stainless.Builds = Builds;
 Stainless.Orgs = Orgs;
-Stainless.Generate = Generate;
 export declare namespace Stainless {
   export type RequestOptions = Opts.RequestOptions;
 
@@ -795,11 +792,5 @@ export declare namespace Stainless {
     Orgs as Orgs,
     type OrgRetrieveResponse as OrgRetrieveResponse,
     type OrgListResponse as OrgListResponse,
-  };
-
-  export {
-    Generate as Generate,
-    type GenerateCreateSpecResponse as GenerateCreateSpecResponse,
-    type GenerateCreateSpecParams as GenerateCreateSpecParams,
   };
 }

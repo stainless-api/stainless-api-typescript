@@ -20,7 +20,6 @@ import list_builds_diagnostics from './builds/diagnostics/list-builds-diagnostic
 import retrieve_builds_target_outputs from './builds/target-outputs/retrieve-builds-target-outputs';
 import retrieve_orgs from './orgs/retrieve-orgs';
 import list_orgs from './orgs/list-orgs';
-import create_spec_generate from './generate/create-spec-generate';
 
 export const endpoints: Endpoint[] = [];
 
@@ -44,7 +43,6 @@ addEndpoint(list_builds_diagnostics);
 addEndpoint(retrieve_builds_target_outputs);
 addEndpoint(retrieve_orgs);
 addEndpoint(list_orgs);
-addEndpoint(create_spec_generate);
 
 export type Filter = {
   type: 'resource' | 'operation' | 'tag' | 'tool';
