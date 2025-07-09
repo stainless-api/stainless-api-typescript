@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'list_projects',
-  description: 'List projects in an organization, from oldest to newest',
+  description: 'List projects in an organization',
   inputSchema: {
     type: 'object',
     properties: {
