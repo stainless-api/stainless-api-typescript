@@ -180,7 +180,7 @@ export interface ProjectCreateParams {
   /**
    * File contents to commit
    */
-  revision: Record<string, ProjectCreateParams.Content | ProjectCreateParams.URL>;
+  revision: { [key: string]: ProjectCreateParams.Content | ProjectCreateParams.URL };
 
   /**
    * Project name/slug
