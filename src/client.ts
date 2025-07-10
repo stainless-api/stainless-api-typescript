@@ -798,4 +798,6 @@ export declare namespace Stainless {
     type OrgRetrieveResponse as OrgRetrieveResponse,
     type OrgListResponse as OrgListResponse,
   };
+
+  export type FileInput = API.FileInput;
 }
