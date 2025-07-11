@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-07-11)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Features
+
+* add timestamp to builds api ([1910bf4](https://github.com/stainless-api/stainless-api-typescript/commit/1910bf49b618ebe79ef17219a68fa47f3d67055a))
+* **api:** add FileInput model ([fdd714e](https://github.com/stainless-api/stainless-api-typescript/commit/fdd714ea09f6feaabe136ec088832559296f6e1a))
+* **mcp:** support filtering tool results by a jq expression ([0960dd2](https://github.com/stainless-api/stainless-api-typescript/commit/0960dd27dd4fc0b36ca53be9b4f20d4691ff0713))
+
+
+### Bug Fixes
+
+* **mcp:** relax input type for asTextContextResult ([8144b09](https://github.com/stainless-api/stainless-api-typescript/commit/8144b09a50ac97d1418f7c28c82ccf1b08f5f0fe))
+
+
+### Chores
+
+* **internal:** codegen related update ([3150f21](https://github.com/stainless-api/stainless-api-typescript/commit/3150f21e8cc03c69c8c8f6650f0ec05b16b1d214))
+* **internal:** codegen related update ([2c4f214](https://github.com/stainless-api/stainless-api-typescript/commit/2c4f214d3215d2e88b0c9f26b44bf2e801c691e1))
+* make some internal functions async ([5f9be37](https://github.com/stainless-api/stainless-api-typescript/commit/5f9be37782e6f17a554fc171a56832eb45dfa027))
+* move sdkjson generation api out of v0 scope ([091a4a7](https://github.com/stainless-api/stainless-api-typescript/commit/091a4a7ec6f09c4260119c1a9a3ec1e7fc2f0408))
+
 ## 0.1.0-alpha.11 (2025-07-07)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
