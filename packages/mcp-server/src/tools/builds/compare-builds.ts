@@ -16,7 +16,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'compare_builds',
-  description: 'Creates two builds whose outputs can be compared directly',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreates two builds whose outputs can be compared directly",
   inputSchema: {
     type: 'object',
     properties: {
