@@ -203,7 +203,3 @@ The following tools are available in this MCP server.
 
 - `retrieve_orgs` (`read`): Retrieve an organization by name
 - `list_orgs` (`read`): List organizations the user has access to
-
-### Resource `generate`:
-
-- `create_spec_generate` (`write`):
