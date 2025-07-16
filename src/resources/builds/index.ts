@@ -4,7 +4,6 @@ export {
   Builds,
   type BuildObject,
   type BuildTarget,
-  type CheckStep,
   type BuildCompareResponse,
   type BuildCreateParams,
   type BuildListParams,
