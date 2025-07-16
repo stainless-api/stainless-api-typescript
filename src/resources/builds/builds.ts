@@ -9,6 +9,7 @@ import {
   DiagnosticListResponse,
   DiagnosticListResponsesPage,
   Diagnostics,
+  Target,
 } from './diagnostics';
 import * as TargetOutputsAPI from './target-outputs';
 import { TargetOutputRetrieveParams, TargetOutputRetrieveResponse, TargetOutputs } from './target-outputs';
@@ -421,19 +422,7 @@ export interface BuildCreateParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<
-    | 'node'
-    | 'typescript'
-    | 'python'
-    | 'go'
-    | 'java'
-    | 'kotlin'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'php'
-    | 'csharp'
-  >;
+  targets?: Array<DiagnosticsAPI.Target>;
 }
 
 export interface BuildListParams extends PageParams {
@@ -487,19 +476,7 @@ export interface BuildCompareParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<
-    | 'node'
-    | 'typescript'
-    | 'python'
-    | 'go'
-    | 'java'
-    | 'kotlin'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'php'
-    | 'csharp'
-  >;
+  targets?: Array<DiagnosticsAPI.Target>;
 }
 
 export namespace BuildCompareParams {
@@ -562,6 +539,7 @@ export declare namespace Builds {
 
   export {
     Diagnostics as Diagnostics,
+    type Target as Target,
     type DiagnosticListResponse as DiagnosticListResponse,
     type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
     type DiagnosticListParams as DiagnosticListParams,

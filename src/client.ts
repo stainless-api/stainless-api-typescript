@@ -19,7 +19,7 @@ import { AbstractPage, type PageParams, PageResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { OrgListResponse, OrgRetrieveResponse, Orgs } from './resources/orgs';
+import { Org, OrgListResponse, Orgs } from './resources/orgs';
 import {
   BuildCompareParams,
   BuildCompareResponse,
@@ -31,16 +31,13 @@ import {
   Builds,
 } from './resources/builds/builds';
 import {
+  Project,
   ProjectCreateParams,
-  ProjectCreateResponse,
   ProjectListParams,
-  ProjectListResponse,
-  ProjectListResponsesPage,
   ProjectRetrieveParams,
-  ProjectRetrieveResponse,
   ProjectUpdateParams,
-  ProjectUpdateResponse,
   Projects,
+  ProjectsPage,
 } from './resources/projects/projects';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -797,11 +794,8 @@ export declare namespace Stainless {
 
   export {
     Projects as Projects,
-    type ProjectCreateResponse as ProjectCreateResponse,
-    type ProjectRetrieveResponse as ProjectRetrieveResponse,
-    type ProjectUpdateResponse as ProjectUpdateResponse,
-    type ProjectListResponse as ProjectListResponse,
-    type ProjectListResponsesPage as ProjectListResponsesPage,
+    type Project as Project,
+    type ProjectsPage as ProjectsPage,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
@@ -819,11 +813,7 @@ export declare namespace Stainless {
     type BuildCompareParams as BuildCompareParams,
   };
 
-  export {
-    Orgs as Orgs,
-    type OrgRetrieveResponse as OrgRetrieveResponse,
-    type OrgListResponse as OrgListResponse,
-  };
+  export { Orgs as Orgs, type Org as Org, type OrgListResponse as OrgListResponse };
 
   export type FileInput = API.FileInput;
 }
