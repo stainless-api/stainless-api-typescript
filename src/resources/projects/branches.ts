@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as BuildsAPI from '../builds/builds';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
@@ -31,7 +32,7 @@ export class Branches extends APIResource {
 export interface ProjectBranch {
   branch: string;
 
-  config_commit: ProjectBranch.ConfigCommit;
+  config_commit: Shared.Commit;
 
   latest_build: BuildsAPI.BuildObject | null;
 
@@ -40,24 +41,6 @@ export interface ProjectBranch {
   org: string;
 
   project: string;
-}
-
-export namespace ProjectBranch {
-  export interface ConfigCommit {
-    repo: ConfigCommit.Repo;
-
-    sha: string;
-  }
-
-  export namespace ConfigCommit {
-    export interface Repo {
-      branch: string;
-
-      name: string;
-
-      owner: string;
-    }
-  }
 }
 
 export interface BranchCreateParams {
