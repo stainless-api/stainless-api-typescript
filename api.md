@@ -2,7 +2,6 @@
 
 Types:
 
-- <code><a href="./src/resources/shared.ts">Commit</a></code>
 - <code><a href="./src/resources/shared.ts">FileInput</a></code>
 
 # Projects
@@ -47,7 +46,6 @@ Types:
 
 - <code><a href="./src/resources/builds/builds.ts">BuildObject</a></code>
 - <code><a href="./src/resources/builds/builds.ts">BuildTarget</a></code>
-- <code><a href="./src/resources/builds/builds.ts">CheckStep</a></code>
 - <code><a href="./src/resources/builds/builds.ts">BuildCompareResponse</a></code>
 
 Methods:
