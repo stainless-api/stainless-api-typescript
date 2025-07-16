@@ -27,7 +27,7 @@ const client = new Stainless({
   environment: 'staging', // defaults to 'production'
 });
 
-const buildObject = await client.builds.create({ project: 'project', revision: 'string' });
+const buildObject = await client.builds.create({ project: 'example', revision: 'string' });
 
 console.log(buildObject.id);
 ```
@@ -45,7 +45,7 @@ const client = new Stainless({
   environment: 'staging', // defaults to 'production'
 });
 
-const params: Stainless.BuildCreateParams = { project: 'project', revision: 'string' };
+const params: Stainless.BuildCreateParams = { project: 'example', revision: 'string' };
 const buildObject: Stainless.BuildObject = await client.builds.create(params);
 ```
 
@@ -60,7 +60,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 const buildObject = await client.builds
-  .create({ project: 'project', revision: 'string' })
+  .create({ project: 'example', revision: 'string' })
   .catch(async (err) => {
     if (err instanceof Stainless.APIError) {
       console.log(err.status); // 400
@@ -101,7 +101,7 @@ const client = new Stainless({
 });
 
 // Or, configure per-request:
-await client.builds.create({ project: 'project', revision: 'string' }, {
+await client.builds.create({ project: 'example', revision: 'string' }, {
   maxRetries: 5,
 });
 ```
@@ -118,7 +118,7 @@ const client = new Stainless({
 });
 
 // Override per-request:
-await client.builds.create({ project: 'project', revision: 'string' }, {
+await client.builds.create({ project: 'example', revision: 'string' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -136,7 +136,7 @@ You can use the `for await … of` syntax to iterate through items across all pa
 async function fetchAllBuildObjects(params) {
   const allBuildObjects = [];
   // Automatically fetches more pages as needed.
-  for await (const buildObject of client.builds.list({ project: 'project' })) {
+  for await (const buildObject of client.builds.list({ project: 'example' })) {
     allBuildObjects.push(buildObject);
   }
   return allBuildObjects;
@@ -146,7 +146,7 @@ async function fetchAllBuildObjects(params) {
 Alternatively, you can request a single page at a time:
 
 ```ts
-let page = await client.builds.list({ project: 'project' });
+let page = await client.builds.list({ project: 'example' });
 for (const buildObject of page.data) {
   console.log(buildObject);
 }
@@ -172,12 +172,12 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new Stainless();
 
-const response = await client.builds.create({ project: 'project', revision: 'string' }).asResponse();
+const response = await client.builds.create({ project: 'example', revision: 'string' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: buildObject, response: raw } = await client.builds
-  .create({ project: 'project', revision: 'string' })
+  .create({ project: 'example', revision: 'string' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(buildObject.id);
