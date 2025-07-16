@@ -125,17 +125,17 @@ export namespace BuildObject {
 export interface BuildTarget {
   commit: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 
-  lint: CheckStep;
+  lint: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 
   object: 'build_target';
 
   status: 'not_started' | 'codegen' | 'postgen' | 'completed';
 
-  test: CheckStep;
+  test: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 
-  build?: CheckStep;
+  build?: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 
-  upload?: CheckStep;
+  upload?: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 }
 
 export namespace BuildTarget {
@@ -159,19 +159,23 @@ export namespace BuildTarget {
 
   export namespace Completed {
     export interface Completed {
-      commit: Shared.Commit | null;
+      commit: Completed.Commit | null;
 
       conclusion:
+        | 'success'
+        | 'failure'
+        | 'skipped'
+        | 'cancelled'
+        | 'action_required'
+        | 'neutral'
+        | 'timed_out'
         | 'error'
         | 'warning'
         | 'note'
-        | 'success'
         | 'merge_conflict'
         | 'upstream_merge_conflict'
         | 'fatal'
         | 'payment_required'
-        | 'cancelled'
-        | 'timed_out'
         | 'noop'
         | 'version_bump';
 
@@ -179,6 +183,22 @@ export namespace BuildTarget {
     }
 
     export namespace Completed {
+      export interface Commit {
+        repo: Commit.Repo;
+
+        sha: string;
+      }
+
+      export namespace Commit {
+        export interface Repo {
+          branch: string;
+
+          name: string;
+
+          owner: string;
+        }
+      }
+
       export interface MergeConflictPr {
         number: number;
 
@@ -194,30 +214,26 @@ export namespace BuildTarget {
       }
     }
   }
-}
 
-export type CheckStep = CheckStep.Status | CheckStep.Status | CheckStep.Status | CheckStep.UnionMember3;
-
-export namespace CheckStep {
-  export interface Status {
+  export interface NotStarted {
     status: 'not_started';
   }
 
-  export interface Status {
+  export interface Queued {
     status: 'queued';
   }
 
-  export interface Status {
+  export interface InProgress {
     status: 'in_progress';
   }
 
-  export interface UnionMember3 {
-    completed: UnionMember3.Completed;
+  export interface Completed {
+    completed: Completed.Completed;
 
     status: 'completed';
   }
 
-  export namespace UnionMember3 {
+  export namespace Completed {
     export interface Completed {
       conclusion:
         | 'success'
@@ -226,7 +242,142 @@ export namespace CheckStep {
         | 'cancelled'
         | 'action_required'
         | 'neutral'
-        | 'timed_out';
+        | 'timed_out'
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'noop'
+        | 'version_bump';
+
+      url: string | null;
+    }
+  }
+
+  export interface NotStarted {
+    status: 'not_started';
+  }
+
+  export interface Queued {
+    status: 'queued';
+  }
+
+  export interface InProgress {
+    status: 'in_progress';
+  }
+
+  export interface Completed {
+    completed: Completed.Completed;
+
+    status: 'completed';
+  }
+
+  export namespace Completed {
+    export interface Completed {
+      conclusion:
+        | 'success'
+        | 'failure'
+        | 'skipped'
+        | 'cancelled'
+        | 'action_required'
+        | 'neutral'
+        | 'timed_out'
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'noop'
+        | 'version_bump';
+
+      url: string | null;
+    }
+  }
+
+  export interface NotStarted {
+    status: 'not_started';
+  }
+
+  export interface Queued {
+    status: 'queued';
+  }
+
+  export interface InProgress {
+    status: 'in_progress';
+  }
+
+  export interface Completed {
+    completed: Completed.Completed;
+
+    status: 'completed';
+  }
+
+  export namespace Completed {
+    export interface Completed {
+      conclusion:
+        | 'success'
+        | 'failure'
+        | 'skipped'
+        | 'cancelled'
+        | 'action_required'
+        | 'neutral'
+        | 'timed_out'
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'noop'
+        | 'version_bump';
+
+      url: string | null;
+    }
+  }
+
+  export interface NotStarted {
+    status: 'not_started';
+  }
+
+  export interface Queued {
+    status: 'queued';
+  }
+
+  export interface InProgress {
+    status: 'in_progress';
+  }
+
+  export interface Completed {
+    completed: Completed.Completed;
+
+    status: 'completed';
+  }
+
+  export namespace Completed {
+    export interface Completed {
+      conclusion:
+        | 'success'
+        | 'failure'
+        | 'skipped'
+        | 'cancelled'
+        | 'action_required'
+        | 'neutral'
+        | 'timed_out'
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'noop'
+        | 'version_bump';
 
       url: string | null;
     }
@@ -379,7 +530,6 @@ export declare namespace Builds {
   export {
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
-    type CheckStep as CheckStep,
     type BuildCompareResponse as BuildCompareResponse,
     type BuildObjectsPage as BuildObjectsPage,
     type BuildCreateParams as BuildCreateParams,
