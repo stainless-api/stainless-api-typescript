@@ -1,5 +1,21 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+export interface Commit {
+  repo: Commit.Repo;
+
+  sha: string;
+}
+
+export namespace Commit {
+  export interface Repo {
+    branch: string;
+
+    name: string;
+
+    owner: string;
+  }
+}
+
 export type FileInput = FileInput.Content | FileInput.URL;
 
 export namespace FileInput {
