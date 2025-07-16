@@ -12,6 +12,7 @@ export {
 } from './builds';
 export {
   Diagnostics,
+  type Target,
   type DiagnosticListResponse,
   type DiagnosticListParams,
   type DiagnosticListResponsesPage,

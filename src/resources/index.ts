@@ -11,16 +11,13 @@ export {
   type BuildCompareParams,
   type BuildObjectsPage,
 } from './builds/builds';
-export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
+export { Orgs, type Org, type OrgListResponse } from './orgs';
 export {
   Projects,
-  type ProjectCreateResponse,
-  type ProjectRetrieveResponse,
-  type ProjectUpdateResponse,
-  type ProjectListResponse,
+  type Project,
   type ProjectCreateParams,
   type ProjectRetrieveParams,
   type ProjectUpdateParams,
   type ProjectListParams,
-  type ProjectListResponsesPage,
+  type ProjectsPage,
 } from './projects/projects';
