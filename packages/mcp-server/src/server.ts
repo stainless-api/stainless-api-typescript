@@ -28,11 +28,7 @@ export const server = new McpServer(
     name: 'stainless_api_sdk_api',
     version: '0.1.0-alpha.11',
   },
-  {
-    capabilities: {
-      tools: {},
-    },
-  },
+  { capabilities: { tools: {} } },
 );
 
 /**
