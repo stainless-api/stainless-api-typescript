@@ -1,5 +1,50 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-07-18)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Features
+
+* add timestamp to builds api ([1910bf4](https://github.com/stainless-api/stainless-api-typescript/commit/1910bf49b618ebe79ef17219a68fa47f3d67055a))
+* **api:** add check step model ([d79ed00](https://github.com/stainless-api/stainless-api-typescript/commit/d79ed0060611c7f5784e489dd7dfbfd8a925f2a6))
+* **api:** add FileInput model ([fdd714e](https://github.com/stainless-api/stainless-api-typescript/commit/fdd714ea09f6feaabe136ec088832559296f6e1a))
+* **api:** add models ([52e22f1](https://github.com/stainless-api/stainless-api-typescript/commit/52e22f1bf37ada3a0fde10b814965e1636dc4d05))
+* **api:** add more models ([27776e7](https://github.com/stainless-api/stainless-api-typescript/commit/27776e712dffde2735b1bd17e6ef0bc6b9a1b3d2))
+* **api:** add staging environment ([e128b52](https://github.com/stainless-api/stainless-api-typescript/commit/e128b52c4257378dac5f1beeb4c3309182c6a29c))
+* **api:** manual updates ([e2f50eb](https://github.com/stainless-api/stainless-api-typescript/commit/e2f50eb886483cfbeac8896754c6c7dafbd10169))
+* **api:** manual updates ([261e2b2](https://github.com/stainless-api/stainless-api-typescript/commit/261e2b2ed5f2fc7e213c52c195ae5118e138213d))
+* **C#, PHP:** codegen stats ([2f22089](https://github.com/stainless-api/stainless-api-typescript/commit/2f22089c72f79857d242935a5b659711849930d2))
+* Codegen(php): unset optional parameters in constructor ([b95ba65](https://github.com/stainless-api/stainless-api-typescript/commit/b95ba65f3628afac45e84049c842e9914fa6613a))
+* **mcp:** support filtering tool results by a jq expression ([0960dd2](https://github.com/stainless-api/stainless-api-typescript/commit/0960dd27dd4fc0b36ca53be9b4f20d4691ff0713))
+* php: generate stub union classes with discrimminator info ([bf61b27](https://github.com/stainless-api/stainless-api-typescript/commit/bf61b2717b49b1b0296c043a4fc127e4d0c9656e))
+* productionize repo caching ([82cc1a7](https://github.com/stainless-api/stainless-api-typescript/commit/82cc1a743a54bf6cd85d82c936a95966b6fcd428))
+
+
+### Bug Fixes
+
+* **api:** catch more errors ([0c32542](https://github.com/stainless-api/stainless-api-typescript/commit/0c32542b9b160137b1418a1b52ec1050ed01a489))
+* **java:** ensure error handling always occurs ([9538657](https://github.com/stainless-api/stainless-api-typescript/commit/9538657eba404565da6e33788eff54bdccbe3521))
+* **mcp:** include required section for top-level properties and support naming transformations ([ea6ff21](https://github.com/stainless-api/stainless-api-typescript/commit/ea6ff218b039bd57e98680c412b7ff1a24bc7aca))
+* **mcp:** relax input type for asTextContextResult ([8144b09](https://github.com/stainless-api/stainless-api-typescript/commit/8144b09a50ac97d1418f7c28c82ccf1b08f5f0fe))
+* **mcp:** support jq filtering on cloudflare workers ([f92f6fe](https://github.com/stainless-api/stainless-api-typescript/commit/f92f6fe6cee97dce414cdb1c00f963e8a7c69621))
+
+
+### Chores
+
+* **internal:** codegen related update ([3150f21](https://github.com/stainless-api/stainless-api-typescript/commit/3150f21e8cc03c69c8c8f6650f0ec05b16b1d214))
+* **internal:** codegen related update ([2c4f214](https://github.com/stainless-api/stainless-api-typescript/commit/2c4f214d3215d2e88b0c9f26b44bf2e801c691e1))
+* make some internal functions async ([5f9be37](https://github.com/stainless-api/stainless-api-typescript/commit/5f9be37782e6f17a554fc171a56832eb45dfa027))
+* **mcp:** formatting ([548ae9d](https://github.com/stainless-api/stainless-api-typescript/commit/548ae9db9a85462b15db4ebc768d2e04d9f551c0))
+* **mcp:** rework imports in tools ([b0e26cd](https://github.com/stainless-api/stainless-api-typescript/commit/b0e26cd1bfa83aad1ad19f74a53fc3ecc890c363))
+* move sdkjson generation api out of v0 scope ([091a4a7](https://github.com/stainless-api/stainless-api-typescript/commit/091a4a7ec6f09c4260119c1a9a3ec1e7fc2f0408))
+* **ts:** reorder package.json imports ([4059f15](https://github.com/stainless-api/stainless-api-typescript/commit/4059f15ed45246e50b34b0b5ff1d93ae808daa3b))
+
+
+### Documentation
+
+* add pagination segment ([9518a3e](https://github.com/stainless-api/stainless-api-typescript/commit/9518a3ec41e2349943f8f96dd3ab3a1ea79ea24e))
+
 ## 0.1.0-alpha.11 (2025-07-07)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
