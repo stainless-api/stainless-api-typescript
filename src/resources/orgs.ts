@@ -9,7 +9,7 @@ export class Orgs extends APIResource {
   /**
    * Retrieve an organization by name
    */
-  retrieve(org: string, options?: RequestOptions): APIPromise<OrgRetrieveResponse> {
+  retrieve(org: string, options?: RequestOptions): APIPromise<Org> {
     return this._client.get(path`/v0/orgs/${org}`, options);
   }
 
@@ -21,7 +21,7 @@ export class Orgs extends APIResource {
   }
 }
 
-export interface OrgRetrieveResponse {
+export interface Org {
   display_name: string | null;
 
   object: 'org';
@@ -30,23 +30,13 @@ export interface OrgRetrieveResponse {
 }
 
 export interface OrgListResponse {
-  data: Array<OrgListResponse.Data>;
+  data: Array<Org>;
 
   has_more: boolean;
 
   next_cursor?: string;
 }
 
-export namespace OrgListResponse {
-  export interface Data {
-    display_name: string | null;
-
-    object: 'org';
-
-    slug: string;
-  }
-}
-
 export declare namespace Orgs {
-  export { type OrgRetrieveResponse as OrgRetrieveResponse, type OrgListResponse as OrgListResponse };
+  export { type Org as Org, type OrgListResponse as OrgListResponse };
 }

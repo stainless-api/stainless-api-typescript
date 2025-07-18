@@ -2,12 +2,14 @@
 
 import { APIResource } from '../../core/resource';
 import * as BuildsAPI from './builds';
+import * as Shared from '../shared';
 import * as DiagnosticsAPI from './diagnostics';
 import {
   DiagnosticListParams,
   DiagnosticListResponse,
   DiagnosticListResponsesPage,
   Diagnostics,
+  Target,
 } from './diagnostics';
 import * as TargetOutputsAPI from './target-outputs';
 import { TargetOutputRetrieveParams, TargetOutputRetrieveResponse, TargetOutputs } from './target-outputs';
@@ -65,6 +67,8 @@ export interface BuildObject {
 
   config_commit: string;
 
+  created_at: string;
+
   documented_spec: BuildObject.UnionMember0 | BuildObject.UnionMember1 | null;
 
   object: 'build';
@@ -74,6 +78,8 @@ export interface BuildObject {
   project: string;
 
   targets: BuildObject.Targets;
+
+  updated_at: string;
 }
 
 export namespace BuildObject {
@@ -394,7 +400,7 @@ export interface BuildCreateParams {
    * Specifies what to build: a branch name, commit SHA, merge command
    * ("base..head"), or file contents
    */
-  revision: string | { [key: string]: BuildCreateParams.Content | BuildCreateParams.URL };
+  revision: string | { [key: string]: Shared.FileInput };
 
   /**
    * Whether to allow empty commits (no changes). Defaults to false.
@@ -416,35 +422,7 @@ export interface BuildCreateParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<
-    | 'node'
-    | 'typescript'
-    | 'python'
-    | 'go'
-    | 'java'
-    | 'kotlin'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'php'
-    | 'csharp'
-  >;
-}
-
-export namespace BuildCreateParams {
-  export interface Content {
-    /**
-     * File content
-     */
-    content: string;
-  }
-
-  export interface URL {
-    /**
-     * URL to fetch file content from
-     */
-    url: string;
-  }
+  targets?: Array<DiagnosticsAPI.Target>;
 }
 
 export interface BuildListParams extends PageParams {
@@ -498,19 +476,7 @@ export interface BuildCompareParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<
-    | 'node'
-    | 'typescript'
-    | 'python'
-    | 'go'
-    | 'java'
-    | 'kotlin'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'php'
-    | 'csharp'
-  >;
+  targets?: Array<DiagnosticsAPI.Target>;
 }
 
 export namespace BuildCompareParams {
@@ -521,7 +487,7 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
-    revision: string | { [key: string]: Base.Content | Base.URL };
+    revision: string | { [key: string]: Shared.FileInput };
 
     /**
      * Optional branch to use. If not specified, defaults to "main". When using a
@@ -533,22 +499,6 @@ export namespace BuildCompareParams {
      * Optional commit message to use when creating a new commit.
      */
     commit_message?: string;
-  }
-
-  export namespace Base {
-    export interface Content {
-      /**
-       * File content
-       */
-      content: string;
-    }
-
-    export interface URL {
-      /**
-       * URL to fetch file content from
-       */
-      url: string;
-    }
   }
 
   /**
@@ -558,7 +508,7 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
-    revision: string | { [key: string]: Head.Content | Head.URL };
+    revision: string | { [key: string]: Shared.FileInput };
 
     /**
      * Optional branch to use. If not specified, defaults to "main". When using a
@@ -570,22 +520,6 @@ export namespace BuildCompareParams {
      * Optional commit message to use when creating a new commit.
      */
     commit_message?: string;
-  }
-
-  export namespace Head {
-    export interface Content {
-      /**
-       * File content
-       */
-      content: string;
-    }
-
-    export interface URL {
-      /**
-       * URL to fetch file content from
-       */
-      url: string;
-    }
   }
 }
 
@@ -605,6 +539,7 @@ export declare namespace Builds {
 
   export {
     Diagnostics as Diagnostics,
+    type Target as Target,
     type DiagnosticListResponse as DiagnosticListResponse,
     type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
     type DiagnosticListParams as DiagnosticListParams,

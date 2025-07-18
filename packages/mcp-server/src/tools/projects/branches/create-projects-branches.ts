@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
+import { Metadata, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../../';
 import Stainless from '@stainless-api/sdk';
 
 export const metadata: Metadata = {
@@ -16,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_projects_branches',
-  description: 'Create a new branch for a project',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreate a new branch for a project",
   inputSchema: {
     type: 'object',
     properties: {
@@ -36,6 +36,7 @@ export const tool: Tool = {
         description: 'Whether to throw an error if the branch already exists. Defaults to false.',
       },
     },
+    required: ['project', 'branch', 'branch_from'],
   },
 };
 

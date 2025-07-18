@@ -19,8 +19,7 @@ import { AbstractPage, type PageParams, PageResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Generate, GenerateCreateSpecParams, GenerateCreateSpecResponse } from './resources/generate';
-import { OrgListResponse, OrgRetrieveResponse, Orgs } from './resources/orgs';
+import { Org, OrgListResponse, Orgs } from './resources/orgs';
 import {
   BuildCompareParams,
   BuildCompareResponse,
@@ -32,16 +31,13 @@ import {
   Builds,
 } from './resources/builds/builds';
 import {
+  Project,
   ProjectCreateParams,
-  ProjectCreateResponse,
   ProjectListParams,
-  ProjectListResponse,
-  ProjectListResponsesPage,
   ProjectRetrieveParams,
-  ProjectRetrieveResponse,
   ProjectUpdateParams,
-  ProjectUpdateResponse,
   Projects,
+  ProjectsPage,
 } from './resources/projects/projects';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -57,6 +53,12 @@ import {
 import { isEmptyObj } from './internal/utils/values';
 import { unwrapFile } from './lib/unwrap';
 
+const environments = {
+  production: 'https://api.stainless.com',
+  staging: 'https://staging.stainless.com',
+};
+type Environment = keyof typeof environments;
+
 export interface ClientOptions {
   /**
    * Defaults to process.env['STAINLESS_API_KEY'].
@@ -64,6 +66,15 @@ export interface ClientOptions {
   apiKey?: string | null | undefined;
 
   project?: string | null | undefined;
+
+  /**
+   * Specifies the environment to use for the API.
+   *
+   * Each environment maps to a different base URL:
+   * - `production` corresponds to `https://api.stainless.com`
+   * - `staging` corresponds to `https://staging.stainless.com`
+   */
+  environment?: Environment | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -78,6 +89,8 @@ export interface ClientOptions {
    *
    * Note that request timeouts are retried by default, so in a worst-case scenario you may wait
    * much longer than this timeout before the promise succeeds or fails.
+   *
+   * @unit milliseconds
    */
   timeout?: number | undefined;
   /**
@@ -156,6 +169,7 @@ export class Stainless {
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_API_KEY'] ?? null]
    * @param {string | null | undefined} [opts.project]
+   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['STAINLESS_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -174,10 +188,17 @@ export class Stainless {
       apiKey,
       project,
       ...opts,
-      baseURL: baseURL || `https://api.stainless.com`,
+      baseURL,
+      environment: opts.environment ?? 'production',
     };
 
-    this.baseURL = options.baseURL!;
+    if (baseURL && opts.environment) {
+      throw new Errors.StainlessError(
+        'Ambiguous URL; The `baseURL` option (or STAINLESS_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      );
+    }
+
+    this.baseURL = options.baseURL || environments[options.environment || 'production'];
     this.timeout = options.timeout ?? Stainless.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
@@ -202,9 +223,10 @@ export class Stainless {
    * Create a new client instance re-using the same options given to the current client with optional overriding.
    */
   withOptions(options: Partial<ClientOptions>): this {
-    return new (this.constructor as any as new (props: ClientOptions) => typeof this)({
+    const client = new (this.constructor as any as new (props: ClientOptions) => typeof this)({
       ...this._options,
-      baseURL: this.baseURL,
+      environment: options.environment ? options.environment : undefined,
+      baseURL: options.environment ? undefined : this.baseURL,
       maxRetries: this.maxRetries,
       timeout: this.timeout,
       logger: this.logger,
@@ -215,13 +237,14 @@ export class Stainless {
       project: this.project,
       ...options,
     });
+    return client;
   }
 
   /**
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://api.stainless.com';
+    return this.baseURL !== environments[this._options.environment || 'production'];
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -241,7 +264,7 @@ export class Stainless {
     );
   }
 
-  protected authHeaders(opts: FinalRequestOptions): NullableHeaders | undefined {
+  protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
     if (this.apiKey == null) {
       return undefined;
     }
@@ -360,7 +383,9 @@ export class Stainless {
 
     await this.prepareOptions(options);
 
-    const { req, url, timeout } = this.buildRequest(options, { retryCount: maxRetries - retriesRemaining });
+    const { req, url, timeout } = await this.buildRequest(options, {
+      retryCount: maxRetries - retriesRemaining,
+    });
 
     await this.prepareRequest(req, { url, options });
 
@@ -438,7 +463,7 @@ export class Stainless {
     } with status ${response.status} in ${headersTime - startTime}ms`;
 
     if (!response.ok) {
-      const shouldRetry = this.shouldRetry(response);
+      const shouldRetry = await this.shouldRetry(response);
       if (retriesRemaining && shouldRetry) {
         const retryMessage = `retrying, ${retriesRemaining} attempts remaining`;
 
@@ -556,7 +581,7 @@ export class Stainless {
     }
   }
 
-  private shouldRetry(response: Response): boolean {
+  private async shouldRetry(response: Response): Promise<boolean> {
     // Note this is not a standard header.
     const shouldRetryHeader = response.headers.get('x-should-retry');
 
@@ -633,10 +658,10 @@ export class Stainless {
     return sleepSeconds * jitter * 1000;
   }
 
-  buildRequest(
+  async buildRequest(
     inputOptions: FinalRequestOptions,
     { retryCount = 0 }: { retryCount?: number } = {},
-  ): { req: FinalizedRequestInit; url: string; timeout: number } {
+  ): Promise<{ req: FinalizedRequestInit; url: string; timeout: number }> {
     const options = { ...inputOptions };
     const { method, path, query, defaultBaseURL } = options;
 
@@ -644,7 +669,7 @@ export class Stainless {
     if ('timeout' in options) validatePositiveInteger('timeout', options.timeout);
     options.timeout = options.timeout ?? this.timeout;
     const { bodyHeaders, body } = this.buildBody({ options });
-    const reqHeaders = this.buildHeaders({ options: inputOptions, method, bodyHeaders, retryCount });
+    const reqHeaders = await this.buildHeaders({ options: inputOptions, method, bodyHeaders, retryCount });
 
     const req: FinalizedRequestInit = {
       method,
@@ -660,7 +685,7 @@ export class Stainless {
     return { req, url, timeout: options.timeout };
   }
 
-  private buildHeaders({
+  private async buildHeaders({
     options,
     method,
     bodyHeaders,
@@ -670,7 +695,7 @@ export class Stainless {
     method: HTTPMethod;
     bodyHeaders: HeadersLike;
     retryCount: number;
-  }): Headers {
+  }): Promise<Headers> {
     let idempotencyHeaders: HeadersLike = {};
     if (this.idempotencyHeader && method !== 'get') {
       if (!options.idempotencyKey) options.idempotencyKey = this.defaultIdempotencyKey();
@@ -686,7 +711,7 @@ export class Stainless {
         ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
         ...getPlatformHeaders(),
       },
-      this.authHeaders(options),
+      await this.authHeaders(options),
       this._options.defaultHeaders,
       bodyHeaders,
       options.headers,
@@ -757,12 +782,10 @@ export class Stainless {
   projects: API.Projects = new API.Projects(this);
   builds: API.Builds = new API.Builds(this);
   orgs: API.Orgs = new API.Orgs(this);
-  generate: API.Generate = new API.Generate(this);
 }
 Stainless.Projects = Projects;
 Stainless.Builds = Builds;
 Stainless.Orgs = Orgs;
-Stainless.Generate = Generate;
 export declare namespace Stainless {
   export type RequestOptions = Opts.RequestOptions;
 
@@ -771,11 +794,8 @@ export declare namespace Stainless {
 
   export {
     Projects as Projects,
-    type ProjectCreateResponse as ProjectCreateResponse,
-    type ProjectRetrieveResponse as ProjectRetrieveResponse,
-    type ProjectUpdateResponse as ProjectUpdateResponse,
-    type ProjectListResponse as ProjectListResponse,
-    type ProjectListResponsesPage as ProjectListResponsesPage,
+    type Project as Project,
+    type ProjectsPage as ProjectsPage,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
@@ -793,15 +813,7 @@ export declare namespace Stainless {
     type BuildCompareParams as BuildCompareParams,
   };
 
-  export {
-    Orgs as Orgs,
-    type OrgRetrieveResponse as OrgRetrieveResponse,
-    type OrgListResponse as OrgListResponse,
-  };
+  export { Orgs as Orgs, type Org as Org, type OrgListResponse as OrgListResponse };
 
-  export {
-    Generate as Generate,
-    type GenerateCreateSpecResponse as GenerateCreateSpecResponse,
-    type GenerateCreateSpecParams as GenerateCreateSpecParams,
-  };
+  export type FileInput = API.FileInput;
 }
