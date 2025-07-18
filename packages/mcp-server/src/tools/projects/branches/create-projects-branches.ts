@@ -36,6 +36,7 @@ export const tool: Tool = {
         description: 'Whether to throw an error if the branch already exists. Defaults to false.',
       },
     },
+    required: ['project', 'branch', 'branch_from'],
   },
 };
 

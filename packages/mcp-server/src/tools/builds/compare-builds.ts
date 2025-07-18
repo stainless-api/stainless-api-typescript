@@ -91,6 +91,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['base', 'head', 'project'],
     $defs: {
       target: {
         type: 'string',
