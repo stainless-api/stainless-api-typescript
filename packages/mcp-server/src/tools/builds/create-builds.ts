@@ -60,6 +60,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['project', 'revision'],
     $defs: {
       target: {
         type: 'string',

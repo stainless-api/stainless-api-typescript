@@ -25,6 +25,7 @@ export const tool: Tool = {
         description: 'Build ID',
       },
     },
+    required: ['buildId'],
   },
 };
 

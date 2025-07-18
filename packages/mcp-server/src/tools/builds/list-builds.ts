@@ -50,6 +50,7 @@ export const tool: Tool = {
         description: 'A config commit SHA used for the build',
       },
     },
+    required: ['project'],
   },
 };
 
