@@ -29,6 +29,7 @@ import {
   BuildObjectsPage,
   BuildTarget,
   Builds,
+  CheckStep,
 } from './resources/builds/builds';
 import {
   Project,
@@ -804,6 +805,7 @@ export declare namespace Stainless {
     Builds as Builds,
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
+    type CheckStep as CheckStep,
     type BuildCompareResponse as BuildCompareResponse,
     type BuildObjectsPage as BuildObjectsPage,
     type BuildCreateParams as BuildCreateParams,
@@ -813,5 +815,6 @@ export declare namespace Stainless {
 
   export { Orgs as Orgs, type Org as Org, type OrgListResponse as OrgListResponse };
 
+  export type Commit = API.Commit;
   export type FileInput = API.FileInput;
 }
