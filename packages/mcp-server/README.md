@@ -4,6 +4,17 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
+### Via the CLI
+
+You can run the MCP Server [from our CLI](https://github.com/stainless-api/stainless-api-cli):
+
+```sh
+stl auth login
+stl mcp
+```
+
+The CLI reads the from the `stainless-workspace.json` to know which project you're editing and uses the stored credentials.
+
 ### Direct invocation
 
 You can run the MCP Server directly via `npx`:
