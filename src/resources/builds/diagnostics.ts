@@ -23,19 +23,6 @@ export class Diagnostics extends APIResource {
 
 export type DiagnosticListResponsesPage = Page<DiagnosticListResponse>;
 
-export type Target =
-  | 'node'
-  | 'typescript'
-  | 'python'
-  | 'go'
-  | 'java'
-  | 'kotlin'
-  | 'ruby'
-  | 'terraform'
-  | 'cli'
-  | 'php'
-  | 'csharp';
-
 export interface DiagnosticListResponse {
   code: string;
 
@@ -64,12 +51,23 @@ export interface DiagnosticListParams extends PageParams {
   /**
    * Optional list of language targets to filter diagnostics by
    */
-  targets?: Array<Target>;
+  targets?: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export declare namespace Diagnostics {
   export {
-    type Target as Target,
     type DiagnosticListResponse as DiagnosticListResponse,
     type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
     type DiagnosticListParams as DiagnosticListParams,

@@ -42,7 +42,20 @@ export const tool: Tool = {
         type: 'array',
         description: 'Optional list of language targets to filter diagnostics by',
         items: {
-          $ref: '#/$defs/target',
+          type: 'string',
+          enum: [
+            'node',
+            'typescript',
+            'python',
+            'go',
+            'java',
+            'kotlin',
+            'ruby',
+            'terraform',
+            'cli',
+            'php',
+            'csharp',
+          ],
         },
       },
       jq_filter: {
@@ -53,24 +66,6 @@ export const tool: Tool = {
       },
     },
     required: ['buildId'],
-    $defs: {
-      target: {
-        type: 'string',
-        enum: [
-          'node',
-          'typescript',
-          'python',
-          'go',
-          'java',
-          'kotlin',
-          'ruby',
-          'terraform',
-          'cli',
-          'php',
-          'csharp',
-        ],
-      },
-    },
   },
 };
 

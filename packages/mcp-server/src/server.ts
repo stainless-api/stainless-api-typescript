@@ -63,11 +63,7 @@ export function init(params: {
 
   const client =
     params.client ||
-    new Stainless({
-      project: readEnv('STAINLESS_PROJECT'),
-      environment: (readEnv('STAINLESS_ENVIRONMENT') || undefined) as any,
-      defaultHeaders: { 'X-Stainless-MCP': 'true' },
-    });
+    new Stainless({ project: readEnv('STAINLESS_PROJECT'), defaultHeaders: { 'X-Stainless-MCP': 'true' } });
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
