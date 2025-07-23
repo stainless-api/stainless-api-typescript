@@ -2,9 +2,18 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import * as DiagnosticsAPI from '../builds/diagnostics';
 import * as BranchesAPI from './branches';
-import { BranchCreateParams, BranchRetrieveParams, Branches, ProjectBranch } from './branches';
+import {
+  BranchCreateParams,
+  BranchDeleteParams,
+  BranchDeleteResponse,
+  BranchListParams,
+  BranchListResponse,
+  BranchListResponsesPage,
+  BranchRetrieveParams,
+  Branches,
+  ProjectBranch,
+} from './branches';
 import * as ConfigsAPI from './configs';
 import {
   ConfigGuessParams,
@@ -25,7 +34,7 @@ export class Projects extends APIResource {
   /**
    * Create a new project
    */
-  create(body: ProjectCreateParams, options?: RequestOptions): APIPromise<Project> {
+  create(body: ProjectCreateParams, options?: RequestOptions): APIPromise<ProjectCreateResponse> {
     return this._client.post('/v0/projects', { body, ...options });
   }
 
@@ -35,7 +44,7 @@ export class Projects extends APIResource {
   retrieve(
     params: ProjectRetrieveParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<Project> {
+  ): APIPromise<ProjectRetrieveResponse> {
     const { project = this._client.project } = params ?? {};
     return this._client.get(path`/v0/projects/${project}`, options);
   }
@@ -43,7 +52,10 @@ export class Projects extends APIResource {
   /**
    * Update a project's properties
    */
-  update(params: ProjectUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Project> {
+  update(
+    params: ProjectUpdateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectUpdateResponse> {
     const { project = this._client.project, ...body } = params ?? {};
     return this._client.patch(path`/v0/projects/${project}`, { body, ...options });
   }
@@ -54,14 +66,14 @@ export class Projects extends APIResource {
   list(
     query: ProjectListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<ProjectsPage, Project> {
-    return this._client.getAPIList('/v0/projects', Page<Project>, { query, ...options });
+  ): PagePromise<ProjectListResponsesPage, ProjectListResponse> {
+    return this._client.getAPIList('/v0/projects', Page<ProjectListResponse>, { query, ...options });
   }
 }
 
-export type ProjectsPage = Page<Project>;
+export type ProjectListResponsesPage = Page<ProjectListResponse>;
 
-export interface Project {
+export interface ProjectCreateResponse {
   config_repo: string;
 
   display_name: string | null;
@@ -72,7 +84,97 @@ export interface Project {
 
   slug: string;
 
-  targets: Array<DiagnosticsAPI.Target>;
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
+}
+
+export interface ProjectRetrieveResponse {
+  config_repo: string;
+
+  display_name: string | null;
+
+  object: 'project';
+
+  org: string;
+
+  slug: string;
+
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
+}
+
+export interface ProjectUpdateResponse {
+  config_repo: string;
+
+  display_name: string | null;
+
+  object: 'project';
+
+  org: string;
+
+  slug: string;
+
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
+}
+
+export interface ProjectListResponse {
+  config_repo: string;
+
+  display_name: string | null;
+
+  object: 'project';
+
+  org: string;
+
+  slug: string;
+
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export interface ProjectCreateParams {
@@ -99,7 +201,19 @@ export interface ProjectCreateParams {
   /**
    * Targets to generate for
    */
-  targets: Array<DiagnosticsAPI.Target>;
+  targets: Array<
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+  >;
 }
 
 export interface ProjectRetrieveParams {
@@ -132,8 +246,11 @@ Projects.Configs = Configs;
 
 export declare namespace Projects {
   export {
-    type Project as Project,
-    type ProjectsPage as ProjectsPage,
+    type ProjectCreateResponse as ProjectCreateResponse,
+    type ProjectRetrieveResponse as ProjectRetrieveResponse,
+    type ProjectUpdateResponse as ProjectUpdateResponse,
+    type ProjectListResponse as ProjectListResponse,
+    type ProjectListResponsesPage as ProjectListResponsesPage,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
@@ -143,8 +260,13 @@ export declare namespace Projects {
   export {
     Branches as Branches,
     type ProjectBranch as ProjectBranch,
+    type BranchListResponse as BranchListResponse,
+    type BranchDeleteResponse as BranchDeleteResponse,
+    type BranchListResponsesPage as BranchListResponsesPage,
     type BranchCreateParams as BranchCreateParams,
     type BranchRetrieveParams as BranchRetrieveParams,
+    type BranchListParams as BranchListParams,
+    type BranchDeleteParams as BranchDeleteParams,
   };
 
   export {

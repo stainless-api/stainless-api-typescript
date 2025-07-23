@@ -19,7 +19,7 @@ import { AbstractPage, type PageParams, PageResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Org, OrgListResponse, Orgs } from './resources/orgs';
+import { OrgListResponse, OrgRetrieveResponse, Orgs } from './resources/orgs';
 import {
   BuildCompareParams,
   BuildCompareResponse,
@@ -29,16 +29,18 @@ import {
   BuildObjectsPage,
   BuildTarget,
   Builds,
-  CheckStep,
 } from './resources/builds/builds';
 import {
-  Project,
   ProjectCreateParams,
+  ProjectCreateResponse,
   ProjectListParams,
+  ProjectListResponse,
+  ProjectListResponsesPage,
   ProjectRetrieveParams,
+  ProjectRetrieveResponse,
   ProjectUpdateParams,
+  ProjectUpdateResponse,
   Projects,
-  ProjectsPage,
 } from './resources/projects/projects';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -53,12 +55,6 @@ import {
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 
-const environments = {
-  production: 'https://api.stainless.com',
-  staging: 'https://staging.stainless.com',
-};
-type Environment = keyof typeof environments;
-
 export interface ClientOptions {
   /**
    * Defaults to process.env['STAINLESS_API_KEY'].
@@ -66,15 +62,6 @@ export interface ClientOptions {
   apiKey?: string | null | undefined;
 
   project?: string | null | undefined;
-
-  /**
-   * Specifies the environment to use for the API.
-   *
-   * Each environment maps to a different base URL:
-   * - `production` corresponds to `https://api.stainless.com`
-   * - `staging` corresponds to `https://staging.stainless.com`
-   */
-  environment?: Environment | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -169,7 +156,6 @@ export class Stainless {
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_API_KEY'] ?? null]
    * @param {string | null | undefined} [opts.project]
-   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['STAINLESS_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -188,17 +174,10 @@ export class Stainless {
       apiKey,
       project,
       ...opts,
-      baseURL,
-      environment: opts.environment ?? 'production',
+      baseURL: baseURL || `https://api.stainless.com`,
     };
 
-    if (baseURL && opts.environment) {
-      throw new Errors.StainlessError(
-        'Ambiguous URL; The `baseURL` option (or STAINLESS_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
-      );
-    }
-
-    this.baseURL = options.baseURL || environments[options.environment || 'production'];
+    this.baseURL = options.baseURL!;
     this.timeout = options.timeout ?? Stainless.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
@@ -225,8 +204,7 @@ export class Stainless {
   withOptions(options: Partial<ClientOptions>): this {
     const client = new (this.constructor as any as new (props: ClientOptions) => typeof this)({
       ...this._options,
-      environment: options.environment ? options.environment : undefined,
-      baseURL: options.environment ? undefined : this.baseURL,
+      baseURL: this.baseURL,
       maxRetries: this.maxRetries,
       timeout: this.timeout,
       logger: this.logger,
@@ -244,7 +222,7 @@ export class Stainless {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== environments[this._options.environment || 'production'];
+    return this.baseURL !== 'https://api.stainless.com';
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -793,8 +771,11 @@ export declare namespace Stainless {
 
   export {
     Projects as Projects,
-    type Project as Project,
-    type ProjectsPage as ProjectsPage,
+    type ProjectCreateResponse as ProjectCreateResponse,
+    type ProjectRetrieveResponse as ProjectRetrieveResponse,
+    type ProjectUpdateResponse as ProjectUpdateResponse,
+    type ProjectListResponse as ProjectListResponse,
+    type ProjectListResponsesPage as ProjectListResponsesPage,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
@@ -805,7 +786,6 @@ export declare namespace Stainless {
     Builds as Builds,
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
-    type CheckStep as CheckStep,
     type BuildCompareResponse as BuildCompareResponse,
     type BuildObjectsPage as BuildObjectsPage,
     type BuildCreateParams as BuildCreateParams,
@@ -813,8 +793,11 @@ export declare namespace Stainless {
     type BuildCompareParams as BuildCompareParams,
   };
 
-  export { Orgs as Orgs, type Org as Org, type OrgListResponse as OrgListResponse };
+  export {
+    Orgs as Orgs,
+    type OrgRetrieveResponse as OrgRetrieveResponse,
+    type OrgListResponse as OrgListResponse,
+  };
 
-  export type Commit = API.Commit;
   export type FileInput = API.FileInput;
 }

@@ -4,7 +4,6 @@ export {
   Builds,
   type BuildObject,
   type BuildTarget,
-  type CheckStep,
   type BuildCompareResponse,
   type BuildCreateParams,
   type BuildListParams,
@@ -13,7 +12,6 @@ export {
 } from './builds';
 export {
   Diagnostics,
-  type Target,
   type DiagnosticListResponse,
   type DiagnosticListParams,
   type DiagnosticListResponsesPage,

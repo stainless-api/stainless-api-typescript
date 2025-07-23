@@ -11,7 +11,6 @@ You can run the MCP Server directly via `npx`:
 ```sh
 export STAINLESS_API_KEY="My API Key"
 export STAINLESS_PROJECT="example-project"
-export STAINLESS_ENVIRONMENT="production"
 npx -y @stainless-api/sdk-mcp@latest
 ```
 
@@ -30,8 +29,7 @@ For clients with a configuration JSON, it might look something like this:
       "args": ["-y", "@stainless-api/sdk-mcp", "--client=claude", "--tools=all"],
       "env": {
         "STAINLESS_API_KEY": "My API Key",
-        "STAINLESS_PROJECT": "example-project",
-        "STAINLESS_ENVIRONMENT": "production"
+        "STAINLESS_PROJECT": "example-project"
       }
     }
   }
@@ -180,6 +178,8 @@ The following tools are available in this MCP server.
 
 - `create_projects_branches` (`write`): Create a new branch for a project
 - `retrieve_projects_branches` (`read`): Retrieve a project branch
+- `list_projects_branches` (`read`): List project branches
+- `delete_projects_branches` (`write`): Delete a project branch
 
 ### Resource `projects.configs`:
 
