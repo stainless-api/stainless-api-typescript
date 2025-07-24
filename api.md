@@ -1,3 +1,9 @@
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">FileInput</a></code>
+
 # Projects
 
 Types:
@@ -19,11 +25,15 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/projects/branches.ts">ProjectBranch</a></code>
+- <code><a href="./src/resources/projects/branches.ts">BranchListResponse</a></code>
+- <code><a href="./src/resources/projects/branches.ts">BranchDeleteResponse</a></code>
 
 Methods:
 
 - <code title="post /v0/projects/{project}/branches">client.projects.branches.<a href="./src/resources/projects/branches.ts">create</a>({ ...params }) -> ProjectBranch</code>
 - <code title="get /v0/projects/{project}/branches/{branch}">client.projects.branches.<a href="./src/resources/projects/branches.ts">retrieve</a>(branch, { ...params }) -> ProjectBranch</code>
+- <code title="get /v0/projects/{project}/branches">client.projects.branches.<a href="./src/resources/projects/branches.ts">list</a>({ ...params }) -> BranchListResponsesPage</code>
+- <code title="delete /v0/projects/{project}/branches/{branch}">client.projects.branches.<a href="./src/resources/projects/branches.ts">delete</a>(branch, { ...params }) -> unknown</code>
 
 ## Configs
 
@@ -83,13 +93,3 @@ Methods:
 
 - <code title="get /v0/orgs/{org}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(org) -> OrgRetrieveResponse</code>
 - <code title="get /v0/orgs">client.orgs.<a href="./src/resources/orgs.ts">list</a>() -> OrgListResponse</code>
-
-# Generate
-
-Types:
-
-- <code><a href="./src/resources/generate.ts">GenerateCreateSpecResponse</a></code>
-
-Methods:
-
-- <code title="post /v0/generate/spec">client.generate.<a href="./src/resources/generate.ts">createSpec</a>({ ...params }) -> GenerateCreateSpecResponse</code>

@@ -1,8 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as BranchesAPI from './branches';
-import { BranchCreateParams, BranchRetrieveParams, Branches, ProjectBranch } from './branches';
+import {
+  BranchCreateParams,
+  BranchDeleteParams,
+  BranchDeleteResponse,
+  BranchListParams,
+  BranchListResponse,
+  BranchListResponsesPage,
+  BranchRetrieveParams,
+  Branches,
+  ProjectBranch,
+} from './branches';
 import * as ConfigsAPI from './configs';
 import {
   ConfigGuessParams,
@@ -180,7 +191,7 @@ export interface ProjectCreateParams {
   /**
    * File contents to commit
    */
-  revision: { [key: string]: ProjectCreateParams.Content | ProjectCreateParams.URL };
+  revision: { [key: string]: Shared.FileInput };
 
   /**
    * Project name/slug
@@ -203,22 +214,6 @@ export interface ProjectCreateParams {
     | 'php'
     | 'csharp'
   >;
-}
-
-export namespace ProjectCreateParams {
-  export interface Content {
-    /**
-     * File content
-     */
-    content: string;
-  }
-
-  export interface URL {
-    /**
-     * URL to fetch file content from
-     */
-    url: string;
-  }
 }
 
 export interface ProjectRetrieveParams {
@@ -265,8 +260,13 @@ export declare namespace Projects {
   export {
     Branches as Branches,
     type ProjectBranch as ProjectBranch,
+    type BranchListResponse as BranchListResponse,
+    type BranchDeleteResponse as BranchDeleteResponse,
+    type BranchListResponsesPage as BranchListResponsesPage,
     type BranchCreateParams as BranchCreateParams,
     type BranchRetrieveParams as BranchRetrieveParams,
+    type BranchListParams as BranchListParams,
+    type BranchDeleteParams as BranchDeleteParams,
   };
 
   export {

@@ -1,6 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Branches, type ProjectBranch, type BranchCreateParams, type BranchRetrieveParams } from './branches';
+export {
+  Branches,
+  type ProjectBranch,
+  type BranchListResponse,
+  type BranchDeleteResponse,
+  type BranchCreateParams,
+  type BranchRetrieveParams,
+  type BranchListParams,
+  type BranchDeleteParams,
+  type BranchListResponsesPage,
+} from './branches';
 export {
   Configs,
   type ConfigRetrieveResponse,

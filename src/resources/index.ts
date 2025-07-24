@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+export * from './shared';
 export {
   Builds,
   type BuildObject,
@@ -10,7 +11,6 @@ export {
   type BuildCompareParams,
   type BuildObjectsPage,
 } from './builds/builds';
-export { Generate, type GenerateCreateSpecResponse, type GenerateCreateSpecParams } from './generate';
 export { Orgs, type OrgRetrieveResponse, type OrgListResponse } from './orgs';
 export {
   Projects,
