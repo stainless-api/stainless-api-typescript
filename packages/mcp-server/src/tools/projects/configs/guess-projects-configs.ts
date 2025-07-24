@@ -41,6 +41,7 @@ export const tool: Tool = {
     },
     required: ['project', 'spec'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {

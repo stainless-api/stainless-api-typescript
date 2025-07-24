@@ -33,6 +33,9 @@ export const tool: Tool = {
     },
     required: ['org'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {

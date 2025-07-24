@@ -67,6 +67,9 @@ export const tool: Tool = {
     },
     required: ['buildId'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
