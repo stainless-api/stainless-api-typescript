@@ -66,6 +66,7 @@ export const tool: Tool = {
     },
     required: ['display_name', 'org', 'revision', 'slug', 'targets'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
