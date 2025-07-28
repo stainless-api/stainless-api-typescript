@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as BuildsAPI from '../builds/builds';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
@@ -60,7 +61,7 @@ export type BranchListResponsesPage = Page<BranchListResponse>;
 export interface ProjectBranch {
   branch: string;
 
-  config_commit: ProjectBranch.ConfigCommit;
+  config_commit: Shared.Commit;
 
   latest_build: BuildsAPI.BuildObject | null;
 
@@ -71,28 +72,10 @@ export interface ProjectBranch {
   project: string;
 }
 
-export namespace ProjectBranch {
-  export interface ConfigCommit {
-    repo: ConfigCommit.Repo;
-
-    sha: string;
-  }
-
-  export namespace ConfigCommit {
-    export interface Repo {
-      branch: string;
-
-      name: string;
-
-      owner: string;
-    }
-  }
-}
-
 export interface BranchListResponse {
   branch: string;
 
-  config_commit: BranchListResponse.ConfigCommit;
+  config_commit: Shared.Commit;
 
   latest_build_id: string;
 
@@ -101,24 +84,6 @@ export interface BranchListResponse {
   org: string;
 
   project: string;
-}
-
-export namespace BranchListResponse {
-  export interface ConfigCommit {
-    repo: ConfigCommit.Repo;
-
-    sha: string;
-  }
-
-  export namespace ConfigCommit {
-    export interface Repo {
-      branch: string;
-
-      name: string;
-
-      owner: string;
-    }
-  }
 }
 
 export type BranchDeleteResponse = unknown;
