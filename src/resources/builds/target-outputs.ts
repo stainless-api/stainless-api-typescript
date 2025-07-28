@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as DiagnosticsAPI from './diagnostics';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -24,18 +25,7 @@ export namespace TargetOutputRetrieveResponse {
   export interface UnionMember0 {
     output: 'url';
 
-    target:
-      | 'node'
-      | 'typescript'
-      | 'python'
-      | 'go'
-      | 'java'
-      | 'kotlin'
-      | 'ruby'
-      | 'terraform'
-      | 'cli'
-      | 'php'
-      | 'csharp';
+    target: DiagnosticsAPI.Target;
 
     type: 'source' | 'dist' | 'wheel';
 
@@ -58,18 +48,7 @@ export namespace TargetOutputRetrieveResponse {
      */
     ref: string;
 
-    target:
-      | 'node'
-      | 'typescript'
-      | 'python'
-      | 'go'
-      | 'java'
-      | 'kotlin'
-      | 'ruby'
-      | 'terraform'
-      | 'cli'
-      | 'php'
-      | 'csharp';
+    target: DiagnosticsAPI.Target;
 
     type: 'source' | 'dist' | 'wheel';
 

@@ -87,24 +87,29 @@ export const tool: Tool = {
         description:
           'Optional list of SDK targets to build. If not specified, all configured targets will be built.',
         items: {
-          type: 'string',
-          enum: [
-            'node',
-            'typescript',
-            'python',
-            'go',
-            'java',
-            'kotlin',
-            'ruby',
-            'terraform',
-            'cli',
-            'php',
-            'csharp',
-          ],
+          $ref: '#/$defs/target',
         },
       },
     },
     required: ['base', 'head', 'project'],
+    $defs: {
+      target: {
+        type: 'string',
+        enum: [
+          'node',
+          'typescript',
+          'python',
+          'go',
+          'java',
+          'kotlin',
+          'ruby',
+          'terraform',
+          'cli',
+          'php',
+          'csharp',
+        ],
+      },
+    },
   },
   annotations: {},
 };
