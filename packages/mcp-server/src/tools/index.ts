@@ -10,6 +10,8 @@ import update_projects from './projects/update-projects';
 import list_projects from './projects/list-projects';
 import create_projects_branches from './projects/branches/create-projects-branches';
 import retrieve_projects_branches from './projects/branches/retrieve-projects-branches';
+import list_projects_branches from './projects/branches/list-projects-branches';
+import delete_projects_branches from './projects/branches/delete-projects-branches';
 import retrieve_projects_configs from './projects/configs/retrieve-projects-configs';
 import guess_projects_configs from './projects/configs/guess-projects-configs';
 import create_builds from './builds/create-builds';
@@ -20,7 +22,6 @@ import list_builds_diagnostics from './builds/diagnostics/list-builds-diagnostic
 import retrieve_builds_target_outputs from './builds/target-outputs/retrieve-builds-target-outputs';
 import retrieve_orgs from './orgs/retrieve-orgs';
 import list_orgs from './orgs/list-orgs';
-import create_spec_generate from './generate/create-spec-generate';
 
 export const endpoints: Endpoint[] = [];
 
@@ -34,6 +35,8 @@ addEndpoint(update_projects);
 addEndpoint(list_projects);
 addEndpoint(create_projects_branches);
 addEndpoint(retrieve_projects_branches);
+addEndpoint(list_projects_branches);
+addEndpoint(delete_projects_branches);
 addEndpoint(retrieve_projects_configs);
 addEndpoint(guess_projects_configs);
 addEndpoint(create_builds);
@@ -44,7 +47,6 @@ addEndpoint(list_builds_diagnostics);
 addEndpoint(retrieve_builds_target_outputs);
 addEndpoint(retrieve_orgs);
 addEndpoint(list_orgs);
-addEndpoint(create_spec_generate);
 
 export type Filter = {
   type: 'resource' | 'operation' | 'tag' | 'tool';

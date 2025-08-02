@@ -28,11 +28,7 @@ export const server = new McpServer(
     name: 'stainless_api_sdk_api',
     version: '0.1.0-alpha.11',
   },
-  {
-    capabilities: {
-      tools: {},
-    },
-  },
+  { capabilities: { tools: {}, logging: {} } },
 );
 
 /**
@@ -65,9 +61,30 @@ export function init(params: {
 
   const endpointMap = Object.fromEntries(providedEndpoints.map((endpoint) => [endpoint.tool.name, endpoint]));
 
+  const logAtLevel =
+    (level: 'debug' | 'info' | 'warning' | 'error') =>
+    (message: string, ...rest: unknown[]) => {
+      console.error(message, ...rest);
+      void server.sendLoggingMessage({
+        level,
+        data: { message, rest },
+      });
+    };
+  const logger = {
+    debug: logAtLevel('debug'),
+    info: logAtLevel('info'),
+    warn: logAtLevel('warning'),
+    error: logAtLevel('error'),
+  };
+
   const client =
     params.client ||
-    new Stainless({ project: readEnv('STAINLESS_PROJECT'), defaultHeaders: { 'X-Stainless-MCP': 'true' } });
+    new Stainless({
+      project: readEnv('STAINLESS_PROJECT'),
+      environment: (readEnv('STAINLESS_ENVIRONMENT') || undefined) as any,
+      defaultHeaders: { 'X-Stainless-MCP': 'true' },
+      logger: logger,
+    });
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
@@ -123,7 +140,7 @@ export async function executeHandler(
   compatibilityOptions?: Partial<ClientCapabilities>,
 ) {
   const options = { ...defaultClientCapabilities, ...compatibilityOptions };
-  if (options.validJson && args) {
+  if (!options.validJson && args) {
     args = parseEmbeddedJSON(args, tool.inputSchema);
   }
   return await handler(client, args || {});
