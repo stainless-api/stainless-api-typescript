@@ -257,8 +257,8 @@ export interface BuildCreateParams {
   allow_empty?: boolean;
 
   /**
-   * Optional branch to use. If not specified, defaults to "main". When using a
-   * branch name or merge command as revision, this must match or be omitted.
+   * The Stainless branch to use for the build. If not specified, the branch is
+   * inferred from the `revision`, and will 400 when that is not possible.
    */
   branch?: string;
 
