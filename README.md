@@ -24,6 +24,7 @@ import Stainless from '@stainless-api/sdk';
 
 const client = new Stainless({
   apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
+  environment: 'staging', // defaults to 'production'
 });
 
 const buildObject = await client.builds.create({ project: 'project', revision: 'string' });
@@ -41,6 +42,7 @@ import Stainless from '@stainless-api/sdk';
 
 const client = new Stainless({
   apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
+  environment: 'staging', // defaults to 'production'
 });
 
 const params: Stainless.BuildCreateParams = { project: 'project', revision: 'string' };
@@ -124,6 +126,37 @@ await client.builds.create({ project: 'project', revision: 'string' }, {
 On timeout, an `APIConnectionTimeoutError` is thrown.
 
 Note that requests which time out will be [retried twice by default](#retries).
+
+## Auto-pagination
+
+List methods in the Stainless API are paginated.
+You can use the `for await … of` syntax to iterate through items across all pages:
+
+```ts
+async function fetchAllBuildObjects(params) {
+  const allBuildObjects = [];
+  // Automatically fetches more pages as needed.
+  for await (const buildObject of client.builds.list({ project: 'project' })) {
+    allBuildObjects.push(buildObject);
+  }
+  return allBuildObjects;
+}
+```
+
+Alternatively, you can request a single page at a time:
+
+```ts
+let page = await client.builds.list({ project: 'project' });
+for (const buildObject of page.data) {
+  console.log(buildObject);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = await page.getNextPage();
+  // ...
+}
+```
 
 ## Advanced Usage
 

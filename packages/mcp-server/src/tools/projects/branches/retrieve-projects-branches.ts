@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
+import { Metadata, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../../';
 import Stainless from '@stainless-api/sdk';
 
 export const metadata: Metadata = {
@@ -27,6 +26,10 @@ export const tool: Tool = {
         type: 'string',
       },
     },
+    required: ['project', 'branch'],
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 

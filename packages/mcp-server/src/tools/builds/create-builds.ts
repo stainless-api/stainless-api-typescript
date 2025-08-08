@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
+import { Metadata, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../';
 import Stainless from '@stainless-api/sdk';
 
 export const metadata: Metadata = {
@@ -45,7 +44,7 @@ export const tool: Tool = {
       branch: {
         type: 'string',
         description:
-          'Optional branch to use. If not specified, defaults to "main". When using a branch name or merge command as revision, this must match or be omitted.',
+          'The Stainless branch to use for the build. If not specified, the branch is inferred from the `revision`, and will 400 when that is not possible.',
       },
       commit_message: {
         type: 'string',
@@ -56,24 +55,31 @@ export const tool: Tool = {
         description:
           'Optional list of SDK targets to build. If not specified, all configured targets will be built.',
         items: {
-          type: 'string',
-          enum: [
-            'node',
-            'typescript',
-            'python',
-            'go',
-            'java',
-            'kotlin',
-            'ruby',
-            'terraform',
-            'cli',
-            'php',
-            'csharp',
-          ],
+          $ref: '#/$defs/target',
         },
       },
     },
+    required: ['project', 'revision'],
+    $defs: {
+      target: {
+        type: 'string',
+        enum: [
+          'node',
+          'typescript',
+          'python',
+          'go',
+          'java',
+          'kotlin',
+          'ruby',
+          'terraform',
+          'cli',
+          'php',
+          'csharp',
+        ],
+      },
+    },
   },
+  annotations: {},
 };
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
