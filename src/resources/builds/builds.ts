@@ -196,28 +196,28 @@ export namespace BuildTarget {
   }
 }
 
-export type CheckStep = CheckStep.Status | CheckStep.Status | CheckStep.Status | CheckStep.UnionMember3;
+export type CheckStep = CheckStep.NotStarted | CheckStep.Queued | CheckStep.InProgress | CheckStep.Completed;
 
 export namespace CheckStep {
-  export interface Status {
+  export interface NotStarted {
     status: 'not_started';
   }
 
-  export interface Status {
+  export interface Queued {
     status: 'queued';
   }
 
-  export interface Status {
+  export interface InProgress {
     status: 'in_progress';
   }
 
-  export interface UnionMember3 {
-    completed: UnionMember3.Completed;
+  export interface Completed {
+    completed: Completed.Completed;
 
     status: 'completed';
   }
 
-  export namespace UnionMember3 {
+  export namespace Completed {
     export interface Completed {
       conclusion:
         | 'success'
