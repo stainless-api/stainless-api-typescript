@@ -8,7 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource orgs', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.orgs.retrieve('org');
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource orgs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.orgs.list();
     const rawResponse = await responsePromise.asResponse();
