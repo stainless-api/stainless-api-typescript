@@ -1,29 +1,37 @@
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">Commit</a></code>
+- <code><a href="./src/resources/shared.ts">FileInput</a></code>
+
 # Projects
 
 Types:
 
-- <code><a href="./src/resources/projects/projects.ts">ProjectCreateResponse</a></code>
-- <code><a href="./src/resources/projects/projects.ts">ProjectRetrieveResponse</a></code>
-- <code><a href="./src/resources/projects/projects.ts">ProjectUpdateResponse</a></code>
-- <code><a href="./src/resources/projects/projects.ts">ProjectListResponse</a></code>
+- <code><a href="./src/resources/projects/projects.ts">Project</a></code>
 
 Methods:
 
-- <code title="post /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">create</a>({ ...params }) -> ProjectCreateResponse</code>
-- <code title="get /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>({ ...params }) -> ProjectRetrieveResponse</code>
-- <code title="patch /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>({ ...params }) -> ProjectUpdateResponse</code>
-- <code title="get /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectListResponsesPage</code>
+- <code title="post /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">create</a>({ ...params }) -> Project</code>
+- <code title="get /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>({ ...params }) -> Project</code>
+- <code title="patch /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>({ ...params }) -> Project</code>
+- <code title="get /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectsPage</code>
 
 ## Branches
 
 Types:
 
 - <code><a href="./src/resources/projects/branches.ts">ProjectBranch</a></code>
+- <code><a href="./src/resources/projects/branches.ts">BranchListResponse</a></code>
+- <code><a href="./src/resources/projects/branches.ts">BranchDeleteResponse</a></code>
 
 Methods:
 
 - <code title="post /v0/projects/{project}/branches">client.projects.branches.<a href="./src/resources/projects/branches.ts">create</a>({ ...params }) -> ProjectBranch</code>
 - <code title="get /v0/projects/{project}/branches/{branch}">client.projects.branches.<a href="./src/resources/projects/branches.ts">retrieve</a>(branch, { ...params }) -> ProjectBranch</code>
+- <code title="get /v0/projects/{project}/branches">client.projects.branches.<a href="./src/resources/projects/branches.ts">list</a>({ ...params }) -> BranchListResponsesPage</code>
+- <code title="delete /v0/projects/{project}/branches/{branch}">client.projects.branches.<a href="./src/resources/projects/branches.ts">delete</a>(branch, { ...params }) -> unknown</code>
 
 ## Configs
 
@@ -43,6 +51,7 @@ Types:
 
 - <code><a href="./src/resources/builds/builds.ts">BuildObject</a></code>
 - <code><a href="./src/resources/builds/builds.ts">BuildTarget</a></code>
+- <code><a href="./src/resources/builds/builds.ts">CheckStep</a></code>
 - <code><a href="./src/resources/builds/builds.ts">BuildCompareResponse</a></code>
 
 Methods:
@@ -56,6 +65,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/builds/diagnostics.ts">Target</a></code>
 - <code><a href="./src/resources/builds/diagnostics.ts">DiagnosticListResponse</a></code>
 
 Methods:
@@ -76,20 +86,10 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/orgs.ts">OrgRetrieveResponse</a></code>
+- <code><a href="./src/resources/orgs.ts">Org</a></code>
 - <code><a href="./src/resources/orgs.ts">OrgListResponse</a></code>
 
 Methods:
 
-- <code title="get /v0/orgs/{org}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(org) -> OrgRetrieveResponse</code>
+- <code title="get /v0/orgs/{org}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(org) -> Org</code>
 - <code title="get /v0/orgs">client.orgs.<a href="./src/resources/orgs.ts">list</a>() -> OrgListResponse</code>
-
-# Generate
-
-Types:
-
-- <code><a href="./src/resources/generate.ts">GenerateCreateSpecResponse</a></code>
-
-Methods:
-
-- <code title="post /v0/generate/spec">client.generate.<a href="./src/resources/generate.ts">createSpec</a>({ ...params }) -> GenerateCreateSpecResponse</code>

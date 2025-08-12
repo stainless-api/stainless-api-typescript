@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as BuildsAPI from '../builds/builds';
 import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -26,12 +28,40 @@ export class Branches extends APIResource {
     const { project = this._client.project } = params ?? {};
     return this._client.get(path`/v0/projects/${project}/branches/${branch}`, options);
   }
+
+  /**
+   * List project branches
+   */
+  list(
+    params: BranchListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BranchListResponsesPage, BranchListResponse> {
+    const { project = this._client.project, ...query } = params ?? {};
+    return this._client.getAPIList(path`/v0/projects/${project}/branches`, Page<BranchListResponse>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
+   * Delete a project branch
+   */
+  delete(
+    branch: string,
+    params: BranchDeleteParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<unknown> {
+    const { project = this._client.project } = params ?? {};
+    return this._client.delete(path`/v0/projects/${project}/branches/${branch}`, options);
+  }
 }
+
+export type BranchListResponsesPage = Page<BranchListResponse>;
 
 export interface ProjectBranch {
   branch: string;
 
-  config_commit: ProjectBranch.ConfigCommit;
+  config_commit: Shared.Commit;
 
   latest_build: BuildsAPI.BuildObject | null;
 
@@ -42,23 +72,21 @@ export interface ProjectBranch {
   project: string;
 }
 
-export namespace ProjectBranch {
-  export interface ConfigCommit {
-    repo: ConfigCommit.Repo;
+export interface BranchListResponse {
+  branch: string;
 
-    sha: string;
-  }
+  config_commit: Shared.Commit;
 
-  export namespace ConfigCommit {
-    export interface Repo {
-      branch: string;
+  latest_build_id: string;
 
-      name: string;
+  object: 'project_branch';
 
-      owner: string;
-    }
-  }
+  org: string;
+
+  project: string;
 }
+
+export type BranchDeleteResponse = unknown;
 
 export interface BranchCreateParams {
   /**
@@ -87,10 +115,31 @@ export interface BranchRetrieveParams {
   project?: string;
 }
 
+export interface BranchListParams extends PageParams {
+  /**
+   * Path param:
+   */
+  project?: string;
+
+  /**
+   * Query param: Maximum number of items to return, defaults to 10 (maximum: 100)
+   */
+  limit?: number;
+}
+
+export interface BranchDeleteParams {
+  project?: string;
+}
+
 export declare namespace Branches {
   export {
     type ProjectBranch as ProjectBranch,
+    type BranchListResponse as BranchListResponse,
+    type BranchDeleteResponse as BranchDeleteResponse,
+    type BranchListResponsesPage as BranchListResponsesPage,
     type BranchCreateParams as BranchCreateParams,
     type BranchRetrieveParams as BranchRetrieveParams,
+    type BranchListParams as BranchListParams,
+    type BranchDeleteParams as BranchDeleteParams,
   };
 }

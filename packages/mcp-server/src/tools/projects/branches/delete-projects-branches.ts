@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   resource: 'projects.branches',
   operation: 'write',
   tags: [],
-  httpMethod: 'post',
-  httpPath: '/v0/projects/{project}/branches',
+  httpMethod: 'delete',
+  httpPath: '/v0/projects/{project}/branches/{branch}',
 };
 
 export const tool: Tool = {
-  name: 'create_projects_branches',
-  description: 'Create a new branch for a project',
+  name: 'delete_projects_branches',
+  description: 'Delete a project branch',
   inputSchema: {
     type: 'object',
     properties: {
@@ -24,25 +24,18 @@ export const tool: Tool = {
       },
       branch: {
         type: 'string',
-        description: 'Name of the new project branch.',
-      },
-      branch_from: {
-        type: 'string',
-        description: 'Branch or commit SHA to branch from.',
-      },
-      force: {
-        type: 'boolean',
-        description: 'Whether to throw an error if the branch already exists. Defaults to false.',
       },
     },
-    required: ['project', 'branch', 'branch_from'],
+    required: ['project', 'branch'],
   },
-  annotations: {},
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
-  return asTextContentResult(await client.projects.branches.create(body));
+  const { branch, ...body } = args as any;
+  return asTextContentResult((await client.projects.branches.delete(branch, body)) as object);
 };
 
 export default { metadata, tool, handler };

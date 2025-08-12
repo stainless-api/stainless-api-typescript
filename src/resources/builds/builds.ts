@@ -2,12 +2,14 @@
 
 import { APIResource } from '../../core/resource';
 import * as BuildsAPI from './builds';
+import * as Shared from '../shared';
 import * as DiagnosticsAPI from './diagnostics';
 import {
   DiagnosticListParams,
   DiagnosticListResponse,
   DiagnosticListResponsesPage,
   Diagnostics,
+  Target,
 } from './diagnostics';
 import * as TargetOutputsAPI from './target-outputs';
 import { TargetOutputRetrieveParams, TargetOutputRetrieveResponse, TargetOutputs } from './target-outputs';
@@ -65,6 +67,8 @@ export interface BuildObject {
 
   config_commit: string;
 
+  created_at: string;
+
   documented_spec: BuildObject.UnionMember0 | BuildObject.UnionMember1 | null;
 
   object: 'build';
@@ -74,6 +78,8 @@ export interface BuildObject {
   project: string;
 
   targets: BuildObject.Targets;
+
+  updated_at: string;
 }
 
 export namespace BuildObject {
@@ -119,17 +125,17 @@ export namespace BuildObject {
 export interface BuildTarget {
   commit: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 
-  lint: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
+  install_url: string | null;
+
+  lint: CheckStep;
 
   object: 'build_target';
 
   status: 'not_started' | 'codegen' | 'postgen' | 'completed';
 
-  test: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
+  test: CheckStep;
 
-  build?: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
-
-  upload?: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
+  build?: CheckStep;
 }
 
 export namespace BuildTarget {
@@ -153,23 +159,19 @@ export namespace BuildTarget {
 
   export namespace Completed {
     export interface Completed {
-      commit: Completed.Commit | null;
+      commit: Shared.Commit | null;
 
       conclusion:
-        | 'success'
-        | 'failure'
-        | 'skipped'
-        | 'cancelled'
-        | 'action_required'
-        | 'neutral'
-        | 'timed_out'
         | 'error'
         | 'warning'
         | 'note'
+        | 'success'
         | 'merge_conflict'
         | 'upstream_merge_conflict'
         | 'fatal'
         | 'payment_required'
+        | 'cancelled'
+        | 'timed_out'
         | 'noop'
         | 'version_bump';
 
@@ -177,22 +179,6 @@ export namespace BuildTarget {
     }
 
     export namespace Completed {
-      export interface Commit {
-        repo: Commit.Repo;
-
-        sha: string;
-      }
-
-      export namespace Commit {
-        export interface Repo {
-          branch: string;
-
-          name: string;
-
-          owner: string;
-        }
-      }
-
       export interface MergeConflictPr {
         number: number;
 
@@ -208,7 +194,11 @@ export namespace BuildTarget {
       }
     }
   }
+}
 
+export type CheckStep = CheckStep.NotStarted | CheckStep.Queued | CheckStep.InProgress | CheckStep.Completed;
+
+export namespace CheckStep {
   export interface NotStarted {
     status: 'not_started';
   }
@@ -236,142 +226,7 @@ export namespace BuildTarget {
         | 'cancelled'
         | 'action_required'
         | 'neutral'
-        | 'timed_out'
-        | 'error'
-        | 'warning'
-        | 'note'
-        | 'merge_conflict'
-        | 'upstream_merge_conflict'
-        | 'fatal'
-        | 'payment_required'
-        | 'noop'
-        | 'version_bump';
-
-      url: string | null;
-    }
-  }
-
-  export interface NotStarted {
-    status: 'not_started';
-  }
-
-  export interface Queued {
-    status: 'queued';
-  }
-
-  export interface InProgress {
-    status: 'in_progress';
-  }
-
-  export interface Completed {
-    completed: Completed.Completed;
-
-    status: 'completed';
-  }
-
-  export namespace Completed {
-    export interface Completed {
-      conclusion:
-        | 'success'
-        | 'failure'
-        | 'skipped'
-        | 'cancelled'
-        | 'action_required'
-        | 'neutral'
-        | 'timed_out'
-        | 'error'
-        | 'warning'
-        | 'note'
-        | 'merge_conflict'
-        | 'upstream_merge_conflict'
-        | 'fatal'
-        | 'payment_required'
-        | 'noop'
-        | 'version_bump';
-
-      url: string | null;
-    }
-  }
-
-  export interface NotStarted {
-    status: 'not_started';
-  }
-
-  export interface Queued {
-    status: 'queued';
-  }
-
-  export interface InProgress {
-    status: 'in_progress';
-  }
-
-  export interface Completed {
-    completed: Completed.Completed;
-
-    status: 'completed';
-  }
-
-  export namespace Completed {
-    export interface Completed {
-      conclusion:
-        | 'success'
-        | 'failure'
-        | 'skipped'
-        | 'cancelled'
-        | 'action_required'
-        | 'neutral'
-        | 'timed_out'
-        | 'error'
-        | 'warning'
-        | 'note'
-        | 'merge_conflict'
-        | 'upstream_merge_conflict'
-        | 'fatal'
-        | 'payment_required'
-        | 'noop'
-        | 'version_bump';
-
-      url: string | null;
-    }
-  }
-
-  export interface NotStarted {
-    status: 'not_started';
-  }
-
-  export interface Queued {
-    status: 'queued';
-  }
-
-  export interface InProgress {
-    status: 'in_progress';
-  }
-
-  export interface Completed {
-    completed: Completed.Completed;
-
-    status: 'completed';
-  }
-
-  export namespace Completed {
-    export interface Completed {
-      conclusion:
-        | 'success'
-        | 'failure'
-        | 'skipped'
-        | 'cancelled'
-        | 'action_required'
-        | 'neutral'
-        | 'timed_out'
-        | 'error'
-        | 'warning'
-        | 'note'
-        | 'merge_conflict'
-        | 'upstream_merge_conflict'
-        | 'fatal'
-        | 'payment_required'
-        | 'noop'
-        | 'version_bump';
+        | 'timed_out';
 
       url: string | null;
     }
@@ -394,7 +249,7 @@ export interface BuildCreateParams {
    * Specifies what to build: a branch name, commit SHA, merge command
    * ("base..head"), or file contents
    */
-  revision: string | { [key: string]: BuildCreateParams.Content | BuildCreateParams.URL };
+  revision: string | { [key: string]: Shared.FileInput };
 
   /**
    * Whether to allow empty commits (no changes). Defaults to false.
@@ -402,8 +257,8 @@ export interface BuildCreateParams {
   allow_empty?: boolean;
 
   /**
-   * Optional branch to use. If not specified, defaults to "main". When using a
-   * branch name or merge command as revision, this must match or be omitted.
+   * The Stainless branch to use for the build. If not specified, the branch is
+   * inferred from the `revision`, and will 400 when that is not possible.
    */
   branch?: string;
 
@@ -416,35 +271,7 @@ export interface BuildCreateParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<
-    | 'node'
-    | 'typescript'
-    | 'python'
-    | 'go'
-    | 'java'
-    | 'kotlin'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'php'
-    | 'csharp'
-  >;
-}
-
-export namespace BuildCreateParams {
-  export interface Content {
-    /**
-     * File content
-     */
-    content: string;
-  }
-
-  export interface URL {
-    /**
-     * URL to fetch file content from
-     */
-    url: string;
-  }
+  targets?: Array<DiagnosticsAPI.Target>;
 }
 
 export interface BuildListParams extends PageParams {
@@ -498,19 +325,7 @@ export interface BuildCompareParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<
-    | 'node'
-    | 'typescript'
-    | 'python'
-    | 'go'
-    | 'java'
-    | 'kotlin'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'php'
-    | 'csharp'
-  >;
+  targets?: Array<DiagnosticsAPI.Target>;
 }
 
 export namespace BuildCompareParams {
@@ -521,7 +336,7 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
-    revision: string | { [key: string]: Base.Content | Base.URL };
+    revision: string | { [key: string]: Shared.FileInput };
 
     /**
      * Optional branch to use. If not specified, defaults to "main". When using a
@@ -533,22 +348,6 @@ export namespace BuildCompareParams {
      * Optional commit message to use when creating a new commit.
      */
     commit_message?: string;
-  }
-
-  export namespace Base {
-    export interface Content {
-      /**
-       * File content
-       */
-      content: string;
-    }
-
-    export interface URL {
-      /**
-       * URL to fetch file content from
-       */
-      url: string;
-    }
   }
 
   /**
@@ -558,7 +357,7 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
-    revision: string | { [key: string]: Head.Content | Head.URL };
+    revision: string | { [key: string]: Shared.FileInput };
 
     /**
      * Optional branch to use. If not specified, defaults to "main". When using a
@@ -570,22 +369,6 @@ export namespace BuildCompareParams {
      * Optional commit message to use when creating a new commit.
      */
     commit_message?: string;
-  }
-
-  export namespace Head {
-    export interface Content {
-      /**
-       * File content
-       */
-      content: string;
-    }
-
-    export interface URL {
-      /**
-       * URL to fetch file content from
-       */
-      url: string;
-    }
   }
 }
 
@@ -596,6 +379,7 @@ export declare namespace Builds {
   export {
     type BuildObject as BuildObject,
     type BuildTarget as BuildTarget,
+    type CheckStep as CheckStep,
     type BuildCompareResponse as BuildCompareResponse,
     type BuildObjectsPage as BuildObjectsPage,
     type BuildCreateParams as BuildCreateParams,
@@ -605,6 +389,7 @@ export declare namespace Builds {
 
   export {
     Diagnostics as Diagnostics,
+    type Target as Target,
     type DiagnosticListResponse as DiagnosticListResponse,
     type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
     type DiagnosticListParams as DiagnosticListParams,
