@@ -125,6 +125,8 @@ export namespace BuildObject {
 export interface BuildTarget {
   commit: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 
+  install_url: string | null;
+
   lint: CheckStep;
 
   object: 'build_target';
@@ -134,8 +136,6 @@ export interface BuildTarget {
   test: CheckStep;
 
   build?: CheckStep;
-
-  upload?: CheckStep;
 }
 
 export namespace BuildTarget {
