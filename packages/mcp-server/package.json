@@ -1,6 +1,6 @@
 {
   "name": "@stainless-api/sdk-mcp",
-  "version": "0.1.0-alpha.11",
+  "version": "0.1.0-alpha.12",
   "description": "The official MCP Server for the Stainless API",
   "author": "Stainless <>",
   "types": "dist/index.d.ts",

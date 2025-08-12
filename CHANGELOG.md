@@ -1,5 +1,72 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-08-12)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Features
+
+* add timestamp to builds api ([8e63219](https://github.com/stainless-api/stainless-api-typescript/commit/8e6321972c972be1a366fd532c24e406e2f96161))
+* **api:** add check step model ([4e28836](https://github.com/stainless-api/stainless-api-typescript/commit/4e28836d14a812227a7db451e90db3f8489de6e4))
+* **api:** add FileInput model ([b12f5a8](https://github.com/stainless-api/stainless-api-typescript/commit/b12f5a8f41326a16a0dabb29edfab64a9a2a66c1))
+* **api:** add models ([f503b4c](https://github.com/stainless-api/stainless-api-typescript/commit/f503b4c3be3b1ddedf224cdbfde4e7d254323949))
+* **api:** add more models ([818efd0](https://github.com/stainless-api/stainless-api-typescript/commit/818efd095889ae076b0e8623626ea6f1ed9c31ab))
+* **api:** add staging environment ([fdbd3aa](https://github.com/stainless-api/stainless-api-typescript/commit/fdbd3aaf8594ef5c451933ba4b7e9419ed9b9450))
+* **api:** discrim like this ([df5155c](https://github.com/stainless-api/stainless-api-typescript/commit/df5155caa6efc0732e14193c7ea03c5c5ad7828c))
+* **api:** don't default to "main" branch ([4cb1928](https://github.com/stainless-api/stainless-api-typescript/commit/4cb19288979480d5fac8e7b25f27170405f1d91f))
+* **api:** manual updates ([1e6eee5](https://github.com/stainless-api/stainless-api-typescript/commit/1e6eee5b94e1c992085d74aeed33f3346cd10003))
+* **api:** manual updates ([fa2cfdf](https://github.com/stainless-api/stainless-api-typescript/commit/fa2cfdf1d05e610588d176b56b99354fe567a02c))
+* **api:** manual updates ([19ff34d](https://github.com/stainless-api/stainless-api-typescript/commit/19ff34d2608a1509322c4e50c880e82fdeebff4c))
+* **api:** manual updates ([a8d7964](https://github.com/stainless-api/stainless-api-typescript/commit/a8d796418b8c92b72b59b9ab1c73806723036ddf))
+* **api:** manual updates ([91e6b32](https://github.com/stainless-api/stainless-api-typescript/commit/91e6b329986dcf343e6cfb0282da4d9bda889776))
+* **api:** manual updates ([54e2cdb](https://github.com/stainless-api/stainless-api-typescript/commit/54e2cdb8d8b9b044b4237db42762768c85ad8e2f))
+* **C#, PHP:** codegen stats ([eb15616](https://github.com/stainless-api/stainless-api-typescript/commit/eb156164cec1f5dd5f208b2069a0d8ae43ae6d1e))
+* Codegen(php): unset optional parameters in constructor ([55967d5](https://github.com/stainless-api/stainless-api-typescript/commit/55967d5c65d5ef7736b10afbfa7c5c93b4311014))
+* flesh out project branches endpoints ([f609ac7](https://github.com/stainless-api/stainless-api-typescript/commit/f609ac72c11bc67e47bafc0dd339e5072902b8ce))
+* **mcp:** add logging when environment variable is set ([5039c32](https://github.com/stainless-api/stainless-api-typescript/commit/5039c320334c05b8693a00c445a81926c96f3132))
+* **mcp:** add unix socket option for remote MCP ([e90cea6](https://github.com/stainless-api/stainless-api-typescript/commit/e90cea690700d047331917e52ef1a20b6fdfdbd9))
+* **mcp:** remote server with passthru auth ([25ebe60](https://github.com/stainless-api/stainless-api-typescript/commit/25ebe606f12120c9240bb627ad8ae010232f0b61))
+* **mcp:** support filtering tool results by a jq expression ([3ce621d](https://github.com/stainless-api/stainless-api-typescript/commit/3ce621d03b8a75e06bab4a70f5aac08b46acd59b))
+* php: generate stub union classes with discrimminator info ([6211878](https://github.com/stainless-api/stainless-api-typescript/commit/62118780200757b7f6eb94a27eee353eeaec4d1b))
+* productionize repo caching ([d1bdd86](https://github.com/stainless-api/stainless-api-typescript/commit/d1bdd86fe9291cc75a54d2b2a1da8dc079634993))
+
+
+### Bug Fixes
+
+* **api:** catch more errors ([6255a02](https://github.com/stainless-api/stainless-api-typescript/commit/6255a02d2e2f5cda518f942ef42300a64b40c267))
+* **java:** ensure error handling always occurs ([4eb767c](https://github.com/stainless-api/stainless-api-typescript/commit/4eb767c1f3d03fda46d9029bd2122684fa735b84))
+* **mcp:** avoid sending `jq_filter` to base API ([85fd1d5](https://github.com/stainless-api/stainless-api-typescript/commit/85fd1d51101066bb6e285d28cd2740b345e0e5eb))
+* **mcp:** fix bug in header handling ([344163a](https://github.com/stainless-api/stainless-api-typescript/commit/344163a18629fce7f66fdc2437b9c016f45c6257))
+* **mcp:** fix tool description of jq_filter ([a92e0c2](https://github.com/stainless-api/stainless-api-typescript/commit/a92e0c2e79d4a3ac7386f6163008c16e0f3297d3))
+* **mcp:** include required section for top-level properties and support naming transformations ([d6ec40e](https://github.com/stainless-api/stainless-api-typescript/commit/d6ec40e7052a6077629d3c55dbd372e02b9c14e1))
+* **mcp:** relax input type for asTextContextResult ([8bb8201](https://github.com/stainless-api/stainless-api-typescript/commit/8bb820122ad75126ff6c88124e0af8c1887f9d1d))
+* **mcp:** reverse validJson capability option and limit scope ([653bd8d](https://github.com/stainless-api/stainless-api-typescript/commit/653bd8d33fada02157202c1e80390c73dfe2627e))
+* **mcp:** support jq filtering on cloudflare workers ([075f9da](https://github.com/stainless-api/stainless-api-typescript/commit/075f9daa3a0c5fd0e6ff0da9ebe2ce3e8ec9cb24))
+
+
+### Chores
+
+* **internal:** codegen related update ([2bac3a2](https://github.com/stainless-api/stainless-api-typescript/commit/2bac3a2c685b6f9664b9d98de3572324320fb8ee))
+* **internal:** codegen related update ([fe68259](https://github.com/stainless-api/stainless-api-typescript/commit/fe68259438f3db5b8a994dc33630c84a5396ae72))
+* **internal:** codegen related update ([7b4fa85](https://github.com/stainless-api/stainless-api-typescript/commit/7b4fa857a86e4c49f1405a2ed6631bed7387a01e))
+* **internal:** codegen related update ([7dc4748](https://github.com/stainless-api/stainless-api-typescript/commit/7dc4748dfc988d5f6dff153a2fb658f92213f6b2))
+* **internal:** move publish config ([0b13ceb](https://github.com/stainless-api/stainless-api-typescript/commit/0b13cebc68850c93ff1953c00e7cae251d125b34))
+* **internal:** remove redundant imports config ([6328f05](https://github.com/stainless-api/stainless-api-typescript/commit/6328f057271afc8c8f7ec2807e16caa6b369d042))
+* **internal:** update comment in script ([017c2e8](https://github.com/stainless-api/stainless-api-typescript/commit/017c2e8494251ea492ad32c5b664770783baa1a6))
+* make some internal functions async ([a8433ef](https://github.com/stainless-api/stainless-api-typescript/commit/a8433ef35afab98e9c0d99aa3dd130fcf3047a3f))
+* **mcp:** formatting ([33c572a](https://github.com/stainless-api/stainless-api-typescript/commit/33c572a0957229da7ac9ca8b96e143d1a472c007))
+* **mcp:** refactor streamable http transport ([9e9f468](https://github.com/stainless-api/stainless-api-typescript/commit/9e9f4689eed8bc3712b511241398153e17752f38))
+* **mcp:** rework imports in tools ([a54a6f4](https://github.com/stainless-api/stainless-api-typescript/commit/a54a6f413824e2c9e1c73fc634ec7d822c37233b))
+* move sdkjson generation api out of v0 scope ([c42eba6](https://github.com/stainless-api/stainless-api-typescript/commit/c42eba6252eadc02392dc121b20597dbc4fd1058))
+* **ts:** reorder package.json imports ([e58856e](https://github.com/stainless-api/stainless-api-typescript/commit/e58856e8f8cbb977595b53323958b0cdb9a2515b))
+* update @stainless-api/prism-cli to v5.15.0 ([79a7d9e](https://github.com/stainless-api/stainless-api-typescript/commit/79a7d9edaeef60665f3074a34fe4dddd20af1ca2))
+* update mcp documentation ([fa562d4](https://github.com/stainless-api/stainless-api-typescript/commit/fa562d4acb4fdf8f483d519f663ac213f28227ad))
+
+
+### Documentation
+
+* add pagination segment ([c0a456b](https://github.com/stainless-api/stainless-api-typescript/commit/c0a456b27a0f1104b8096dcf6954f841686fe8c5))
+
 ## 0.1.0-alpha.11 (2025-07-07)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
