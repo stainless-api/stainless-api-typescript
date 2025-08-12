@@ -8,7 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource builds', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.builds.create({ project: 'project', revision: 'string' });
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource builds', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.builds.create({
       project: 'project',
@@ -32,7 +32,7 @@ describe('resource builds', () => {
     });
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.builds.retrieve('buildId');
     const rawResponse = await responsePromise.asResponse();
@@ -44,7 +44,7 @@ describe('resource builds', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list: only required params', async () => {
     const responsePromise = client.builds.list({ project: 'project' });
     const rawResponse = await responsePromise.asResponse();
@@ -56,7 +56,7 @@ describe('resource builds', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list: required and optional params', async () => {
     const response = await client.builds.list({
       project: 'project',
@@ -67,7 +67,7 @@ describe('resource builds', () => {
     });
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('compare: only required params', async () => {
     const responsePromise = client.builds.compare({
       base: { revision: 'string' },
@@ -83,7 +83,7 @@ describe('resource builds', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('compare: required and optional params', async () => {
     const response = await client.builds.compare({
       base: { revision: 'string', branch: 'branch', commit_message: 'commit_message' },

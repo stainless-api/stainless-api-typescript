@@ -8,7 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource configs', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('retrieve: only required params', async () => {
     const responsePromise = client.projects.configs.retrieve({ project: 'project' });
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource configs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('retrieve: required and optional params', async () => {
     const response = await client.projects.configs.retrieve({
       project: 'project',
@@ -29,7 +29,7 @@ describe('resource configs', () => {
     });
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('guess: only required params', async () => {
     const responsePromise = client.projects.configs.guess({ project: 'project', spec: 'spec' });
     const rawResponse = await responsePromise.asResponse();
@@ -41,7 +41,7 @@ describe('resource configs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('guess: required and optional params', async () => {
     const response = await client.projects.configs.guess({
       project: 'project',
