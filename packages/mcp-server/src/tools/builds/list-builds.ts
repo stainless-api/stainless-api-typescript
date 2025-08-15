@@ -44,6 +44,7 @@ export const tool: Tool = {
           {
             type: 'object',
             description: 'Hash of the files used for the build',
+            additionalProperties: true,
           },
         ],
         description: 'A config commit SHA used for the build',

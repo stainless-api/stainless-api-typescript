@@ -32,6 +32,7 @@ export const tool: Tool = {
               {
                 type: 'object',
                 description: 'File contents to commit directly',
+                additionalProperties: true,
               },
             ],
             description: 'Specifies what to build: a branch name, a commit SHA, or file contents',
@@ -61,6 +62,7 @@ export const tool: Tool = {
               {
                 type: 'object',
                 description: 'File contents to commit directly',
+                additionalProperties: true,
               },
             ],
             description: 'Specifies what to build: a branch name, a commit SHA, or file contents',

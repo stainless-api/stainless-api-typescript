@@ -32,6 +32,7 @@ export const tool: Tool = {
       revision: {
         type: 'object',
         description: 'File contents to commit',
+        additionalProperties: true,
       },
       slug: {
         type: 'string',
