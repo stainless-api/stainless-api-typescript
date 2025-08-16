@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.13 (2025-08-16)
+
+Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
+
+### Bug Fixes
+
+* **mcp:** generate additionalProperties=true for map schemas to avoid validation issues ([5984cdd](https://github.com/stainless-api/stainless-api-typescript/commit/5984cddec5aac6c4cbd38ef64ed6d00c6c26bf2d))
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v20.17.58 ([969dd97](https://github.com/stainless-api/stainless-api-typescript/commit/969dd972409b6de717f063b931bfce13b3207ed1))
+* **internal:** formatting change ([1f6025f](https://github.com/stainless-api/stainless-api-typescript/commit/1f6025fa6f984dd07336dcb77c8f028dce4a0161))
+* **mcp:** document remote server in README.md ([354ec27](https://github.com/stainless-api/stainless-api-typescript/commit/354ec272f8841448d581562f9e247ce2f6009bfe))
+* **mcp:** minor cleanup of types and package.json ([21ba881](https://github.com/stainless-api/stainless-api-typescript/commit/21ba8813b6780307fc81af852f7dd57b4e4878b7))
+* **mcp:** update README ([c3fb351](https://github.com/stainless-api/stainless-api-typescript/commit/c3fb351ba59d1e498e89a7d175e6d81b16a8f18c))
+
 ## 0.1.0-alpha.12 (2025-08-12)
 
 Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
