@@ -784,9 +784,11 @@ export class Stainless {
   builds: API.Builds = new API.Builds(this);
   orgs: API.Orgs = new API.Orgs(this);
 }
+
 Stainless.Projects = Projects;
 Stainless.Builds = Builds;
 Stainless.Orgs = Orgs;
+
 export declare namespace Stainless {
   export type RequestOptions = Opts.RequestOptions;
 
