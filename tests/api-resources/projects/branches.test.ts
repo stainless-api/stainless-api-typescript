@@ -84,4 +84,21 @@ describe('resource branches', () => {
   test.skip('delete: required and optional params', async () => {
     const response = await client.projects.branches.delete('branch', { project: 'project' });
   });
+
+  // Prism tests are disabled
+  test.skip('rebase: only required params', async () => {
+    const responsePromise = client.projects.branches.rebase('branch', { project: 'project' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Prism tests are disabled
+  test.skip('rebase: required and optional params', async () => {
+    const response = await client.projects.branches.rebase('branch', { project: 'project', base: 'base' });
+  });
 });
