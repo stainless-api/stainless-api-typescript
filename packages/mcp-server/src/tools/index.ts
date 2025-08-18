@@ -12,6 +12,7 @@ import create_projects_branches from './projects/branches/create-projects-branch
 import retrieve_projects_branches from './projects/branches/retrieve-projects-branches';
 import list_projects_branches from './projects/branches/list-projects-branches';
 import delete_projects_branches from './projects/branches/delete-projects-branches';
+import rebase_projects_branches from './projects/branches/rebase-projects-branches';
 import retrieve_projects_configs from './projects/configs/retrieve-projects-configs';
 import guess_projects_configs from './projects/configs/guess-projects-configs';
 import create_builds from './builds/create-builds';
@@ -37,6 +38,7 @@ addEndpoint(create_projects_branches);
 addEndpoint(retrieve_projects_branches);
 addEndpoint(list_projects_branches);
 addEndpoint(delete_projects_branches);
+addEndpoint(rebase_projects_branches);
 addEndpoint(retrieve_projects_configs);
 addEndpoint(guess_projects_configs);
 addEndpoint(create_builds);

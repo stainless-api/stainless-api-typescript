@@ -219,6 +219,7 @@ The following tools are available in this MCP server.
 - `retrieve_projects_branches` (`read`): Retrieve a project branch
 - `list_projects_branches` (`read`): List project branches
 - `delete_projects_branches` (`write`): Delete a project branch
+- `rebase_projects_branches` (`write`): Rebase a project branch
 
 ### Resource `projects.configs`:
 

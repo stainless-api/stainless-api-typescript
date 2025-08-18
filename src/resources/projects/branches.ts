@@ -54,6 +54,21 @@ export class Branches extends APIResource {
     const { project = this._client.project } = params ?? {};
     return this._client.delete(path`/v0/projects/${project}/branches/${branch}`, options);
   }
+
+  /**
+   * Rebase a project branch
+   */
+  rebase(
+    branch: string,
+    params: BranchRebaseParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectBranch> {
+    const { project = this._client.project, base } = params ?? {};
+    return this._client.put(path`/v0/projects/${project}/branches/${branch}/rebase`, {
+      query: { base },
+      ...options,
+    });
+  }
 }
 
 export type BranchListResponsesPage = Page<BranchListResponse>;
@@ -131,6 +146,18 @@ export interface BranchDeleteParams {
   project?: string;
 }
 
+export interface BranchRebaseParams {
+  /**
+   * Path param:
+   */
+  project?: string;
+
+  /**
+   * Query param: The branch or commit SHA to rebase onto. Defaults to "main".
+   */
+  base?: string;
+}
+
 export declare namespace Branches {
   export {
     type ProjectBranch as ProjectBranch,
@@ -141,5 +168,6 @@ export declare namespace Branches {
     type BranchRetrieveParams as BranchRetrieveParams,
     type BranchListParams as BranchListParams,
     type BranchDeleteParams as BranchDeleteParams,
+    type BranchRebaseParams as BranchRebaseParams,
   };
 }
