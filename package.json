@@ -2,7 +2,7 @@
   "name": "@stainless-api/sdk",
   "version": "0.1.0-alpha.12",
   "description": "The official TypeScript library for the Stainless API",
-  "author": "Stainless <>",
+  "author": "Stainless <local-dev@stainless.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
