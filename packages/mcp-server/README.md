@@ -141,6 +141,45 @@ over time, you can manually enable or disable certain capabilities:
 --resource=cards,accounts --operation=read --tag=kyc --no-tool=create_cards
 ```
 
+## Running remotely
+
+Launching the client with `--transport=http` launches the server as a remote server using Streamable HTTP transport. The `--port` setting can choose the port it will run on, and the `--socket` setting allows it to run on a Unix socket.
+
+Authorization can be provided via the `Authorization` header using the Bearer scheme.
+
+Additionally, authorization can be provided via the following headers:
+| Header | Equivalent client option | Security scheme |
+| --------------------- | ------------------------ | --------------- |
+| `x-stainless-api-key` | `apiKey` | bearerAuth |
+
+A configuration JSON for this server might look like this, assuming the server is hosted at `http://localhost:3000`:
+
+```json
+{
+  "mcpServers": {
+    "stainless_api_sdk_api": {
+      "url": "http://localhost:3000",
+      "headers": {
+        "Authorization": "Bearer <auth value>"
+      }
+    }
+  }
+}
+```
+
+The command-line arguments for filtering tools and specifying clients can also be used as query parameters in the URL.
+For example, to exclude specific tools while including others, use the URL:
+
+```
+http://localhost:3000?resource=cards&resource=accounts&no_tool=create_cards
+```
+
+Or, to configure for the Cursor client, with a custom max tool name length, use the URL:
+
+```
+http://localhost:3000?client=cursor&capability=tool-name-length%3D40
+```
+
 ## Importing the tools and server individually
 
 ```js
@@ -193,6 +232,7 @@ The following tools are available in this MCP server.
 - `retrieve_projects_branches` (`read`): Retrieve a project branch
 - `list_projects_branches` (`read`): List project branches
 - `delete_projects_branches` (`write`): Delete a project branch
+- `rebase_projects_branches` (`write`): Rebase a project branch
 
 ### Resource `projects.configs`:
 
@@ -204,7 +244,6 @@ The following tools are available in this MCP server.
 - `create_builds` (`write`): Create a new build
 - `retrieve_builds` (`read`): Retrieve a build by ID
 - `list_builds` (`read`): List builds for a project
-- `compare_builds` (`write`): Creates two builds whose outputs can be compared directly
 
 ### Resource `builds.diagnostics`:
 

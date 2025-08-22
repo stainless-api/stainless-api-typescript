@@ -32,6 +32,7 @@ export const tool: Tool = {
           {
             type: 'object',
             description: 'File contents to commit directly',
+            additionalProperties: true,
           },
         ],
         description:

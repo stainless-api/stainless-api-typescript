@@ -24,7 +24,12 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: '10.14.0'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
@@ -46,7 +51,12 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: '10.14.0'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
@@ -80,6 +90,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: '10.14.0'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
