@@ -1,5 +1,50 @@
 # Changelog
 
+## 0.1.0-alpha.13 (2025-08-22)
+
+Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
+
+### Features
+
+* [WIP] add branch rebasing to the API ([1e4eba9](https://github.com/stainless-api/stainless-api-typescript/commit/1e4eba93445900f3d56b30114e7d005d847ea50c))
+* **api:** remove compare mcp tool ([7b5370a](https://github.com/stainless-api/stainless-api-typescript/commit/7b5370afa1392b4f5af6fea319f15f781a49c085))
+* **mcp:** add code execution tool ([5fc3df8](https://github.com/stainless-api/stainless-api-typescript/commit/5fc3df86d33af1d2916146b7552ba2361f453cfb))
+* **mcp:** add option to infer mcp client ([d07e1bd](https://github.com/stainless-api/stainless-api-typescript/commit/d07e1bdc66f1d31615b118d6686d4f61ac036979))
+* **mcp:** parse query string as mcp client options in mcp server ([1aca1db](https://github.com/stainless-api/stainless-api-typescript/commit/1aca1dbe54d20f272156abe1026ffe916d91db46))
+
+
+### Bug Fixes
+
+* **mcp:** generate additionalProperties=true for map schemas to avoid validation issues ([5984cdd](https://github.com/stainless-api/stainless-api-typescript/commit/5984cddec5aac6c4cbd38ef64ed6d00c6c26bf2d))
+* **mcp:** oauth metadata ([9f07302](https://github.com/stainless-api/stainless-api-typescript/commit/9f07302d005e59c97aea7e521e8222f151b37779))
+
+
+### Chores
+
+* add package to package.json ([1f2e338](https://github.com/stainless-api/stainless-api-typescript/commit/1f2e33849ccac49559f2903fdb95aac1c3c316cc))
+* **client:** qualify global Blob ([feffee8](https://github.com/stainless-api/stainless-api-typescript/commit/feffee84b55d706db862861be0f0c01126005c47))
+* **deps:** update dependency @types/node to v20.17.58 ([969dd97](https://github.com/stainless-api/stainless-api-typescript/commit/969dd972409b6de717f063b931bfce13b3207ed1))
+* **internal:** codegen related update ([0e0e358](https://github.com/stainless-api/stainless-api-typescript/commit/0e0e358a179630d418132a799dbdcc66e5e102bb))
+* **internal:** codegen related update ([b0383ec](https://github.com/stainless-api/stainless-api-typescript/commit/b0383ec92ffc1a36e062fab102ea5e3de33ca5a3))
+* **internal:** codegen related update ([2293405](https://github.com/stainless-api/stainless-api-typescript/commit/229340561b261a4a9e3afd2ab4b408b7fa5affe7))
+* **internal:** codegen related update ([d573489](https://github.com/stainless-api/stainless-api-typescript/commit/d57348912f858042f89fba22a53090f087e63d3f))
+* **internal:** formatting change ([1f6025f](https://github.com/stainless-api/stainless-api-typescript/commit/1f6025fa6f984dd07336dcb77c8f028dce4a0161))
+* **internal:** make mcp-server publishing public by defaut ([246940f](https://github.com/stainless-api/stainless-api-typescript/commit/246940f200219056a9e1315bc87288e343a00a7d))
+* **internal:** refactor array check ([ca0ed80](https://github.com/stainless-api/stainless-api-typescript/commit/ca0ed80b9ac1f751a17cd4ddd94aa6350f352ec3))
+* **mcp:** add cors to oauth metadata route ([39f28d9](https://github.com/stainless-api/stainless-api-typescript/commit/39f28d9da323d908f9b67ba084fb7838eccea0a6))
+* **mcp:** document remote server in README.md ([354ec27](https://github.com/stainless-api/stainless-api-typescript/commit/354ec272f8841448d581562f9e247ce2f6009bfe))
+* **mcp:** minor cleanup of types and package.json ([21ba881](https://github.com/stainless-api/stainless-api-typescript/commit/21ba8813b6780307fc81af852f7dd57b4e4878b7))
+* **mcp:** update package.json ([2e6f228](https://github.com/stainless-api/stainless-api-typescript/commit/2e6f2283323ae7779d567186418070ed4a45c478))
+* **mcp:** update README ([c3fb351](https://github.com/stainless-api/stainless-api-typescript/commit/c3fb351ba59d1e498e89a7d175e6d81b16a8f18c))
+* **mcp:** update types ([2df004c](https://github.com/stainless-api/stainless-api-typescript/commit/2df004c43a4feae95788b42dd0e738a87d0eff82))
+* revert to yarn ([67dfcec](https://github.com/stainless-api/stainless-api-typescript/commit/67dfcecf94a9a77b492944f7bac6f5048b90f7e5))
+* unrevert yarn ([2174526](https://github.com/stainless-api/stainless-api-typescript/commit/2174526b17c574c85cec785f3cb3bf91a7f4a6b9))
+
+
+### Documentation
+
+* add contact email and link to docs ([707d851](https://github.com/stainless-api/stainless-api-typescript/commit/707d85194bc368374d3146fb360597667ec30402))
+
 ## 0.1.0-alpha.12 (2025-08-12)
 
 Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
