@@ -233,7 +233,6 @@ The following tools are available in this MCP server.
 - `create_builds` (`write`): Create a new build
 - `retrieve_builds` (`read`): Retrieve a build by ID
 - `list_builds` (`read`): List builds for a project
-- `compare_builds` (`write`): Creates two builds whose outputs can be compared directly
 
 ### Resource `builds.diagnostics`:
 
