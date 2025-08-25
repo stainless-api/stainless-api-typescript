@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.1.0-alpha.14 (2025-08-25)
+
+Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
+
+### Features
+
+* **client:** shorten union variant names ([5cad8fe](https://github.com/stainless-api/stainless-api-typescript/commit/5cad8fe6e8acba426b73b34659fe78ec94f49601))
+
+
+### Bug Fixes
+
+* **internal:** remove unused null class ([6637b7e](https://github.com/stainless-api/stainless-api-typescript/commit/6637b7eb367b486a9d09efb01a9f6b4f63c69653))
+
+
+### Chores
+
+* **internal:** codegen related update ([248a60b](https://github.com/stainless-api/stainless-api-typescript/commit/248a60bd9ff2d7955b81b5b0e6122863f7b11a63))
+* **internal:** codegen related update ([085cb58](https://github.com/stainless-api/stainless-api-typescript/commit/085cb586cc58337d49e4dc4e21a7e3b9063f163f))
+* **internal:** codegen related update ([0d63c6d](https://github.com/stainless-api/stainless-api-typescript/commit/0d63c6d313154e9f744ff86d7fe38c2b76e2e338))
+* **internal:** codegen related update ([ce0666e](https://github.com/stainless-api/stainless-api-typescript/commit/ce0666ee401dcef48bc8b27eca38383d36370586))
+* **internal:** codegen related update ([9fbedeb](https://github.com/stainless-api/stainless-api-typescript/commit/9fbedeb1c48efd7ef6e5259fb143356cdbb01162))
+* **internal:** codegen related update ([3f79b83](https://github.com/stainless-api/stainless-api-typescript/commit/3f79b831ca93da8eea5a6f8b73ba9b6769662625))
+* update CI script ([95295eb](https://github.com/stainless-api/stainless-api-typescript/commit/95295eb92fccb67fa9bcabf3a36cb4cc6ab87439))
+
 ## 0.1.0-alpha.13 (2025-08-22)
 
 Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
