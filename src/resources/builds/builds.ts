@@ -334,15 +334,15 @@ export namespace BuildCompareParams {
    */
   export interface Base {
     /**
+     * Branch to use. When using a branch name as revision, this must match or be
+     * omitted.
+     */
+    branch: string;
+
+    /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
     revision: string | { [key: string]: Shared.FileInput };
-
-    /**
-     * Optional branch to use. If not specified, defaults to "main". When using a
-     * branch name as revision, this must match or be omitted.
-     */
-    branch?: string;
 
     /**
      * Optional commit message to use when creating a new commit.
@@ -355,15 +355,15 @@ export namespace BuildCompareParams {
    */
   export interface Head {
     /**
+     * Branch to use. When using a branch name as revision, this must match or be
+     * omitted.
+     */
+    branch: string;
+
+    /**
      * Specifies what to build: a branch name, a commit SHA, or file contents
      */
     revision: string | { [key: string]: Shared.FileInput };
-
-    /**
-     * Optional branch to use. If not specified, defaults to "main". When using a
-     * branch name as revision, this must match or be omitted.
-     */
-    branch?: string;
 
     /**
      * Optional commit message to use when creating a new commit.
