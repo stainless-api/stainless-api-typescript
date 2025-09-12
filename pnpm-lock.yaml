@@ -194,6 +194,7 @@ packages:
       {
         integrity: sha512-5VSqKRpkytTYh5UJz9jOaI8zLXNCe4Gc+ArKGFV6IeWnEPP0Qnd0k+V3pO8cYzp92Puf/+Cgo0xc4haE0azTXg==,
       }
+    deprecated: This package has been renamed to @anthropic-ai/mcpb
     hasBin: true
 
   '@arethetypeswrong/cli@0.17.0':
@@ -5446,7 +5447,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 8.31.1(typescript@5.8.3)
       '@typescript-eslint/utils': 8.31.1(eslint@8.57.1)(typescript@5.8.3)
-      debug: 4.3.7
+      debug: 4.4.1
       eslint: 8.57.1
       ts-api-utils: 2.0.1(typescript@5.8.3)
       typescript: 5.8.3
@@ -5457,7 +5458,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 8.31.1(typescript@5.8.3)
       '@typescript-eslint/utils': 8.31.1(eslint@9.20.1)(typescript@5.8.3)
-      debug: 4.3.7
+      debug: 4.4.1
       eslint: 9.20.1
       ts-api-utils: 2.0.1(typescript@5.8.3)
       typescript: 5.8.3
@@ -5470,7 +5471,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.31.1
       '@typescript-eslint/visitor-keys': 8.31.1
-      debug: 4.4.1
+      debug: 4.3.7
       fast-glob: 3.3.2
       is-glob: 4.0.3
       minimatch: 9.0.5
