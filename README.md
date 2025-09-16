@@ -27,9 +27,9 @@ const client = new Stainless({
   environment: 'staging', // defaults to 'production'
 });
 
-const buildObject = await client.builds.create({ project: 'project', revision: 'string' });
+const build = await client.builds.create({ project: 'stainless', revision: 'main' });
 
-console.log(buildObject.id);
+console.log(build.id);
 ```
 
 ### Request & Response types
@@ -45,8 +45,8 @@ const client = new Stainless({
   environment: 'staging', // defaults to 'production'
 });
 
-const params: Stainless.BuildCreateParams = { project: 'project', revision: 'string' };
-const buildObject: Stainless.BuildObject = await client.builds.create(params);
+const params: Stainless.BuildCreateParams = { project: 'stainless', revision: 'main' };
+const build: Stainless.Build = await client.builds.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -59,17 +59,15 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const buildObject = await client.builds
-  .create({ project: 'project', revision: 'string' })
-  .catch(async (err) => {
-    if (err instanceof Stainless.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
+const build = await client.builds.create({ project: 'stainless', revision: 'main' }).catch(async (err) => {
+  if (err instanceof Stainless.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
 Error codes are as follows:
@@ -101,7 +99,7 @@ const client = new Stainless({
 });
 
 // Or, configure per-request:
-await client.builds.create({ project: 'project', revision: 'string' }, {
+await client.builds.create({ project: 'stainless', revision: 'main' }, {
   maxRetries: 5,
 });
 ```
@@ -118,7 +116,7 @@ const client = new Stainless({
 });
 
 // Override per-request:
-await client.builds.create({ project: 'project', revision: 'string' }, {
+await client.builds.create({ project: 'stainless', revision: 'main' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -133,22 +131,22 @@ List methods in the Stainless API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
-async function fetchAllBuildObjects(params) {
-  const allBuildObjects = [];
+async function fetchAllBuilds(params) {
+  const allBuilds = [];
   // Automatically fetches more pages as needed.
-  for await (const buildObject of client.builds.list({ project: 'project' })) {
-    allBuildObjects.push(buildObject);
+  for await (const build of client.builds.list({ project: 'stainless' })) {
+    allBuilds.push(build);
   }
-  return allBuildObjects;
+  return allBuilds;
 }
 ```
 
 Alternatively, you can request a single page at a time:
 
 ```ts
-let page = await client.builds.list({ project: 'project' });
-for (const buildObject of page.data) {
-  console.log(buildObject);
+let page = await client.builds.list({ project: 'stainless' });
+for (const build of page.data) {
+  console.log(build);
 }
 
 // Convenience methods are provided for manually paginating:
@@ -172,15 +170,15 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new Stainless();
 
-const response = await client.builds.create({ project: 'project', revision: 'string' }).asResponse();
+const response = await client.builds.create({ project: 'stainless', revision: 'main' }).asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: buildObject, response: raw } = await client.builds
-  .create({ project: 'project', revision: 'string' })
+const { data: build, response: raw } = await client.builds
+  .create({ project: 'stainless', revision: 'main' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(buildObject.id);
+console.log(build.id);
 ```
 
 ### Logging

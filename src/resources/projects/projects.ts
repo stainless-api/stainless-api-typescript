@@ -34,14 +34,14 @@ export class Projects extends APIResource {
   configs: ConfigsAPI.Configs = new ConfigsAPI.Configs(this._client);
 
   /**
-   * Create a new project
+   * Create a new project.
    */
   create(body: ProjectCreateParams, options?: RequestOptions): APIPromise<Project> {
     return this._client.post('/v0/projects', { body, ...options });
   }
 
   /**
-   * Retrieve a project by name
+   * Retrieve a project by name.
    */
   retrieve(
     params: ProjectRetrieveParams | null | undefined = {},
@@ -52,7 +52,7 @@ export class Projects extends APIResource {
   }
 
   /**
-   * Update a project's properties
+   * Update a project's properties.
    */
   update(params: ProjectUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Project> {
     const { project = this._client.project, ...body } = params ?? {};
@@ -60,7 +60,7 @@ export class Projects extends APIResource {
   }
 
   /**
-   * List projects in an organization, from oldest to newest
+   * List projects in an organization, from oldest to newest.
    */
   list(
     query: ProjectListParams | null | undefined = {},
@@ -72,6 +72,9 @@ export class Projects extends APIResource {
 
 export type ProjectsPage = Page<Project>;
 
+/**
+ * A project is a collection of SDKs generated from the same set of config files.
+ */
 export interface Project {
   config_repo: string;
 
@@ -131,7 +134,7 @@ export interface ProjectUpdateParams {
 
 export interface ProjectListParams extends PageParams {
   /**
-   * Maximum number of projects to return, defaults to 10 (maximum: 100)
+   * Maximum number of projects to return, defaults to 10 (maximum: 100).
    */
   limit?: number;
 

@@ -70,8 +70,8 @@ describe('resource builds', () => {
   // Prism tests are disabled
   test.skip('compare: only required params', async () => {
     const responsePromise = client.builds.compare({
-      base: { revision: 'string' },
-      head: { revision: 'string' },
+      base: { branch: 'branch', revision: 'string' },
+      head: { branch: 'branch', revision: 'string' },
       project: 'project',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -86,8 +86,8 @@ describe('resource builds', () => {
   // Prism tests are disabled
   test.skip('compare: required and optional params', async () => {
     const response = await client.builds.compare({
-      base: { revision: 'string', branch: 'branch', commit_message: 'commit_message' },
-      head: { revision: 'string', branch: 'branch', commit_message: 'commit_message' },
+      base: { branch: 'branch', revision: 'string', commit_message: 'commit_message' },
+      head: { branch: 'branch', revision: 'string', commit_message: 'commit_message' },
       project: 'project',
       targets: ['node'],
     });

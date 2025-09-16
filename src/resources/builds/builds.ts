@@ -23,36 +23,47 @@ export class Builds extends APIResource {
   targetOutputs: TargetOutputsAPI.TargetOutputs = new TargetOutputsAPI.TargetOutputs(this._client);
 
   /**
-   * Create a new build
+   * Create a build, on top of a project branch, against a given input revision.
+   *
+   * The project branch will be modified so that its latest set of config files
+   * points to the one specified by the input revision.
    */
-  create(params: BuildCreateParams, options?: RequestOptions): APIPromise<BuildObject> {
+  create(params: BuildCreateParams, options?: RequestOptions): APIPromise<Build> {
     const { project = this._client.project, ...body } = params;
     return this._client.post('/v0/builds', { body: { project, ...body }, ...options });
   }
 
   /**
-   * Retrieve a build by ID
+   * Retrieve a build by its ID.
    */
-  retrieve(buildID: string, options?: RequestOptions): APIPromise<BuildObject> {
+  retrieve(buildID: string, options?: RequestOptions): APIPromise<Build> {
     return this._client.get(path`/v0/builds/${buildID}`, options);
   }
 
   /**
-   * List builds for a project
+   * List user-triggered builds for a given project.
+   *
+   * An optional revision can be specified to filter by config commit SHA, or hashes
+   * of file contents.
    */
   list(
     params: BuildListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<BuildObjectsPage, BuildObject> {
+  ): PagePromise<BuildsPage, Build> {
     const { project = this._client.project, ...query } = params ?? {};
-    return this._client.getAPIList('/v0/builds', Page<BuildObject>, {
-      query: { project, ...query },
-      ...options,
-    });
+    return this._client.getAPIList('/v0/builds', Page<Build>, { query: { project, ...query }, ...options });
   }
 
   /**
-   * Creates two builds whose outputs can be compared directly
+   * Create two builds whose outputs can be directly compared with each other.
+   *
+   * Created builds _modify_ their project branches so that their latest sets of
+   * config files point to the ones specified by the input revision.
+   *
+   * This endpoint is useful because a build has more inputs than the set of config
+   * files it uses, so comparing two builds directly may return spurious differences.
+   * Builds made via this endpoint are guaranteed to have differences arising from
+   * the set of config files, and any custom code.
    */
   compare(params: BuildCompareParams, options?: RequestOptions): APIPromise<BuildCompareResponse> {
     const { project = this._client.project, ...body } = params;
@@ -60,16 +71,19 @@ export class Builds extends APIResource {
   }
 }
 
-export type BuildObjectsPage = Page<BuildObject>;
+export type BuildsPage = Page<Build>;
 
-export interface BuildObject {
+export interface Build {
+  /**
+   * Build ID
+   */
   id: string;
 
   config_commit: string;
 
   created_at: string;
 
-  documented_spec: BuildObject.UnionMember0 | BuildObject.UnionMember1 | null;
+  documented_spec: Build.UnionMember0 | Build.UnionMember1 | null;
 
   object: 'build';
 
@@ -77,12 +91,12 @@ export interface BuildObject {
 
   project: string;
 
-  targets: BuildObject.Targets;
+  targets: Build.Targets;
 
   updated_at: string;
 }
 
-export namespace BuildObject {
+export namespace Build {
   export interface UnionMember0 {
     content: string;
 
@@ -234,9 +248,9 @@ export namespace CheckStep {
 }
 
 export interface BuildCompareResponse {
-  base: BuildObject;
+  base: Build;
 
-  head: BuildObject;
+  head: Build;
 }
 
 export interface BuildCreateParams {
@@ -247,7 +261,7 @@ export interface BuildCreateParams {
 
   /**
    * Specifies what to build: a branch name, commit SHA, merge command
-   * ("base..head"), or file contents
+   * ("base..head"), or file contents.
    */
   revision: string | { [key: string]: Shared.FileInput };
 
@@ -257,7 +271,7 @@ export interface BuildCreateParams {
   allow_empty?: boolean;
 
   /**
-   * The Stainless branch to use for the build. If not specified, the branch is
+   * The project branch to use for the build. If not specified, the branch is
    * inferred from the `revision`, and will 400 when that is not possible.
    */
   branch?: string;
@@ -286,7 +300,7 @@ export interface BuildListParams extends PageParams {
   branch?: string;
 
   /**
-   * Maximum number of builds to return, defaults to 10 (maximum: 100)
+   * Maximum number of builds to return, defaults to 10 (maximum: 100).
    */
   limit?: number;
 
@@ -334,15 +348,15 @@ export namespace BuildCompareParams {
    */
   export interface Base {
     /**
-     * Specifies what to build: a branch name, a commit SHA, or file contents
+     * Branch to use. When using a branch name as revision, this must match or be
+     * omitted.
      */
-    revision: string | { [key: string]: Shared.FileInput };
+    branch: string;
 
     /**
-     * Optional branch to use. If not specified, defaults to "main". When using a
-     * branch name as revision, this must match or be omitted.
+     * Specifies what to build: a branch name, a commit SHA, or file contents.
      */
-    branch?: string;
+    revision: string | { [key: string]: Shared.FileInput };
 
     /**
      * Optional commit message to use when creating a new commit.
@@ -355,15 +369,15 @@ export namespace BuildCompareParams {
    */
   export interface Head {
     /**
-     * Specifies what to build: a branch name, a commit SHA, or file contents
+     * Branch to use. When using a branch name as revision, this must match or be
+     * omitted.
      */
-    revision: string | { [key: string]: Shared.FileInput };
+    branch: string;
 
     /**
-     * Optional branch to use. If not specified, defaults to "main". When using a
-     * branch name as revision, this must match or be omitted.
+     * Specifies what to build: a branch name, a commit SHA, or file contents.
      */
-    branch?: string;
+    revision: string | { [key: string]: Shared.FileInput };
 
     /**
      * Optional commit message to use when creating a new commit.
@@ -377,11 +391,11 @@ Builds.TargetOutputs = TargetOutputs;
 
 export declare namespace Builds {
   export {
-    type BuildObject as BuildObject,
+    type Build as Build,
     type BuildTarget as BuildTarget,
     type CheckStep as CheckStep,
     type BuildCompareResponse as BuildCompareResponse,
-    type BuildObjectsPage as BuildObjectsPage,
+    type BuildsPage as BuildsPage,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
     type BuildCompareParams as BuildCompareParams,

@@ -50,16 +50,16 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/builds/builds.ts">BuildObject</a></code>
+- <code><a href="./src/resources/builds/builds.ts">Build</a></code>
 - <code><a href="./src/resources/builds/builds.ts">BuildTarget</a></code>
 - <code><a href="./src/resources/builds/builds.ts">CheckStep</a></code>
 - <code><a href="./src/resources/builds/builds.ts">BuildCompareResponse</a></code>
 
 Methods:
 
-- <code title="post /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">create</a>({ ...params }) -> BuildObject</code>
-- <code title="get /v0/builds/{buildId}">client.builds.<a href="./src/resources/builds/builds.ts">retrieve</a>(buildID) -> BuildObject</code>
-- <code title="get /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">list</a>({ ...params }) -> BuildObjectsPage</code>
+- <code title="post /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">create</a>({ ...params }) -> Build</code>
+- <code title="get /v0/builds/{buildId}">client.builds.<a href="./src/resources/builds/builds.ts">retrieve</a>(buildID) -> Build</code>
+- <code title="get /v0/builds">client.builds.<a href="./src/resources/builds/builds.ts">list</a>({ ...params }) -> BuildsPage</code>
 - <code title="post /v0/builds/compare">client.builds.<a href="./src/resources/builds/builds.ts">compare</a>({ ...params }) -> BuildCompareResponse</code>
 
 ## Diagnostics

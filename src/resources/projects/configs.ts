@@ -7,7 +7,7 @@ import { path } from '../../internal/utils/path';
 
 export class Configs extends APIResource {
   /**
-   * Retrieve configuration files for a project
+   * Retrieve the configuration files for a given project.
    */
   retrieve(
     params: ConfigRetrieveParams | null | undefined = {},
@@ -18,7 +18,7 @@ export class Configs extends APIResource {
   }
 
   /**
-   * Generate configuration suggestions based on an OpenAPI spec
+   * Generate suggestions for changes to config files based on an OpenAPI spec.
    */
   guess(params: ConfigGuessParams, options?: RequestOptions): APIPromise<ConfigGuessResponse> {
     const { project = this._client.project, ...body } = params;
@@ -61,7 +61,7 @@ export interface ConfigRetrieveParams {
   project?: string;
 
   /**
-   * Query param: Branch name, defaults to "main"
+   * Query param: Branch name, defaults to "main".
    */
   branch?: string;
 
