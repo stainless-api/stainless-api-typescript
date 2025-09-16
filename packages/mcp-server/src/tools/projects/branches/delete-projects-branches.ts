@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'delete_projects_branches',
-  description: 'Delete a project branch',
+  description: 'Delete a project branch by name.',
   inputSchema: {
     type: 'object',
     properties: {

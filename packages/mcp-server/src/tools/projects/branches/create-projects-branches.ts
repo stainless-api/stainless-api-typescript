@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_projects_branches',
-  description: 'Create a new branch for a project',
+  description:
+    'Create a new branch for a project.\n\nThe branch inherits the config files from the revision pointed to by the\n`branch_from` parameter. In addition, if the revision is a branch name,\nthe branch will also inherit custom code changes from that branch.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -24,11 +25,11 @@ export const tool: Tool = {
       },
       branch: {
         type: 'string',
-        description: 'Name of the new project branch.',
+        description: 'Branch name',
       },
       branch_from: {
         type: 'string',
-        description: 'Branch or commit SHA to branch from.',
+        description: 'Branch or commit SHA to branch from',
       },
       force: {
         type: 'boolean',

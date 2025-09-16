@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'retrieve_projects_branches',
-  description: 'Retrieve a project branch',
+  description: 'Retrieve a project branch by name.',
   inputSchema: {
     type: 'object',
     properties: {

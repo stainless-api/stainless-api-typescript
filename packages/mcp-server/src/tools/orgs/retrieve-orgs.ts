@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_orgs',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieve an organization by name\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/org',\n  $defs: {\n    org: {\n      type: 'object',\n      properties: {\n        display_name: {\n          type: 'string'\n        },\n        object: {\n          type: 'string',\n          enum: [            'org'\n          ]\n        },\n        slug: {\n          type: 'string'\n        }\n      },\n      required: [        'display_name',\n        'object',\n        'slug'\n      ]\n    }\n  }\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRetrieve an organization by name.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/org',\n  $defs: {\n    org: {\n      type: 'object',\n      properties: {\n        display_name: {\n          type: 'string'\n        },\n        object: {\n          type: 'string',\n          enum: [            'org'\n          ]\n        },\n        slug: {\n          type: 'string'\n        }\n      },\n      required: [        'display_name',\n        'object',\n        'slug'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {

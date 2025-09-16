@@ -7,7 +7,16 @@ import { RequestOptions } from '../../internal/request-options';
 
 export class TargetOutputs extends APIResource {
   /**
-   * Download the output of a build target
+   * Retrieve a method to download an output for a given build target.
+   *
+   * If the requested type of output is `source`, and the requested output method is
+   * `url`, a download link to a tarball of the source files is returned. If the
+   * requested output method is `git`, a Git remote, ref, and access token (if
+   * necessary) is returned.
+   *
+   * Otherwise, the possible types of outputs are specific to the requested target,
+   * and the output method _must_ be `url`. See the documentation for `type` for more
+   * information.
    */
   retrieve(
     query: TargetOutputRetrieveParams,
@@ -84,7 +93,7 @@ export interface TargetOutputRetrieveParams {
   type: 'source' | 'dist' | 'wheel';
 
   /**
-   * Output format: url (download URL) or git (temporary access token)
+   * Output format: url (download URL) or git (temporary access token).
    */
   output?: 'url' | 'git';
 }

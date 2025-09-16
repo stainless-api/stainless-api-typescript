@@ -7,7 +7,10 @@ import { path } from '../../internal/utils/path';
 
 export class Diagnostics extends APIResource {
   /**
-   * Get diagnostics for a build
+   * Get the list of diagnostics for a given build.
+   *
+   * If no language targets are specified, diagnostics for all languages are
+   * returned.
    */
   list(
     buildID: string,
@@ -37,16 +40,34 @@ export type Target =
   | 'csharp';
 
 export interface DiagnosticListResponse {
+  /**
+   * The kind of diagnostic.
+   */
   code: string;
 
+  /**
+   * Whether the diagnostic is ignored in the Stainless config.
+   */
   ignored: boolean;
 
+  /**
+   * The severity of the diagnostic.
+   */
   level: 'fatal' | 'error' | 'warning' | 'note';
 
+  /**
+   * A description of the diagnostic.
+   */
   message: string;
 
+  /**
+   * A JSON pointer to a relevant field in the Stainless config.
+   */
   config_ref?: string;
 
+  /**
+   * A JSON pointer to a relevant field in the OpenAPI spec.
+   */
   oas_ref?: string;
 }
 

@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_builds',
-  description: 'Create a new build',
+  description:
+    'Create a build, on top of a project branch, against a given input revision.\n\nThe project branch will be modified so that its latest set of config files\npoints to the one specified by the input revision.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -36,7 +37,7 @@ export const tool: Tool = {
           },
         ],
         description:
-          'Specifies what to build: a branch name, commit SHA, merge command ("base..head"), or file contents',
+          'Specifies what to build: a branch name, commit SHA, merge command\n("base..head"), or file contents.',
       },
       allow_empty: {
         type: 'boolean',
@@ -45,7 +46,7 @@ export const tool: Tool = {
       branch: {
         type: 'string',
         description:
-          'The Stainless branch to use for the build. If not specified, the branch is inferred from the `revision`, and will 400 when that is not possible.',
+          'The project branch to use for the build. If not specified, the\nbranch is inferred from the `revision`, and will 400 when that\nis not possible.',
       },
       commit_message: {
         type: 'string',
@@ -54,7 +55,7 @@ export const tool: Tool = {
       targets: {
         type: 'array',
         description:
-          'Optional list of SDK targets to build. If not specified, all configured targets will be built.',
+          'Optional list of SDK targets to build. If not specified, all configured\ntargets will be built.',
         items: {
           $ref: '#/$defs/target',
         },

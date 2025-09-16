@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'rebase_projects_branches',
-  description: 'Rebase a project branch',
+  description:
+    'Rebase a project branch.\n\nThe branch is rebased onto the `base` branch or commit SHA, inheriting\nany config and custom code changes.',
   inputSchema: {
     type: 'object',
     properties: {

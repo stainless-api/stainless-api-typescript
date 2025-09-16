@@ -210,39 +210,67 @@ The following tools are available in this MCP server.
 
 ### Resource `projects`:
 
-- `create_projects` (`write`): Create a new project
-- `retrieve_projects` (`read`): Retrieve a project by name
-- `update_projects` (`write`): Update a project's properties
-- `list_projects` (`read`): List projects in an organization, from oldest to newest
+- `create_projects` (`write`): Create a new project.
+- `retrieve_projects` (`read`): Retrieve a project by name.
+- `update_projects` (`write`): Update a project's properties.
+- `list_projects` (`read`): List projects in an organization, from oldest to newest.
 
 ### Resource `projects.branches`:
 
-- `create_projects_branches` (`write`): Create a new branch for a project
-- `retrieve_projects_branches` (`read`): Retrieve a project branch
-- `list_projects_branches` (`read`): List project branches
-- `delete_projects_branches` (`write`): Delete a project branch
-- `rebase_projects_branches` (`write`): Rebase a project branch
+- `create_projects_branches` (`write`): Create a new branch for a project.
+
+  The branch inherits the config files from the revision pointed to by the
+  `branch_from` parameter. In addition, if the revision is a branch name,
+  the branch will also inherit custom code changes from that branch.
+
+- `retrieve_projects_branches` (`read`): Retrieve a project branch by name.
+- `list_projects_branches` (`read`): Retrieve a project branch by name.
+- `delete_projects_branches` (`write`): Delete a project branch by name.
+- `rebase_projects_branches` (`write`): Rebase a project branch.
+
+  The branch is rebased onto the `base` branch or commit SHA, inheriting
+  any config and custom code changes.
 
 ### Resource `projects.configs`:
 
-- `retrieve_projects_configs` (`read`): Retrieve configuration files for a project
-- `guess_projects_configs` (`write`): Generate configuration suggestions based on an OpenAPI spec
+- `retrieve_projects_configs` (`read`):
+  Retrieve the configuration files for a given project.
+- `guess_projects_configs` (`write`):
+  Generate suggestions for changes to config files based on an OpenAPI spec.
 
 ### Resource `builds`:
 
-- `create_builds` (`write`): Create a new build
-- `retrieve_builds` (`read`): Retrieve a build by ID
-- `list_builds` (`read`): List builds for a project
+- `create_builds` (`write`): Create a build, on top of a project branch, against a given input revision.
+
+  The project branch will be modified so that its latest set of config files
+  points to the one specified by the input revision.
+
+- `retrieve_builds` (`read`): Retrieve a build by its ID.
+- `list_builds` (`read`): List user-triggered builds for a given project.
+
+  An optional revision can be specified to filter by config commit SHA, or
+  hashes of file contents.
 
 ### Resource `builds.diagnostics`:
 
-- `list_builds_diagnostics` (`read`): Get diagnostics for a build
+- `list_builds_diagnostics` (`read`): Get the list of diagnostics for a given build.
+
+  If no language targets are specified, diagnostics for all languages are returned.
 
 ### Resource `builds.target_outputs`:
 
-- `retrieve_builds_target_outputs` (`read`): Download the output of a build target
+- `retrieve_builds_target_outputs` (`read`): Retrieve a method to download an output for a given build target.
+
+  If the requested type of output is `source`, and the requested output
+  method is `url`, a download link to a tarball of the source files is
+  returned. If the requested output method is `git`, a Git remote, ref,
+  and access token (if necessary) is returned.
+
+  Otherwise, the possible types of outputs are specific to the requested
+  target, and the output method _must_ be `url`. See the documentation for
+  `type` for more information.
 
 ### Resource `orgs`:
 
-- `retrieve_orgs` (`read`): Retrieve an organization by name
-- `list_orgs` (`read`): List organizations the user has access to
+- `retrieve_orgs` (`read`): Retrieve an organization by name.
+- `list_orgs` (`read`): List organizations accessible to the current authentication method.

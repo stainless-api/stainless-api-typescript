@@ -3,14 +3,14 @@
 export * from './shared';
 export {
   Builds,
-  type BuildObject,
+  type Build,
   type BuildTarget,
   type CheckStep,
   type BuildCompareResponse,
   type BuildCreateParams,
   type BuildListParams,
   type BuildCompareParams,
-  type BuildObjectsPage,
+  type BuildsPage,
 } from './builds/builds';
 export { Orgs, type Org, type OrgListResponse } from './orgs';
 export {
