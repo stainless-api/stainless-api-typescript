@@ -21,14 +21,14 @@ import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { Org, OrgListResponse, Orgs } from './resources/orgs';
 import {
+  Build,
   BuildCompareParams,
   BuildCompareResponse,
   BuildCreateParams,
   BuildListParams,
-  BuildObject,
-  BuildObjectsPage,
   BuildTarget,
   Builds,
+  BuildsPage,
   CheckStep,
 } from './resources/builds/builds';
 import {
@@ -807,11 +807,11 @@ export declare namespace Stainless {
 
   export {
     Builds as Builds,
-    type BuildObject as BuildObject,
+    type Build as Build,
     type BuildTarget as BuildTarget,
     type CheckStep as CheckStep,
     type BuildCompareResponse as BuildCompareResponse,
-    type BuildObjectsPage as BuildObjectsPage,
+    type BuildsPage as BuildsPage,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
     type BuildCompareParams as BuildCompareParams,

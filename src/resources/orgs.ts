@@ -7,14 +7,14 @@ import { path } from '../internal/utils/path';
 
 export class Orgs extends APIResource {
   /**
-   * Retrieve an organization by name
+   * Retrieve an organization by name.
    */
   retrieve(org: string, options?: RequestOptions): APIPromise<Org> {
     return this._client.get(path`/v0/orgs/${org}`, options);
   }
 
   /**
-   * List organizations the user has access to
+   * List organizations accessible to the current authentication method.
    */
   list(options?: RequestOptions): APIPromise<OrgListResponse> {
     return this._client.get('/v0/orgs', options);

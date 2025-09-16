@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as Shared from '../shared';
 import * as BuildsAPI from '../builds/builds';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
@@ -10,7 +9,11 @@ import { path } from '../../internal/utils/path';
 
 export class Branches extends APIResource {
   /**
-   * Create a new branch for a project
+   * Create a new branch for a project.
+   *
+   * The branch inherits the config files from the revision pointed to by the
+   * `branch_from` parameter. In addition, if the revision is a branch name, the
+   * branch will also inherit custom code changes from that branch.
    */
   create(params: BranchCreateParams, options?: RequestOptions): APIPromise<ProjectBranch> {
     const { project = this._client.project, ...body } = params;
@@ -18,7 +21,7 @@ export class Branches extends APIResource {
   }
 
   /**
-   * Retrieve a project branch
+   * Retrieve a project branch by name.
    */
   retrieve(
     branch: string,
@@ -30,7 +33,7 @@ export class Branches extends APIResource {
   }
 
   /**
-   * List project branches
+   * Retrieve a project branch by name.
    */
   list(
     params: BranchListParams | null | undefined = {},
@@ -44,7 +47,7 @@ export class Branches extends APIResource {
   }
 
   /**
-   * Delete a project branch
+   * Delete a project branch by name.
    */
   delete(
     branch: string,
@@ -56,7 +59,10 @@ export class Branches extends APIResource {
   }
 
   /**
-   * Rebase a project branch
+   * Rebase a project branch.
+   *
+   * The branch is rebased onto the `base` branch or commit SHA, inheriting any
+   * config and custom code changes.
    */
   rebase(
     branch: string,
@@ -73,24 +79,72 @@ export class Branches extends APIResource {
 
 export type BranchListResponsesPage = Page<BranchListResponse>;
 
+/**
+ * A project branch names a line of development for a project. Like a Git branch,
+ * it points to a Git commit with a set of config files. In addition, a project
+ * branch also points to a set of custom code changes, corresponding to Git
+ * branches in the staging repos.
+ */
 export interface ProjectBranch {
+  /**
+   * Branch name
+   */
   branch: string;
 
-  config_commit: Shared.Commit;
+  /**
+   * A Git commit that points to the latest set of config files on a given branch.
+   */
+  config_commit: ProjectBranch.ConfigCommit;
 
-  latest_build: BuildsAPI.BuildObject | null;
+  latest_build: BuildsAPI.Build | null;
 
   object: 'project_branch';
 
   org: string;
 
+  /**
+   * Project name
+   */
   project: string;
 }
 
+export namespace ProjectBranch {
+  /**
+   * A Git commit that points to the latest set of config files on a given branch.
+   */
+  export interface ConfigCommit {
+    repo: ConfigCommit.Repo;
+
+    sha: string;
+  }
+
+  export namespace ConfigCommit {
+    export interface Repo {
+      branch: string;
+
+      name: string;
+
+      owner: string;
+    }
+  }
+}
+
+/**
+ * A project branch names a line of development for a project. Like a Git branch,
+ * it points to a Git commit with a set of config files. In addition, a project
+ * branch also points to a set of custom code changes, corresponding to Git
+ * branches in the staging repos.
+ */
 export interface BranchListResponse {
+  /**
+   * Branch name
+   */
   branch: string;
 
-  config_commit: Shared.Commit;
+  /**
+   * A Git commit that points to the latest set of config files on a given branch.
+   */
+  config_commit: BranchListResponse.ConfigCommit;
 
   latest_build_id: string;
 
@@ -98,7 +152,31 @@ export interface BranchListResponse {
 
   org: string;
 
+  /**
+   * Project name
+   */
   project: string;
+}
+
+export namespace BranchListResponse {
+  /**
+   * A Git commit that points to the latest set of config files on a given branch.
+   */
+  export interface ConfigCommit {
+    repo: ConfigCommit.Repo;
+
+    sha: string;
+  }
+
+  export namespace ConfigCommit {
+    export interface Repo {
+      branch: string;
+
+      name: string;
+
+      owner: string;
+    }
+  }
 }
 
 export type BranchDeleteResponse = unknown;
@@ -110,12 +188,12 @@ export interface BranchCreateParams {
   project?: string;
 
   /**
-   * Body param: Name of the new project branch.
+   * Body param: Branch name
    */
   branch: string;
 
   /**
-   * Body param: Branch or commit SHA to branch from.
+   * Body param: Branch or commit SHA to branch from
    */
   branch_from: string;
 
@@ -137,7 +215,7 @@ export interface BranchListParams extends PageParams {
   project?: string;
 
   /**
-   * Query param: Maximum number of items to return, defaults to 10 (maximum: 100)
+   * Query param: Maximum number of items to return, defaults to 10 (maximum: 100).
    */
   limit?: number;
 }
