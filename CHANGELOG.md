@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2025-09-17)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Bug Fixes
+
+* **ci:** set permissions for DXT publish action ([b0fc3ff](https://github.com/stainless-api/stainless-api-typescript/commit/b0fc3ff2b07277ef8e05bfbe89d2a9d4a8029dc5))
+* **ci:** use pnpm in ci ([2d6c02e](https://github.com/stainless-api/stainless-api-typescript/commit/2d6c02e352044ee31d4ab8458f148b94d0a0d6e7))
+
+
+### Chores
+
+* **internal:** codegen related update ([e80a81a](https://github.com/stainless-api/stainless-api-typescript/commit/e80a81a1204f7cfd1e159a5ad832a8c6efadd92f))
+* **internal:** codegen related update ([88e4215](https://github.com/stainless-api/stainless-api-typescript/commit/88e421546c20b154c279e5abde6dac0257a0e997))
+* **internal:** codegen related update ([e2e8f11](https://github.com/stainless-api/stainless-api-typescript/commit/e2e8f113bb4d62288969455484cc47ff0851054d))
+* update CONTRIBUTING.md ([7f37fb5](https://github.com/stainless-api/stainless-api-typescript/commit/7f37fb5ffe2d7a0731e34bb977625a55739c08a3))
+
 ## 0.1.0-alpha.14 (2025-09-16)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
