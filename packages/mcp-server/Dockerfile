@@ -11,8 +11,8 @@ WORKDIR /build
 COPY . .
 
 # Install all dependencies and build everything
-RUN yarn install --frozen-lockfile && \
-    yarn build
+RUN pnpm install --frozen-lockfile && \
+    pnpm build
 
 # Production stage
 FROM node:20-alpine
