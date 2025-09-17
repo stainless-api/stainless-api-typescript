@@ -16,6 +16,8 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -25,9 +27,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Install dependencies
         run: |
-          yarn install
+          pnpm install
 
       - name: Publish to NPM
         run: |
@@ -36,7 +41,7 @@ jobs:
           else
             PATHS_RELEASED='[\".\", \"packages/mcp-server\"]'
           fi
-          yarn tsn scripts/publish-packages.ts "{ \"paths_released\": \"$PATHS_RELEASED\" }"
+          pnpm tsn scripts/publish-packages.ts "{ \"paths_released\": \"$PATHS_RELEASED\" }"
         env:
           NPM_TOKEN: ${{ secrets.STAINLESS_NPM_TOKEN || secrets.NPM_TOKEN }}
 
@@ -44,3 +49,5 @@ jobs:
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
             packages/mcp-server/stainless_api_sdk_api.dxt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
