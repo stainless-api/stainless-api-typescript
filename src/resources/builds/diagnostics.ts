@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -16,30 +17,17 @@ export class Diagnostics extends APIResource {
     buildID: string,
     query: DiagnosticListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<DiagnosticListResponsesPage, DiagnosticListResponse> {
-    return this._client.getAPIList(path`/v0/builds/${buildID}/diagnostics`, Page<DiagnosticListResponse>, {
+  ): PagePromise<BuildDiagnosticsPage, BuildDiagnostic> {
+    return this._client.getAPIList(path`/v0/builds/${buildID}/diagnostics`, Page<BuildDiagnostic>, {
       query,
       ...options,
     });
   }
 }
 
-export type DiagnosticListResponsesPage = Page<DiagnosticListResponse>;
+export type BuildDiagnosticsPage = Page<BuildDiagnostic>;
 
-export type Target =
-  | 'node'
-  | 'typescript'
-  | 'python'
-  | 'go'
-  | 'java'
-  | 'kotlin'
-  | 'ruby'
-  | 'terraform'
-  | 'cli'
-  | 'php'
-  | 'csharp';
-
-export interface DiagnosticListResponse {
+export interface BuildDiagnostic {
   /**
    * The kind of diagnostic.
    */
@@ -60,6 +48,8 @@ export interface DiagnosticListResponse {
    */
   message: string;
 
+  more: BuildDiagnosticMore | null;
+
   /**
    * A JSON pointer to a relevant field in the Stainless config.
    */
@@ -69,6 +59,22 @@ export interface DiagnosticListResponse {
    * A JSON pointer to a relevant field in the OpenAPI spec.
    */
   oas_ref?: string;
+}
+
+export type BuildDiagnosticMore = BuildDiagnosticMore.Markdown | BuildDiagnosticMore.Raw;
+
+export namespace BuildDiagnosticMore {
+  export interface Markdown {
+    markdown: string;
+
+    type: 'markdown';
+  }
+
+  export interface Raw {
+    raw: string;
+
+    type: 'raw';
+  }
 }
 
 export interface DiagnosticListParams extends PageParams {
@@ -85,14 +91,14 @@ export interface DiagnosticListParams extends PageParams {
   /**
    * Optional list of language targets to filter diagnostics by
    */
-  targets?: Array<Target>;
+  targets?: Array<Shared.Target>;
 }
 
 export declare namespace Diagnostics {
   export {
-    type Target as Target,
-    type DiagnosticListResponse as DiagnosticListResponse,
-    type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
+    type BuildDiagnostic as BuildDiagnostic,
+    type BuildDiagnosticMore as BuildDiagnosticMore,
+    type BuildDiagnosticsPage as BuildDiagnosticsPage,
     type DiagnosticListParams as DiagnosticListParams,
   };
 }

@@ -33,3 +33,16 @@ export namespace FileInput {
     url: string;
   }
 }
+
+export type Target =
+  | 'node'
+  | 'typescript'
+  | 'python'
+  | 'go'
+  | 'java'
+  | 'kotlin'
+  | 'ruby'
+  | 'terraform'
+  | 'cli'
+  | 'php'
+  | 'csharp';

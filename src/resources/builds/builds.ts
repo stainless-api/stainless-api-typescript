@@ -5,11 +5,11 @@ import * as BuildsAPI from './builds';
 import * as Shared from '../shared';
 import * as DiagnosticsAPI from './diagnostics';
 import {
+  BuildDiagnostic,
+  BuildDiagnosticMore,
+  BuildDiagnosticsPage,
   DiagnosticListParams,
-  DiagnosticListResponse,
-  DiagnosticListResponsesPage,
   Diagnostics,
-  Target,
 } from './diagnostics';
 import * as TargetOutputsAPI from './target-outputs';
 import { TargetOutputRetrieveParams, TargetOutputRetrieveResponse, TargetOutputs } from './target-outputs';
@@ -285,7 +285,7 @@ export interface BuildCreateParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<DiagnosticsAPI.Target>;
+  targets?: Array<Shared.Target>;
 }
 
 export interface BuildListParams extends PageParams {
@@ -339,7 +339,7 @@ export interface BuildCompareParams {
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
-  targets?: Array<DiagnosticsAPI.Target>;
+  targets?: Array<Shared.Target>;
 }
 
 export namespace BuildCompareParams {
@@ -403,9 +403,9 @@ export declare namespace Builds {
 
   export {
     Diagnostics as Diagnostics,
-    type Target as Target,
-    type DiagnosticListResponse as DiagnosticListResponse,
-    type DiagnosticListResponsesPage as DiagnosticListResponsesPage,
+    type BuildDiagnostic as BuildDiagnostic,
+    type BuildDiagnosticMore as BuildDiagnosticMore,
+    type BuildDiagnosticsPage as BuildDiagnosticsPage,
     type DiagnosticListParams as DiagnosticListParams,
   };
 

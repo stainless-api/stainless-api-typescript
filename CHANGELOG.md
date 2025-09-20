@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2025-09-20)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Features
+
+* **mcp:** add docs search tool ([2662792](https://github.com/stainless-api/stainless-api-typescript/commit/2662792fcc3d3b2ea9ca668b55eed420925a1d96))
+
+
+### Chores
+
+* add more to diagnostics ([22a5bcf](https://github.com/stainless-api/stainless-api-typescript/commit/22a5bcf5df88ce2bd0edf09e6ed67f173797738e))
+* bump version of pnpm/action-setup in CI ([a8ba0cb](https://github.com/stainless-api/stainless-api-typescript/commit/a8ba0cb4dec32974215c7463e60205c46083e084))
+* **codegen:** internal codegen update ([94a5407](https://github.com/stainless-api/stainless-api-typescript/commit/94a5407acaa19fb46c61a5b9c2e36f8fc90109a3))
+* do not install brew dependencies in ./scripts/bootstrap by default ([e861374](https://github.com/stainless-api/stainless-api-typescript/commit/e86137464217309806aa55dbe86dc009bde27353))
+* **internal:** codegen related update ([c3379c5](https://github.com/stainless-api/stainless-api-typescript/commit/c3379c500b308a9cab178a0be01dce315e0bd14a))
+* **internal:** gitignore .mcpb files ([d50480c](https://github.com/stainless-api/stainless-api-typescript/commit/d50480cc1c4a971e3c7c132e86dbf2cffa68f970))
+* **mcp:** rename dxt to mcpb ([0c83c55](https://github.com/stainless-api/stainless-api-typescript/commit/0c83c55f69db25b4a51ecc1b348ddc394c5b144b))
+
 ## 0.1.0-alpha.15 (2025-09-17)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)

@@ -13,10 +13,10 @@ export {
 } from './builds';
 export {
   Diagnostics,
-  type Target,
-  type DiagnosticListResponse,
+  type BuildDiagnostic,
+  type BuildDiagnosticMore,
   type DiagnosticListParams,
-  type DiagnosticListResponsesPage,
+  type BuildDiagnosticsPage,
 } from './diagnostics';
 export {
   TargetOutputs,

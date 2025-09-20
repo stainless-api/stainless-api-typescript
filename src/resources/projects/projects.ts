@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import * as DiagnosticsAPI from '../builds/diagnostics';
 import * as BranchesAPI from './branches';
 import {
   BranchCreateParams,
@@ -86,7 +85,7 @@ export interface Project {
 
   slug: string;
 
-  targets: Array<DiagnosticsAPI.Target>;
+  targets: Array<Shared.Target>;
 }
 
 export interface ProjectCreateParams {
@@ -113,7 +112,7 @@ export interface ProjectCreateParams {
   /**
    * Targets to generate for
    */
-  targets: Array<DiagnosticsAPI.Target>;
+  targets: Array<Shared.Target>;
 }
 
 export interface ProjectRetrieveParams {

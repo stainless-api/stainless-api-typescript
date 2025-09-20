@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as DiagnosticsAPI from './diagnostics';
+import * as Shared from '../shared';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -27,14 +27,14 @@ export class TargetOutputs extends APIResource {
 }
 
 export type TargetOutputRetrieveResponse =
-  | TargetOutputRetrieveResponse.UnionMember0
-  | TargetOutputRetrieveResponse.UnionMember1;
+  | TargetOutputRetrieveResponse.URL
+  | TargetOutputRetrieveResponse.Git;
 
 export namespace TargetOutputRetrieveResponse {
-  export interface UnionMember0 {
+  export interface URL {
     output: 'url';
 
-    target: DiagnosticsAPI.Target;
+    target: Shared.Target;
 
     type: 'source' | 'dist' | 'wheel';
 
@@ -44,7 +44,7 @@ export namespace TargetOutputRetrieveResponse {
     url: string;
   }
 
-  export interface UnionMember1 {
+  export interface Git {
     /**
      * Temporary GitHub access token
      */
@@ -57,7 +57,7 @@ export namespace TargetOutputRetrieveResponse {
      */
     ref: string;
 
-    target: DiagnosticsAPI.Target;
+    target: Shared.Target;
 
     type: 'source' | 'dist' | 'wheel';
 
