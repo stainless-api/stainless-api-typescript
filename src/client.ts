@@ -819,4 +819,5 @@ export declare namespace Stainless {
 
   export type Commit = API.Commit;
   export type FileInput = API.FileInput;
+  export type Target = API.Target;
 }

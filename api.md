@@ -4,6 +4,7 @@ Types:
 
 - <code><a href="./src/resources/shared.ts">Commit</a></code>
 - <code><a href="./src/resources/shared.ts">FileInput</a></code>
+- <code><a href="./src/resources/shared.ts">Target</a></code>
 
 # Projects
 
@@ -66,12 +67,12 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/builds/diagnostics.ts">Target</a></code>
-- <code><a href="./src/resources/builds/diagnostics.ts">DiagnosticListResponse</a></code>
+- <code><a href="./src/resources/builds/diagnostics.ts">BuildDiagnostic</a></code>
+- <code><a href="./src/resources/builds/diagnostics.ts">BuildDiagnosticMore</a></code>
 
 Methods:
 
-- <code title="get /v0/builds/{buildId}/diagnostics">client.builds.diagnostics.<a href="./src/resources/builds/diagnostics.ts">list</a>(buildID, { ...params }) -> DiagnosticListResponsesPage</code>
+- <code title="get /v0/builds/{buildId}/diagnostics">client.builds.diagnostics.<a href="./src/resources/builds/diagnostics.ts">list</a>(buildID, { ...params }) -> BuildDiagnosticsPage</code>
 
 ## TargetOutputs
 
