@@ -34,7 +34,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'stainless_api_sdk_api',
-      version: '0.1.0-alpha.15',
+      version: '0.1.0-alpha.16',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
