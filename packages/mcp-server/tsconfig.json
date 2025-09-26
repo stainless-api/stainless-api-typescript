@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "@stainless-api/sdk-mcp/*": ["src/*"],
-      "@stainless-api/sdk-mcp": ["src/index.ts"]
+      "@stainless-api/sdk-mcp/*": ["./src/*"],
+      "@stainless-api/sdk-mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 
