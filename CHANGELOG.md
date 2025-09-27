@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-09-27)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Chores
+
+* **internal:** codegen related update ([af44eb1](https://github.com/stainless-api/stainless-api-typescript/commit/af44eb1e88858a58576b5b7257f885c071d468db))
+* **internal:** fix incremental formatting in some cases ([e50b868](https://github.com/stainless-api/stainless-api-typescript/commit/e50b868b7a97f9a3777d51acc4b2d1477f030d16))
+* **internal:** ignore .eslintcache ([306253e](https://github.com/stainless-api/stainless-api-typescript/commit/306253e29befcef44c31d2c0220c892d36d53f4f))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([39ee746](https://github.com/stainless-api/stainless-api-typescript/commit/39ee74643b250b6c9613e16bed0e24b76f736d3c))
+
 ## 0.1.0-alpha.16 (2025-09-26)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
