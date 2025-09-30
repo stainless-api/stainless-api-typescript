@@ -26,8 +26,9 @@ RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
 # Set working directory
 WORKDIR /app
 
-# Copy the built mcp-server dist directory
-COPY --from=builder /build/packages/mcp-server/dist ./
+# Copy the built mcp-server preserving directory structure
+COPY --from=builder /build/packages/mcp-server/dist ./packages/mcp-server/dist
+COPY --from=builder /build/packages/mcp-server/node_modules ./packages/mcp-server/node_modules
 
 # Copy node_modules from root (pnpm hoists dependencies here)
 COPY --from=builder /build/node_modules ./node_modules
@@ -45,7 +46,7 @@ USER nodejs
 # No exposed ports needed for stdio communication
 
 # Set the entrypoint to the MCP server
-ENTRYPOINT ["node", "index.js"]
+ENTRYPOINT ["node", "packages/mcp-server/dist/index.js"]
 
 # Allow passing arguments to the MCP server
 CMD []
