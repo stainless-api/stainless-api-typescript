@@ -1,6 +1,9 @@
 # Build stage
 FROM node:20-alpine AS builder
 
+# Enable corepack to use pnpm (comes with Node.js 16.9+)
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 # Install bash for build script
 RUN apk add --no-cache bash openssl
 
