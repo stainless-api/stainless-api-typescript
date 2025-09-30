@@ -29,8 +29,8 @@ WORKDIR /app
 # Copy the built mcp-server dist directory
 COPY --from=builder /build/packages/mcp-server/dist ./
 
-# Copy node_modules from mcp-server (includes all production deps)
-COPY --from=builder /build/packages/mcp-server/node_modules ./node_modules
+# Copy node_modules from root (pnpm hoists dependencies here)
+COPY --from=builder /build/node_modules ./node_modules
 
 # Copy the built @stainless-api/sdk into node_modules
 COPY --from=builder /build/dist ./node_modules/@stainless-api/sdk
