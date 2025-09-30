@@ -26,6 +26,8 @@ RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
 # Set working directory
 WORKDIR /app
 
+COPY --from=builder /build/packages/mcp-server/package.json ./package.json
+
 # Copy the built mcp-server dist directory
 COPY --from=builder /build/packages/mcp-server/dist ./
 
