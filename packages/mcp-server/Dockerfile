@@ -5,7 +5,7 @@ FROM node:20-alpine AS builder
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 # Install bash for build script
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash openssl
 
 # Set working directory
 WORKDIR /build
