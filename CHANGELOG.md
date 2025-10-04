@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-10-04)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Bug Fixes
+
+* **mcp:** fix cli argument parsing logic ([6f51296](https://github.com/stainless-api/stainless-api-typescript/commit/6f5129610f26504aa48d94375dbff726406aef51))
+* **mcp:** resolve a linting issue in server code ([3695b9c](https://github.com/stainless-api/stainless-api-typescript/commit/3695b9cf8da2c80a10e0164ea689cee3e8e05b4d))
+
+
+### Chores
+
+* fix dockerfile ([a8620b9](https://github.com/stainless-api/stainless-api-typescript/commit/a8620b9e901e80a509217c0afdcfde3ca7db2594))
+* **internal:** codegen related update ([0f35c17](https://github.com/stainless-api/stainless-api-typescript/commit/0f35c1778e16bc0f8c6542624d6325f34305d758))
+* **internal:** codegen related update ([a4f392b](https://github.com/stainless-api/stainless-api-typescript/commit/a4f392b24af3b8edd027a2519cbc79ac362669b0))
+* **internal:** codegen related update ([4aab75e](https://github.com/stainless-api/stainless-api-typescript/commit/4aab75e95c6be99f8340a16d0e415615db4bded8))
+* **internal:** fix incremental formatting in some cases ([5906dba](https://github.com/stainless-api/stainless-api-typescript/commit/5906dba834a1abec5399fd3cd27459b213a5d301))
+* **internal:** ignore .eslintcache ([c1fe619](https://github.com/stainless-api/stainless-api-typescript/commit/c1fe61994b503fbd898b01feda816845436045a6))
+* **internal:** remove .eslintcache ([80c9762](https://github.com/stainless-api/stainless-api-typescript/commit/80c9762d8834f3fd1ad9ec8a4f8639a6732c8c43))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([d443db2](https://github.com/stainless-api/stainless-api-typescript/commit/d443db20c8a895993c651a0d8681f526f970e028))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([b8df387](https://github.com/stainless-api/stainless-api-typescript/commit/b8df387d55a125f19cc419605b349c910c8373fe))
+* update lockfile ([3972fce](https://github.com/stainless-api/stainless-api-typescript/commit/3972fce8d4d77f2cc734c3bc6e8812d1941d41ce))
+* update mcp dockerfile ([d531f3f](https://github.com/stainless-api/stainless-api-typescript/commit/d531f3f03874c84bba354b3a1a2a210946b0658c))
+
 ## 0.1.0-alpha.16 (2025-09-26)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
