@@ -22,3 +22,4 @@ export {
   type ProjectListParams,
   type ProjectsPage,
 } from './projects/projects';
+export { Spec, type SpecRetrieveDecoratedSpecResponse, type SpecRetrieveDecoratedSpecParams } from './spec';

@@ -95,3 +95,13 @@ Methods:
 
 - <code title="get /v0/orgs/{org}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(org) -> Org</code>
 - <code title="get /v0/orgs">client.orgs.<a href="./src/resources/orgs.ts">list</a>() -> OrgListResponse</code>
+
+# Spec
+
+Types:
+
+- <code><a href="./src/resources/spec.ts">SpecRetrieveDecoratedSpecResponse</a></code>
+
+Methods:
+
+- <code title="get /v0/spec/application/{clientId}/{projectName}">client.spec.<a href="./src/resources/spec.ts">retrieveDecoratedSpec</a>(projectName, { ...params }) -> unknown</code>
