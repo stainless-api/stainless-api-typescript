@@ -18,7 +18,9 @@ RUN pnpm install --frozen-lockfile && \
     pnpm build
 
 # Production stage
-FROM node:20-alpine
+
+        FROM denoland/deno:alpine
+        RUN apk add --no-cache npm
 
 # Add non-root user
 RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
@@ -44,6 +46,10 @@ USER nodejs
 
 # The MCP server uses stdio transport by default
 # No exposed ports needed for stdio communication
+
+    # This is needed for node to run on the deno:alpine image.
+    # See <https://github.com/denoland/deno_docker/issues/373>.
+    ENV LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
 
 # Set the entrypoint to the MCP server
 ENTRYPOINT ["node", "packages/mcp-server/dist/index.js"]
