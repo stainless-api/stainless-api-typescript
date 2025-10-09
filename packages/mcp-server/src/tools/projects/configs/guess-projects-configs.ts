@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'guess_projects_configs',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\n\n    Generate suggestions for changes to config files based on an OpenAPI spec.\n  \n\n# Response Schema\n```json\n{\n  type: 'object',\n  description: 'Config files contents',\n  additionalProperties: true\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\n\n    Generate suggestions for changes to config files based on an OpenAPI spec.\n  \n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/config_guess_response',\n  $defs: {\n    config_guess_response: {\n      type: 'object',\n      description: 'Config files contents',\n      additionalProperties: true\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {

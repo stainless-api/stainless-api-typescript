@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_projects_configs',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\n\n    Retrieve the configuration files for a given project.\n  \n\n# Response Schema\n```json\n{\n  type: 'object',\n  description: 'Config files contents',\n  additionalProperties: true\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\n\n    Retrieve the configuration files for a given project.\n  \n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/config_retrieve_response',\n  $defs: {\n    config_retrieve_response: {\n      type: 'object',\n      description: 'Config files contents',\n      additionalProperties: true\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
