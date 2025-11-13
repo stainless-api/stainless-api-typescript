@@ -11,6 +11,7 @@ import {
   BranchListResponse,
   BranchListResponsesPage,
   BranchRebaseParams,
+  BranchResetParams,
   BranchRetrieveParams,
   Branches,
   ProjectBranch,
@@ -164,6 +165,7 @@ export declare namespace Projects {
     type BranchListParams as BranchListParams,
     type BranchDeleteParams as BranchDeleteParams,
     type BranchRebaseParams as BranchRebaseParams,
+    type BranchResetParams as BranchResetParams,
   };
 
   export {

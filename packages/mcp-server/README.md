@@ -278,6 +278,11 @@ The following tools are available in this MCP server.
   The branch is rebased onto the `base` branch or commit SHA, inheriting
   any config and custom code changes.
 
+- `reset_projects_branches` (`write`): Reset a project branch.
+
+  If `branch` === `main`, the branch is reset to `target_config_sha`. Otherwise, the
+  branch is reset to `main`.
+
 ### Resource `projects.configs`:
 
 - `retrieve_projects_configs` (`read`):
