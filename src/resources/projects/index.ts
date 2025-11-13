@@ -10,6 +10,7 @@ export {
   type BranchListParams,
   type BranchDeleteParams,
   type BranchRebaseParams,
+  type BranchResetParams,
   type BranchListResponsesPage,
 } from './branches';
 export {

@@ -50,6 +50,7 @@ const fuse = new Fuse(
     'client.projects.branches.delete',
     'client.projects.branches.list',
     'client.projects.branches.rebase',
+    'client.projects.branches.reset',
     'client.projects.branches.retrieve',
     'client.projects.configs.guess',
     'client.projects.configs.retrieve',
