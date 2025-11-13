@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from '@stainless-api/sdk-mcp/filtering';
-import { Metadata, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
+import { isJqError, maybeFilter } from '@stainless-api/sdk-mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Stainless from '@stainless-api/sdk';
@@ -46,7 +46,14 @@ export const tool: Tool = {
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.projects.configs.guess(body)));
+  try {
+    return asTextContentResult(await maybeFilter(jq_filter, await client.projects.configs.guess(body)));
+  } catch (error) {
+    if (isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
