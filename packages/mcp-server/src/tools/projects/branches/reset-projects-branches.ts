@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Metadata, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
+import { Metadata, asErrorResult, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Stainless from '@stainless-api/sdk';
@@ -41,7 +41,14 @@ export const tool: Tool = {
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
   const { branch, ...body } = args as any;
-  return asTextContentResult(await client.projects.branches.reset(branch, body));
+  try {
+    return asTextContentResult(await client.projects.branches.reset(branch, body));
+  } catch (error) {
+    if (error instanceof Stainless.APIError) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
