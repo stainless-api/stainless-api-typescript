@@ -20,7 +20,6 @@ import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { Org, OrgListResponse, Orgs } from './resources/orgs';
-import { Spec, SpecRetrieveDecoratedSpecParams, SpecRetrieveDecoratedSpecResponse } from './resources/spec';
 import {
   Build,
   BuildCompareParams,
@@ -156,7 +155,7 @@ export class Stainless {
   baseURL: string;
   maxRetries: number;
   timeout: number;
-  logger: Logger | undefined;
+  logger: Logger;
   logLevel: LogLevel | undefined;
   fetchOptions: MergedRequestInit | undefined;
 
@@ -782,13 +781,11 @@ export class Stainless {
   projects: API.Projects = new API.Projects(this);
   builds: API.Builds = new API.Builds(this);
   orgs: API.Orgs = new API.Orgs(this);
-  spec: API.Spec = new API.Spec(this);
 }
 
 Stainless.Projects = Projects;
 Stainless.Builds = Builds;
 Stainless.Orgs = Orgs;
-Stainless.Spec = Spec;
 
 export declare namespace Stainless {
   export type RequestOptions = Opts.RequestOptions;
@@ -819,12 +816,6 @@ export declare namespace Stainless {
   };
 
   export { Orgs as Orgs, type Org as Org, type OrgListResponse as OrgListResponse };
-
-  export {
-    Spec as Spec,
-    type SpecRetrieveDecoratedSpecResponse as SpecRetrieveDecoratedSpecResponse,
-    type SpecRetrieveDecoratedSpecParams as SpecRetrieveDecoratedSpecParams,
-  };
 
   export type Commit = API.Commit;
   export type FileInput = API.FileInput;

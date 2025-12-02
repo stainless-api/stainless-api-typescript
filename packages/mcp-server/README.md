@@ -315,8 +315,3 @@ The following tools are available in this MCP server.
 
 - `retrieve_orgs` (`read`): Retrieve an organization by name.
 - `list_orgs` (`read`): List organizations accessible to the current authentication method.
-
-### Resource `spec`:
-
-- `retrieve_decorated_spec_spec` (`read`):
-  Retrieve the decorated spec for a given application and project.
