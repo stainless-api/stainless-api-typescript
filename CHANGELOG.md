@@ -1,5 +1,73 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-12-05)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Features
+
+* **api:** add branch reset functionality ([3a752b1](https://github.com/stainless-api/stainless-api-typescript/commit/3a752b1115b7eb1aac880d57de764b9d47dc8a62))
+* Expose connection-specific decorated OAS ([f5bf0d1](https://github.com/stainless-api/stainless-api-typescript/commit/f5bf0d19f2aa16e2725268f09723437707eaa398))
+* **mcp:** add detail field to docs search tool ([f0d8510](https://github.com/stainless-api/stainless-api-typescript/commit/f0d85109204bf0b13f2b4a44808899776a238c23))
+* **mcp:** enable optional code execution tool on http mcp servers ([4672381](https://github.com/stainless-api/stainless-api-typescript/commit/46723815835990f657488a48c95e57450fbd6956))
+
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([6128a17](https://github.com/stainless-api/stainless-api-typescript/commit/6128a17ea4d7769d69d32776e971841d88c8b6b2))
+* **mcp:** fix cli argument parsing logic ([6f51296](https://github.com/stainless-api/stainless-api-typescript/commit/6f5129610f26504aa48d94375dbff726406aef51))
+* **mcp:** resolve a linting issue in server code ([3695b9c](https://github.com/stainless-api/stainless-api-typescript/commit/3695b9cf8da2c80a10e0164ea689cee3e8e05b4d))
+* **mcp:** return tool execution error on jq failure ([9e8d18a](https://github.com/stainless-api/stainless-api-typescript/commit/9e8d18a678b57187bfc5944b247abdcd1c4c2245))
+
+
+### Chores
+
+* extract some types in mcp docs ([6953e19](https://github.com/stainless-api/stainless-api-typescript/commit/6953e19081e6fd162450cb352745829803870036))
+* fix dockerfile ([a8620b9](https://github.com/stainless-api/stainless-api-typescript/commit/a8620b9e901e80a509217c0afdcfde3ca7db2594))
+* **internal:** codegen related update ([b78189c](https://github.com/stainless-api/stainless-api-typescript/commit/b78189ce59ff0aebf3cb92ad5b63d6dccd8bc01b))
+* **internal:** codegen related update ([43e2bd2](https://github.com/stainless-api/stainless-api-typescript/commit/43e2bd2e355038dd86b7c5ed5d76a64842a0f62e))
+* **internal:** codegen related update ([8bd5749](https://github.com/stainless-api/stainless-api-typescript/commit/8bd5749a8bbff1886c393c26523f191852d38048))
+* **internal:** codegen related update ([f5c0a4d](https://github.com/stainless-api/stainless-api-typescript/commit/f5c0a4d3c7a8d6f2ecee1cfe6a49b6d7207e2698))
+* **internal:** codegen related update ([6de1b6d](https://github.com/stainless-api/stainless-api-typescript/commit/6de1b6d21a332a82139fc62a09a339cc3e2deb34))
+* **internal:** codegen related update ([3dac6b5](https://github.com/stainless-api/stainless-api-typescript/commit/3dac6b5b9b954b7342a59da26bc3e0c7ac939a0e))
+* **internal:** codegen related update ([11cb6bd](https://github.com/stainless-api/stainless-api-typescript/commit/11cb6bd7fa124295e059111bab3f8c31a821fc73))
+* **internal:** codegen related update ([8d5c4c8](https://github.com/stainless-api/stainless-api-typescript/commit/8d5c4c8a196d731f6794b4d94a0eb844adecd395))
+* **internal:** codegen related update ([31e06ee](https://github.com/stainless-api/stainless-api-typescript/commit/31e06eeef3fe4c186ce2f9b84ae125fff6a2d16a))
+* **internal:** codegen related update ([692e4f4](https://github.com/stainless-api/stainless-api-typescript/commit/692e4f42982d3eedb78719ea10a44474756f7d5e))
+* **internal:** codegen related update ([c9bda4f](https://github.com/stainless-api/stainless-api-typescript/commit/c9bda4fc8d89ea78eb94ef8f8a759aa8c4ea1988))
+* **internal:** codegen related update ([be77a0b](https://github.com/stainless-api/stainless-api-typescript/commit/be77a0b78be435dee9aa3093d0fef7b023fac3c4))
+* **internal:** codegen related update ([72f8a2a](https://github.com/stainless-api/stainless-api-typescript/commit/72f8a2ab5ea125c3731fe33c73b18b3875184c7f))
+* **internal:** codegen related update ([31e3903](https://github.com/stainless-api/stainless-api-typescript/commit/31e390345ee472e95a30bc6c95d261499419772c))
+* **internal:** codegen related update ([ac32221](https://github.com/stainless-api/stainless-api-typescript/commit/ac322213ce1d438055c5b15834cceb36634155ab))
+* **internal:** codegen related update ([d8d72b0](https://github.com/stainless-api/stainless-api-typescript/commit/d8d72b0c940d6f71d93a93e657226cc49ac7e65b))
+* **internal:** codegen related update ([8be59d8](https://github.com/stainless-api/stainless-api-typescript/commit/8be59d8d750c483fcf89e09f8c115ce55b3c7e04))
+* **internal:** codegen related update ([0f35c17](https://github.com/stainless-api/stainless-api-typescript/commit/0f35c1778e16bc0f8c6542624d6325f34305d758))
+* **internal:** codegen related update ([a4f392b](https://github.com/stainless-api/stainless-api-typescript/commit/a4f392b24af3b8edd027a2519cbc79ac362669b0))
+* **internal:** codegen related update ([4aab75e](https://github.com/stainless-api/stainless-api-typescript/commit/4aab75e95c6be99f8340a16d0e415615db4bded8))
+* **internal:** fix incremental formatting in some cases ([5906dba](https://github.com/stainless-api/stainless-api-typescript/commit/5906dba834a1abec5399fd3cd27459b213a5d301))
+* **internal:** grammar fix (it's -&gt; its) ([26f73e0](https://github.com/stainless-api/stainless-api-typescript/commit/26f73e01ba9f1e7a827ea482adb6654b8c98714c))
+* **internal:** ignore .eslintcache ([c1fe619](https://github.com/stainless-api/stainless-api-typescript/commit/c1fe61994b503fbd898b01feda816845436045a6))
+* **internal:** remove .eslintcache ([80c9762](https://github.com/stainless-api/stainless-api-typescript/commit/80c9762d8834f3fd1ad9ec8a4f8639a6732c8c43))
+* **internal:** use npm pack for build uploads ([64381d5](https://github.com/stainless-api/stainless-api-typescript/commit/64381d5bda0c0469711d936b76bf728965b6c5de))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([d443db2](https://github.com/stainless-api/stainless-api-typescript/commit/d443db20c8a895993c651a0d8681f526f970e028))
+* mcp code tool explicit error message when missing a run function ([15e25b5](https://github.com/stainless-api/stainless-api-typescript/commit/15e25b504f097d09eadf6ba2a2587dbec407182a))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([41d7085](https://github.com/stainless-api/stainless-api-typescript/commit/41d708546062afff0b5be01a91f3e4b7f148e589))
+* **mcp:** add line numbers to code tool errors ([f251424](https://github.com/stainless-api/stainless-api-typescript/commit/f2514246e9ed694632eb18b67ffe90730948353e))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([b8df387](https://github.com/stainless-api/stainless-api-typescript/commit/b8df387d55a125f19cc419605b349c910c8373fe))
+* **mcp:** clarify http auth error ([ffad929](https://github.com/stainless-api/stainless-api-typescript/commit/ffad92904ee9cb02d76603d8719529f362f83228))
+* **mcp:** upgrade jq-web ([13aabb5](https://github.com/stainless-api/stainless-api-typescript/commit/13aabb59fcdecbf26ed86410a7d5258571bfa9c1))
+* skip spec resource ([ae12574](https://github.com/stainless-api/stainless-api-typescript/commit/ae125747405747c52061a7eb1c1f42df980eda2b))
+* update docstrings ([c4f88d9](https://github.com/stainless-api/stainless-api-typescript/commit/c4f88d941696d5f25dd449c33ffe71a46f9a2b2a))
+* update lockfile ([3972fce](https://github.com/stainless-api/stainless-api-typescript/commit/3972fce8d4d77f2cc734c3bc6e8812d1941d41ce))
+* update mcp dockerfile ([d531f3f](https://github.com/stainless-api/stainless-api-typescript/commit/d531f3f03874c84bba354b3a1a2a210946b0658c))
+* use structured error when code execution tool errors ([4b5b5ea](https://github.com/stainless-api/stainless-api-typescript/commit/4b5b5ea49614cdaea1a65680c2235827f775490e))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([266a273](https://github.com/stainless-api/stainless-api-typescript/commit/266a2739341ece77d84c2ff128c9b2aa5d65add7))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([25ed318](https://github.com/stainless-api/stainless-api-typescript/commit/25ed318337f817f1e12b4d8f6760ef76d74dcb4b))
+
 ## 0.1.0-alpha.16 (2025-09-26)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
