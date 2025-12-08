@@ -247,9 +247,10 @@ export function parseCLIOptions(): CLIOptions {
   }
 
   const shouldIncludeToolType = (toolType: 'dynamic' | 'all' | 'code' | 'docs') =>
-    explicitTools ? argv.tools?.includes(toolType) && !argv.noTools?.includes(toolType) : undefined;
+    argv.noTools?.includes(toolType) ? false
+    : argv.tools?.includes(toolType) ? true
+    : undefined;
 
-  const explicitTools = Boolean(argv.tools || argv.noTools);
   const includeDynamicTools = shouldIncludeToolType('dynamic');
   const includeAllTools = shouldIncludeToolType('all');
   const includeCodeTools = shouldIncludeToolType('code');
@@ -283,8 +284,10 @@ const coerceArray = <T extends z.ZodTypeAny>(zodType: T) =>
   );
 
 const QueryOptions = z.object({
-  tools: coerceArray(z.enum(['dynamic', 'all', 'docs'])).describe('Use dynamic tools or all tools'),
-  no_tools: coerceArray(z.enum(['dynamic', 'all', 'docs'])).describe('Do not use dynamic tools or all tools'),
+  tools: coerceArray(z.enum(['dynamic', 'all', 'code', 'docs'])).describe('Specify which MCP tools to use'),
+  no_tools: coerceArray(z.enum(['dynamic', 'all', 'code', 'docs'])).describe(
+    'Specify which MCP tools to not use.',
+  ),
   tool: coerceArray(z.string()).describe('Include tools matching the specified names'),
   resource: coerceArray(z.string()).describe('Include tools matching the specified resources'),
   operation: coerceArray(z.enum(['read', 'write'])).describe(
@@ -384,11 +387,16 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
     : queryOptions.tools?.includes('docs') ? true
     : defaultOptions.includeDocsTools;
 
+  let codeTools: boolean | undefined =
+    queryOptions.no_tools && queryOptions.no_tools?.includes('code') ? false
+    : queryOptions.tools?.includes('code') && defaultOptions.includeCodeTools ? true
+    : defaultOptions.includeCodeTools;
+
   return {
     client: queryOptions.client ?? defaultOptions.client,
     includeDynamicTools: dynamicTools,
     includeAllTools: allTools,
-    includeCodeTools: undefined,
+    includeCodeTools: codeTools,
     includeDocsTools: docsTools,
     filters,
     capabilities: clientCapabilities,

@@ -75,6 +75,24 @@ export class Branches extends APIResource {
       ...options,
     });
   }
+
+  /**
+   * Reset a project branch.
+   *
+   * If `branch` === `main`, the branch is reset to `target_config_sha`. Otherwise,
+   * the branch is reset to `main`.
+   */
+  reset(
+    branch: string,
+    params: BranchResetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectBranch> {
+    const { project = this._client.project, target_config_sha } = params ?? {};
+    return this._client.put(path`/v0/projects/${project}/branches/${branch}/reset`, {
+      query: { target_config_sha },
+      ...options,
+    });
+  }
 }
 
 export type BranchListResponsesPage = Page<BranchListResponse>;
@@ -236,6 +254,19 @@ export interface BranchRebaseParams {
   base?: string;
 }
 
+export interface BranchResetParams {
+  /**
+   * Path param:
+   */
+  project?: string;
+
+  /**
+   * Query param: The commit SHA to reset the main branch to. Required if resetting
+   * the main branch; disallowed otherwise.
+   */
+  target_config_sha?: string;
+}
+
 export declare namespace Branches {
   export {
     type ProjectBranch as ProjectBranch,
@@ -247,5 +278,6 @@ export declare namespace Branches {
     type BranchListParams as BranchListParams,
     type BranchDeleteParams as BranchDeleteParams,
     type BranchRebaseParams as BranchRebaseParams,
+    type BranchResetParams as BranchResetParams,
   };
 }

@@ -13,8 +13,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'search_docs',
-  description:
-    'Search for documentation for how to use the client to interact with the API.\nThe tool will return an array of Markdown-formatted documentation pages.',
+  description: 'Search for documentation for how to use the client to interact with the API.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -25,7 +24,12 @@ export const tool: Tool = {
       language: {
         type: 'string',
         description: 'The language for the SDK to search for.',
-        enum: ['http', 'python', 'go', 'typescript', 'terraform', 'ruby', 'java', 'kotlin'],
+        enum: ['http', 'python', 'go', 'typescript', 'javascript', 'terraform', 'ruby', 'java', 'kotlin'],
+      },
+      detail: {
+        type: 'string',
+        description: 'The amount of detail to return.',
+        enum: ['default', 'verbose'],
       },
     },
     required: ['query', 'language'],
@@ -35,10 +39,13 @@ export const tool: Tool = {
   },
 };
 
+const docsSearchURL =
+  process.env['DOCS_SEARCH_URL'] || 'https://api.stainless.com/api/projects/stainless-v0/docs/search';
+
 export const handler = async (_: unknown, args: Record<string, unknown> | undefined) => {
   const body = args as any;
   const query = new URLSearchParams(body).toString();
-  const result = await fetch('https://api.stainless.com/api/projects/stainless-v0/docs/search?' + query);
+  const result = await fetch(`${docsSearchURL}?${query}`);
   return asTextContentResult(await result.json());
 };
 

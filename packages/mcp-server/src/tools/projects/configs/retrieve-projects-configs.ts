@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from '@stainless-api/sdk-mcp/filtering';
-import { Metadata, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
+import { isJqError, maybeFilter } from '@stainless-api/sdk-mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from '@stainless-api/sdk-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Stainless from '@stainless-api/sdk';
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_projects_configs',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\n\n    Retrieve the configuration files for a given project.\n  \n\n# Response Schema\n```json\n{\n  type: 'object',\n  description: 'Config files contents',\n  additionalProperties: true\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\n\n    Retrieve the configuration files for a given project.\n  \n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/config_retrieve_response',\n  $defs: {\n    config_retrieve_response: {\n      type: 'object',\n      description: 'Config files contents',\n      additionalProperties: true\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
@@ -47,7 +47,14 @@ export const tool: Tool = {
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.projects.configs.retrieve(body)));
+  try {
+    return asTextContentResult(await maybeFilter(jq_filter, await client.projects.configs.retrieve(body)));
+  } catch (error) {
+    if (error instanceof Stainless.APIError || isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };

@@ -9,14 +9,14 @@ export const metadata: Metadata = {
   resource: 'projects.branches',
   operation: 'write',
   tags: [],
-  httpMethod: 'post',
-  httpPath: '/v0/projects/{project}/branches',
+  httpMethod: 'put',
+  httpPath: '/v0/projects/{project}/branches/{branch}/reset',
 };
 
 export const tool: Tool = {
-  name: 'create_projects_branches',
+  name: 'reset_projects_branches',
   description:
-    'Create a new branch for a project.\n\nThe branch inherits the config files from the revision pointed to by the\n`branch_from` parameter. In addition, if the revision is a branch name,\nthe branch will also inherit custom code changes from that branch.',
+    'Reset a project branch.\n\nIf `branch` === `main`, the branch is reset to `target_config_sha`. Otherwise, the\nbranch is reset to `main`.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -25,26 +25,24 @@ export const tool: Tool = {
       },
       branch: {
         type: 'string',
-        description: 'Branch name',
       },
-      branch_from: {
+      target_config_sha: {
         type: 'string',
-        description: 'Branch or commit SHA to branch from',
-      },
-      force: {
-        type: 'boolean',
-        description: 'Whether to throw an error if the branch already exists. Defaults to false.',
+        description:
+          'The commit SHA to reset the main branch to. Required if resetting the main branch; disallowed otherwise.',
       },
     },
-    required: ['project', 'branch', 'branch_from'],
+    required: ['project', 'branch'],
   },
-  annotations: {},
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Stainless, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
+  const { branch, ...body } = args as any;
   try {
-    return asTextContentResult(await client.projects.branches.create(body));
+    return asTextContentResult(await client.projects.branches.reset(branch, body));
   } catch (error) {
     if (error instanceof Stainless.APIError) {
       return asErrorResult(error.message);
