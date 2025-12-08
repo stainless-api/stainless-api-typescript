@@ -52,6 +52,46 @@ export const tool: Tool = {
         type: 'string',
         description: 'Optional commit message to use when creating a new commit.',
       },
+      target_commit_messages: {
+        type: 'object',
+        description:
+          'Optional commit messages to use for each SDK when making a new commit.\nSDKs not represented in this object will fallback to the optional\n`commit_message` parameter, or will fallback further to the default\ncommit message.',
+        properties: {
+          cli: {
+            type: 'string',
+          },
+          csharp: {
+            type: 'string',
+          },
+          go: {
+            type: 'string',
+          },
+          java: {
+            type: 'string',
+          },
+          kotlin: {
+            type: 'string',
+          },
+          node: {
+            type: 'string',
+          },
+          php: {
+            type: 'string',
+          },
+          python: {
+            type: 'string',
+          },
+          ruby: {
+            type: 'string',
+          },
+          terraform: {
+            type: 'string',
+          },
+          typescript: {
+            type: 'string',
+          },
+        },
+      },
       targets: {
         type: 'array',
         description:

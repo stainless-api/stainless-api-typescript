@@ -28,6 +28,19 @@ describe('resource builds', () => {
       allow_empty: true,
       branch: 'branch',
       commit_message: 'commit_message',
+      target_commit_messages: {
+        cli: 'cli',
+        csharp: 'csharp',
+        go: 'go',
+        java: 'java',
+        kotlin: 'kotlin',
+        node: 'node',
+        php: 'php',
+        python: 'python',
+        ruby: 'ruby',
+        terraform: 'terraform',
+        typescript: 'typescript',
+      },
       targets: ['node'],
     });
   });
