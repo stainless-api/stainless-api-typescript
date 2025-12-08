@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.18 (2025-12-08)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
+
+### Features
+
+* **api:** rerun codegen ([d303e7d](https://github.com/stainless-api/stainless-api-typescript/commit/d303e7dee5f1f407779e1df4629676b7a2b3afa5))
+
 ## 0.1.0-alpha.17 (2025-12-05)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
