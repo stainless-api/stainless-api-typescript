@@ -1,6 +1,6 @@
 {
   "name": "@stainless-api/sdk-mcp",
-  "version": "0.1.0-alpha.17",
+  "version": "0.1.0-alpha.18",
   "description": "The official MCP Server for the Stainless API",
   "author": "Stainless <local-dev@stainless.com>",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/stainless-api/stainless-api-typescript/tree/main/packages/mcp-server#readme",
   "license": "Apache-2.0",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.24.0",
   "private": false,
   "publishConfig": {
     "access": "public"

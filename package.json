@@ -1,6 +1,6 @@
 {
   "name": "@stainless-api/sdk",
-  "version": "0.1.0-alpha.17",
+  "version": "0.1.0-alpha.18",
   "description": "The official TypeScript library for the Stainless API",
   "author": "Stainless <local-dev@stainless.com>",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
   "type": "commonjs",
   "repository": "github:stainless-api/stainless-api-typescript",
   "license": "Apache-2.0",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.24.0",
   "files": [
     "**/*"
   ],
