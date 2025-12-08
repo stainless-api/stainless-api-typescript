@@ -282,10 +282,48 @@ export interface BuildCreateParams {
   commit_message?: string;
 
   /**
+   * Optional commit messages to use for each SDK when making a new commit. SDKs not
+   * represented in this object will fallback to the optional `commit_message`
+   * parameter, or will fallback further to the default commit message.
+   */
+  target_commit_messages?: BuildCreateParams.TargetCommitMessages;
+
+  /**
    * Optional list of SDK targets to build. If not specified, all configured targets
    * will be built.
    */
   targets?: Array<Shared.Target>;
+}
+
+export namespace BuildCreateParams {
+  /**
+   * Optional commit messages to use for each SDK when making a new commit. SDKs not
+   * represented in this object will fallback to the optional `commit_message`
+   * parameter, or will fallback further to the default commit message.
+   */
+  export interface TargetCommitMessages {
+    cli?: string;
+
+    csharp?: string;
+
+    go?: string;
+
+    java?: string;
+
+    kotlin?: string;
+
+    node?: string;
+
+    php?: string;
+
+    python?: string;
+
+    ruby?: string;
+
+    terraform?: string;
+
+    typescript?: string;
+  }
 }
 
 export interface BuildListParams extends PageParams {
