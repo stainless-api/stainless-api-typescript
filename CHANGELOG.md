@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2025-12-09)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Bug Fixes
+
+* **api:** switch 'targets' query param to comma-delimited string in diagnostics endpoint ([37c0add](https://github.com/stainless-api/stainless-api-typescript/commit/37c0add499fab2128c30f25384b13b41cd8ed2bd))
+
 ## 0.1.0-alpha.18 (2025-12-08)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
