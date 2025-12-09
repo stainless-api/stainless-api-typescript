@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as Shared from '../shared';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -89,9 +88,9 @@ export interface DiagnosticListParams extends PageParams {
   severity?: 'fatal' | 'error' | 'warning' | 'note';
 
   /**
-   * Optional list of language targets to filter diagnostics by
+   * Optional comma-delimited list of language targets to filter diagnostics by
    */
-  targets?: Array<Shared.Target>;
+  targets?: string;
 }
 
 export declare namespace Diagnostics {
