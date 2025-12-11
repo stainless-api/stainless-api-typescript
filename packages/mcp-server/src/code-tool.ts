@@ -42,6 +42,10 @@ export async function codeTool() {
       },
       body: JSON.stringify({
         project_name: 'stainless-v0',
+        client_opts: {
+          project: readEnv('STAINLESS_PROJECT'),
+          environment: (readEnv('STAINLESS_ENVIRONMENT') || undefined) as any,
+        },
         code,
       }),
     });
