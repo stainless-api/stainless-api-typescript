@@ -16,6 +16,20 @@ export namespace Commit {
   }
 }
 
+export type CommitConclusion =
+  | 'error'
+  | 'warning'
+  | 'note'
+  | 'success'
+  | 'merge_conflict'
+  | 'upstream_merge_conflict'
+  | 'fatal'
+  | 'payment_required'
+  | 'cancelled'
+  | 'timed_out'
+  | 'noop'
+  | 'version_bump';
+
 export type FileInput = FileInput.Content | FileInput.URL;
 
 export namespace FileInput {

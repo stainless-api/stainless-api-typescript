@@ -166,28 +166,28 @@ export namespace BuildTarget {
   }
 
   export interface Completed {
+    commit: Shared.Commit | null;
+
+    /**
+     * deprecated
+     */
     completed: Completed.Completed;
+
+    conclusion: Shared.CommitConclusion;
+
+    merge_conflict_pr: Completed.MergeConflictPr | null;
 
     status: 'completed';
   }
 
   export namespace Completed {
+    /**
+     * deprecated
+     */
     export interface Completed {
       commit: Shared.Commit | null;
 
-      conclusion:
-        | 'error'
-        | 'warning'
-        | 'note'
-        | 'success'
-        | 'merge_conflict'
-        | 'upstream_merge_conflict'
-        | 'fatal'
-        | 'payment_required'
-        | 'cancelled'
-        | 'timed_out'
-        | 'noop'
-        | 'version_bump';
+      conclusion: Shared.CommitConclusion;
 
       merge_conflict_pr: Completed.MergeConflictPr | null;
     }
@@ -205,6 +205,20 @@ export namespace BuildTarget {
 
           owner: string;
         }
+      }
+    }
+
+    export interface MergeConflictPr {
+      number: number;
+
+      repo: MergeConflictPr.Repo;
+    }
+
+    export namespace MergeConflictPr {
+      export interface Repo {
+        name: string;
+
+        owner: string;
       }
     }
   }
@@ -226,26 +240,38 @@ export namespace CheckStep {
   }
 
   export interface Completed {
+    /**
+     * deprecated
+     */
     completed: Completed.Completed;
 
+    conclusion: BuildsAPI.CheckStepConclusion;
+
     status: 'completed';
+
+    url: string | null;
   }
 
   export namespace Completed {
+    /**
+     * deprecated
+     */
     export interface Completed {
-      conclusion:
-        | 'success'
-        | 'failure'
-        | 'skipped'
-        | 'cancelled'
-        | 'action_required'
-        | 'neutral'
-        | 'timed_out';
+      conclusion: BuildsAPI.CheckStepConclusion;
 
       url: string | null;
     }
   }
 }
+
+export type CheckStepConclusion =
+  | 'success'
+  | 'failure'
+  | 'skipped'
+  | 'cancelled'
+  | 'action_required'
+  | 'neutral'
+  | 'timed_out';
 
 export interface BuildCompareResponse {
   base: Build;
@@ -432,6 +458,7 @@ export declare namespace Builds {
     type Build as Build,
     type BuildTarget as BuildTarget,
     type CheckStep as CheckStep,
+    type CheckStepConclusion as CheckStepConclusion,
     type BuildCompareResponse as BuildCompareResponse,
     type BuildsPage as BuildsPage,
     type BuildCreateParams as BuildCreateParams,
