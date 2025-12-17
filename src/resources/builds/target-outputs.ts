@@ -88,7 +88,8 @@ export interface TargetOutputRetrieveParams {
     | 'terraform'
     | 'cli'
     | 'php'
-    | 'csharp';
+    | 'csharp'
+    | 'openapi';
 
   type: 'source' | 'dist' | 'wheel';
 

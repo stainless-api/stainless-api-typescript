@@ -35,6 +35,7 @@ describe('resource builds', () => {
         java: 'java',
         kotlin: 'kotlin',
         node: 'node',
+        openapi: 'openapi',
         php: 'php',
         python: 'python',
         ruby: 'ruby',

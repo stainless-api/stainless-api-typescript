@@ -124,6 +124,8 @@ export namespace Build {
 
     node?: BuildsAPI.BuildTarget;
 
+    openapi?: BuildsAPI.BuildTarget;
+
     php?: BuildsAPI.BuildTarget;
 
     python?: BuildsAPI.BuildTarget;
@@ -339,6 +341,8 @@ export namespace BuildCreateParams {
     kotlin?: string;
 
     node?: string;
+
+    openapi?: string;
 
     php?: string;
 

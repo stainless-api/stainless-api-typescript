@@ -59,4 +59,5 @@ export type Target =
   | 'terraform'
   | 'cli'
   | 'php'
-  | 'csharp';
+  | 'csharp'
+  | 'openapi';
