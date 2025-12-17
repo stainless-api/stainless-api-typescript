@@ -75,6 +75,9 @@ export const tool: Tool = {
           node: {
             type: 'string',
           },
+          openapi: {
+            type: 'string',
+          },
           php: {
             type: 'string',
           },
@@ -117,6 +120,7 @@ export const tool: Tool = {
           'cli',
           'php',
           'csharp',
+          'openapi',
         ],
       },
     },
