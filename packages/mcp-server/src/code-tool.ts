@@ -38,6 +38,7 @@ export async function codeTool() {
         client_envs: JSON.stringify({
           STAINLESS_API_KEY: readEnv('STAINLESS_API_KEY'),
           STAINLESS_PROJECT: readEnv('STAINLESS_PROJECT'),
+          STAINLESS_BASE_URL: readEnv('STAINLESS_BASE_URL'),
         }),
       },
       body: JSON.stringify({
