@@ -24,6 +24,8 @@ export class Orgs extends APIResource {
 export interface Org {
   display_name: string | null;
 
+  enable_ai_commit_messages: boolean;
+
   object: 'org';
 
   slug: string;
