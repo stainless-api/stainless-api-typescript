@@ -30,7 +30,6 @@ import {
   Builds,
   BuildsPage,
   CheckStep,
-  CheckStepConclusion,
 } from './resources/builds/builds';
 import {
   Project,
@@ -811,7 +810,6 @@ export declare namespace Stainless {
     type Build as Build,
     type BuildTarget as BuildTarget,
     type CheckStep as CheckStep,
-    type CheckStepConclusion as CheckStepConclusion,
     type BuildCompareResponse as BuildCompareResponse,
     type BuildsPage as BuildsPage,
     type BuildCreateParams as BuildCreateParams,
@@ -822,7 +820,6 @@ export declare namespace Stainless {
   export { Orgs as Orgs, type Org as Org, type OrgListResponse as OrgListResponse };
 
   export type Commit = API.Commit;
-  export type CommitConclusion = API.CommitConclusion;
   export type FileInput = API.FileInput;
   export type Target = API.Target;
 }

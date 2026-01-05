@@ -39,6 +39,7 @@ describe('resource builds', () => {
         php: 'php',
         python: 'python',
         ruby: 'ruby',
+        sql: 'sql',
         terraform: 'terraform',
         typescript: 'typescript',
       },

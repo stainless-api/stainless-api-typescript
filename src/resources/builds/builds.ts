@@ -132,6 +132,8 @@ export namespace Build {
 
     ruby?: BuildsAPI.BuildTarget;
 
+    sql?: BuildsAPI.BuildTarget;
+
     terraform?: BuildsAPI.BuildTarget;
 
     typescript?: BuildsAPI.BuildTarget;
@@ -175,7 +177,19 @@ export namespace BuildTarget {
      */
     completed: Completed.Completed;
 
-    conclusion: Shared.CommitConclusion;
+    conclusion:
+      | 'error'
+      | 'warning'
+      | 'note'
+      | 'success'
+      | 'merge_conflict'
+      | 'upstream_merge_conflict'
+      | 'fatal'
+      | 'payment_required'
+      | 'cancelled'
+      | 'timed_out'
+      | 'noop'
+      | 'version_bump';
 
     merge_conflict_pr: Completed.MergeConflictPr | null;
 
@@ -189,7 +203,19 @@ export namespace BuildTarget {
     export interface Completed {
       commit: Shared.Commit | null;
 
-      conclusion: Shared.CommitConclusion;
+      conclusion:
+        | 'error'
+        | 'warning'
+        | 'note'
+        | 'success'
+        | 'merge_conflict'
+        | 'upstream_merge_conflict'
+        | 'fatal'
+        | 'payment_required'
+        | 'cancelled'
+        | 'timed_out'
+        | 'noop'
+        | 'version_bump';
 
       merge_conflict_pr: Completed.MergeConflictPr | null;
     }
@@ -247,7 +273,7 @@ export namespace CheckStep {
      */
     completed: Completed.Completed;
 
-    conclusion: BuildsAPI.CheckStepConclusion;
+    conclusion: 'success' | 'failure' | 'skipped' | 'cancelled' | 'action_required' | 'neutral' | 'timed_out';
 
     status: 'completed';
 
@@ -259,21 +285,19 @@ export namespace CheckStep {
      * deprecated
      */
     export interface Completed {
-      conclusion: BuildsAPI.CheckStepConclusion;
+      conclusion:
+        | 'success'
+        | 'failure'
+        | 'skipped'
+        | 'cancelled'
+        | 'action_required'
+        | 'neutral'
+        | 'timed_out';
 
       url: string | null;
     }
   }
 }
-
-export type CheckStepConclusion =
-  | 'success'
-  | 'failure'
-  | 'skipped'
-  | 'cancelled'
-  | 'action_required'
-  | 'neutral'
-  | 'timed_out';
 
 export interface BuildCompareResponse {
   base: Build;
@@ -349,6 +373,8 @@ export namespace BuildCreateParams {
     python?: string;
 
     ruby?: string;
+
+    sql?: string;
 
     terraform?: string;
 
@@ -462,7 +488,6 @@ export declare namespace Builds {
     type Build as Build,
     type BuildTarget as BuildTarget,
     type CheckStep as CheckStep,
-    type CheckStepConclusion as CheckStepConclusion,
     type BuildCompareResponse as BuildCompareResponse,
     type BuildsPage as BuildsPage,
     type BuildCreateParams as BuildCreateParams,
