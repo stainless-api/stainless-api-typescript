@@ -89,6 +89,7 @@ export interface TargetOutputRetrieveParams {
     | 'cli'
     | 'php'
     | 'csharp'
+    | 'sql'
     | 'openapi';
 
   type: 'source' | 'dist' | 'wheel';

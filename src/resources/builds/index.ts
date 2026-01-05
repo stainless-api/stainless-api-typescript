@@ -5,7 +5,6 @@ export {
   type Build,
   type BuildTarget,
   type CheckStep,
-  type CheckStepConclusion,
   type BuildCompareResponse,
   type BuildCreateParams,
   type BuildListParams,
