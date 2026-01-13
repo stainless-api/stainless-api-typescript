@@ -65,7 +65,11 @@ describe('resource branches', () => {
 
   // Prism tests are disabled
   test.skip('list: required and optional params', async () => {
-    const response = await client.projects.branches.list({ project: 'project', cursor: 'cursor', limit: 1 });
+    const response = await client.projects.branches.list({
+      project: 'project',
+      cursor: 'cursor',
+      limit: 1,
+    });
   });
 
   // Prism tests are disabled

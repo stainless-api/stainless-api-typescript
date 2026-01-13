@@ -87,7 +87,14 @@ describe('resource projects', () => {
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.projects.list({ cursor: 'cursor', limit: 1, org: 'org' }, { path: '/_stainless_unknown_path' }),
+      client.projects.list(
+        {
+          cursor: 'cursor',
+          limit: 1,
+          org: 'org',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Stainless.NotFoundError);
   });
 });

@@ -26,7 +26,12 @@ describe('resource diagnostics', () => {
     await expect(
       client.builds.diagnostics.list(
         'buildId',
-        { cursor: 'cursor', limit: 1, severity: 'fatal', targets: 'targets' },
+        {
+          cursor: 'cursor',
+          limit: 1,
+          severity: 'fatal',
+          targets: 'targets',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Stainless.NotFoundError);
