@@ -36,7 +36,13 @@ export namespace TargetOutputRetrieveResponse {
 
     target: Shared.Target;
 
-    type: 'source' | 'dist' | 'wheel';
+    type:
+      | 'source'
+      | 'dist'
+      | 'wheel'
+      | 'openapi-with-transforms'
+      | 'openapi-with-code-samples'
+      | 'openapi-sdk-spec';
 
     /**
      * URL for direct download
@@ -59,7 +65,13 @@ export namespace TargetOutputRetrieveResponse {
 
     target: Shared.Target;
 
-    type: 'source' | 'dist' | 'wheel';
+    type:
+      | 'source'
+      | 'dist'
+      | 'wheel'
+      | 'openapi-with-transforms'
+      | 'openapi-with-code-samples'
+      | 'openapi-sdk-spec';
 
     /**
      * URL to git remote
@@ -92,7 +104,13 @@ export interface TargetOutputRetrieveParams {
     | 'sql'
     | 'openapi';
 
-  type: 'source' | 'dist' | 'wheel';
+  type:
+    | 'source'
+    | 'dist'
+    | 'wheel'
+    | 'openapi-with-transforms'
+    | 'openapi-with-code-samples'
+    | 'openapi-sdk-spec';
 
   /**
    * Output format: url (download URL) or git (temporary access token).
