@@ -201,7 +201,7 @@ export type BranchDeleteResponse = unknown;
 
 export interface BranchCreateParams {
   /**
-   * Path param:
+   * Path param
    */
   project?: string;
 
@@ -228,7 +228,7 @@ export interface BranchRetrieveParams {
 
 export interface BranchListParams extends PageParams {
   /**
-   * Path param:
+   * Path param
    */
   project?: string;
 
@@ -244,7 +244,7 @@ export interface BranchDeleteParams {
 
 export interface BranchRebaseParams {
   /**
-   * Path param:
+   * Path param
    */
   project?: string;
 
@@ -256,7 +256,7 @@ export interface BranchRebaseParams {
 
 export interface BranchResetParams {
   /**
-   * Path param:
+   * Path param
    */
   project?: string;
 

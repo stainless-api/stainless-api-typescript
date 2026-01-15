@@ -56,7 +56,7 @@ export namespace ConfigGuessResponse {
 
 export interface ConfigRetrieveParams {
   /**
-   * Path param:
+   * Path param
    */
   project?: string;
 
@@ -66,14 +66,14 @@ export interface ConfigRetrieveParams {
   branch?: string;
 
   /**
-   * Query param:
+   * Query param
    */
   include?: string;
 }
 
 export interface ConfigGuessParams {
   /**
-   * Path param:
+   * Path param
    */
   project?: string;
 

@@ -1,55 +1,52 @@
 # Dockerfile for Stainless MCP Server
-    #
-    # This Dockerfile builds a Docker image for the MCP Server.
-    #
-    # To build the image locally:
-    #   docker build -f packages/mcp-server/Dockerfile -t stainlessapi/stainless-mcp:local .
-    #
-    # To run the image:
-    #   docker run -i stainlessapi/stainless-mcp:local [OPTIONS]
-    #
-    # Common options:
-    #   --tool=<name>              Include specific tools
-    #   --resource=<name>          Include tools for specific resources
-    #   --operation=read|write     Filter by operation type
-    #   --client=<type>            Set client compatibility (e.g., claude, cursor)
-    #   --transport=<type>         Set transport type (stdio or http)
-    #
-    # For a full list of options:
-    #   docker run -i stainlessapi/stainless-mcp:local --help
-    #
-    # Note: The MCP server uses stdio transport by default. Docker's -i flag
-    # enables interactive mode, allowing the container to communicate over stdin/stdout.
+#
+# This Dockerfile builds a Docker image for the MCP Server.
+#
+# To build the image locally:
+#   docker build -f packages/mcp-server/Dockerfile -t stainlessapi/stainless-mcp:local .
+#
+# To run the image:
+#   docker run -i stainlessapi/stainless-mcp:local [OPTIONS]
+#
+# Common options:
+#   --tool=<name>              Include specific tools
+#   --resource=<name>          Include tools for specific resources
+#   --operation=read|write     Filter by operation type
+#   --client=<type>            Set client compatibility (e.g., claude, cursor)
+#   --transport=<type>         Set transport type (stdio or http)
+#
+# For a full list of options:
+#   docker run -i stainlessapi/stainless-mcp:local --help
+#
+# Note: The MCP server uses stdio transport by default. Docker's -i flag
+# enables interactive mode, allowing the container to communicate over stdin/stdout.
 
-    # Build stage
-    FROM node:20-alpine AS builder
+# Build stage
+FROM node:20-alpine AS builder
 
 # Enable corepack to use pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
+# Install bash for build script
+RUN apk add --no-cache bash openssl
 
-    # Install bash for build script
-    RUN apk add --no-cache bash openssl
+# Set working directory
+WORKDIR /build
 
-    # Set working directory
-    WORKDIR /build
+# Copy entire repository
+COPY . .
 
-    # Copy entire repository
-    COPY . .
+# Install all dependencies and build everything
+RUN pnpm install --frozen-lockfile && \
+    pnpm build
 
-    # Install all dependencies and build everything
-    RUN pnpm install --frozen-lockfile && \
-        pnpm build
+# Production stage
+FROM node:20-alpine
 
-    # Production stage
+# Add non-root user
+RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
 
-            FROM denoland/deno:alpine
-            RUN apk add --no-cache npm
-
-    # Add non-root user
-    RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
-
-    # Set working directory
-    WORKDIR /app
+# Set working directory
+WORKDIR /app
 
 # Copy the built mcp-server preserving directory structure
 COPY --from=builder /build/packages/mcp-server/dist ./packages/mcp-server/dist
@@ -58,24 +55,20 @@ COPY --from=builder /build/packages/mcp-server/node_modules ./packages/mcp-serve
 # Copy node_modules from root (pnpm hoists dependencies here)
 COPY --from=builder /build/node_modules ./node_modules
 
-    # Copy the built @stainless-api/sdk into node_modules
-    COPY --from=builder /build/dist ./node_modules/@stainless-api/sdk
+# Copy the built @stainless-api/sdk into node_modules
+COPY --from=builder /build/dist ./node_modules/@stainless-api/sdk
 
-    # Change ownership to nodejs user
-    RUN chown -R nodejs:nodejs /app
+# Change ownership to nodejs user
+RUN chown -R nodejs:nodejs /app
 
-    # Switch to non-root user
-    USER nodejs
+# Switch to non-root user
+USER nodejs
 
-    # The MCP server uses stdio transport by default
-    # No exposed ports needed for stdio communication
+# The MCP server uses stdio transport by default
+# No exposed ports needed for stdio communication
 
-    # This is needed for node to run on the deno:alpine image.
-    # See <https://github.com/denoland/deno_docker/issues/373>.
-    ENV LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
+# Set the entrypoint to the MCP server
+ENTRYPOINT ["node", "packages/mcp-server/dist/index.js"]
 
-    # Set the entrypoint to the MCP server
-    ENTRYPOINT ["node", "packages/mcp-server/dist/index.js"]
-
-    # Allow passing arguments to the MCP server
-    CMD []
+# Allow passing arguments to the MCP server
+CMD []

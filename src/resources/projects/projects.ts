@@ -122,12 +122,12 @@ export interface ProjectRetrieveParams {
 
 export interface ProjectUpdateParams {
   /**
-   * Path param:
+   * Path param
    */
   project?: string;
 
   /**
-   * Body param:
+   * Body param
    */
   display_name?: string | null;
 }

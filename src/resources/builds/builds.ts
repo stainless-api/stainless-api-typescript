@@ -124,11 +124,15 @@ export namespace Build {
 
     node?: BuildsAPI.BuildTarget;
 
+    openapi?: BuildsAPI.BuildTarget;
+
     php?: BuildsAPI.BuildTarget;
 
     python?: BuildsAPI.BuildTarget;
 
     ruby?: BuildsAPI.BuildTarget;
+
+    sql?: BuildsAPI.BuildTarget;
 
     terraform?: BuildsAPI.BuildTarget;
 
@@ -166,12 +170,36 @@ export namespace BuildTarget {
   }
 
   export interface Completed {
+    commit: Shared.Commit | null;
+
+    /**
+     * deprecated
+     */
     completed: Completed.Completed;
+
+    conclusion:
+      | 'error'
+      | 'warning'
+      | 'note'
+      | 'success'
+      | 'merge_conflict'
+      | 'upstream_merge_conflict'
+      | 'fatal'
+      | 'payment_required'
+      | 'cancelled'
+      | 'timed_out'
+      | 'noop'
+      | 'version_bump';
+
+    merge_conflict_pr: Completed.MergeConflictPr | null;
 
     status: 'completed';
   }
 
   export namespace Completed {
+    /**
+     * deprecated
+     */
     export interface Completed {
       commit: Shared.Commit | null;
 
@@ -207,6 +235,20 @@ export namespace BuildTarget {
         }
       }
     }
+
+    export interface MergeConflictPr {
+      number: number;
+
+      repo: MergeConflictPr.Repo;
+    }
+
+    export namespace MergeConflictPr {
+      export interface Repo {
+        name: string;
+
+        owner: string;
+      }
+    }
   }
 }
 
@@ -226,12 +268,22 @@ export namespace CheckStep {
   }
 
   export interface Completed {
+    /**
+     * deprecated
+     */
     completed: Completed.Completed;
 
+    conclusion: 'success' | 'failure' | 'skipped' | 'cancelled' | 'action_required' | 'neutral' | 'timed_out';
+
     status: 'completed';
+
+    url: string | null;
   }
 
   export namespace Completed {
+    /**
+     * deprecated
+     */
     export interface Completed {
       conclusion:
         | 'success'
@@ -314,11 +366,15 @@ export namespace BuildCreateParams {
 
     node?: string;
 
+    openapi?: string;
+
     php?: string;
 
     python?: string;
 
     ruby?: string;
+
+    sql?: string;
 
     terraform?: string;
 

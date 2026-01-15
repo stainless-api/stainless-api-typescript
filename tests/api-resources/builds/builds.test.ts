@@ -35,9 +35,11 @@ describe('resource builds', () => {
         java: 'java',
         kotlin: 'kotlin',
         node: 'node',
+        openapi: 'openapi',
         php: 'php',
         python: 'python',
         ruby: 'ruby',
+        sql: 'sql',
         terraform: 'terraform',
         typescript: 'typescript',
       },
@@ -99,8 +101,16 @@ describe('resource builds', () => {
   // Prism tests are disabled
   test.skip('compare: required and optional params', async () => {
     const response = await client.builds.compare({
-      base: { branch: 'branch', revision: 'string', commit_message: 'commit_message' },
-      head: { branch: 'branch', revision: 'string', commit_message: 'commit_message' },
+      base: {
+        branch: 'branch',
+        revision: 'string',
+        commit_message: 'commit_message',
+      },
+      head: {
+        branch: 'branch',
+        revision: 'string',
+        commit_message: 'commit_message',
+      },
       project: 'project',
       targets: ['node'],
     });

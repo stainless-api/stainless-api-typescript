@@ -1,5 +1,54 @@
 # Changelog
 
+## 0.1.0-alpha.20 (2026-01-15)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** remove deprecated tool schemes
+* **mcp:** **Migration:** To migrate, simply modify the command used to invoke the MCP server. Currently, the only supported tool scheme is code mode. Now, starting the server with just `node /path/to/mcp/server` or `npx package-name` will invoke code tools: changing your command to one of these is likely all you will need to do.
+
+### Features
+
+* add openapi target ([c9f3ed1](https://github.com/stainless-api/stainless-api-typescript/commit/c9f3ed1813455f01d746b3bca49fd8917185654d))
+* **api:** support openapi target from builds:target_outputs ([3237371](https://github.com/stainless-api/stainless-api-typescript/commit/3237371c2c347deedcf3389ac6e927139d740497))
+* **ci:** Add organization-level setting for AI commit messages ([0da57bb](https://github.com/stainless-api/stainless-api-typescript/commit/0da57bb4a5ee9ea5f06925077e0d853a54d9a1dc))
+* **sql:** initial commit ([5e5b22d](https://github.com/stainless-api/stainless-api-typescript/commit/5e5b22df050ec55d0d534362c3a2b88e80a47e6e))
+
+
+### Bug Fixes
+
+* dedent dockerfile ([5e8ae82](https://github.com/stainless-api/stainless-api-typescript/commit/5e8ae821e769cddbfd24477b2d6384e902c94ba9))
+* **mcp:** add client instantiation options to code tool ([5ec78d4](https://github.com/stainless-api/stainless-api-typescript/commit/5ec78d40ffb8e82e27a2ae52613718791c11e6f7))
+* **mcp:** pass base url to code tool ([5eb8940](https://github.com/stainless-api/stainless-api-typescript/commit/5eb894056a0622497a815e0db7d34f5afa0fad31))
+* production stage ([e40f6be](https://github.com/stainless-api/stainless-api-typescript/commit/e40f6be4bc490012f55ea3ff2c7e7fe464e048b6))
+
+
+### Chores
+
+* fix typo in descriptions ([416d86f](https://github.com/stainless-api/stainless-api-typescript/commit/416d86f0c1e31385d3e727e601eb1b2c0312b1cf))
+* **internal:** bump MCP dependencies ([0a57072](https://github.com/stainless-api/stainless-api-typescript/commit/0a5707216bcd38d027763cb9be10a6dbfabd3d4a))
+* **internal:** codegen related update ([3b91770](https://github.com/stainless-api/stainless-api-typescript/commit/3b91770939904314c32e483b44e5c0c3320f0008))
+* **internal:** codegen related update ([d11e8ce](https://github.com/stainless-api/stainless-api-typescript/commit/d11e8ce5dca12a13c4c1935de4259d088bed9848))
+* **internal:** codegen related update ([7fd517d](https://github.com/stainless-api/stainless-api-typescript/commit/7fd517d8c498853a8e18c9e9d06c3c93a454dfaf))
+* **internal:** codegen related update ([24ff924](https://github.com/stainless-api/stainless-api-typescript/commit/24ff924499577c203829eaf68b0ddcffc899e1ec))
+* **internal:** codegen related update ([dacf7c3](https://github.com/stainless-api/stainless-api-typescript/commit/dacf7c31089328b91ab247f8ef9a9b545852cbe9))
+* **internal:** codegen related update ([af15ddc](https://github.com/stainless-api/stainless-api-typescript/commit/af15ddc1b75bf6026e30afac7ddc231bd27bf777))
+* **internal:** codegen related update ([c311001](https://github.com/stainless-api/stainless-api-typescript/commit/c31100189813bc6f1b84565c601b57f373dbc131))
+* **internal:** codegen related update ([8772f3e](https://github.com/stainless-api/stainless-api-typescript/commit/8772f3ef577ae9f69cc600afee7a022a17ec9781))
+* **internal:** upgrade babel, qs, js-yaml ([8575348](https://github.com/stainless-api/stainless-api-typescript/commit/857534804a482eddae657b887e390c7196b66cdf))
+* **internal:** upgrade brace-expansion and @babel/helpers ([35e55bb](https://github.com/stainless-api/stainless-api-typescript/commit/35e55bb6411e7aa7015dea6775eef711c7de6b3a))
+* **mcp:** add intent param to execute tool ([85b4356](https://github.com/stainless-api/stainless-api-typescript/commit/85b43560d63d08bb978384d11f7179faea9e1183))
+* **mcp:** pass intent param to execute handler ([1b002ef](https://github.com/stainless-api/stainless-api-typescript/commit/1b002eff7f231e43607cbd0feddb34eb6e8b38d9))
+* **mcp:** remove deprecated tool schemes ([b9b5541](https://github.com/stainless-api/stainless-api-typescript/commit/b9b554159351b2f71e0aa4ba0f718339dcbcf81a))
+* **mcp:** upgrade dependencies ([9f6519d](https://github.com/stainless-api/stainless-api-typescript/commit/9f6519d49189c617c8f9ae7d9044f2dd7357d586))
+
+
+### Refactors
+
+* **api:** change completed shape ([3b3d2b0](https://github.com/stainless-api/stainless-api-typescript/commit/3b3d2b0ec69bd059f357774357d09f3c145e499b))
+
 ## 0.1.0-alpha.19 (2025-12-09)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
