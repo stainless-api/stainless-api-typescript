@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.21 (2026-01-17)
+
+Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([76603c7](https://github.com/stainless-api/stainless-api-typescript/commit/76603c7b70d68238de82461ca98fc1239d46bf67))
+* **internal:** update lock file ([5b6af2d](https://github.com/stainless-api/stainless-api-typescript/commit/5b6af2d042a9e28d70f1f084322aebfdcc37474b))
+
 ## 0.1.0-alpha.20 (2026-01-15)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
