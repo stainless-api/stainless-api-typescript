@@ -34,6 +34,8 @@ import {
 import {
   Project,
   ProjectCreateParams,
+  ProjectGenerateCommitMessageParams,
+  ProjectGenerateCommitMessageResponse,
   ProjectListParams,
   ProjectRetrieveParams,
   ProjectUpdateParams,
@@ -796,11 +798,13 @@ export declare namespace Stainless {
   export {
     Projects as Projects,
     type Project as Project,
+    type ProjectGenerateCommitMessageResponse as ProjectGenerateCommitMessageResponse,
     type ProjectsPage as ProjectsPage,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,
+    type ProjectGenerateCommitMessageParams as ProjectGenerateCommitMessageParams,
   };
 
   export {
