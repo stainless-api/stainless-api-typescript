@@ -23,9 +23,11 @@ export {
 export {
   Projects,
   type Project,
+  type ProjectGenerateCommitMessageResponse,
   type ProjectCreateParams,
   type ProjectRetrieveParams,
   type ProjectUpdateParams,
   type ProjectListParams,
+  type ProjectGenerateCommitMessageParams,
   type ProjectsPage,
 } from './projects';
