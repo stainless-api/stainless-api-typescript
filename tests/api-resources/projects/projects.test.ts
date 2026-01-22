@@ -97,4 +97,31 @@ describe('resource projects', () => {
       ),
     ).rejects.toThrow(Stainless.NotFoundError);
   });
+
+  // Prism tests are disabled
+  test.skip('generateCommitMessage: only required params', async () => {
+    const responsePromise = client.projects.generateCommitMessage({
+      project: 'project',
+      target: 'python',
+      base_ref: 'base_ref',
+      head_ref: 'head_ref',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Prism tests are disabled
+  test.skip('generateCommitMessage: required and optional params', async () => {
+    const response = await client.projects.generateCommitMessage({
+      project: 'project',
+      target: 'python',
+      base_ref: 'base_ref',
+      head_ref: 'head_ref',
+    });
+  });
 });

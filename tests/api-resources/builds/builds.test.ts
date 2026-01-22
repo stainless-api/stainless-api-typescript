@@ -28,6 +28,7 @@ describe('resource builds', () => {
       allow_empty: true,
       branch: 'branch',
       commit_message: 'commit_message',
+      enable_ai_commit_message: true,
       target_commit_messages: {
         cli: 'cli',
         csharp: 'csharp',
