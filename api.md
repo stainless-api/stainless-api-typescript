@@ -11,6 +11,7 @@ Types:
 Types:
 
 - <code><a href="./src/resources/projects/projects.ts">Project</a></code>
+- <code><a href="./src/resources/projects/projects.ts">ProjectGenerateCommitMessageResponse</a></code>
 
 Methods:
 
@@ -18,6 +19,7 @@ Methods:
 - <code title="get /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>({ ...params }) -> Project</code>
 - <code title="patch /v0/projects/{project}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>({ ...params }) -> Project</code>
 - <code title="get /v0/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectsPage</code>
+- <code title="post /v0/projects/{project}/generate_commit_message">client.projects.<a href="./src/resources/projects/projects.ts">generateCommitMessage</a>({ ...params }) -> ProjectGenerateCommitMessageResponse</code>
 
 ## Branches
 

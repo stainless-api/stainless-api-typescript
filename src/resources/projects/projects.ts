@@ -68,6 +68,21 @@ export class Projects extends APIResource {
   ): PagePromise<ProjectsPage, Project> {
     return this._client.getAPIList('/v0/projects', Page<Project>, { query, ...options });
   }
+
+  /**
+   * Generates an AI commit message by comparing two git refs in the SDK repository.
+   */
+  generateCommitMessage(
+    params: ProjectGenerateCommitMessageParams,
+    options?: RequestOptions,
+  ): APIPromise<ProjectGenerateCommitMessageResponse> {
+    const { project = this._client.project, target, ...body } = params;
+    return this._client.post(path`/v0/projects/${project}/generate_commit_message`, {
+      query: { target },
+      body,
+      ...options,
+    });
+  }
 }
 
 export type ProjectsPage = Page<Project>;
@@ -87,6 +102,10 @@ export interface Project {
   slug: string;
 
   targets: Array<Shared.Target>;
+}
+
+export interface ProjectGenerateCommitMessageResponse {
+  ai_commit_message: string;
 }
 
 export interface ProjectCreateParams {
@@ -141,17 +160,54 @@ export interface ProjectListParams extends PageParams {
   org?: string;
 }
 
+export interface ProjectGenerateCommitMessageParams {
+  /**
+   * Path param
+   */
+  project?: string;
+
+  /**
+   * Query param: Language target
+   */
+  target:
+    | 'python'
+    | 'node'
+    | 'typescript'
+    | 'java'
+    | 'kotlin'
+    | 'go'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'csharp'
+    | 'php'
+    | 'openapi'
+    | 'sql';
+
+  /**
+   * Body param: Base ref for comparison
+   */
+  base_ref: string;
+
+  /**
+   * Body param: Head ref for comparison
+   */
+  head_ref: string;
+}
+
 Projects.Branches = Branches;
 Projects.Configs = Configs;
 
 export declare namespace Projects {
   export {
     type Project as Project,
+    type ProjectGenerateCommitMessageResponse as ProjectGenerateCommitMessageResponse,
     type ProjectsPage as ProjectsPage,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,
+    type ProjectGenerateCommitMessageParams as ProjectGenerateCommitMessageParams,
   };
 
   export {

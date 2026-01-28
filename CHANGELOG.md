@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.0-alpha.21 (2026-01-28)
+
+Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
+
+### Features
+
+* **api:** ai commit message features are available as public feature ([f1edfe8](https://github.com/stainless-api/stainless-api-typescript/commit/f1edfe80f46ae124057b4d010d057008ed193a98))
+
+
+### Bug Fixes
+
+* **mcp:** allow falling back for required env variables ([04b56e3](https://github.com/stainless-api/stainless-api-typescript/commit/04b56e3ad322e8049de55e05dbd0e5fb98c74191))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([6be3894](https://github.com/stainless-api/stainless-api-typescript/commit/6be3894399b0e0923596a2e416245c24a4969de9))
+* **internal:** codegen related update ([20b8166](https://github.com/stainless-api/stainless-api-typescript/commit/20b8166aef78ed6e60b4e2700d0e911c03c670a6))
+* **internal:** update `actions/checkout` version ([76603c7](https://github.com/stainless-api/stainless-api-typescript/commit/76603c7b70d68238de82461ca98fc1239d46bf67))
+* **internal:** update lock file ([5b6af2d](https://github.com/stainless-api/stainless-api-typescript/commit/5b6af2d042a9e28d70f1f084322aebfdcc37474b))
+
 ## 0.1.0-alpha.20 (2026-01-15)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)

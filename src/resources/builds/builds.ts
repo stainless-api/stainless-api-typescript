@@ -334,6 +334,12 @@ export interface BuildCreateParams {
   commit_message?: string;
 
   /**
+   * Whether to generate AI-powered commit messages for the build. Cannot be combined
+   * with `commit_message` or `target_commit_messages`.
+   */
+  enable_ai_commit_message?: boolean;
+
+  /**
    * Optional commit messages to use for each SDK when making a new commit. SDKs not
    * represented in this object will fallback to the optional `commit_message`
    * parameter, or will fallback further to the default commit message.

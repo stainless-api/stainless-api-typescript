@@ -4,6 +4,7 @@ import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult }
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { Stainless } from '@stainless-api/sdk';
 
 const prompt = `Runs JavaScript code to interact with the Stainless API.
 
@@ -54,7 +55,7 @@ export function codeTool(): McpTool {
       required: ['code'],
     },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: Stainless, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
     const intent = args.intent as string | undefined;
 
@@ -70,8 +71,8 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          STAINLESS_API_KEY: readEnv('STAINLESS_API_KEY'),
-          STAINLESS_BASE_URL: readEnv('STAINLESS_BASE_URL'),
+          STAINLESS_API_KEY: readEnv('STAINLESS_API_KEY') ?? client.apiKey ?? undefined,
+          STAINLESS_BASE_URL: readEnv('STAINLESS_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({

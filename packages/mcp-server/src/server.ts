@@ -21,7 +21,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'stainless_api_sdk_api',
-      version: '0.1.0-alpha.20',
+      version: '0.1.0-alpha.21',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
@@ -148,4 +148,11 @@ export const readEnvOrError = (env: string): string => {
     throw new Error(`Environment variable ${env} is not set`);
   }
   return envValue;
+};
+
+export const requireValue = <T>(value: T | undefined, description: string): T => {
+  if (value === undefined) {
+    throw new Error(`Missing required value: ${description}`);
+  }
+  return value;
 };
