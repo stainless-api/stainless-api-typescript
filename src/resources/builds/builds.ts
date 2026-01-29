@@ -145,15 +145,15 @@ export interface BuildTarget {
 
   install_url: string | null;
 
-  lint: CheckStep;
-
   object: 'build_target';
 
   status: 'not_started' | 'codegen' | 'postgen' | 'completed';
 
-  test: CheckStep;
-
   build?: CheckStep;
+
+  lint?: CheckStep;
+
+  test?: CheckStep;
 }
 
 export namespace BuildTarget {
