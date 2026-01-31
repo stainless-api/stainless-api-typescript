@@ -72,7 +72,10 @@ export function codeTool(): McpTool {
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
           STAINLESS_API_KEY: readEnv('STAINLESS_API_KEY') ?? client.apiKey ?? undefined,
-          STAINLESS_BASE_URL: readEnv('STAINLESS_BASE_URL') ?? client.baseURL ?? undefined,
+          STAINLESS_BASE_URL:
+            readEnv('STAINLESS_BASE_URL') ?? readEnv('STAINLESS_ENVIRONMENT') ?
+              undefined
+            : client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
