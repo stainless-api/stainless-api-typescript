@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.1.0-alpha.21 (2026-02-04)
+
+Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
+
+### Features
+
+* **api:** ai commit message features are available as public feature ([f1edfe8](https://github.com/stainless-api/stainless-api-typescript/commit/f1edfe80f46ae124057b4d010d057008ed193a98))
+* **api:** update support email address ([779892a](https://github.com/stainless-api/stainless-api-typescript/commit/779892a1f0668010191f8e7e43c0eb3dc1dac864))
+* better notion of which ci workflows are supported in build api ([36181b3](https://github.com/stainless-api/stainless-api-typescript/commit/36181b308cef3dae22dcf687cfe4b063b0b3d0e9))
+
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([6e03734](https://github.com/stainless-api/stainless-api-typescript/commit/6e0373411d630579598e7547c8044c799f4f4232))
+* **docs:** fix mcp installation instructions for remote servers ([b18cddf](https://github.com/stainless-api/stainless-api-typescript/commit/b18cddf8d11592d38b9dc6f7cbc8db3b29443754))
+* **mcp:** allow falling back for required env variables ([04b56e3](https://github.com/stainless-api/stainless-api-typescript/commit/04b56e3ad322e8049de55e05dbd0e5fb98c74191))
+* **mcp:** do not fallback on baseUrl if environment env variable is set ([49587f0](https://github.com/stainless-api/stainless-api-typescript/commit/49587f0667eda317e9e9e93abd227dd5f47385fe))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([6be3894](https://github.com/stainless-api/stainless-api-typescript/commit/6be3894399b0e0923596a2e416245c24a4969de9))
+* **client:** do not parse responses with empty content-length ([0eac060](https://github.com/stainless-api/stainless-api-typescript/commit/0eac0609b8f9db40317667af4f7cacab574859e9))
+* **internal:** codegen related update ([20b8166](https://github.com/stainless-api/stainless-api-typescript/commit/20b8166aef78ed6e60b4e2700d0e911c03c670a6))
+* **internal:** support oauth authorization code flow for MCP servers ([7ae4f57](https://github.com/stainless-api/stainless-api-typescript/commit/7ae4f57db81aaa328ba522a5e94067f3c3e6fc1f))
+* **internal:** update `actions/checkout` version ([76603c7](https://github.com/stainless-api/stainless-api-typescript/commit/76603c7b70d68238de82461ca98fc1239d46bf67))
+* **internal:** update lock file ([5b6af2d](https://github.com/stainless-api/stainless-api-typescript/commit/5b6af2d042a9e28d70f1f084322aebfdcc37474b))
+* **mcp:** up tsconfig lib version to es2022 ([73f8ebd](https://github.com/stainless-api/stainless-api-typescript/commit/73f8ebdd0dd2224b6803847dec82ad0eba844714))
+
 ## 0.1.0-alpha.20 (2026-01-15)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
