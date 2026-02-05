@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.22 (2026-02-05)
+
+Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
+
+### Features
+
+* **mcp:** add initial server instructions ([3b2d5c8](https://github.com/stainless-api/stainless-api-typescript/commit/3b2d5c86c3c2259011a2276904c81f21b08ff606))
+
+
+### Chores
+
+* **client:** restructure abort controller binding ([977850d](https://github.com/stainless-api/stainless-api-typescript/commit/977850dc7b10f2eb6cedddc128b0970450b378f1))
+* **internal:** refactor flag parsing for MCP servers and add debug flag ([efa7cbf](https://github.com/stainless-api/stainless-api-typescript/commit/efa7cbfce60b900ab0c8b713904ac591eedbd5ac))
+
 ## 0.1.0-alpha.21 (2026-02-04)
 
 Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
