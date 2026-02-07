@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.23 (2026-02-07)
+
+Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([e657e39](https://github.com/stainless-api/stainless-api-typescript/commit/e657e394f7680df026868218af7cf08c425034ad))
+
+
+### Chores
+
+* **internal:** add health check to MCP server when running in HTTP mode ([01547f9](https://github.com/stainless-api/stainless-api-typescript/commit/01547f9e108bbe5339665f757852267d9baf5c41))
+* **internal:** fix pagination internals not accepting option promises ([89813a0](https://github.com/stainless-api/stainless-api-typescript/commit/89813a0632566f24d6589400d9e0a7b8c9dafa78))
+* **internal:** upgrade pnpm ([adc84e0](https://github.com/stainless-api/stainless-api-typescript/commit/adc84e0f1f32dfc793d79d51d943284c05bac350))
+
 ## 0.1.0-alpha.22 (2026-02-05)
 
 Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
