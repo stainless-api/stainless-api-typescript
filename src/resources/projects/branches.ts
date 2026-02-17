@@ -134,6 +134,8 @@ export namespace ProjectBranch {
     repo: ConfigCommit.Repo;
 
     sha: string;
+
+    tree_oid?: string;
   }
 
   export namespace ConfigCommit {
@@ -184,6 +186,8 @@ export namespace BranchListResponse {
     repo: ConfigCommit.Repo;
 
     sha: string;
+
+    tree_oid?: string;
   }
 
   export namespace ConfigCommit {

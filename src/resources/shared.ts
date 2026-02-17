@@ -4,6 +4,8 @@ export interface Commit {
   repo: Commit.Repo;
 
   sha: string;
+
+  tree_oid?: string;
 }
 
 export namespace Commit {
