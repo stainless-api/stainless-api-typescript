@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.24 (2026-02-17)
+
+Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
+
+### Chores
+
+* update SDK settings ([0e3c189](https://github.com/stainless-api/stainless-api-typescript/commit/0e3c189fa08b2c2861075f7ed9b6ac4f3c525979))
+
 ## 0.1.0-alpha.23 (2026-02-17)
 
 Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
