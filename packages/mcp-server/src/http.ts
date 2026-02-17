@@ -2,19 +2,22 @@
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import { ClientOptions } from '@stainless-api/sdk';
 import express from 'express';
 import morgan from 'morgan';
 import morganBody from 'morgan-body';
+import { parseAuthHeaders } from './auth';
 import { McpOptions } from './options';
-import { ClientOptions, initMcpServer, newMcpServer } from './server';
-import { parseAuthHeaders } from './headers';
+import { initMcpServer, newMcpServer } from './server';
 
 const newServer = async ({
   clientOptions,
+  mcpOptions,
   req,
   res,
 }: {
   clientOptions: ClientOptions;
+  mcpOptions: McpOptions;
   req: express.Request;
   res: express.Response;
 }): Promise<McpServer | null> => {
@@ -24,6 +27,7 @@ const newServer = async ({
     const authOptions = parseAuthHeaders(req, false);
     await initMcpServer({
       server: server,
+      mcpOptions: mcpOptions,
       clientOptions: {
         ...clientOptions,
         ...authOptions,
@@ -98,6 +102,9 @@ export const streamableHTTPApp = ({
     app.use(morgan('combined'));
   }
 
+  app.get('/health', async (req: express.Request, res: express.Response) => {
+    res.status(200).send('OK');
+  });
   app.get('/', get);
   app.post('/', post({ clientOptions, mcpOptions }));
   app.delete('/', del);

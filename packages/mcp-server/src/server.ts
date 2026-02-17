@@ -12,10 +12,9 @@ import Stainless from '@stainless-api/sdk';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { McpOptions } from './options';
+import { blockedMethodsForCodeTool } from './methods';
 import { HandlerFunction, McpTool } from './types';
-
-export { McpOptions } from './options';
-export { ClientOptions } from '@stainless-api/sdk';
+import { readEnv } from './util';
 
 async function getInstructions() {
   // This API key is optional; providing it allows the server to fetch instructions for unreleased versions.
@@ -36,10 +35,10 @@ async function getInstructions() {
 
     instructions = `
       This is the stainless-v0 MCP server. You will use Code Mode to help the user perform
-      actions. You can use search_docs tool to learn about how to take action with this server. Then, 
-      you will write TypeScript code using the execute tool take action. It is CRITICAL that you be 
-      thoughtful and deliberate when executing code. Always try to entirely solve the problem in code 
-      block: it can be as long as you need to get the job done! 
+      actions. You can use search_docs tool to learn about how to take action with this server. Then,
+      you will write TypeScript code using the execute tool take action. It is CRITICAL that you be
+      thoughtful and deliberate when executing code. Always try to entirely solve the problem in code
+      block: it can be as long as you need to get the job done!
     `;
   }
 
@@ -57,7 +56,7 @@ export const newMcpServer = async () =>
   new McpServer(
     {
       name: 'stainless_api_sdk_api',
-      version: '0.1.0-alpha.22',
+      version: '0.1.0-alpha.23',
     },
     {
       instructions: await getInstructions(),
@@ -151,7 +150,11 @@ export async function initMcpServer(params: {
  * Selects the tools to include in the MCP Server based on the provided options.
  */
 export function selectTools(options?: McpOptions): McpTool[] {
-  const includedTools = [codeTool()];
+  const includedTools = [
+    codeTool({
+      blockedMethods: blockedMethodsForCodeTool(options),
+    }),
+  ];
   if (options?.includeDocsTools ?? true) {
     includedTools.push(docsSearchTool);
   }
@@ -168,27 +171,3 @@ export async function executeHandler(
 ) {
   return await handler(client, args || {});
 }
-
-export const readEnv = (env: string): string | undefined => {
-  if (typeof (globalThis as any).process !== 'undefined') {
-    return (globalThis as any).process.env?.[env]?.trim();
-  } else if (typeof (globalThis as any).Deno !== 'undefined') {
-    return (globalThis as any).Deno.env?.get?.(env)?.trim();
-  }
-  return;
-};
-
-export const readEnvOrError = (env: string): string => {
-  let envValue = readEnv(env);
-  if (envValue === undefined) {
-    throw new Error(`Environment variable ${env} is not set`);
-  }
-  return envValue;
-};
-
-export const requireValue = <T>(value: T | undefined, description: string): T => {
-  if (value === undefined) {
-    throw new Error(`Missing required value: ${description}`);
-  }
-  return value;
-};

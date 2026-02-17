@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.1.0-alpha.23 (2026-02-17)
+
+Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
+
+### Features
+
+* record tree oid and return it in the builds api ([f75de39](https://github.com/stainless-api/stainless-api-typescript/commit/f75de398bde828e6007b775b7a5e4fbf8da38541))
+
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([e657e39](https://github.com/stainless-api/stainless-api-typescript/commit/e657e394f7680df026868218af7cf08c425034ad))
+
+
+### Chores
+
+* **internal:** add health check to MCP server when running in HTTP mode ([01547f9](https://github.com/stainless-api/stainless-api-typescript/commit/01547f9e108bbe5339665f757852267d9baf5c41))
+* **internal:** allow basic filtering of methods allowed for MCP code mode ([84bc770](https://github.com/stainless-api/stainless-api-typescript/commit/84bc7701d32df4eac5d471c96f52074cc2557044))
+* **internal:** always generate MCP server dockerfiles and upgrade associated dependencies ([c87ed99](https://github.com/stainless-api/stainless-api-typescript/commit/c87ed994b929201c9b25bb22ada52bbaa3ee34d9))
+* **internal:** avoid type checking errors with ts-reset ([4a453b6](https://github.com/stainless-api/stainless-api-typescript/commit/4a453b6ebd23ec3eb05bbb5d4328e1cca1e4a928))
+* **internal:** codegen related update ([067f371](https://github.com/stainless-api/stainless-api-typescript/commit/067f371829d4a8fa499f6e6ac6a7abc3d3671cd4))
+* **internal:** codegen related update ([59776d5](https://github.com/stainless-api/stainless-api-typescript/commit/59776d54e59bd708082e8e634db84a4008d45560))
+* **internal:** fix pagination internals not accepting option promises ([89813a0](https://github.com/stainless-api/stainless-api-typescript/commit/89813a0632566f24d6589400d9e0a7b8c9dafa78))
+* **internal:** upgrade pnpm ([adc84e0](https://github.com/stainless-api/stainless-api-typescript/commit/adc84e0f1f32dfc793d79d51d943284c05bac350))
+
 ## 0.1.0-alpha.22 (2026-02-05)
 
 Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
