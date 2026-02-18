@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.25 (2026-02-18)
+
+Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
+
+### Chores
+
+* **internal:** codegen related update ([2e90eec](https://github.com/stainless-api/stainless-api-typescript/commit/2e90eec95379f398307197e4301bb241815b5f7a))
+
 ## 0.1.0-alpha.24 (2026-02-17)
 
 Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
