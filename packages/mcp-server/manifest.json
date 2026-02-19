@@ -1,6 +1,6 @@
 {
   "dxt_version": "0.2",
-  "name": "@stainless-api/sdk-mcp",
+  "name": "@stainless-api/mcp",
   "version": "0.1.0-alpha.11",
   "description": "The official MCP Server for the Stainless API",
   "author": {
