@@ -23,7 +23,7 @@ You can run the MCP Server directly via `npx`:
 export STAINLESS_API_KEY="My API Key"
 export STAINLESS_PROJECT="example-project"
 export STAINLESS_ENVIRONMENT="production"
-npx -y @stainless-api/sdk-mcp@latest
+npx -y @stainless-api/mcp@latest
 ```
 
 ### Via MCP Client
@@ -38,7 +38,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "stainless_api_sdk_api": {
       "command": "npx",
-      "args": ["-y", "@stainless-api/sdk-mcp"],
+      "args": ["-y", "@stainless-api/mcp"],
       "env": {
         "STAINLESS_API_KEY": "My API Key",
         "STAINLESS_PROJECT": "example-project",
@@ -54,14 +54,14 @@ For clients with a configuration JSON, it might look something like this:
 If you use Cursor, you can install the MCP server by using the button below. You will need to set your environment variables
 in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > New MCP Server.
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40stainless-api%2Fsdk-mcp&config=eyJuYW1lIjoiQHN0YWlubGVzcy1hcGkvc2RrLW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL3N0YWlubGVzcy12MC5zdGxtY3AuY29tIiwiaGVhZGVycyI6eyJ4LXN0YWlubGVzcy1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40stainless-api%2Fmcp&config=eyJuYW1lIjoiQHN0YWlubGVzcy1hcGkvbWNwIiwidHJhbnNwb3J0IjoiaHR0cCIsInVybCI6Imh0dHBzOi8vc3RhaW5sZXNzLXYwLnN0bG1jcC5jb20iLCJoZWFkZXJzIjp7Ingtc3RhaW5sZXNzLWFwaS1rZXkiOiJNeSBBUEkgS2V5In19)
 
 ### VS Code
 
 If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
 in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
 
-[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40stainless-api%2Fsdk-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fstainless-v0.stlmcp.com%22%2C%22headers%22%3A%7B%22x-stainless-api-key%22%3A%22My%20API%20Key%22%7D%7D)
+[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40stainless-api%2Fmcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fstainless-v0.stlmcp.com%22%2C%22headers%22%3A%7B%22x-stainless-api-key%22%3A%22My%20API%20Key%22%7D%7D)
 
 ### Claude Code
 
@@ -75,7 +75,7 @@ claude mcp add stainless -- stl mcp
 #### Using npx
 You will need to set your environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
 ```
-claude mcp add stainless_api_sdk_mcp_api --header "x-stainless-api-key: My API Key" --transport http https://stainless-v0.stlmcp.com
+claude mcp add stainless_api_mcp_api --header "x-stainless-api-key: My API Key" --transport http https://stainless-v0.stlmcp.com
 ```
 
 ## Code Mode

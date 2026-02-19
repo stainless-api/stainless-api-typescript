@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "@stainless-api/sdk-mcp/*": ["./dist/src/*"],
-      "@stainless-api/sdk-mcp": ["./dist/src/index.ts"]
+      "@stainless-api/mcp/*": ["./dist/src/*"],
+      "@stainless-api/mcp": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
