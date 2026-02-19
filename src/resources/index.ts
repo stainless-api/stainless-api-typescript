@@ -24,3 +24,4 @@ export {
   type ProjectGenerateCommitMessageParams,
   type ProjectsPage,
 } from './projects/projects';
+export { User, type UserRetrieveResponse } from './user';
