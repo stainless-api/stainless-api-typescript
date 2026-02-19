@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0 (2026-02-19)
+
+Full Changelog: [v0.1.0-alpha.27...v0.1.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.27...v0.1.0)
+
+### Chores
+
+* **mcp:** fix mcp package name ([5875dc4](https://github.com/stainless-api/stainless-api-typescript/commit/5875dc4fae895f94b80915f7ae5792c25cdf0bbf))
+
 ## 0.1.0-alpha.27 (2026-02-19)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
