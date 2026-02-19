@@ -8,7 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource user', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.user.retrieve();
     const rawResponse = await responsePromise.asResponse();

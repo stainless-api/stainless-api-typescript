@@ -8,7 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource targetOutputs', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve: only required params', async () => {
     const responsePromise = client.builds.targetOutputs.retrieve({
       build_id: 'build_id',
@@ -24,7 +24,7 @@ describe('resource targetOutputs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve: required and optional params', async () => {
     const response = await client.builds.targetOutputs.retrieve({
       build_id: 'build_id',

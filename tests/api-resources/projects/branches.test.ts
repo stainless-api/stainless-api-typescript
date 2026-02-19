@@ -8,7 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource branches', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.projects.branches.create({
       project: 'project',
@@ -24,7 +24,7 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.projects.branches.create({
       project: 'project',
@@ -34,7 +34,7 @@ describe('resource branches', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve: only required params', async () => {
     const responsePromise = client.projects.branches.retrieve('branch', { project: 'project' });
     const rawResponse = await responsePromise.asResponse();
@@ -46,12 +46,12 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve: required and optional params', async () => {
     const response = await client.projects.branches.retrieve('branch', { project: 'project' });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: only required params', async () => {
     const responsePromise = client.projects.branches.list({ project: 'project' });
     const rawResponse = await responsePromise.asResponse();
@@ -63,7 +63,7 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: required and optional params', async () => {
     const response = await client.projects.branches.list({
       project: 'project',
@@ -72,7 +72,7 @@ describe('resource branches', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete: only required params', async () => {
     const responsePromise = client.projects.branches.delete('branch', { project: 'project' });
     const rawResponse = await responsePromise.asResponse();
@@ -84,12 +84,12 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete: required and optional params', async () => {
     const response = await client.projects.branches.delete('branch', { project: 'project' });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('rebase: only required params', async () => {
     const responsePromise = client.projects.branches.rebase('branch', { project: 'project' });
     const rawResponse = await responsePromise.asResponse();
@@ -101,12 +101,12 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('rebase: required and optional params', async () => {
     const response = await client.projects.branches.rebase('branch', { project: 'project', base: 'base' });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('reset: only required params', async () => {
     const responsePromise = client.projects.branches.reset('branch', { project: 'project' });
     const rawResponse = await responsePromise.asResponse();
@@ -118,7 +118,7 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('reset: required and optional params', async () => {
     const response = await client.projects.branches.reset('branch', {
       project: 'project',
