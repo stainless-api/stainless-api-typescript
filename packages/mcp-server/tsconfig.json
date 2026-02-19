@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "@stainless-api/sdk-mcp/*": ["./src/*"],
-      "@stainless-api/sdk-mcp": ["./src/index.ts"]
+      "@stainless-api/mcp/*": ["./src/*"],
+      "@stainless-api/mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 
