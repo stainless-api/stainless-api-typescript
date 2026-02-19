@@ -26,7 +26,10 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: "20"
+
+      - name: Update npm to latest
+        run: npm install -g npm@latest && npm --version
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
