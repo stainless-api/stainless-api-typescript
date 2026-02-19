@@ -136,6 +136,12 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/v0/orgs',
   },
+  {
+    clientCallName: 'client.user.retrieve',
+    fullyQualifiedName: 'user.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v0/user',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
