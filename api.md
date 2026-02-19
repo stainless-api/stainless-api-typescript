@@ -98,3 +98,13 @@ Methods:
 
 - <code title="get /v0/orgs/{org}">client.orgs.<a href="./src/resources/orgs.ts">retrieve</a>(org) -> Org</code>
 - <code title="get /v0/orgs">client.orgs.<a href="./src/resources/orgs.ts">list</a>() -> OrgListResponse</code>
+
+# User
+
+Types:
+
+- <code><a href="./src/resources/user.ts">UserRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="get /v0/user">client.user.<a href="./src/resources/user.ts">retrieve</a>() -> UserRetrieveResponse</code>

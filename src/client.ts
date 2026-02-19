@@ -20,6 +20,7 @@ import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { Org, OrgListResponse, Orgs } from './resources/orgs';
+import { User, UserRetrieveResponse } from './resources/user';
 import {
   Build,
   BuildCompareParams,
@@ -803,11 +804,13 @@ export class Stainless {
   projects: API.Projects = new API.Projects(this);
   builds: API.Builds = new API.Builds(this);
   orgs: API.Orgs = new API.Orgs(this);
+  user: API.User = new API.User(this);
 }
 
 Stainless.Projects = Projects;
 Stainless.Builds = Builds;
 Stainless.Orgs = Orgs;
+Stainless.User = User;
 
 export declare namespace Stainless {
   export type RequestOptions = Opts.RequestOptions;
@@ -840,6 +843,8 @@ export declare namespace Stainless {
   };
 
   export { Orgs as Orgs, type Org as Org, type OrgListResponse as OrgListResponse };
+
+  export { User as User, type UserRetrieveResponse as UserRetrieveResponse };
 
   export type Commit = API.Commit;
   export type FileInput = API.FileInput;
