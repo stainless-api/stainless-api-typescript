@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.26 (2026-02-19)
+
+Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
+
+### Features
+
+* **api:** add a super basic GET /v0/user endpoint ([adda799](https://github.com/stainless-api/stainless-api-typescript/commit/adda799d4c3116c3b3600ba01935b13482f2d66f))
+
+
+### Chores
+
+* **internal:** cache fetch instruction calls in MCP server ([d395c11](https://github.com/stainless-api/stainless-api-typescript/commit/d395c113b29c6e0cf9041a0d8876c7fa027e381f))
+
 ## 0.1.0-alpha.25 (2026-02-18)
 
 Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
