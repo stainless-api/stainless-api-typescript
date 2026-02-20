@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.2.0 (2026-02-20)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** manual updates ([79e1b0f](https://github.com/stainless-api/stainless-api-typescript/commit/79e1b0f2cdc37955766d09304b51017ed6dde8d7))
+* **api:** populate integrated_stats ([d197453](https://github.com/stainless-api/stainless-api-typescript/commit/d197453190c3f44ad746e7b3f83c6060d59e2dbb))
+
+
+### Bug Fixes
+
+* **mcp:** initialize SDK lazily to avoid failing the connection on init errors ([f07516c](https://github.com/stainless-api/stainless-api-typescript/commit/f07516c5bc6719099b64f2a4ef693377d87b8ddc))
+
+
+### Chores
+
+* **internal:** remove mock server code ([47f0521](https://github.com/stainless-api/stainless-api-typescript/commit/47f0521a21a0e3ae9bcd690e1c4802153d21dc55))
+* **mcp:** correctly update version in sync with sdk ([c5227ab](https://github.com/stainless-api/stainless-api-typescript/commit/c5227abb38834153889b213c0e666bb06ffd6464))
+* update mock server docs ([39315f6](https://github.com/stainless-api/stainless-api-typescript/commit/39315f6bc3defb8d426178475222568c9d79c138))
+
 ## 0.1.0 (2026-02-19)
 
 Full Changelog: [v0.1.0-alpha.27...v0.1.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0-alpha.27...v0.1.0)

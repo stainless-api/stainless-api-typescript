@@ -8,8 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource targetOutputs', () => {
-  // Prism tests are disabled
-  test.skip('retrieve: only required params', async () => {
+  test('retrieve: only required params', async () => {
     const responsePromise = client.builds.targetOutputs.retrieve({
       build_id: 'build_id',
       target: 'node',
@@ -24,8 +23,7 @@ describe('resource targetOutputs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
-  test.skip('retrieve: required and optional params', async () => {
+  test('retrieve: required and optional params', async () => {
     const response = await client.builds.targetOutputs.retrieve({
       build_id: 'build_id',
       target: 'node',

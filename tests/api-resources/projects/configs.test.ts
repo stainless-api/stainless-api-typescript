@@ -8,8 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource configs', () => {
-  // Prism tests are disabled
-  test.skip('retrieve: only required params', async () => {
+  test('retrieve: only required params', async () => {
     const responsePromise = client.projects.configs.retrieve({ project: 'project' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -20,8 +19,7 @@ describe('resource configs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
-  test.skip('retrieve: required and optional params', async () => {
+  test('retrieve: required and optional params', async () => {
     const response = await client.projects.configs.retrieve({
       project: 'project',
       branch: 'branch',
@@ -29,8 +27,7 @@ describe('resource configs', () => {
     });
   });
 
-  // Prism tests are disabled
-  test.skip('guess: only required params', async () => {
+  test('guess: only required params', async () => {
     const responsePromise = client.projects.configs.guess({ project: 'project', spec: 'spec' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -41,8 +38,7 @@ describe('resource configs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
-  test.skip('guess: required and optional params', async () => {
+  test('guess: required and optional params', async () => {
     const response = await client.projects.configs.guess({
       project: 'project',
       spec: 'spec',
