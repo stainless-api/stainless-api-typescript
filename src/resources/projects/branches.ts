@@ -135,9 +135,7 @@ export namespace ProjectBranch {
 
     sha: string;
 
-    stats: ConfigCommit.Stats | null;
-
-    tree_oid: string | null;
+    tree_oid?: string;
   }
 
   export namespace ConfigCommit {
@@ -147,14 +145,6 @@ export namespace ProjectBranch {
       name: string;
 
       owner: string;
-    }
-
-    export interface Stats {
-      additions: number;
-
-      deletions: number;
-
-      total: number;
     }
   }
 }
@@ -197,9 +187,7 @@ export namespace BranchListResponse {
 
     sha: string;
 
-    stats: ConfigCommit.Stats | null;
-
-    tree_oid: string | null;
+    tree_oid?: string;
   }
 
   export namespace ConfigCommit {
@@ -209,14 +197,6 @@ export namespace BranchListResponse {
       name: string;
 
       owner: string;
-    }
-
-    export interface Stats {
-      additions: number;
-
-      deletions: number;
-
-      total: number;
     }
   }
 }
