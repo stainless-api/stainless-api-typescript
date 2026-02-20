@@ -5,9 +5,7 @@ export interface Commit {
 
   sha: string;
 
-  stats: Commit.Stats | null;
-
-  tree_oid: string | null;
+  tree_oid?: string;
 }
 
 export namespace Commit {
@@ -17,14 +15,6 @@ export namespace Commit {
     name: string;
 
     owner: string;
-  }
-
-  export interface Stats {
-    additions: number;
-
-    deletions: number;
-
-    total: number;
   }
 }
 
