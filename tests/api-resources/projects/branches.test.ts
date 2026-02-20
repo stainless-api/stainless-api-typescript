@@ -8,8 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource branches', () => {
-  // Mock server tests are disabled
-  test.skip('create: only required params', async () => {
+  test('create: only required params', async () => {
     const responsePromise = client.projects.branches.create({
       project: 'project',
       branch: 'branch',
@@ -24,8 +23,7 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('create: required and optional params', async () => {
+  test('create: required and optional params', async () => {
     const response = await client.projects.branches.create({
       project: 'project',
       branch: 'branch',
@@ -34,8 +32,7 @@ describe('resource branches', () => {
     });
   });
 
-  // Mock server tests are disabled
-  test.skip('retrieve: only required params', async () => {
+  test('retrieve: only required params', async () => {
     const responsePromise = client.projects.branches.retrieve('branch', { project: 'project' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -46,13 +43,11 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('retrieve: required and optional params', async () => {
+  test('retrieve: required and optional params', async () => {
     const response = await client.projects.branches.retrieve('branch', { project: 'project' });
   });
 
-  // Mock server tests are disabled
-  test.skip('list: only required params', async () => {
+  test('list: only required params', async () => {
     const responsePromise = client.projects.branches.list({ project: 'project' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -63,8 +58,7 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('list: required and optional params', async () => {
+  test('list: required and optional params', async () => {
     const response = await client.projects.branches.list({
       project: 'project',
       cursor: 'cursor',
@@ -72,8 +66,7 @@ describe('resource branches', () => {
     });
   });
 
-  // Mock server tests are disabled
-  test.skip('delete: only required params', async () => {
+  test('delete: only required params', async () => {
     const responsePromise = client.projects.branches.delete('branch', { project: 'project' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -84,13 +77,11 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('delete: required and optional params', async () => {
+  test('delete: required and optional params', async () => {
     const response = await client.projects.branches.delete('branch', { project: 'project' });
   });
 
-  // Mock server tests are disabled
-  test.skip('rebase: only required params', async () => {
+  test('rebase: only required params', async () => {
     const responsePromise = client.projects.branches.rebase('branch', { project: 'project' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -101,13 +92,11 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('rebase: required and optional params', async () => {
+  test('rebase: required and optional params', async () => {
     const response = await client.projects.branches.rebase('branch', { project: 'project', base: 'base' });
   });
 
-  // Mock server tests are disabled
-  test.skip('reset: only required params', async () => {
+  test('reset: only required params', async () => {
     const responsePromise = client.projects.branches.reset('branch', { project: 'project' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -118,8 +107,7 @@ describe('resource branches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('reset: required and optional params', async () => {
+  test('reset: required and optional params', async () => {
     const response = await client.projects.branches.reset('branch', {
       project: 'project',
       target_config_sha: 'target_config_sha',

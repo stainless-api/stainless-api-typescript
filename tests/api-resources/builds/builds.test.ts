@@ -8,8 +8,7 @@ const client = new Stainless({
 });
 
 describe('resource builds', () => {
-  // Mock server tests are disabled
-  test.skip('create: only required params', async () => {
+  test('create: only required params', async () => {
     const responsePromise = client.builds.create({ project: 'project', revision: 'string' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -20,8 +19,7 @@ describe('resource builds', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('create: required and optional params', async () => {
+  test('create: required and optional params', async () => {
     const response = await client.builds.create({
       project: 'project',
       revision: 'string',
@@ -48,8 +46,7 @@ describe('resource builds', () => {
     });
   });
 
-  // Mock server tests are disabled
-  test.skip('retrieve', async () => {
+  test('retrieve', async () => {
     const responsePromise = client.builds.retrieve('buildId');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -60,8 +57,7 @@ describe('resource builds', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('list: only required params', async () => {
+  test('list: only required params', async () => {
     const responsePromise = client.builds.list({ project: 'project' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -72,8 +68,7 @@ describe('resource builds', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('list: required and optional params', async () => {
+  test('list: required and optional params', async () => {
     const response = await client.builds.list({
       project: 'project',
       branch: 'branch',
@@ -83,8 +78,7 @@ describe('resource builds', () => {
     });
   });
 
-  // Mock server tests are disabled
-  test.skip('compare: only required params', async () => {
+  test('compare: only required params', async () => {
     const responsePromise = client.builds.compare({
       base: { branch: 'branch', revision: 'string' },
       head: { branch: 'branch', revision: 'string' },
@@ -99,8 +93,7 @@ describe('resource builds', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server tests are disabled
-  test.skip('compare: required and optional params', async () => {
+  test('compare: required and optional params', async () => {
     const response = await client.builds.compare({
       base: {
         branch: 'branch',
