@@ -177,6 +177,8 @@ export namespace BuildTarget {
      */
     completed: Completed.Completed;
 
+    completed_at: string;
+
     conclusion:
       | 'error'
       | 'warning'
@@ -202,6 +204,8 @@ export namespace BuildTarget {
      */
     export interface Completed {
       commit: Shared.Commit | null;
+
+      completed_at: string;
 
       conclusion:
         | 'error'
