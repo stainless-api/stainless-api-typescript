@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0 (2026-02-23)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* add completed_at to build api object ([a212837](https://github.com/stainless-api/stainless-api-typescript/commit/a2128373a8c8b649977ba1f03ec6577ca977941c))
+* Revert "feat(api): populate integrated_stats ([#16032](https://github.com/stainless-api/stainless-api-typescript/issues/16032))" ([a859bac](https://github.com/stainless-api/stainless-api-typescript/commit/a859bac4afb4ba327af3ccfa0fefee949ddf9282))
+
+
+### Bug Fixes
+
+* **api:** mark integrated data on all commits with the same generated SHA ([8f69b8e](https://github.com/stainless-api/stainless-api-typescript/commit/8f69b8eaf2f3f9ef3e9933d7d2973a48f1e177c3))
+
 ## 0.2.0 (2026-02-20)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.1.0...v0.2.0)
