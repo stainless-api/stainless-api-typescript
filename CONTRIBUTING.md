@@ -60,7 +60,7 @@ $ yarn link @stainless-api/sdk
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global @stainless-api/sdk
+$ pnpm link --global @stainless-api/sdk
 ```
 
 ## Running tests
