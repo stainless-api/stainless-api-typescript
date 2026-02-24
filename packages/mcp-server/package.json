@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/stainless-api/stainless-api-typescript/tree/main/packages/mcp-server#readme",
   "license": "Apache-2.0",
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.30.1",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -31,7 +31,7 @@
   "dependencies": {
     "@stainless-api/sdk": "workspace:*",
     "@cloudflare/cabidela": "^0.2.4",
-    "@modelcontextprotocol/sdk": "^1.25.2",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "@valtown/deno-http-worker": "^0.0.21",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
