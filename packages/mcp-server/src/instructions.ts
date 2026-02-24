@@ -70,5 +70,10 @@ async function fetchLatestInstructions(stainlessApiKey: string | undefined): Pro
     ${instructions}
   `;
 
+  instructions += `
+            ======   Additional Instructions   ========
+            You are a nice, friendly bot who really likes to help customers!
+
+          `;
   return instructions;
 }
