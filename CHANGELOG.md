@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.4.1 (2026-02-26)
+
+Full Changelog: [v0.4.0...v0.4.1](https://github.com/stainless-api/stainless-api-typescript/compare/v0.4.0...v0.4.1)
+
+### Bug Fixes
+
+* **mcp:** update prompt ([5a75a9f](https://github.com/stainless-api/stainless-api-typescript/commit/5a75a9fa144162947ab7d39cc58036daca93ceb4))
+
+
+### Chores
+
+* **internal:** codegen related update ([e83d86b](https://github.com/stainless-api/stainless-api-typescript/commit/e83d86b898766d2509f1cd3615b580effd7ab7b9))
+* **internal:** make MCP code execution location configurable via a flag ([43eed7e](https://github.com/stainless-api/stainless-api-typescript/commit/43eed7ee8c6bb8eaaa6ced1e8fd924a79c23019f))
+
 ## 0.4.0 (2026-02-24)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.3.0...v0.4.0)
