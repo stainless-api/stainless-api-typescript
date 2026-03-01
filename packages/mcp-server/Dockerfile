@@ -43,8 +43,12 @@ ENV CI=true
 RUN pnpm install --frozen-lockfile && \
     pnpm build
 
-# Production stage
-FROM node:24-alpine
+FROM denoland/deno:alpine-2.7.1
+
+# Install node and npm
+RUN apk add --no-cache nodejs npm
+
+ENV LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
 
 # Add non-root user
 RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
@@ -60,6 +64,7 @@ COPY --from=builder /build/dist ./node_modules/@stainless-api/sdk
 
 # Change ownership to nodejs user
 RUN chown -R nodejs:nodejs /app
+RUN chown -R nodejs:nodejs /deno-dir
 
 # Switch to non-root user
 USER nodejs
