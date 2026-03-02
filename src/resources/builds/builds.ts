@@ -265,10 +265,14 @@ export namespace CheckStep {
 
   export interface Queued {
     status: 'queued';
+
+    url: string | null;
   }
 
   export interface InProgress {
     status: 'in_progress';
+
+    url: string | null;
   }
 
   export interface Completed {
