@@ -14,6 +14,8 @@ export namespace Commit {
   export interface Repo {
     branch: string;
 
+    host: string;
+
     name: string;
 
     owner: string;
