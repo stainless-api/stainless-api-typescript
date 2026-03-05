@@ -33,7 +33,6 @@ import Stainless from '@stainless-api/sdk';
 
 const client = new Stainless({
   apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
-  environment: 'staging', // defaults to 'production'
 });
 
 const build = await client.builds.create({ project: 'stainless', revision: 'main' });
@@ -51,7 +50,6 @@ import Stainless from '@stainless-api/sdk';
 
 const client = new Stainless({
   apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
-  environment: 'staging', // defaults to 'production'
 });
 
 const params: Stainless.BuildCreateParams = { project: 'stainless', revision: 'main' };
