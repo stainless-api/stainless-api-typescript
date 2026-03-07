@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.6.0 (2026-03-07)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** add host to v0 build endpoints ([582f2ee](https://github.com/stainless-api/stainless-api-typescript/commit/582f2ee584d2f66726f244c59b5b28557fa28229))
+* **api:** api update ([a39391e](https://github.com/stainless-api/stainless-api-typescript/commit/a39391e98d5301eb1dd20f692dfece0b545ce9f0))
+
+
+### Chores
+
+* **internal:** codegen related update ([7488007](https://github.com/stainless-api/stainless-api-typescript/commit/74880071e6313d8184d3f8f0898079e45d4af9c8))
+* **mcp-server:** improve instructions ([254552f](https://github.com/stainless-api/stainless-api-typescript/commit/254552f98aaf9b74168e0fa160d0b08cc2fe7596))
+
 ## 0.5.0 (2026-03-02)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.4.0...v0.5.0)
