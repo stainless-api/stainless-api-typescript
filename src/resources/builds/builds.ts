@@ -233,6 +233,8 @@ export namespace BuildTarget {
 
       export namespace MergeConflictPr {
         export interface Repo {
+          host: string;
+
           name: string;
 
           owner: string;
@@ -248,6 +250,8 @@ export namespace BuildTarget {
 
     export namespace MergeConflictPr {
       export interface Repo {
+        host: string;
+
         name: string;
 
         owner: string;
