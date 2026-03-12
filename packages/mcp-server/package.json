@@ -1,5 +1,5 @@
 {
-  "name": "@stainless-api/mcp",
+  "name": "@stainless-api/sdk-mcp",
   "version": "0.5.0",
   "description": "The official MCP Server for the Stainless API",
   "author": "Stainless <support@stainless.com>",
@@ -76,8 +76,8 @@
     "tsconfig-paths": "^4.0.0"
   },
   "imports": {
-    "@stainless-api/mcp": ".",
-    "@stainless-api/mcp/*": "./src/*"
+    "@stainless-api/sdk-mcp": ".",
+    "@stainless-api/sdk-mcp/*": "./src/*"
   },
   "exports": {
     ".": {
