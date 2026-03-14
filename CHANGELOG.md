@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.6.0 (2026-03-14)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** add a way to fetch specific files via /v0/build_target_outputs ([47d31df](https://github.com/stainless-api/stainless-api-typescript/commit/47d31df25bf59538cc25f9af45df6798532cb5d9))
+* **api:** add host to v0 build endpoints ([582f2ee](https://github.com/stainless-api/stainless-api-typescript/commit/582f2ee584d2f66726f244c59b5b28557fa28229))
+* **api:** api update ([a39391e](https://github.com/stainless-api/stainless-api-typescript/commit/a39391e98d5301eb1dd20f692dfece0b545ce9f0))
+
+
+### Chores
+
+* configure new SDK language ([5c79cfc](https://github.com/stainless-api/stainless-api-typescript/commit/5c79cfc74db9cca61bf0e3f90f3afdc8ab2bcdc3))
+* **internal:** codegen related update ([1f6d02c](https://github.com/stainless-api/stainless-api-typescript/commit/1f6d02ce2bd8b3e409c4d9f01c4f453f040ff41f))
+* **internal:** codegen related update ([cdcf59b](https://github.com/stainless-api/stainless-api-typescript/commit/cdcf59bf708df0b1420302c821177f0a33b35c0b))
+* **internal:** codegen related update ([d12219d](https://github.com/stainless-api/stainless-api-typescript/commit/d12219d6d1e0f5738c0ad0130354a9edbf7b9a7d))
+* **internal:** codegen related update ([0dea9de](https://github.com/stainless-api/stainless-api-typescript/commit/0dea9de11c089e830bea82382bac0f7d358c8030))
+* **internal:** codegen related update ([8c4472e](https://github.com/stainless-api/stainless-api-typescript/commit/8c4472ebe25db5c39a031ad1b30128f68acffee7))
+* **internal:** codegen related update ([5b28358](https://github.com/stainless-api/stainless-api-typescript/commit/5b28358f1d6ba6486ae8139e23c7b42584aa75d7))
+* **internal:** codegen related update ([10e4a74](https://github.com/stainless-api/stainless-api-typescript/commit/10e4a7463de222d8233c0819c2872b34149e69f4))
+* **internal:** codegen related update ([418b537](https://github.com/stainless-api/stainless-api-typescript/commit/418b537d3ec57b2099ef0e961aa97307b66bcd59))
+* **internal:** codegen related update ([7488007](https://github.com/stainless-api/stainless-api-typescript/commit/74880071e6313d8184d3f8f0898079e45d4af9c8))
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([240ce54](https://github.com/stainless-api/stainless-api-typescript/commit/240ce54162d3f6994d335b30d966820017ac1721))
+* **internal:** support x-stainless-mcp-client-envs header in MCP servers ([a030429](https://github.com/stainless-api/stainless-api-typescript/commit/a030429bef5a6eb81aaa537697a8eea5eb429f8b))
+* **internal:** update dependencies to address dependabot vulnerabilities ([f542774](https://github.com/stainless-api/stainless-api-typescript/commit/f542774a0fe3b39095be9d760ba0e5737cbaa511))
+* **internal:** update lock file ([e27afe4](https://github.com/stainless-api/stainless-api-typescript/commit/e27afe4a2c9631f1b74409293476cd3672576c08))
+* **internal:** update lockfile ([2927f0b](https://github.com/stainless-api/stainless-api-typescript/commit/2927f0b624f2d4fe14d01ab3c584d5e5bfc0be3b))
+* **mcp-server:** improve instructions ([254552f](https://github.com/stainless-api/stainless-api-typescript/commit/254552f98aaf9b74168e0fa160d0b08cc2fe7596))
+
 ## 0.5.0 (2026-03-02)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.4.0...v0.5.0)
