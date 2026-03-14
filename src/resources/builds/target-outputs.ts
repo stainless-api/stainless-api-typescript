@@ -42,12 +42,19 @@ export namespace TargetOutputRetrieveResponse {
       | 'wheel'
       | 'openapi-with-transforms'
       | 'openapi-with-code-samples'
-      | 'openapi-sdk-spec';
+      | 'openapi-sdk-spec'
+      | 'file';
 
     /**
      * URL for direct download
      */
     url: string;
+
+    /**
+     * The path of the file, which is only present when using with the type "file"
+     * option.
+     */
+    path?: string;
   }
 
   export interface Git {
@@ -71,7 +78,8 @@ export namespace TargetOutputRetrieveResponse {
       | 'wheel'
       | 'openapi-with-transforms'
       | 'openapi-with-code-samples'
-      | 'openapi-sdk-spec';
+      | 'openapi-sdk-spec'
+      | 'file';
 
     /**
      * URL to git remote
@@ -110,12 +118,18 @@ export interface TargetOutputRetrieveParams {
     | 'wheel'
     | 'openapi-with-transforms'
     | 'openapi-with-code-samples'
-    | 'openapi-sdk-spec';
+    | 'openapi-sdk-spec'
+    | 'file';
 
   /**
    * Output format: url (download URL) or git (temporary access token).
    */
   output?: 'url' | 'git';
+
+  /**
+   * The path of the file to get when used with "type": "file".
+   */
+  path?: string;
 }
 
 export declare namespace TargetOutputs {
