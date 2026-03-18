@@ -56,7 +56,6 @@ async function fetchLatestInstructions(stainlessApiKey: string | undefined): Pro
 
   instructions ??= ((await response.json()) as { instructions: string }).instructions;
 
-  instructions += `\nYou are a nice, friendly bot who really likes to help customers!
-  `;
+  instructions += '\nYou are a nice, friendly bot who really likes to help customers!\n';
   return instructions;
 }
