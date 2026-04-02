@@ -2,10 +2,10 @@
 
 import { castToError } from '../internal/errors';
 
-export class Stainless1Error extends Error {
+export class Stainless2Error extends Error {
 }
 
-export class APIError<TStatus extends number | undefined = number | undefined, THeaders extends Headers | undefined = Headers | undefined, TError extends Object | undefined = Object | undefined> extends Stainless1Error {
+export class APIError<TStatus extends number | undefined = number | undefined, THeaders extends Headers | undefined = Headers | undefined, TError extends Object | undefined = Object | undefined> extends Stainless2Error {
   /** HTTP status for the response that caused the error */
   readonly status: TStatus;
   /** HTTP headers for the response that caused the error */

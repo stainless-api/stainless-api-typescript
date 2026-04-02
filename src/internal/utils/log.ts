@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { hasOwn } from './values';
-import { type Stainless1 } from '../../client';
+import { type Stainless2 } from '../../client';
 import { RequestOptions } from '../request-options';
 
 type LogFn = (message: string, ...rest: unknown[]) => void
@@ -21,7 +21,7 @@ const levelNumbers = {
   debug: 500,
 };
 
-export const parseLogLevel = (maybeLevel: string | undefined, sourceName: string, client: Stainless1): LogLevel | undefined => {
+export const parseLogLevel = (maybeLevel: string | undefined, sourceName: string, client: Stainless2): LogLevel | undefined => {
   if (!maybeLevel) {
     return undefined;
   }
@@ -52,7 +52,7 @@ const noopLogger = {
 
 let cachedLoggers = /* @__PURE__ */ new WeakMap<Logger, [LogLevel, Logger]>();
 
-export function loggerFor(client: Stainless1): Logger {
+export function loggerFor(client: Stainless2): Logger {
   const logger = client.logger;
   const logLevel = client.logLevel ?? 'off';
   if (!logger) {

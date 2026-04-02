@@ -68,9 +68,9 @@ jobs:
           tags: |
             ${{ steps.tags.outputs.tags }}
           labels: |
-            org.opencontainers.image.title=Stainless1 MCP Server
-            org.opencontainers.image.description=Model Context Protocol server for Stainless1 API
-            org.opencontainers.image.vendor=stainless1
+            org.opencontainers.image.title=Stainless2 MCP Server
+            org.opencontainers.image.description=Model Context Protocol server for Stainless2 API
+            org.opencontainers.image.vendor=stainless2
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6

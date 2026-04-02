@@ -19,5 +19,5 @@ jobs:
           bash ./bin/check-release-environment
         env:
           STAINLESS_API_KEY: ${{ secrets.STAINLESS_API_KEY }}
-          DOCKERHUB_TOKEN: ${{ secrets.STAINLESS1_DOCKERHUB_TOKEN || secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_TOKEN: ${{ secrets.STAINLESS2_DOCKERHUB_TOKEN || secrets.DOCKERHUB_TOKEN }}
 
