@@ -1,4 +1,10 @@
+<<<<<<< ours
 # Stainless2 TypeScript API Library
+||||||| base
+# Stainless1 TypeScript API Library
+=======
+# Stainless1 TypeScript API Library!
+>>>>>>> theirs
 
 [![NPM version](https://img.shields.io/npm/v/@stainless-api/sdk.svg?label=npm%20(stable))](https://npmjs.org/package/@stainless-api/sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@stainless-api/sdk)
 
