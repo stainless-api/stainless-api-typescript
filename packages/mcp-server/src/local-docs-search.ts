@@ -68,6 +68,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects retrieve',
         example: "stl projects retrieve \\\n  --api-key 'My API Key' \\\n  --project project",
       },
+      csharp: {
+        method: 'Projects.Retrieve',
+        example:
+          'ProjectRetrieveParams parameters = new() { Project = "project" };\n\nvar project = await client.Projects.Retrieve(parameters);\n\nConsole.WriteLine(project);',
+      },
       go: {
         method: 'client.Projects.Get',
         example:
@@ -86,6 +91,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().retrieve',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.Project\nimport com.configure_me_stainless_v0.api.models.projects.ProjectRetrieveParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val project: Project = client.projects().retrieve()\n}',
+      },
+      php: {
+        method: 'projects->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->retrieve(project: 'project');\n\nvar_dump($project);",
       },
       python: {
         method: 'projects.retrieve',
@@ -122,6 +132,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects update',
         example: "stl projects update \\\n  --api-key 'My API Key' \\\n  --project project",
       },
+      csharp: {
+        method: 'Projects.Update',
+        example:
+          'ProjectUpdateParams parameters = new() { Project = "project" };\n\nvar project = await client.Projects.Update(parameters);\n\nConsole.WriteLine(project);',
+      },
       go: {
         method: 'client.Projects.Update',
         example:
@@ -140,6 +155,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().update',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.Project\nimport com.configure_me_stainless_v0.api.models.projects.ProjectUpdateParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val project: Project = client.projects().update()\n}',
+      },
+      php: {
+        method: 'projects->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->update(\n  project: 'project', displayName: 'display_name'\n);\n\nvar_dump($project);",
       },
       python: {
         method: 'projects.update',
@@ -176,6 +196,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects list',
         example: "stl projects list \\\n  --api-key 'My API Key'",
       },
+      csharp: {
+        method: 'Projects.List',
+        example:
+          'ProjectListParams parameters = new();\n\nvar page = await client.Projects.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Projects.List',
         example:
@@ -194,6 +219,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().list',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.ProjectListPage\nimport com.configure_me_stainless_v0.api.models.projects.ProjectListParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val page: ProjectListPage = client.projects().list()\n}',
+      },
+      php: {
+        method: 'projects->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->projects->list(cursor: 'cursor', limit: 1, org: 'org');\n\nvar_dump($page);",
       },
       python: {
         method: 'projects.list',
@@ -237,6 +267,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl projects create \\\n  --api-key 'My API Key' \\\n  --display-name display_name \\\n  --org org \\\n  --revision '{foo: {content: content}}' \\\n  --slug slug \\\n  --target node",
       },
+      csharp: {
+        method: 'Projects.Create',
+        example:
+          'ProjectCreateParams parameters = new()\n{\n    DisplayName = "display_name",\n    Org = "org",\n    Revision = new Dictionary<string, FileInput>()\n    {\n        { "foo", new Content("content") }\n    },\n    Slug = "slug",\n    Targets =\n    [\n        Target.Node\n    ],\n};\n\nvar project = await client.Projects.Create(parameters);\n\nConsole.WriteLine(project);',
+      },
       go: {
         method: 'client.Projects.New',
         example:
@@ -255,6 +290,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().create',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.core.JsonValue\nimport com.configure_me_stainless_v0.api.models.Target\nimport com.configure_me_stainless_v0.api.models.projects.Project\nimport com.configure_me_stainless_v0.api.models.projects.ProjectCreateParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val params: ProjectCreateParams = ProjectCreateParams.builder()\n        .displayName("display_name")\n        .org("org")\n        .revision(ProjectCreateParams.Revision.builder()\n            .putAdditionalProperty("foo", JsonValue.from(mapOf("content" to "content")))\n            .build())\n        .slug("slug")\n        .addTarget(Target.NODE)\n        .build()\n    val project: Project = client.projects().create(params)\n}',
+      },
+      php: {
+        method: 'projects->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->create(\n  displayName: 'display_name',\n  org: 'org',\n  revision: ['foo' => ['content' => 'content']],\n  slug: 'slug',\n  targets: [Target::NODE],\n);\n\nvar_dump($project);",
       },
       python: {
         method: 'projects.create',
@@ -291,6 +331,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl projects generate-commit-message \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --target python \\\n  --base-ref base_ref \\\n  --head-ref head_ref",
       },
+      csharp: {
+        method: 'Projects.GenerateCommitMessage',
+        example:
+          'ProjectGenerateCommitMessageParams parameters = new()\n{\n    Project = "project",\n    Target = Target.Python,\n    BaseRef = "base_ref",\n    HeadRef = "head_ref",\n};\n\nvar response = await client.Projects.GenerateCommitMessage(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Projects.GenerateCommitMessage',
         example:
@@ -309,6 +354,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().generateCommitMessage',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.ProjectGenerateCommitMessageParams\nimport com.configure_me_stainless_v0.api.models.projects.ProjectGenerateCommitMessageResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val params: ProjectGenerateCommitMessageParams = ProjectGenerateCommitMessageParams.builder()\n        .target(ProjectGenerateCommitMessageParams.Target.PYTHON)\n        .baseRef("base_ref")\n        .headRef("head_ref")\n        .build()\n    val response: ProjectGenerateCommitMessageResponse = client.projects().generateCommitMessage(params)\n}',
+      },
+      php: {
+        method: 'projects->generateCommitMessage',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->projects->generateCommitMessage(\n  project: 'project', target: 'python', baseRef: 'base_ref', headRef: 'head_ref'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'projects.generate_commit_message',
@@ -347,6 +397,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl projects:branches create \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch \\\n  --branch-from branch_from",
       },
+      csharp: {
+        method: 'Projects.Branches.Create',
+        example:
+          'BranchCreateParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n    BranchFrom = "branch_from",\n};\n\nvar projectBranch = await client.Projects.Branches.Create(parameters);\n\nConsole.WriteLine(projectBranch);',
+      },
       go: {
         method: 'client.Projects.Branches.New',
         example:
@@ -365,6 +420,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().branches().create',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchCreateParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.ProjectBranch\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val params: BranchCreateParams = BranchCreateParams.builder()\n        .branch("branch")\n        .branchFrom("branch_from")\n        .build()\n    val projectBranch: ProjectBranch = client.projects().branches().create(params)\n}',
+      },
+      php: {
+        method: 'projects->branches->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->create(\n  project: 'project', branch: 'branch', branchFrom: 'branch_from', force: true\n);\n\nvar_dump($projectBranch);",
       },
       python: {
         method: 'projects.branches.create',
@@ -402,6 +462,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl projects:branches retrieve \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
       },
+      csharp: {
+        method: 'Projects.Branches.Retrieve',
+        example:
+          'BranchRetrieveParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Retrieve(parameters);\n\nConsole.WriteLine(projectBranch);',
+      },
       go: {
         method: 'client.Projects.Branches.Get',
         example:
@@ -420,6 +485,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().branches().retrieve',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchRetrieveParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.ProjectBranch\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val projectBranch: ProjectBranch = client.projects().branches().retrieve("branch")\n}',
+      },
+      php: {
+        method: 'projects->branches->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->retrieve(\n  'branch', project: 'project'\n);\n\nvar_dump($projectBranch);",
       },
       python: {
         method: 'projects.branches.retrieve',
@@ -456,6 +526,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'branches list',
         example: "stl projects:branches list \\\n  --api-key 'My API Key' \\\n  --project project",
       },
+      csharp: {
+        method: 'Projects.Branches.List',
+        example:
+          'BranchListParams parameters = new() { Project = "project" };\n\nvar page = await client.Projects.Branches.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Projects.Branches.List',
         example:
@@ -474,6 +549,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().branches().list',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchListPage\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchListParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val page: BranchListPage = client.projects().branches().list()\n}',
+      },
+      php: {
+        method: 'projects->branches->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->projects->branches->list(\n  project: 'project', cursor: 'cursor', limit: 1\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'projects.branches.list',
@@ -510,6 +590,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl projects:branches delete \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
       },
+      csharp: {
+        method: 'Projects.Branches.Delete',
+        example:
+          'BranchDeleteParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar branch = await client.Projects.Branches.Delete(parameters);\n\nConsole.WriteLine(branch);',
+      },
       go: {
         method: 'client.Projects.Branches.Delete',
         example:
@@ -528,6 +613,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().branches().delete',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchDeleteParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchDeleteResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val branch: BranchDeleteResponse = client.projects().branches().delete("branch")\n}',
+      },
+      php: {
+        method: 'projects->branches->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$branch = $client->projects->branches->delete('branch', project: 'project');\n\nvar_dump($branch);",
       },
       python: {
         method: 'projects.branches.delete',
@@ -566,6 +656,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl projects:branches rebase \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
       },
+      csharp: {
+        method: 'Projects.Branches.Rebase',
+        example:
+          'BranchRebaseParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Rebase(parameters);\n\nConsole.WriteLine(projectBranch);',
+      },
       go: {
         method: 'client.Projects.Branches.Rebase',
         example:
@@ -584,6 +679,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().branches().rebase',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchRebaseParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.ProjectBranch\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val projectBranch: ProjectBranch = client.projects().branches().rebase("branch")\n}',
+      },
+      php: {
+        method: 'projects->branches->rebase',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->rebase(\n  'branch', project: 'project', base: 'base'\n);\n\nvar_dump($projectBranch);",
       },
       python: {
         method: 'projects.branches.rebase',
@@ -622,6 +722,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl projects:branches reset \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
       },
+      csharp: {
+        method: 'Projects.Branches.Reset',
+        example:
+          'BranchResetParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Reset(parameters);\n\nConsole.WriteLine(projectBranch);',
+      },
       go: {
         method: 'client.Projects.Branches.Reset',
         example:
@@ -640,6 +745,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().branches().reset',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchResetParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.ProjectBranch\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val projectBranch: ProjectBranch = client.projects().branches().reset("branch")\n}',
+      },
+      php: {
+        method: 'projects->branches->reset',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->reset(\n  'branch', project: 'project', targetConfigSha: 'target_config_sha'\n);\n\nvar_dump($projectBranch);",
       },
       python: {
         method: 'projects.branches.reset',
@@ -675,6 +785,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'configs retrieve',
         example: "stl projects:configs retrieve \\\n  --api-key 'My API Key' \\\n  --project project",
       },
+      csharp: {
+        method: 'Projects.Configs.Retrieve',
+        example:
+          'ConfigRetrieveParams parameters = new() { Project = "project" };\n\nvar config = await client.Projects.Configs.Retrieve(parameters);\n\nConsole.WriteLine(config);',
+      },
       go: {
         method: 'client.Projects.Configs.Get',
         example:
@@ -693,6 +808,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().configs().retrieve',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.configs.ConfigRetrieveParams\nimport com.configure_me_stainless_v0.api.models.projects.configs.ConfigRetrieveResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val config: ConfigRetrieveResponse = client.projects().configs().retrieve()\n}',
+      },
+      php: {
+        method: 'projects->configs->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$config = $client->projects->configs->retrieve(\n  project: 'project', branch: 'branch', include: 'include'\n);\n\nvar_dump($config);",
       },
       python: {
         method: 'projects.configs.retrieve',
@@ -729,6 +849,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl projects:configs guess \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --spec spec",
       },
+      csharp: {
+        method: 'Projects.Configs.Guess',
+        example:
+          'ConfigGuessParams parameters = new()\n{\n    Project = "project",\n    Spec = "spec",\n};\n\nvar response = await client.Projects.Configs.Guess(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Projects.Configs.Guess',
         example:
@@ -747,6 +872,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'projects().configs().guess',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.configs.ConfigGuessParams\nimport com.configure_me_stainless_v0.api.models.projects.configs.ConfigGuessResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val params: ConfigGuessParams = ConfigGuessParams.builder()\n        .spec("spec")\n        .build()\n    val response: ConfigGuessResponse = client.projects().configs().guess(params)\n}',
+      },
+      php: {
+        method: 'projects->configs->guess',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->projects->configs->guess(\n  project: 'project', spec: 'spec', branch: 'branch'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'projects.configs.guess',
@@ -790,6 +920,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'builds list',
         example: "stl builds list \\\n  --api-key 'My API Key' \\\n  --project project",
       },
+      csharp: {
+        method: 'Builds.List',
+        example:
+          'BuildListParams parameters = new() { Project = "project" };\n\nvar page = await client.Builds.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Builds.List',
         example:
@@ -808,6 +943,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'builds().list',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.BuildListPage\nimport com.configure_me_stainless_v0.api.models.builds.BuildListParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val page: BuildListPage = client.builds().list()\n}',
+      },
+      php: {
+        method: 'builds->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->builds->list(\n  project: 'project',\n  branch: 'branch',\n  cursor: 'cursor',\n  limit: 1,\n  revision: 'string',\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'builds.list',
@@ -855,6 +995,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl builds create \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --revision string",
       },
+      csharp: {
+        method: 'Builds.Create',
+        example:
+          'BuildCreateParams parameters = new()\n{\n    Project = "project",\n    Revision = "string",\n};\n\nvar build = await client.Builds.Create(parameters);\n\nConsole.WriteLine(build);',
+      },
       go: {
         method: 'client.Builds.New',
         example:
@@ -873,6 +1018,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'builds().create',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val params: BuildCreateParams = BuildCreateParams.builder()\n        .project("project")\n        .revision("string")\n        .build()\n    val build: Build = client.builds().create(params)\n}',
+      },
+      php: {
+        method: 'builds->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$build = $client->builds->create(\n  project: 'project',\n  revision: 'string',\n  allowEmpty: true,\n  branch: 'branch',\n  commitMessage: 'commit_message',\n  enableAICommitMessage: true,\n  targetCommitMessages: [\n    'cli' => 'cli',\n    'csharp' => 'csharp',\n    'go' => 'go',\n    'java' => 'java',\n    'kotlin' => 'kotlin',\n    'node' => 'node',\n    'openAPI' => 'openapi',\n    'php' => 'php',\n    'python' => 'python',\n    'ruby' => 'ruby',\n    'sql' => 'sql',\n    'terraform' => 'terraform',\n    'typescript' => 'typescript',\n  ],\n  targets: [Target::NODE],\n);\n\nvar_dump($build);",
       },
       python: {
         method: 'builds.create',
@@ -909,6 +1059,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'builds retrieve',
         example: "stl builds retrieve \\\n  --api-key 'My API Key' \\\n  --build-id buildId",
       },
+      csharp: {
+        method: 'Builds.Retrieve',
+        example:
+          'BuildRetrieveParams parameters = new() { BuildID = "buildId" };\n\nvar build = await client.Builds.Retrieve(parameters);\n\nConsole.WriteLine(build);',
+      },
       go: {
         method: 'client.Builds.Get',
         example:
@@ -927,6 +1082,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'builds().retrieve',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildRetrieveParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val build: Build = client.builds().retrieve("buildId")\n}',
+      },
+      php: {
+        method: 'builds->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$build = $client->builds->retrieve('buildId');\n\nvar_dump($build);",
       },
       python: {
         method: 'builds.retrieve',
@@ -970,6 +1130,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl builds compare \\\n  --api-key 'My API Key' \\\n  --base '{branch: branch, revision: string}' \\\n  --head '{branch: branch, revision: string}' \\\n  --project project",
       },
+      csharp: {
+        method: 'Builds.Compare',
+        example:
+          'BuildCompareParams parameters = new()\n{\n    Base = new()\n    {\n        Branch = "branch",\n        Revision = "string",\n        CommitMessage = "commit_message",\n    },\n    Head = new()\n    {\n        Branch = "branch",\n        Revision = "string",\n        CommitMessage = "commit_message",\n    },\n    Project = "project",\n};\n\nvar response = await client.Builds.Compare(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Builds.Compare',
         example:
@@ -988,6 +1153,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'builds().compare',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.BuildCompareParams\nimport com.configure_me_stainless_v0.api.models.builds.BuildCompareResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val params: BuildCompareParams = BuildCompareParams.builder()\n        .base(BuildCompareParams.Base.builder()\n            .branch("branch")\n            .revision("string")\n            .build())\n        .head(BuildCompareParams.Head.builder()\n            .branch("branch")\n            .revision("string")\n            .build())\n        .project("project")\n        .build()\n    val response: BuildCompareResponse = client.builds().compare(params)\n}',
+      },
+      php: {
+        method: 'builds->compare',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->builds->compare(\n  base: [\n    'branch' => 'branch',\n    'revision' => 'string',\n    'commitMessage' => 'commit_message',\n  ],\n  head: [\n    'branch' => 'branch',\n    'revision' => 'string',\n    'commitMessage' => 'commit_message',\n  ],\n  project: 'project',\n  targets: [Target::NODE],\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'builds.compare',
@@ -1031,6 +1201,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'diagnostics list',
         example: "stl builds:diagnostics list \\\n  --api-key 'My API Key' \\\n  --build-id buildId",
       },
+      csharp: {
+        method: 'Builds.Diagnostics.List',
+        example:
+          'DiagnosticListParams parameters = new() { BuildID = "buildId" };\n\nvar page = await client.Builds.Diagnostics.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Builds.Diagnostics.List',
         example:
@@ -1049,6 +1224,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'builds().diagnostics().list',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.diagnostics.DiagnosticListPage\nimport com.configure_me_stainless_v0.api.models.builds.diagnostics.DiagnosticListParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val page: DiagnosticListPage = client.builds().diagnostics().list("buildId")\n}',
+      },
+      php: {
+        method: 'builds->diagnostics->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->builds->diagnostics->list(\n  'buildId', cursor: 'cursor', limit: 1, severity: 'fatal', targets: 'targets'\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'builds.diagnostics.list',
@@ -1093,6 +1273,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "stl builds:target-outputs retrieve \\\n  --api-key 'My API Key' \\\n  --build-id build_id \\\n  --target node \\\n  --type source",
       },
+      csharp: {
+        method: 'Builds.TargetOutputs.Retrieve',
+        example:
+          'TargetOutputRetrieveParams parameters = new()\n{\n    BuildID = "build_id",\n    Target = Target.Node,\n    Type = Type.Source,\n};\n\nvar targetOutput = await client.Builds.TargetOutputs.Retrieve(parameters);\n\nConsole.WriteLine(targetOutput);',
+      },
       go: {
         method: 'client.Builds.TargetOutputs.Get',
         example:
@@ -1111,6 +1296,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'builds().targetOutputs().retrieve',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.targetoutputs.TargetOutputRetrieveParams\nimport com.configure_me_stainless_v0.api.models.builds.targetoutputs.TargetOutputRetrieveResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val params: TargetOutputRetrieveParams = TargetOutputRetrieveParams.builder()\n        .buildId("build_id")\n        .target(TargetOutputRetrieveParams.Target.NODE)\n        .type(TargetOutputRetrieveParams.Type.SOURCE)\n        .build()\n    val targetOutput: TargetOutputRetrieveResponse = client.builds().targetOutputs().retrieve(params)\n}',
+      },
+      php: {
+        method: 'builds->targetOutputs->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$targetOutput = $client->builds->targetOutputs->retrieve(\n  buildID: 'build_id',\n  target: 'node',\n  type: 'source',\n  output: 'url',\n  path: 'path',\n);\n\nvar_dump($targetOutput);",
       },
       python: {
         method: 'builds.target_outputs.retrieve',
@@ -1146,6 +1336,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'orgs list',
         example: "stl orgs list \\\n  --api-key 'My API Key'",
       },
+      csharp: {
+        method: 'Orgs.List',
+        example:
+          'OrgListParams parameters = new();\n\nvar orgs = await client.Orgs.List(parameters);\n\nConsole.WriteLine(orgs);',
+      },
       go: {
         method: 'client.Orgs.List',
         example:
@@ -1164,6 +1359,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'orgs().list',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.orgs.OrgListParams\nimport com.configure_me_stainless_v0.api.models.orgs.OrgListResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val orgs: OrgListResponse = client.orgs().list()\n}',
+      },
+      php: {
+        method: 'orgs->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$orgs = $client->orgs->list();\n\nvar_dump($orgs);",
       },
       python: {
         method: 'orgs.list',
@@ -1199,6 +1399,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'orgs retrieve',
         example: "stl orgs retrieve \\\n  --api-key 'My API Key' \\\n  --org org",
       },
+      csharp: {
+        method: 'Orgs.Retrieve',
+        example:
+          'OrgRetrieveParams parameters = new() { Org = "org" };\n\nvar org = await client.Orgs.Retrieve(parameters);\n\nConsole.WriteLine(org);',
+      },
       go: {
         method: 'client.Orgs.Get',
         example:
@@ -1217,6 +1422,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'orgs().retrieve',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.orgs.Org\nimport com.configure_me_stainless_v0.api.models.orgs.OrgRetrieveParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val org: Org = client.orgs().retrieve("org")\n}',
+      },
+      php: {
+        method: 'orgs->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$org = $client->orgs->retrieve('org');\n\nvar_dump($org);",
       },
       python: {
         method: 'orgs.retrieve',
@@ -1251,6 +1461,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'user retrieve',
         example: "stl user retrieve \\\n  --api-key 'My API Key'",
       },
+      csharp: {
+        method: 'User.Retrieve',
+        example:
+          'UserRetrieveParams parameters = new();\n\nvar user = await client.User.Retrieve(parameters);\n\nConsole.WriteLine(user);',
+      },
       go: {
         method: 'client.User.Get',
         example:
@@ -1269,6 +1484,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'user().retrieve',
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.user.UserRetrieveParams\nimport com.configure_me_stainless_v0.api.models.user.UserRetrieveResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val user: UserRetrieveResponse = client.user().retrieve()\n}',
+      },
+      php: {
+        method: 'user->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$user = $client->user->retrieve();\n\nvar_dump($user);",
       },
       python: {
         method: 'user.retrieve',
@@ -1321,9 +1541,19 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
       '# Stainless Kotlin API Library\n\n\n[![Maven Central](https://img.shields.io/maven-central/v/com.configure_me_stainless_v0.api/stainless-kotlin)](https://central.sonatype.com/artifact/com.configure_me_stainless_v0.api/stainless-kotlin/0.0.1)\n[![javadoc](https://javadoc.io/badge2/com.configure_me_stainless_v0.api/stainless-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.configure_me_stainless_v0.api/stainless-kotlin/0.0.1)\n\n\nThe Stainless Kotlin SDK provides convenient access to the [Stainless REST API](https://www.stainless.com/docs/getting-started/quickstart-cli)   from applications written in Kotlin.\n\n\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Stainless MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40stainless-api%2Fsdk-mcp&config=eyJuYW1lIjoiQHN0YWlubGVzcy1hcGkvc2RrLW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL3N0YWlubGVzcy12MC5zdGxtY3AuY29tIiwiaGVhZGVycyI6eyJ4LXN0YWlubGVzcy1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40stainless-api%2Fsdk-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fstainless-v0.stlmcp.com%22%2C%22headers%22%3A%7B%22x-stainless-api-key%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\nThe REST API documentation can be found on [www.stainless.com](https://www.stainless.com/docs/getting-started/quickstart-cli). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.configure_me_stainless_v0.api/stainless-kotlin/0.0.1).\n\n## Installation\n\n### Gradle\n\n~~~kotlin\nimplementation("com.CONFIGURE_ME_stainless_v0.api:stainless-kotlin:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.CONFIGURE_ME_stainless_v0.api</groupId>\n  <artifactId>stainless-kotlin</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\n// Configures using the `stainless.apiKey` and `stainless.baseUrl` system properties\n// Or configures using the `STAINLESS_API_KEY` and `STAINLESS_BASE_URL` environment variables\nval client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\nval params: BuildCreateParams = BuildCreateParams.builder()\n    .project("stainless")\n    .revision("main")\n    .build()\nval build: Build = client.builds().create(params)\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\n\n// Configures using the `stainless.apiKey` and `stainless.baseUrl` system properties\n// Or configures using the `STAINLESS_API_KEY` and `STAINLESS_BASE_URL` environment variables\nval client: StainlessClient = StainlessOkHttpClient.fromEnv()\n```\n\nOr manually:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    .apiKey("My API Key")\n    .build()\n```\n\nOr using a combination of the two approaches:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    // Configures using the `stainless.apiKey` and `stainless.baseUrl` system properties\n    // Or configures using the `STAINLESS_API_KEY` and `STAINLESS_BASE_URL` environment variables\n    .fromEnv()\n    .project("example-project")\n    .build()\n```\n\nSee this table for the available options:\n\n| Setter    | System property     | Environment variable | Required | Default value                 |\n| --------- | ------------------- | -------------------- | -------- | ----------------------------- |\n| `apiKey`  | `stainless.apiKey`  | `STAINLESS_API_KEY`  | false    | -                             |\n| `baseUrl` | `stainless.baseUrl` | `STAINLESS_BASE_URL` | true     | `"https://api.stainless.com"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\n\nval clientWithOptions: StainlessClient = client.withOptions {\n    it.baseUrl("https://example.com")\n    it.maxRetries(42)\n}\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Stainless API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Kotlin class.\n\nFor example, `client.builds().create(...)` should be called with an instance of `BuildCreateParams`, and it     will return an instance of `Build`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\n// Configures using the `stainless.apiKey` and `stainless.baseUrl` system properties\n// Or configures using the `STAINLESS_API_KEY` and `STAINLESS_BASE_URL` environment variables\nval client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\nval params: BuildCreateParams = BuildCreateParams.builder()\n    .project("stainless")\n    .revision("main")\n    .build()\nval build: Build = client.async().builds().create(params)\n```\n\nOr create an asynchronous client from the beginning:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClientAsync\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClientAsync\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\n// Configures using the `stainless.apiKey` and `stainless.baseUrl` system properties\n// Or configures using the `STAINLESS_API_KEY` and `STAINLESS_BASE_URL` environment variables\nval client: StainlessClientAsync = StainlessOkHttpClientAsync.fromEnv()\n\nval params: BuildCreateParams = BuildCreateParams.builder()\n    .project("stainless")\n    .revision("main")\n    .build()\nval build: Build = client.builds().create(params)\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).\n\n\n\n\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Kotlin classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.core.http.Headers\nimport com.configure_me_stainless_v0.api.core.http.HttpResponseFor\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\nval params: BuildCreateParams = BuildCreateParams.builder()\n    .project("stainless")\n    .revision("main")\n    .build()\nval build: HttpResponseFor<Build> = client.builds().withRawResponse().create(params)\n\nval statusCode: Int = build.statusCode()\nval headers: Headers = build.headers()\n```\n\nYou can still deserialize the response into an instance of a Kotlin class if needed:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.models.builds.Build\n\nval parsedBuild: Build = build.parse()\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`StainlessServiceException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/StainlessServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`StainlessIoException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/StainlessIoException.kt): I/O networking errors.\n\n- [`StainlessRetryableException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/StainlessRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`StainlessInvalidDataException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/StainlessInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`StainlessException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/StainlessException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns a [`Sequence`](https://kotlinlang.org/docs/sequences.html)\n\n```kotlin\nimport com.configure_me_stainless_v0.api.models.builds.BuildListPage\n\nval page: BuildListPage = client.builds().list()\npage.autoPager()\n    .take(50)\n    .forEach { build -> println(build) }\n```\n\nWhen using the asynchronous client, the method returns a [`Flow`](https://kotlinlang.org/docs/flow.html):\n\n```kotlin\nimport com.configure_me_stainless_v0.api.models.builds.BuildListPageAsync\n\nval page: BuildListPageAsync = client.async().builds().list()\npage.autoPager()\n    .take(50)\n    .forEach { build -> println(build) }\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildListPage\n\nval page: BuildListPage = client.builds().list()\nwhile (true) {\n    for (build in page.items()) {\n        println(build)\n    }\n\n    if (!page.hasNextPage()) {\n        break\n    }\n\n    page = page.nextPage()\n}\n```\n\n## Logging\n\nThe SDK uses the standard   [OkHttp logging interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor).\n\nEnable logging by setting the `STAINLESS_LOG` environment variable to   `info`:\n\n```sh\nexport STAINLESS_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport STAINLESS_LOG=debug\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `stainless-kotlin-core` is published with a     [configuration file](stainless-kotlin-core/src/main/resources/META-INF/proguard/stainless-kotlin-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`StainlessOkHttpClient`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/StainlessOkHttpClient.kt) or     [`StainlessOkHttpClientAsync`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/StainlessOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build()\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.models.builds.Build\n\nval build: Build = client.builds().create(\n  params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build()\n)\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport java.time.Duration\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build()\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport java.net.InetSocketAddress\nimport java.net.Proxy\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    .fromEnv()\n    .proxy(Proxy(\n      Proxy.Type.HTTP, InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build()\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport java.time.Duration\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build()\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build()\n```\n\n### Environments\n\nThe SDK sends requests to the production by default. To send requests to a different     environment, configure the client like so:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    .fromEnv()\n    .staging()\n    .build()\n```\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `stainless-kotlin-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`StainlessClient`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClient.kt), [`StainlessClientAsync`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientAsync.kt),             [`StainlessClientImpl`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientImpl.kt), and [`StainlessClientAsyncImpl`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `stainless-kotlin-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`StainlessOkHttpClient`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/StainlessOkHttpClient.kt) and [`StainlessOkHttpClientAsync`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/StainlessOkHttpClientAsync.kt), which             provide a way to construct [`StainlessClientImpl`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientImpl.kt) and             [`StainlessClientAsyncImpl`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientAsyncImpl.kt), respectively, using OkHttp\n- `stainless-kotlin`\n  - Depends on and exposes the APIs of both `stainless-kotlin-core` and `stainless-kotlin-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`stainless-kotlin` dependency](#installation) with `stainless-kotlin-core`\n2. Copy `stainless-kotlin-client-okhttp`\'s [`OkHttpClient`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`StainlessClientImpl`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientImpl.kt) or [`StainlessClientAsyncImpl`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientAsyncImpl.kt), similarly to        [`StainlessOkHttpClient`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/StainlessOkHttpClient.kt) or [`StainlessOkHttpClientAsync`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/StainlessOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`stainless-kotlin` dependency](#installation) with `stainless-kotlin-core`\n2. Write a class that implements the [`HttpClient`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/core/http/HttpClient.kt) interface\n3. Construct [`StainlessClientImpl`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientImpl.kt) or [`StainlessClientAsyncImpl`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/client/StainlessClientAsyncImpl.kt), similarly to        [`StainlessOkHttpClient`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/StainlessOkHttpClient.kt) or [`StainlessOkHttpClientAsync`](stainless-kotlin-client-okhttp/src/main/kotlin/com/configure_me_stainless_v0/api/client/okhttp/StainlessOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.core.JsonValue\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\nval params: BuildCreateParams = BuildCreateParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build()\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set undocumented parameters on _nested_ headers, query params, or body classes, call the         `putAdditionalProperty` method on the nested class:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.core.JsonValue\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\nval params: BuildCreateParams = BuildCreateParams.builder()\n    .targetCommitMessages(BuildCreateParams.TargetCommitMessages.builder()\n        .putAdditionalProperty("secretProperty", JsonValue.from("42"))\n        .build())\n    .build()\n```\n\nThese properties can be accessed on the nested built object later using the         `_additionalProperties()` method.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/core/Values.kt) object to its setter:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.core.JsonValue\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\nval params: BuildCreateParams = BuildCreateParams.builder()\n    .project(JsonValue.from(42))\n    .revision("main")\n    .build()\n```\n\nThe most straightforward way to create a [`JsonValue`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/core/Values.kt) is using its       `from(...)` method:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.core.JsonValue\n\n// Create primitive JSON values\nval nullValue: JsonValue = JsonValue.from(null)\nval booleanValue: JsonValue = JsonValue.from(true)\nval numberValue: JsonValue = JsonValue.from(42)\nval stringValue: JsonValue = JsonValue.from("Hello World!")\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nval arrayValue: JsonValue = JsonValue.from(listOf(\n  "Hello", "World"\n))\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nval objectValue: JsonValue = JsonValue.from(mapOf(\n  "a" to 1, "b" to 2\n))\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nval complexValue: JsonValue = JsonValue.from(mapOf(\n  "a" to listOf(\n    1, 2\n  ), "b" to listOf(\n    3, 4\n  )\n))\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/core/Values.kt):\n\n```kotlin\nimport com.configure_me_stainless_v0.api.core.JsonMissing\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\nval params: BuildCreateParams = BuildCreateParams.builder()\n    .revision("string")\n    .project(JsonMissing.of())\n    .build()\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.core.JsonBoolean\nimport com.configure_me_stainless_v0.api.core.JsonNull\nimport com.configure_me_stainless_v0.api.core.JsonNumber\nimport com.configure_me_stainless_v0.api.core.JsonValue\n\nval additionalProperties: Map<String, JsonValue> = client.builds().create(params)._additionalProperties()\nval secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")\n\nval result = when (secretPropertyValue) {\n    is JsonNull -> "It\'s null!"\n    is JsonBoolean -> "It\'s a boolean!"\n    is JsonNumber -> "It\'s a number!"\n    // Other types include `JsonMissing`, `JsonString`, `JsonArray`, and `JsonObject`\n    else -> "It\'s something else!"\n}\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.core.JsonField\n\nval project: JsonField<String> = client.builds().create(params)._project()\n\nif (project.isMissing()) {\n  // The property is absent from the JSON response\n} else if (project.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  val jsonString: String? = project.asString();\n\n  // Try to deserialize into a custom type\n  val myObject: MyClass = project.asUnknown()!!.convert(MyClass::class.java)\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`StainlessInvalidDataException`](stainless-kotlin-core/src/main/kotlin/com/configure_me_stainless_v0/api/errors/StainlessInvalidDataException.kt) only if you directly access the property.\n\nIf you would prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.models.builds.Build\n\nval build: Build = client.builds().create(params).validate()\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.models.builds.Build\n\nval build: Build = client.builds().create(\n  params, RequestOptions.builder().responseValidation(true).build()\n)\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\n\nval client: StainlessClient = StainlessOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build()\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nKotlin `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/stainless-v0-kotlin/issues) with questions, bugs, or suggestions.\n',
   },
   {
+    language: 'csharp',
+    content:
+      '# Stainless C# API Library\n\nThe Stainless C# SDK provides convenient access to the [Stainless REST API](https://www.stainless.com/docs/getting-started/quickstart-cli) from applications written in   C#.\n\n## Installation\n\n```bash\ngit clone git@github.com:stainless-sdks/stainless-v0-csharp.git\ndotnet add reference stainless-v0-csharp/src/StainlessV0\n```\n\n## Requirements\n\nThis library requires .NET Standard 2.0 or later.\n\n## Usage\n\nSee the [`examples`](examples) directory for complete and runnable examples.\n\n```csharp\nStainlessClient client = new();\n\nBuildCreateParams parameters = new()\n{\n    Project = "stainless",\n    Revision = "main",\n};\n\nvar build = await client.Builds.Create(parameters);\n\nConsole.WriteLine(build);\n```',
+  },
+  {
     language: 'cli',
     content:
       "# Stainless CLI\n\nThe official CLI for the [Stainless REST API](https://www.stainless.com/docs/getting-started/quickstart-cli).\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n<!-- x-release-please-start-version -->\n\n## Installation\n\n### Installing with Homebrew\n\n~~~sh\nbrew install stainless-api/tap/stl\n~~~\n\n### Installing with Go\n\nTo test or install the CLI locally, you need [Go](https://go.dev/doc/install) version 1.22 or later installed.\n\n~~~sh\ngo install 'github.com/stainless-api/stainless-api-cli/cmd/stl@latest'\n~~~\n\nOnce you have run `go install`, the binary is placed in your Go bin directory:\n\n- **Default location**: `$HOME/go/bin` (or `$GOPATH/bin` if GOPATH is set)\n- **Check your path**: Run `go env GOPATH` to see the base directory\n\nIf commands aren't found after installation, add the Go bin directory to your PATH:\n\n~~~sh\n# Add to your shell profile (.zshrc, .bashrc, etc.)\nexport PATH=\"$PATH:$(go env GOPATH)/bin\"\n~~~\n\n<!-- x-release-please-end -->\n\n### Running Locally\n\nAfter cloning the git repository for this project, you can use the\n`scripts/run` script to run the tool locally:\n\n~~~sh\n./scripts/run args...\n~~~\n\n## Usage\n\nThe CLI follows a resource-based command structure:\n\n~~~sh\nstl [resource] <command> [flags...]\n~~~\n\n~~~sh\nstl builds create \\\n  --api-key 'My API Key' \\\n  --project stainless \\\n  --revision main\n~~~\n\nFor details about specific commands, use the `--help` flag.\n\n### Environment variables\n\n| Environment variable | Required | Default value |\n| -------------------- | -------- | ------------- |\n| `STAINLESS_API_KEY`  | no       | `null`        |\n\n### Global flags\n\n- `--api-key` (can also be set with `STAINLESS_API_KEY` env var)\n- `--project`\n- `--help` - Show command line usage\n- `--debug` - Enable debug logging (includes HTTP request/response details)\n- `--version`, `-v` - Show the CLI version\n- `--base-url` - Use a custom API backend URL\n- `--format` - Change the output format (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--format-error` - Change the output format for errors (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--transform` - Transform the data output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n- `--transform-error` - Transform the error output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n\n### Passing files as arguments\n\nTo pass files to your API, you can use the `@myfile.ext` syntax:\n\n~~~bash\nstl <command> --arg @abe.jpg\n~~~\n\nFiles can also be passed inside JSON or YAML blobs:\n\n~~~bash\nstl <command> --arg '{image: \"@abe.jpg\"}'\n# Equivalent:\nstl <command> <<YAML\narg:\n  image: \"@abe.jpg\"\nYAML\n~~~\n\nIf you need to pass a string literal that begins with an `@` sign, you can\nescape the `@` sign to avoid accidentally passing a file.\n\n~~~bash\nstl <command> --username '\\@abe'\n~~~\n\n#### Explicit encoding\n\nFor JSON endpoints, the CLI tool does filetype sniffing to determine whether the\nfile contents should be sent as a string literal (for plain text files) or as a\nbase64-encoded string literal (for binary files). If you need to explicitly send\nthe file as either plain text or base64-encoded data, you can use\n`@file://myfile.txt` (for string encoding) or `@data://myfile.dat` (for\nbase64-encoding). Note that absolute paths will begin with `@file://` or\n`@data://`, followed by a third `/` (for example, `@file:///tmp/file.txt`).\n\n~~~bash\nstl <command> --arg @data://file.txt\n~~~\n",
+  },
+  {
+    language: 'php',
+    content:
+      '# Stainless PHP API Library\n\nThe Stainless PHP library provides convenient access to the Stainless REST API from any PHP 8.1.0+ application.\n\n## Installation\n\nTo use this package, install via Composer by adding the following to your application\'s `composer.json`:\n\n```json\n{\n  "repositories": [\n    {\n      "type": "vcs",\n      "url": "git@github.com:stainless-sdks/stainless-v0-php.git"\n    }\n  ],\n  "require": {\n    "org-placeholder/stainless-v0": "dev-main"\n  }\n}\n```\n\n## Usage\n\n```php\n<?php\n\n$client = new Client(\n  apiKey: getenv(\'STAINLESS_API_KEY\') ?: \'My API Key\', environment: \'staging\'\n);\n\n$build = $client->builds->create(project: \'stainless\', revision: \'main\');\n\nvar_dump($build->id);\n```',
   },
 ];
 
