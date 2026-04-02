@@ -1,0 +1,53 @@
+name: Create releases
+on:
+  schedule:
+    - cron: '0 5 * * *' # every day at 5am UTC
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: release
+    if: github.ref == 'refs/heads/main' && github.repository == 'stainless-api/stainless-api-typescript'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: stainless-api/trigger-release-please@v1
+        id: release
+        with:
+          repo: ${{ github.event.repository.full_name }}
+          stainless-api-key: ${{ secrets.STAINLESS_API_KEY }}
+
+      - name: Set up Node
+        if: ${{ steps.release.outputs.releases_created }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        if: ${{ steps.release.outputs.releases_created }}
+        run: |
+          pnpm install
+
+      - name: Publish to NPM
+        if: ${{ steps.release.outputs.releases_created }}
+        run: |
+          pnpm tsn scripts/publish-packages.ts
+
+      - name: Upload MCP Server DXT GitHub release asset
+        if: ${{ steps.release.outputs.releases_created }}
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} \
+            packages/mcp-server/stainless_api_sdk_api.mcpb
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
