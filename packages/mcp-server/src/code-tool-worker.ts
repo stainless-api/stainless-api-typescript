@@ -5,7 +5,7 @@ import util from 'node:util';
 import Fuse from 'fuse.js';
 import ts from 'typescript';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
-import { Stainless, ClientOptions } from '@stainless-api/sdk';
+import { Stainless1, ClientOptions } from '@stainless-api/sdk';
 
 function getRunFunctionSource(code: string): {
   type: 'declaration' | 'expression';
@@ -53,10 +53,10 @@ function getRunFunctionSource(code: string): {
 function getTSDiagnostics(code: string): string[] {
   const functionSource = getRunFunctionSource(code)!;
   const codeWithImport = [
-    'import { Stainless } from "@stainless-api/sdk";',
+    'import { Stainless1 } from "@stainless-api/sdk";',
     functionSource.type === 'declaration' ?
-      `async function run(${functionSource.client}: Stainless)` :
-      `const run: (${functionSource.client}: Stainless) => Promise<unknown> =`,
+      `async function run(${functionSource.client}: Stainless1)` :
+      `const run: (${functionSource.client}: Stainless1) => Promise<unknown> =`,
     functionSource.code,
   ].join('\n');
   const sourcePath = path.resolve('code.ts');
@@ -246,7 +246,7 @@ const fetch = async (req: Request): Promise<Response> => {
     );
   }
 
-  const client = new Stainless({
+  const client = new Stainless1({
     ...opts,
   });
 
