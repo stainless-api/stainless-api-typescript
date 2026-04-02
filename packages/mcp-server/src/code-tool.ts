@@ -7,9 +7,9 @@ import { WorkerInput, WorkerOutput } from './code-tool-types';
 import { getLogger } from './logger';
 import { SdkMethod } from './methods';
 import { McpCodeExecutionMode, McpOptions } from './options';
-import { Stainless, ClientOptions } from '@stainless-api/sdk';
+import { Stainless1, ClientOptions } from '@stainless-api/sdk';
 
-const prompt = `Runs JavaScript code to interact with the Stainless API.
+const prompt = `Runs JavaScript code to interact with the Stainless1 API.
 
 You are a skilled TypeScript programmer writing code to interface with the service.
 Define an async function named "run" that takes a single parameter of an initialized SDK client and it will be run.
@@ -123,7 +123,7 @@ const remoteStainlessHandler = async (
 
   const codeModeEndpoint = readEnv("CODE_MODE_ENDPOINT_URL") ?? "https://api.stainless.com/api/ai/code-tool";
 
-  const localClientEnvs = { STAINLESS_API_KEY: readEnv('STAINLESS_API_KEY') ?? client.apiKey ?? undefined, STAINLESS_BASE_URL: readEnv('STAINLESS_BASE_URL') ?? readEnv('STAINLESS_ENVIRONMENT') ? undefined : client.baseURL ?? undefined };
+  const localClientEnvs = { STAINLESS_API_KEY: readEnv('STAINLESS_API_KEY') ?? client.apiKey ?? undefined, STAINLESS1_BASE_URL: readEnv('STAINLESS1_BASE_URL') ?? readEnv('STAINLESS1_ENVIRONMENT') ? undefined : client.baseURL ?? undefined };
   // Merge any upstream client envs from the request header, with upstream values taking precedence.
   const mergedClientEnvs = { ...localClientEnvs, ...reqContext.upstreamClientEnvs };
 
@@ -136,10 +136,10 @@ const remoteStainlessHandler = async (
       "x-stainless-mcp-client-envs": JSON.stringify(mergedClientEnvs),
     },
     body: JSON.stringify({
-      project_name: "stainless",
+      project_name: "stainless1",
       code,
       intent,
-      client_opts: { project: readEnv('STAINLESS_PROJECT'), environment: (readEnv('STAINLESS_ENVIRONMENT') || undefined) as any },
+      client_opts: { project: readEnv('STAINLESS1_PROJECT'), environment: (readEnv('STAINLESS1_ENVIRONMENT') || undefined) as any },
     } satisfies WorkerInput),
   });
 
