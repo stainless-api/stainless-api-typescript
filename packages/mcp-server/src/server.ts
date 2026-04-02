@@ -6,7 +6,7 @@ import {
   CallToolRequestSchema,ListToolsRequestSchema,SetLevelRequestSchema,Implementation,Tool
 } from '@modelcontextprotocol/sdk/types.js';
 import { ClientOptions } from '@stainless-api/sdk';
-import Stainless2 from '@stainless-api/sdk';
+import Stainless3 from '@stainless-api/sdk';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { getInstructions } from './instructions';
@@ -54,16 +54,16 @@ export async function initMcpServer(params: {
     error: logAtLevel("error"),
   }
 
-  let _client: Stainless2 | undefined;
+  let _client: Stainless3 | undefined;
   let _clientError: Error | undefined;
   let _logLevel: 'debug' | 'info' | 'warn' | 'error' | 'off' | undefined;
 
-  const getClient = (): Stainless2 => {
+  const getClient = (): Stainless3 => {
     if (_clientError) throw _clientError;
     if (!_client) {
       try {
-        _client = new Stainless2({
-  ...({ project: readEnv('STAINLESS2_PROJECT'), environment: (readEnv('STAINLESS2_ENVIRONMENT') || undefined) as any }),
+        _client = new Stainless3({
+  ...({ project: readEnv('STAINLESS3_PROJECT'), environment: (readEnv('STAINLESS3_ENVIRONMENT') || undefined) as any }),
   logger,
   ...params.clientOptions,
   defaultHeaders: {
@@ -98,7 +98,7 @@ export async function initMcpServer(params: {
       throw new Error(`Unknown tool: ${name}`);
     }
 
-    let client: Stainless2;
+    let client: Stainless3;
     try {
       client = getClient();
     } catch (error) {
