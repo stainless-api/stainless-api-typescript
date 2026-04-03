@@ -29,7 +29,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'stainless_api_sdk_api',
-      version: '0.5.0',
+      version: '0.6.0',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
