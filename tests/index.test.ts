@@ -3,7 +3,7 @@
 import { APIPromise } from '@stainless-api/sdk/core/api-promise';
 
 import util from 'node:util';
-import Stainless3 from '@stainless-api/sdk';
+import Stainless from '@stainless-api/sdk';
 import { APIUserAbortError } from '@stainless-api/sdk';
 const defaultFetch = fetch;
 
@@ -20,7 +20,7 @@ describe('instantiate client', () => {
   });
 
   describe('defaultHeaders', () => {
-    const client = new Stainless3({
+    const client = new Stainless({
   baseURL: 'http://localhost:5000/',
   defaultHeaders: { 'X-My-Default-Header': '2' },
   apiKey: 'My API Key',
@@ -54,14 +54,14 @@ describe('logging', () => {
 
   beforeEach(() => {
     process.env = { ...env };
-    process.env['STAINLESS3_LOG'] = undefined;
+    process.env['STAINLESS_LOG'] = undefined;
   });
 
   afterEach(() => {
     process.env = env;
   });
 
-  const forceAPIResponseForClient = async (client: Stainless3) => {
+  const forceAPIResponseForClient = async (client: Stainless) => {
     await new APIPromise(
       client,
       Promise.resolve({
@@ -87,7 +87,7 @@ describe('logging', () => {
       error: jest.fn(),
     };
 
-    const client = new Stainless3({
+    const client = new Stainless({
   logger: logger,
   logLevel: 'debug',
   apiKey: 'My API Key',
@@ -98,7 +98,7 @@ describe('logging', () => {
   });
 
   test('default logLevel is warn', async () => {
-    const client = new Stainless3({ apiKey: 'My API Key' });
+    const client = new Stainless({ apiKey: 'My API Key' });
     expect(client.logLevel).toBe('warn');
   });
 
@@ -111,7 +111,7 @@ describe('logging', () => {
       error: jest.fn(),
     };
 
-    const client = new Stainless3({
+    const client = new Stainless({
   logger: logger,
   logLevel: 'info',
   apiKey: 'My API Key',
@@ -130,8 +130,8 @@ describe('logging', () => {
       error: jest.fn(),
     };
 
-    process.env['STAINLESS3_LOG'] = 'debug';
-    const client = new Stainless3({ logger: logger, apiKey: 'My API Key' });
+    process.env['STAINLESS_LOG'] = 'debug';
+    const client = new Stainless({ logger: logger, apiKey: 'My API Key' });
     expect(client.logLevel).toBe('debug');
 
     await forceAPIResponseForClient(client);
@@ -147,10 +147,10 @@ describe('logging', () => {
       error: jest.fn(),
     };
 
-    process.env['STAINLESS3_LOG'] = 'not a log level';
-    const client = new Stainless3({ logger: logger, apiKey: 'My API Key' });
+    process.env['STAINLESS_LOG'] = 'not a log level';
+    const client = new Stainless({ logger: logger, apiKey: 'My API Key' });
     expect(client.logLevel).toBe('warn');
-    expect(warnMock).toHaveBeenCalledWith('process.env[\'STAINLESS3_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]');
+    expect(warnMock).toHaveBeenCalledWith('process.env[\'STAINLESS_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]');
   });
 
   test('client log level overrides env var', async () => {
@@ -162,8 +162,8 @@ describe('logging', () => {
       error: jest.fn(),
     };
 
-    process.env['STAINLESS3_LOG'] = 'debug';
-    const client = new Stainless3({
+    process.env['STAINLESS_LOG'] = 'debug';
+    const client = new Stainless({
   logger: logger,
   logLevel: 'off',
   apiKey: 'My API Key',
@@ -182,8 +182,8 @@ describe('logging', () => {
       error: jest.fn(),
     };
 
-    process.env['STAINLESS3_LOG'] = 'not a log level';
-    const client = new Stainless3({
+    process.env['STAINLESS_LOG'] = 'not a log level';
+    const client = new Stainless({
   logger: logger,
   logLevel: 'debug',
   apiKey: 'My API Key',
@@ -195,7 +195,7 @@ describe('logging', () => {
 
   describe('defaultQuery', () => {
     test('with null query params given', () => {
-      const client = new Stainless3({
+      const client = new Stainless({
   baseURL: 'http://localhost:5000/',
   defaultQuery: { apiVersion: 'foo' },
   apiKey: 'My API Key',
@@ -204,7 +204,7 @@ describe('logging', () => {
     });
 
     test('multiple default query params', () => {
-      const client = new Stainless3({
+      const client = new Stainless({
   baseURL: 'http://localhost:5000/',
   defaultQuery: { apiVersion: 'foo', hello: 'world' },
   apiKey: 'My API Key',
@@ -213,7 +213,7 @@ describe('logging', () => {
     });
 
     test('overriding with `undefined`', () => {
-      const client = new Stainless3({
+      const client = new Stainless({
   baseURL: 'http://localhost:5000/',
   defaultQuery: { hello: 'world' },
   apiKey: 'My API Key',
@@ -223,7 +223,7 @@ describe('logging', () => {
   });
 
   test('custom fetch', async () => {
-    const client = new Stainless3({
+    const client = new Stainless({
   baseURL: 'http://localhost:5000/',
   apiKey: 'My API Key',
   fetch: (url) => {
@@ -241,7 +241,7 @@ describe('logging', () => {
 
   test('explicit global fetch', async () => {
     // make sure the global fetch type is assignable to our Fetch type
-    const client = new Stainless3({
+    const client = new Stainless({
   baseURL: 'http://localhost:5000/',
   apiKey: 'My API Key',
   fetch: defaultFetch,
@@ -249,7 +249,7 @@ describe('logging', () => {
   });
 
   test('custom signal', async () => {
-    const client = new Stainless3({
+    const client = new Stainless({
   baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
   apiKey: 'My API Key',
   fetch: (...args) => {
@@ -283,7 +283,7 @@ describe('logging', () => {
       return new Response(JSON.stringify({}), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Stainless3({
+    const client = new Stainless({
   baseURL: 'http://localhost:5000/',
   apiKey: 'My API Key',
   fetch: testFetch,
@@ -295,53 +295,53 @@ describe('logging', () => {
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new Stainless3({ baseURL: 'http://localhost:5000/custom/path/', apiKey: 'My API Key' });
+      const client = new Stainless({ baseURL: 'http://localhost:5000/custom/path/', apiKey: 'My API Key' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     test('no trailing slash', () => {
-      const client = new Stainless3({ baseURL: 'http://localhost:5000/custom/path', apiKey: 'My API Key' });
+      const client = new Stainless({ baseURL: 'http://localhost:5000/custom/path', apiKey: 'My API Key' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     afterEach(() => {
-      process.env['STAINLESS3_BASE_URL'] = undefined;
+      process.env['STAINLESS_BASE_URL'] = undefined;
     });
 
     test('explicit option', () => {
-      const client = new Stainless3({ baseURL: 'https://example.com', apiKey: 'My API Key' });
+      const client = new Stainless({ baseURL: 'https://example.com', apiKey: 'My API Key' });
       expect(client.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
-      process.env['STAINLESS3_BASE_URL'] = 'https://example.com/from_env';
-      const client = new Stainless3({ apiKey: 'My API Key' });
+      process.env['STAINLESS_BASE_URL'] = 'https://example.com/from_env';
+      const client = new Stainless({ apiKey: 'My API Key' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
-      process.env['STAINLESS3_BASE_URL'] = ''; // empty
-      const client = new Stainless3({ apiKey: 'My API Key' });
+      process.env['STAINLESS_BASE_URL'] = ''; // empty
+      const client = new Stainless({ apiKey: 'My API Key' });
       expect(client.baseURL).toEqual('https://api.stainless.com')
     });
 
     test('blank env variable', () => {
-      process.env['STAINLESS3_BASE_URL'] = '  '; // blank
-      const client = new Stainless3({ apiKey: 'My API Key' });
+      process.env['STAINLESS_BASE_URL'] = '  '; // blank
+      const client = new Stainless({ apiKey: 'My API Key' });
       expect(client.baseURL).toEqual('https://api.stainless.com')
     });
 
     test('env variable with environment', () => {
-      process.env['STAINLESS3_BASE_URL'] = 'https://example.com/from_env';
+      process.env['STAINLESS_BASE_URL'] = 'https://example.com/from_env';
 
       expect(
         () =>
-          new Stainless3({ apiKey: 'My API Key', environment: 'production' })
+          new Stainless({ apiKey: 'My API Key', environment: 'production' })
       ).toThrowErrorMatchingInlineSnapshot(
-        `"Ambiguous URL; The \`baseURL\` option (or STAINLESS3_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
+        `"Ambiguous URL; The \`baseURL\` option (or STAINLESS_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
       );
 
-      const client = new Stainless3({
+      const client = new Stainless({
       apiKey: 'My API Key',
       baseURL: null,
       environment: 'production',
@@ -350,34 +350,34 @@ describe('logging', () => {
     });
 
     test('in request options', () => {
-      const client = new Stainless3({ apiKey: 'My API Key' });
+      const client = new Stainless({ apiKey: 'My API Key' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual('http://localhost:5000/option/foo');
     });
 
     test('in request options overridden by client options', () => {
-      const client = new Stainless3({ apiKey: 'My API Key', baseURL: 'http://localhost:5000/client' });
+      const client = new Stainless({ apiKey: 'My API Key', baseURL: 'http://localhost:5000/client' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual('http://localhost:5000/client/foo');
     });
 
     test('in request options overridden by env variable', () => {
-      process.env['STAINLESS3_BASE_URL'] = 'http://localhost:5000/env';
-      const client = new Stainless3({ apiKey: 'My API Key' });
+      process.env['STAINLESS_BASE_URL'] = 'http://localhost:5000/env';
+      const client = new Stainless({ apiKey: 'My API Key' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual('http://localhost:5000/env/foo');
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new Stainless3({ maxRetries: 4, apiKey: 'My API Key' });
+    const client = new Stainless({ maxRetries: 4, apiKey: 'My API Key' });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new Stainless3({ apiKey: 'My API Key' });
+    const client2 = new Stainless({ apiKey: 'My API Key' });
     expect(client2.maxRetries).toEqual(2);
   });
 
   describe('withOptions', () => {
     test('creates a new client with overridden options', async () => {
-      const client = new Stainless3({
+      const client = new Stainless({
     baseURL: 'http://localhost:5000/',
     maxRetries: 3,
     apiKey: 'My API Key',
@@ -402,7 +402,7 @@ describe('logging', () => {
     });
 
     test('inherits options from the parent client', async () => {
-      const client = new Stainless3({
+      const client = new Stainless({
     baseURL: 'http://localhost:5000/',
     defaultHeaders: { 'X-Test-Header': 'test-value' },
     defaultQuery: { 'test-param': 'test-value' },
@@ -421,7 +421,7 @@ describe('logging', () => {
     });
 
     test('respects runtime property changes when creating new client', () => {
-      const client = new Stainless3({
+      const client = new Stainless({
     baseURL: 'http://localhost:5000/',
     timeout: 1000,
     apiKey: 'My API Key',
@@ -454,20 +454,20 @@ describe('logging', () => {
   test('with environment variable arguments', () => {
     // set options via env var
     process.env['STAINLESS_API_KEY'] = 'My API Key';
-    const client = new Stainless3();
+    const client = new Stainless();
     expect(client.apiKey).toBe('My API Key');
   });
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
     process.env['STAINLESS_API_KEY'] = 'another My API Key';
-    const client = new Stainless3({ apiKey: 'My API Key' });
+    const client = new Stainless({ apiKey: 'My API Key' });
     expect(client.apiKey).toBe('My API Key');
   });
 });
 
 describe('request building', () => {
-  const client = new Stainless3({ apiKey: 'My API Key' });
+  const client = new Stainless({ apiKey: 'My API Key' });
 
   describe('custom headers', () => {
     test('handles undefined', async () => {
@@ -481,7 +481,7 @@ describe('request building', () => {
 });
 
 describe('default encoder', () => {
-  const client = new Stainless3({ apiKey: 'My API Key' });
+  const client = new Stainless({ apiKey: 'My API Key' });
 
   class Serializable {
     toJSON() {
@@ -563,7 +563,7 @@ describe('retries', () => {
         return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
       };
 
-      const client = new Stainless3({
+      const client = new Stainless({
     apiKey: 'My API Key',
     timeout: 10,
     fetch: testFetch,
@@ -597,7 +597,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Stainless3({
+    const client = new Stainless({
     apiKey: 'My API Key',
     fetch: testFetch,
     maxRetries: 4,
@@ -625,7 +625,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new Stainless3({
+    const client = new Stainless({
     apiKey: 'My API Key',
     fetch: testFetch,
     maxRetries: 4,
@@ -658,7 +658,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new Stainless3({
+    const client = new Stainless({
     apiKey: 'My API Key',
     fetch: testFetch,
     maxRetries: 4,
@@ -691,7 +691,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new Stainless3({
+    const client = new Stainless({
     apiKey: 'My API Key',
     fetch: testFetch,
     maxRetries: 4,
@@ -722,7 +722,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Stainless3({ apiKey: 'My API Key', fetch: testFetch });
+    const client = new Stainless({ apiKey: 'My API Key', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -749,7 +749,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Stainless3({ apiKey: 'My API Key', fetch: testFetch });
+    const client = new Stainless({ apiKey: 'My API Key', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);

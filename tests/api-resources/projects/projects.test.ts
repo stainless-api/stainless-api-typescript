@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Stainless3, { toFile } from '@stainless-api/sdk';
+import Stainless, { toFile } from '@stainless-api/sdk';
 
-const client = new Stainless3({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Stainless({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource projects', () => {
   test('create: only required params', async () => {
@@ -81,7 +81,7 @@ describe('resource projects', () => {
     org: 'org',
   }, { path: '/_stainless_unknown_path' }))
       .rejects
-      .toThrow(Stainless3.NotFoundError);
+      .toThrow(Stainless.NotFoundError);
   });
 
   test('generateCommitMessage: only required params', async () => {

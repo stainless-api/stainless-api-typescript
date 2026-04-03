@@ -40,7 +40,7 @@ export const tool: Tool = {
   },
 };
 
-const docsSearchURL = process.env['DOCS_SEARCH_URL'] || 'https://api.stainless.com/api/projects/stainless3/docs/search'
+const docsSearchURL = process.env['DOCS_SEARCH_URL'] || 'https://api.stainless.com/api/projects/stainless/docs/search'
 
 export const handler = async (
   { reqContext, args }:
