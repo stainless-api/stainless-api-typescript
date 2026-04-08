@@ -42,7 +42,7 @@ export const tool: Tool = {
 };
 
 const docsSearchURL =
-  process.env['DOCS_SEARCH_URL'] || 'https://api.stainless.com/api/projects/stainless2/docs/search';
+  process.env['DOCS_SEARCH_URL'] || 'https://api.stainless.com/api/projects/stainless3/docs/search';
 
 let _localSearch: LocalDocsSearch | undefined;
 
