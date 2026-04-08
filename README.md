@@ -1,8 +1,8 @@
-# Stainless9 TypeScript API Library
+# Stainless10 TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/@stainless-api/sdk.svg?label=npm%20(stable)>)](https://npmjs.org/package/@stainless-api/sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@stainless-api/sdk)
 
-This library provides convenient access to the Stainless9 REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Stainless10 REST API from server-side TypeScript or JavaScript.
 
 The REST API documentation can be found on [www.stainless.com](https://www.stainless.com/docs/getting-started/quickstart-cli). The full API of this library can be found in [api.md](api.md).
 
@@ -10,10 +10,10 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## MCP Server
 
-Use the Stainless9 MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
+Use the Stainless10 MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40stainless-api%2Fsdk-mcp&config=eyJuYW1lIjoiQHN0YWlubGVzcy1hcGkvc2RrLW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL3N0YWlubGVzczkuc3RsbWNwLmNvbSIsImhlYWRlcnMiOnsieC1zdGFpbmxlc3MtYXBpLWtleSI6Ik15IEFQSSBLZXkifX0)
-[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40stainless-api%2Fsdk-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fstainless9.stlmcp.com%22%2C%22headers%22%3A%7B%22x-stainless-api-key%22%3A%22My%20API%20Key%22%7D%7D)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40stainless-api%2Fsdk-mcp&config=eyJuYW1lIjoiQHN0YWlubGVzcy1hcGkvc2RrLW1jcCIsInRyYW5zcG9ydCI6Imh0dHAiLCJ1cmwiOiJodHRwczovL3N0YWlubGVzczEwLnN0bG1jcC5jb20iLCJoZWFkZXJzIjp7Ingtc3RhaW5sZXNzLWFwaS1rZXkiOiJNeSBBUEkgS2V5In19)
+[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40stainless-api%2Fsdk-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fstainless10.stlmcp.com%22%2C%22headers%22%3A%7B%22x-stainless-api-key%22%3A%22My%20API%20Key%22%7D%7D)
 
 > Note: You may need to set environment variables in your MCP client.
 
@@ -29,9 +29,9 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Stainless9 from '@stainless-api/sdk';
+import Stainless10 from '@stainless-api/sdk';
 
-const client = new Stainless9({
+const client = new Stainless10({
   apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
   environment: 'staging', // defaults to 'production'
 });
@@ -47,15 +47,15 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Stainless9 from '@stainless-api/sdk';
+import Stainless10 from '@stainless-api/sdk';
 
-const client = new Stainless9({
+const client = new Stainless10({
   apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted
   environment: 'staging', // defaults to 'production'
 });
 
-const params: Stainless9.BuildCreateParams = { project: 'stainless', revision: 'main' };
-const build: Stainless9.Build = await client.builds.create(params);
+const params: Stainless10.BuildCreateParams = { project: 'stainless', revision: 'main' };
+const build: Stainless10.Build = await client.builds.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -71,7 +71,7 @@ a subclass of `APIError` will be thrown:
 const build = await client.builds
   .create({ project: 'stainless', revision: 'main' })
   .catch(async (err) => {
-    if (err instanceof Stainless9.APIError) {
+    if (err instanceof Stainless10.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
@@ -105,7 +105,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new Stainless9({
+const client = new Stainless10({
   maxRetries: 0, // default is 2
 });
 
@@ -122,7 +122,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new Stainless9({
+const client = new Stainless10({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -138,7 +138,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 
 ## Auto-pagination
 
-List methods in the Stainless9 API are paginated.
+List methods in the Stainless10 API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
@@ -179,7 +179,7 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 
 <!-- prettier-ignore -->
 ```ts
-const client = new Stainless9();
+const client = new Stainless10();
 
 const response = await client.builds
   .create({ project: 'stainless', revision: 'main' })
@@ -204,13 +204,13 @@ console.log(build.id);
 
 The log level can be configured in two ways:
 
-1. Via the `STAINLESS9_LOG` environment variable
+1. Via the `STAINLESS10_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import Stainless9 from '@stainless-api/sdk';
+import Stainless10 from '@stainless-api/sdk';
 
-const client = new Stainless9({
+const client = new Stainless10({
   logLevel: 'debug', // Show all log messages
 });
 ```
@@ -236,13 +236,13 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import Stainless9 from '@stainless-api/sdk';
+import Stainless10 from '@stainless-api/sdk';
 import pino from 'pino';
 
 const logger = pino();
 
-const client = new Stainless9({
-  logger: logger.child({ name: 'Stainless9' }),
+const client = new Stainless10({
+  logger: logger.child({ name: 'Stainless10' }),
   logLevel: 'debug', // Send all messages to pino, allowing it to filter
 });
 ```
@@ -305,10 +305,10 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import Stainless9 from '@stainless-api/sdk';
+import Stainless10 from '@stainless-api/sdk';
 import fetch from 'my-fetch';
 
-const client = new Stainless9({ fetch });
+const client = new Stainless10({ fetch });
 ```
 
 ### Fetch options
@@ -316,9 +316,9 @@ const client = new Stainless9({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import Stainless9 from '@stainless-api/sdk';
+import Stainless10 from '@stainless-api/sdk';
 
-const client = new Stainless9({
+const client = new Stainless10({
   fetchOptions: {
     // `RequestInit` options
   },
@@ -333,11 +333,11 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import Stainless9 from '@stainless-api/sdk';
+import Stainless10 from '@stainless-api/sdk';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
-const client = new Stainless9({
+const client = new Stainless10({
   fetchOptions: {
     dispatcher: proxyAgent,
   },
@@ -347,9 +347,9 @@ const client = new Stainless9({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import Stainless9 from '@stainless-api/sdk';
+import Stainless10 from '@stainless-api/sdk';
 
-const client = new Stainless9({
+const client = new Stainless10({
   fetchOptions: {
     proxy: 'http://localhost:8888',
   },
@@ -359,10 +359,10 @@ const client = new Stainless9({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import Stainless9 from 'npm:@stainless-api/sdk';
+import Stainless10 from 'npm:@stainless-api/sdk';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
-const client = new Stainless9({
+const client = new Stainless10({
   fetchOptions: {
     client: httpClient,
   },
