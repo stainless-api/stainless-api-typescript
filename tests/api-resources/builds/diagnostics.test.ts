@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Stainless from '@stainless-api/sdk';
+import Stainless2 from '@stainless-api/sdk';
 
-const client = new Stainless({
+const client = new Stainless2({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
@@ -32,6 +32,6 @@ describe('resource diagnostics', () => {
         },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(Stainless.NotFoundError);
+    ).rejects.toThrow(Stainless2.NotFoundError);
   });
 });

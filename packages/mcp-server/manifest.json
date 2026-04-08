@@ -2,9 +2,9 @@
   "dxt_version": "0.2",
   "name": "@stainless-api/sdk-mcp",
   "version": "0.0.1",
-  "description": "The official MCP Server for the Stainless API",
+  "description": "The official MCP Server for the Stainless2 API",
   "author": {
-    "name": "Stainless",
+    "name": "Stainless2",
     "email": "support@stainless.com"
   },
   "repository": {
@@ -21,7 +21,7 @@
       "args": ["${__dirname}/index.js"],
       "env": {
         "STAINLESS_API_KEY": "${user_config.STAINLESS_API_KEY}",
-        "STAINLESS_PROJECT": "${user_config.STAINLESS_PROJECT}"
+        "STAINLESS2_PROJECT": "${user_config.STAINLESS2_PROJECT}"
       }
     }
   },
@@ -32,7 +32,7 @@
       "required": false,
       "type": "string"
     },
-    "STAINLESS_PROJECT": {
+    "STAINLESS2_PROJECT": {
       "title": "project",
       "description": "",
       "required": false,
