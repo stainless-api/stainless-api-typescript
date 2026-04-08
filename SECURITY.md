@@ -16,9 +16,9 @@ before making any information public.
 ## Reporting Non-SDK Related Security Issues
 
 If you encounter security issues that are not directly related to SDKs but pertain to the services
-or products provided by Stainless3, please follow the respective company's security reporting guidelines.
+or products provided by Stainless4, please follow the respective company's security reporting guidelines.
 
-### Stainless3 Terms and Policies
+### Stainless4 Terms and Policies
 
 Please contact support@stainless.com for any questions or concerns regarding the security of our services.
 

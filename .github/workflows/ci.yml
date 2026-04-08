@@ -18,7 +18,7 @@ jobs:
   lint:
     timeout-minutes: 10
     name: lint
-    runs-on: ${{ github.repository == 'stainless-sdks/stainless3-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/stainless4-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
     steps:
       - uses: actions/checkout@v6
@@ -42,7 +42,7 @@ jobs:
   build:
     timeout-minutes: 5
     name: build
-    runs-on: ${{ github.repository == 'stainless-sdks/stainless3-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/stainless4-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
     permissions:
       contents: read
@@ -68,7 +68,7 @@ jobs:
 
       - name: Get GitHub OIDC Token
         if: |-
-          github.repository == 'stainless-sdks/stainless3-typescript' &&
+          github.repository == 'stainless-sdks/stainless4-typescript' &&
           !startsWith(github.ref, 'refs/heads/stl/')
         id: github-oidc
         uses: actions/github-script@v8
@@ -77,7 +77,7 @@ jobs:
 
       - name: Upload tarball
         if: |-
-          github.repository == 'stainless-sdks/stainless3-typescript' &&
+          github.repository == 'stainless-sdks/stainless4-typescript' &&
           !startsWith(github.ref, 'refs/heads/stl/')
         env:
           URL: https://pkg.stainless.com/s
@@ -87,7 +87,7 @@ jobs:
 
       - name: Upload MCP Server tarball
         if: |-
-          github.repository == 'stainless-sdks/stainless3-typescript' &&
+          github.repository == 'stainless-sdks/stainless4-typescript' &&
           !startsWith(github.ref, 'refs/heads/stl/')
         env:
           URL: https://pkg.stainless.com/s?subpackage=mcp-server
@@ -98,7 +98,7 @@ jobs:
   test:
     timeout-minutes: 10
     name: test
-    runs-on: ${{ github.repository == 'stainless-sdks/stainless3-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/stainless4-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v6
