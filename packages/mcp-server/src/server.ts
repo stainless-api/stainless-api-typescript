@@ -8,7 +8,7 @@ import {
   SetLevelRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { ClientOptions } from '@stainless-api/sdk';
-import Stainless4 from '@stainless-api/sdk';
+import Stainless5 from '@stainless-api/sdk';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { setLocalSearch } from './docs-search-tool';
@@ -73,18 +73,18 @@ export async function initMcpServer(params: {
     setLocalSearch(localSearch);
   }
 
-  let _client: Stainless4 | undefined;
+  let _client: Stainless5 | undefined;
   let _clientError: Error | undefined;
   let _logLevel: 'debug' | 'info' | 'warn' | 'error' | 'off' | undefined;
 
-  const getClient = (): Stainless4 => {
+  const getClient = (): Stainless5 => {
     if (_clientError) throw _clientError;
     if (!_client) {
       try {
-        _client = new Stainless4({
+        _client = new Stainless5({
           ...{
-            project: readEnv('STAINLESS4_PROJECT'),
-            environment: (readEnv('STAINLESS4_ENVIRONMENT') || undefined) as any,
+            project: readEnv('STAINLESS5_PROJECT'),
+            environment: (readEnv('STAINLESS5_ENVIRONMENT') || undefined) as any,
           },
           logger,
           ...params.clientOptions,
@@ -120,7 +120,7 @@ export async function initMcpServer(params: {
       throw new Error(`Unknown tool: ${name}`);
     }
 
-    let client: Stainless4;
+    let client: Stainless5;
     try {
       client = getClient();
     } catch (error) {
