@@ -2,13 +2,13 @@
 
 import { castToError } from '../internal/errors';
 
-export class Stainless11Error extends Error {}
+export class Stainless12Error extends Error {}
 
 export class APIError<
   TStatus extends number | undefined = number | undefined,
   THeaders extends Headers | undefined = Headers | undefined,
   TError extends Object | undefined = Object | undefined,
-> extends Stainless11Error {
+> extends Stainless12Error {
   /** HTTP status for the response that caused the error */
   readonly status: TStatus;
   /** HTTP headers for the response that caused the error */
