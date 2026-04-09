@@ -1,4 +1,4 @@
-# Stainless9 TypeScript API Library!
+# Stainless10 TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/@stainless-api/sdk.svg?label=npm%20(stable)>)](https://npmjs.org/package/@stainless-api/sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@stainless-api/sdk)
 
@@ -8,7 +8,7 @@ The REST API documentation can be found on [www.stainless.com](https://www.stain
 
 It is generated with [Stainless](https://www.stainless.com/).
 
-## MCP Server!
+## MCP Server
 
 Use the Stainless10 MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
 
