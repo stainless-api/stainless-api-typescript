@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import type { Stainless12 } from '../client';
+import type { Stainless13 } from '../client';
 
 export abstract class APIResource {
-  protected _client: Stainless12;
+  protected _client: Stainless13;
 
-  constructor(client: Stainless12) {
+  constructor(client: Stainless13) {
     this._client = client;
   }
 }
