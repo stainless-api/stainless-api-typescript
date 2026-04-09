@@ -1,13 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Stainless12 as default } from './client';
+export { Stainless14 as default } from './client';
 
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './core/api-promise';
-export { Stainless12, type ClientOptions } from './client';
+export { Stainless14, type ClientOptions } from './client';
 export { PagePromise } from './core/pagination';
 export {
-  Stainless12Error,
+  Stainless14Error,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
