@@ -17,7 +17,7 @@ import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
 import { ClientOptions } from '@stainless-api/sdk';
 
-const prompt = `Runs JavaScript code to interact with the Stainless10 API.
+const prompt = `Runs JavaScript code to interact with the Stainless11 API.
 
 You are a skilled TypeScript programmer writing code to interface with the service.
 Define an async function named "run" that takes a single parameter of an initialized SDK client and it will be run.
@@ -146,8 +146,8 @@ const remoteStainlessHandler = async ({
 
   const localClientEnvs = {
     STAINLESS_API_KEY: readEnv('STAINLESS_API_KEY') ?? client.apiKey ?? undefined,
-    STAINLESS10_BASE_URL:
-      readEnv('STAINLESS10_BASE_URL') ?? readEnv('STAINLESS10_ENVIRONMENT') ?
+    STAINLESS11_BASE_URL:
+      readEnv('STAINLESS11_BASE_URL') ?? readEnv('STAINLESS11_ENVIRONMENT') ?
         undefined
       : client.baseURL ?? undefined,
   };
@@ -163,12 +163,12 @@ const remoteStainlessHandler = async ({
       'x-stainless-mcp-client-envs': JSON.stringify(mergedClientEnvs),
     },
     body: JSON.stringify({
-      project_name: 'stainless10',
+      project_name: 'stainless11',
       code,
       intent,
       client_opts: {
-        project: readEnv('STAINLESS10_PROJECT'),
-        environment: (readEnv('STAINLESS10_ENVIRONMENT') || undefined) as any,
+        project: readEnv('STAINLESS11_PROJECT'),
+        environment: (readEnv('STAINLESS11_ENVIRONMENT') || undefined) as any,
       },
     } satisfies WorkerInput),
   });
