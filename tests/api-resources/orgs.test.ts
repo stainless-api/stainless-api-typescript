@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Stainless12 from '@stainless-api/sdk';
+import Stainless13 from '@stainless-api/sdk';
 
-const client = new Stainless12({
+const client = new Stainless13({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
