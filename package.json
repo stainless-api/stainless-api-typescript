@@ -1,8 +1,8 @@
 {
   "name": "@stainless-api/sdk",
   "version": "0.0.1",
-  "description": "The official TypeScript library for the Stainless15 API",
-  "author": "Stainless15 <support@stainless.com>",
+  "description": "The official TypeScript library for the Stainless16 API",
+  "author": "Stainless16 <support@stainless.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
