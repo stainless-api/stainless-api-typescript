@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import type { FinalRequestOptions } from './request-options';
-import { type Stainless16 } from '../client';
+import { type Stainless17 } from '../client';
 import { formatRequestDetails, loggerFor } from './utils/log';
 
 export type APIResponseProps = {
@@ -13,7 +13,7 @@ export type APIResponseProps = {
   startTime: number;
 };
 
-export async function defaultParseResponse<T>(client: Stainless16, props: APIResponseProps): Promise<T> {
+export async function defaultParseResponse<T>(client: Stainless17, props: APIResponseProps): Promise<T> {
   const { response, requestLogID, retryOfRequestLogID, startTime } = props;
   const body = await (async () => {
     // fetch refuses to read the body when the status code is 204.

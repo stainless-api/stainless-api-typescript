@@ -82,7 +82,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['STAINLESS16_BASE_URL'].
+   * Defaults to process.env['STAINLESS17_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -136,7 +136,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['STAINLESS16_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['STAINLESS17_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -149,9 +149,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Stainless16 API.
+ * API Client for interfacing with the Stainless17 API.
  */
-export class Stainless16 {
+export class Stainless17 {
   apiKey: string | null;
   project: string | null;
 
@@ -168,12 +168,12 @@ export class Stainless16 {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Stainless16 API.
+   * API Client for interfacing with the Stainless17 API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['STAINLESS_API_KEY'] ?? null]
    * @param {string | null | undefined} [opts.project]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
-   * @param {string} [opts.baseURL=process.env['STAINLESS16_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['STAINLESS17_BASE_URL'] ?? https://api.stainless.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -182,7 +182,7 @@ export class Stainless16 {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('STAINLESS16_BASE_URL'),
+    baseURL = readEnv('STAINLESS17_BASE_URL'),
     apiKey = readEnv('STAINLESS_API_KEY') ?? null,
     project = null,
     ...opts
@@ -196,20 +196,20 @@ export class Stainless16 {
     };
 
     if (baseURL && opts.environment) {
-      throw new Errors.Stainless16Error(
-        'Ambiguous URL; The `baseURL` option (or STAINLESS16_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      throw new Errors.Stainless17Error(
+        'Ambiguous URL; The `baseURL` option (or STAINLESS17_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
       );
     }
 
     this.baseURL = options.baseURL || environments[options.environment || 'production'];
-    this.timeout = options.timeout ?? Stainless16.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? Stainless17.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('STAINLESS16_LOG'), "process.env['STAINLESS16_LOG']", this) ??
+      parseLogLevel(readEnv('STAINLESS17_LOG'), "process.env['STAINLESS17_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -552,7 +552,7 @@ export class Stainless16 {
     options: PromiseOrValue<FinalRequestOptions>,
   ): Pagination.PagePromise<PageClass, Item> {
     const request = this.makeRequest(options, null, undefined);
-    return new Pagination.PagePromise<PageClass, Item>(this as any as Stainless16, request, Page);
+    return new Pagination.PagePromise<PageClass, Item>(this as any as Stainless17, request, Page);
   }
 
   async fetchWithTimeout(
@@ -783,10 +783,10 @@ export class Stainless16 {
     }
   }
 
-  static Stainless16 = this;
+  static Stainless17 = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static Stainless16Error = Errors.Stainless16Error;
+  static Stainless17Error = Errors.Stainless17Error;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -808,12 +808,12 @@ export class Stainless16 {
   user: API.User = new API.User(this);
 }
 
-Stainless16.Projects = Projects;
-Stainless16.Builds = Builds;
-Stainless16.Orgs = Orgs;
-Stainless16.User = User;
+Stainless17.Projects = Projects;
+Stainless17.Builds = Builds;
+Stainless17.Orgs = Orgs;
+Stainless17.User = User;
 
-export declare namespace Stainless16 {
+export declare namespace Stainless17 {
   export type RequestOptions = Opts.RequestOptions;
 
   export import Page = Pagination.Page;
