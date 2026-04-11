@@ -8,7 +8,7 @@ The REST API documentation can be found on [www.stainless.com](https://www.stain
 
 It is generated with [Stainless](https://www.stainless.com/).
 
-## MCP Server
+## MCP Server?
 
 Use the Stainless18 MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
 
