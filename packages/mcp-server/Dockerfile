@@ -1,4 +1,4 @@
-# Dockerfile for Stainless15 MCP Server
+# Dockerfile for Stainless17 MCP Server
 #
 # This Dockerfile builds a Docker image for the MCP Server.
 #

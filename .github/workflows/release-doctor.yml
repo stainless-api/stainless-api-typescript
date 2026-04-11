@@ -19,4 +19,4 @@ jobs:
           bash ./bin/check-release-environment
         env:
           RELEASE_PLEASE_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
-          DOCKERHUB_TOKEN: ${{ secrets.STAINLESS15_DOCKERHUB_TOKEN || secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_TOKEN: ${{ secrets.STAINLESS17_DOCKERHUB_TOKEN || secrets.DOCKERHUB_TOKEN }}
