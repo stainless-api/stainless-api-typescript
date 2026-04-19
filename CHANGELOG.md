@@ -1,5 +1,74 @@
 # Changelog
 
+## 0.6.0 (2026-04-18)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** add a way to fetch specific files via /v0/build_target_outputs ([47d31df](https://github.com/stainless-api/stainless-api-typescript/commit/47d31df25bf59538cc25f9af45df6798532cb5d9))
+* **api:** add host to v0 build endpoints ([582f2ee](https://github.com/stainless-api/stainless-api-typescript/commit/582f2ee584d2f66726f244c59b5b28557fa28229))
+* **api:** api update ([a39391e](https://github.com/stainless-api/stainless-api-typescript/commit/a39391e98d5301eb1dd20f692dfece0b545ce9f0))
+
+
+### Bug Fixes
+
+* escape MCP `instructions` backticks as necessary ([c0743c2](https://github.com/stainless-api/stainless-api-typescript/commit/c0743c2249a2a00ed4c1d2d97c08a3a9f65c2b28))
+* **internal:** gitignore generated `oidc` dir ([0c48336](https://github.com/stainless-api/stainless-api-typescript/commit/0c4833637b9f8b77d049c3640491e80eeab435e5))
+
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([b2ac0d2](https://github.com/stainless-api/stainless-api-typescript/commit/b2ac0d28f0a05101140977a6c59625321edbe8ee))
+* **ci:** skip lint on metadata-only changes ([ca653c1](https://github.com/stainless-api/stainless-api-typescript/commit/ca653c1fff337672bee70ede60d597f18f0087c2))
+* configure new SDK language ([5c79cfc](https://github.com/stainless-api/stainless-api-typescript/commit/5c79cfc74db9cca61bf0e3f90f3afdc8ab2bcdc3))
+* **internal:** codegen related update ([4d7b8fd](https://github.com/stainless-api/stainless-api-typescript/commit/4d7b8fdf6ed827dc03919db6368e31da639169d1))
+* **internal:** codegen related update ([1a7e654](https://github.com/stainless-api/stainless-api-typescript/commit/1a7e65435142ed6005fcb6d09e47c56943905026))
+* **internal:** codegen related update ([1f6d02c](https://github.com/stainless-api/stainless-api-typescript/commit/1f6d02ce2bd8b3e409c4d9f01c4f453f040ff41f))
+* **internal:** codegen related update ([cdcf59b](https://github.com/stainless-api/stainless-api-typescript/commit/cdcf59bf708df0b1420302c821177f0a33b35c0b))
+* **internal:** codegen related update ([d12219d](https://github.com/stainless-api/stainless-api-typescript/commit/d12219d6d1e0f5738c0ad0130354a9edbf7b9a7d))
+* **internal:** codegen related update ([0dea9de](https://github.com/stainless-api/stainless-api-typescript/commit/0dea9de11c089e830bea82382bac0f7d358c8030))
+* **internal:** codegen related update ([8c4472e](https://github.com/stainless-api/stainless-api-typescript/commit/8c4472ebe25db5c39a031ad1b30128f68acffee7))
+* **internal:** codegen related update ([5b28358](https://github.com/stainless-api/stainless-api-typescript/commit/5b28358f1d6ba6486ae8139e23c7b42584aa75d7))
+* **internal:** codegen related update ([10e4a74](https://github.com/stainless-api/stainless-api-typescript/commit/10e4a7463de222d8233c0819c2872b34149e69f4))
+* **internal:** codegen related update ([418b537](https://github.com/stainless-api/stainless-api-typescript/commit/418b537d3ec57b2099ef0e961aa97307b66bcd59))
+* **internal:** codegen related update ([7488007](https://github.com/stainless-api/stainless-api-typescript/commit/74880071e6313d8184d3f8f0898079e45d4af9c8))
+* **internal:** fix MCP server import ordering ([51ba135](https://github.com/stainless-api/stainless-api-typescript/commit/51ba135c4db3194d080ed739d681df807fba3f7a))
+* **internal:** fix MCP server TS errors that occur with required client options ([953025e](https://github.com/stainless-api/stainless-api-typescript/commit/953025ee34a621464681480b01a318fa18356a96))
+* **internal:** improve local docs search for MCP servers ([7cb39f8](https://github.com/stainless-api/stainless-api-typescript/commit/7cb39f817135cd4a71dd89472754eb3afb67cac7))
+* **internal:** improve local docs search for MCP servers ([d6f4642](https://github.com/stainless-api/stainless-api-typescript/commit/d6f4642f8a56ffb6ca4d1fba27f540715d33b3f9))
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([240ce54](https://github.com/stainless-api/stainless-api-typescript/commit/240ce54162d3f6994d335b30d966820017ac1721))
+* **internal:** show error causes in MCP servers when running in local mode ([904e84e](https://github.com/stainless-api/stainless-api-typescript/commit/904e84ee03f53ebafbc98dc33f85d77c025e489a))
+* **internal:** support custom-instructions-path flag in MCP servers ([74a7953](https://github.com/stainless-api/stainless-api-typescript/commit/74a795308d7f1385e12166d692621f55059e545a))
+* **internal:** support local docs search in MCP servers ([4d8f430](https://github.com/stainless-api/stainless-api-typescript/commit/4d8f430aac34cf9540f6bd9471ac44d61ba52aaf))
+* **internal:** support type annotations when running MCP in local execution mode ([bd8940c](https://github.com/stainless-api/stainless-api-typescript/commit/bd8940c7928a38fa38744604886a38a4cce9b538))
+* **internal:** support x-stainless-mcp-client-envs header in MCP servers ([a030429](https://github.com/stainless-api/stainless-api-typescript/commit/a030429bef5a6eb81aaa537697a8eea5eb429f8b))
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([25afcb0](https://github.com/stainless-api/stainless-api-typescript/commit/25afcb0bd66984f37e13e64b85d57bb80f69f2c3))
+* **internal:** tweak CI branches ([ccf0b9f](https://github.com/stainless-api/stainless-api-typescript/commit/ccf0b9fa50a012c03bc7ae332d3e5a55cae91310))
+* **internal:** update dependencies to address dependabot vulnerabilities ([f542774](https://github.com/stainless-api/stainless-api-typescript/commit/f542774a0fe3b39095be9d760ba0e5737cbaa511))
+* **internal:** update gitignore ([63eab56](https://github.com/stainless-api/stainless-api-typescript/commit/63eab56360c8d36656ff40c7a6abd647d787681a))
+* **internal:** update lock file ([e27afe4](https://github.com/stainless-api/stainless-api-typescript/commit/e27afe4a2c9631f1b74409293476cd3672576c08))
+* **internal:** update lockfile ([2927f0b](https://github.com/stainless-api/stainless-api-typescript/commit/2927f0b624f2d4fe14d01ab3c584d5e5bfc0be3b))
+* **internal:** update multipart form array serialization ([cf0a2fd](https://github.com/stainless-api/stainless-api-typescript/commit/cf0a2fd88c94427f737f4ff679f54b832bc9470d))
+* **mcp-server:** add support for session id, forward client info ([97a77cb](https://github.com/stainless-api/stainless-api-typescript/commit/97a77cb6a4ee65aaac3fa9c596ff7e736a6bbe1f))
+* **mcp-server:** improve instructions ([254552f](https://github.com/stainless-api/stainless-api-typescript/commit/254552f98aaf9b74168e0fa160d0b08cc2fe7596))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([514b997](https://github.com/stainless-api/stainless-api-typescript/commit/514b997e6ea5a63d291b682afc558cb15069601f))
+* **mcp-server:** log client info ([96c130a](https://github.com/stainless-api/stainless-api-typescript/commit/96c130a0ed90dccb7f3e9dc2d56350773e2a025b))
+* **tests:** bump steady to v0.19.4 ([b1d8900](https://github.com/stainless-api/stainless-api-typescript/commit/b1d890082ab881413104094f41b4cdffd2a04a9b))
+* **tests:** bump steady to v0.19.5 ([9a02a5a](https://github.com/stainless-api/stainless-api-typescript/commit/9a02a5aae4908b6d0161ddb794db881a9851b168))
+* **tests:** bump steady to v0.19.6 ([1722669](https://github.com/stainless-api/stainless-api-typescript/commit/1722669260ce7e69fbea51edfcde4c88fd3258e5))
+* **tests:** bump steady to v0.19.7 ([ab4d58b](https://github.com/stainless-api/stainless-api-typescript/commit/ab4d58b29688ed19b00d098673d3839cf2e220f3))
+* **tests:** bump steady to v0.20.1 ([995a1ce](https://github.com/stainless-api/stainless-api-typescript/commit/995a1ceb2de6912839a2114ae0f54bda153797a6))
+* **tests:** bump steady to v0.20.2 ([4dcb408](https://github.com/stainless-api/stainless-api-typescript/commit/4dcb408bbe36e5e2d04a808a835d8e2a7f71ec23))
+* **tests:** bump steady to v0.22.1 ([247b1b2](https://github.com/stainless-api/stainless-api-typescript/commit/247b1b20529cf1e45629b3b7bf8bd54163341bb8))
+* update CLI documentation ([711fc24](https://github.com/stainless-api/stainless-api-typescript/commit/711fc24039244a438c3a60f26a3ad627bfd981ed))
+* update probot ([6f7c736](https://github.com/stainless-api/stainless-api-typescript/commit/6f7c7368fce7ba79131444da334be12fbdf0c3d6))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([848becd](https://github.com/stainless-api/stainless-api-typescript/commit/848becd5669e0cdfb3ee21f7040cf2a0b7afd78a))
+
 ## 0.5.0 (2026-03-02)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/stainless-api/stainless-api-typescript/compare/v0.4.0...v0.5.0)
