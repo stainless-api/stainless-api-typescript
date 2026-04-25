@@ -10,7 +10,9 @@ const config: JestConfigWithTsJest = {
     '^@stainless-api/sdk-mcp$': '<rootDir>/src/index.ts',
     '^@stainless-api/sdk-mcp/(.*)$': '<rootDir>/src/$1',
   },
-  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  modulePathIgnorePatterns: [
+    '<rootDir>/dist/',
+  ],
   testPathIgnorePatterns: ['scripts'],
 };
 

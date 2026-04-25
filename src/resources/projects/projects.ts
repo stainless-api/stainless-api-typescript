@@ -3,27 +3,9 @@
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
 import * as BranchesAPI from './branches';
-import {
-  BranchCreateParams,
-  BranchDeleteParams,
-  BranchDeleteResponse,
-  BranchListParams,
-  BranchListResponse,
-  BranchListResponsesPage,
-  BranchRebaseParams,
-  BranchResetParams,
-  BranchRetrieveParams,
-  Branches,
-  ProjectBranch,
-} from './branches';
+import { BranchCreateParams, BranchDeleteParams, BranchDeleteResponse, BranchListParams, BranchListResponse, BranchListResponsesPage, BranchRebaseParams, BranchResetParams, BranchRetrieveParams, Branches, ProjectBranch } from './branches';
 import * as ConfigsAPI from './configs';
-import {
-  ConfigGuessParams,
-  ConfigGuessResponse,
-  ConfigRetrieveParams,
-  ConfigRetrieveResponse,
-  Configs,
-} from './configs';
+import { ConfigGuessParams, ConfigGuessResponse, ConfigRetrieveParams, ConfigRetrieveResponse, Configs } from './configs';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
@@ -43,11 +25,8 @@ export class Projects extends APIResource {
   /**
    * Retrieve a project by name.
    */
-  retrieve(
-    params: ProjectRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Project> {
-    const { project = this._client.project } = params ?? {};
+  retrieve(params: ProjectRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<Project> {
+    const { project = this._client.project } = params ?? {}
     return this._client.get(path`/v0/projects/${project}`, options);
   }
 
@@ -55,37 +34,27 @@ export class Projects extends APIResource {
    * Update a project's properties.
    */
   update(params: ProjectUpdateParams | null | undefined = {}, options?: RequestOptions): APIPromise<Project> {
-    const { project = this._client.project, ...body } = params ?? {};
+    const { project = this._client.project, ...body } = params ?? {}
     return this._client.patch(path`/v0/projects/${project}`, { body, ...options });
   }
 
   /**
    * List projects in an organization, from oldest to newest.
    */
-  list(
-    query: ProjectListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ProjectsPage, Project> {
+  list(query: ProjectListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ProjectsPage, Project> {
     return this._client.getAPIList('/v0/projects', Page<Project>, { query, ...options });
   }
 
   /**
    * Generates an AI commit message by comparing two git refs in the SDK repository.
    */
-  generateCommitMessage(
-    params: ProjectGenerateCommitMessageParams,
-    options?: RequestOptions,
-  ): APIPromise<ProjectGenerateCommitMessageResponse> {
-    const { project = this._client.project, target, ...body } = params;
-    return this._client.post(path`/v0/projects/${project}/generate_commit_message`, {
-      query: { target },
-      body,
-      ...options,
-    });
+  generateCommitMessage(params: ProjectGenerateCommitMessageParams, options?: RequestOptions): APIPromise<ProjectGenerateCommitMessageResponse> {
+    const { project = this._client.project, target, ...body } = params
+    return this._client.post(path`/v0/projects/${project}/generate_commit_message`, { query: { target }, body, ...options });
   }
 }
 
-export type ProjectsPage = Page<Project>;
+export type ProjectsPage = Page<Project>
 
 /**
  * A project is a collection of SDKs generated from the same set of config files.
@@ -169,20 +138,7 @@ export interface ProjectGenerateCommitMessageParams {
   /**
    * Query param: Language target
    */
-  target:
-    | 'python'
-    | 'node'
-    | 'typescript'
-    | 'java'
-    | 'kotlin'
-    | 'go'
-    | 'ruby'
-    | 'terraform'
-    | 'cli'
-    | 'csharp'
-    | 'php'
-    | 'openapi'
-    | 'sql';
+  target: 'python' | 'node' | 'typescript' | 'java' | 'kotlin' | 'go' | 'ruby' | 'terraform' | 'cli' | 'csharp' | 'php' | 'openapi' | 'sql';
 
   /**
    * Body param: Base ref for comparison
@@ -207,7 +163,7 @@ export declare namespace Projects {
     type ProjectRetrieveParams as ProjectRetrieveParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,
-    type ProjectGenerateCommitMessageParams as ProjectGenerateCommitMessageParams,
+    type ProjectGenerateCommitMessageParams as ProjectGenerateCommitMessageParams
   };
 
   export {
@@ -221,7 +177,7 @@ export declare namespace Projects {
     type BranchListParams as BranchListParams,
     type BranchDeleteParams as BranchDeleteParams,
     type BranchRebaseParams as BranchRebaseParams,
-    type BranchResetParams as BranchResetParams,
+    type BranchResetParams as BranchResetParams
   };
 
   export {
@@ -229,6 +185,6 @@ export declare namespace Projects {
     type ConfigRetrieveResponse as ConfigRetrieveResponse,
     type ConfigGuessResponse as ConfigGuessResponse,
     type ConfigRetrieveParams as ConfigRetrieveParams,
-    type ConfigGuessParams as ConfigGuessParams,
+    type ConfigGuessParams as ConfigGuessParams
   };
 }

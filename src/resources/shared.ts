@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+
 export interface Commit {
   repo: Commit.Repo;
 
@@ -30,7 +31,7 @@ export namespace Commit {
   }
 }
 
-export type FileInput = FileInput.Content | FileInput.URL;
+export type FileInput = FileInput.Content | FileInput.URL
 
 export namespace FileInput {
   export interface Content {
@@ -48,17 +49,4 @@ export namespace FileInput {
   }
 }
 
-export type Target =
-  | 'node'
-  | 'typescript'
-  | 'python'
-  | 'go'
-  | 'java'
-  | 'kotlin'
-  | 'ruby'
-  | 'terraform'
-  | 'cli'
-  | 'php'
-  | 'csharp'
-  | 'sql'
-  | 'openapi';
+export type Target = 'node' | 'typescript' | 'python' | 'go' | 'java' | 'kotlin' | 'ruby' | 'terraform' | 'cli' | 'php' | 'csharp' | 'sql' | 'openapi'

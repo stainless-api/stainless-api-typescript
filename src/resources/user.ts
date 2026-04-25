@@ -32,5 +32,7 @@ export namespace UserRetrieveResponse {
 }
 
 export declare namespace User {
-  export { type UserRetrieveResponse as UserRetrieveResponse };
+  export {
+    type UserRetrieveResponse as UserRetrieveResponse
+  };
 }
