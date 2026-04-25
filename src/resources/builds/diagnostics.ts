@@ -12,19 +12,12 @@ export class Diagnostics extends APIResource {
    * If no language targets are specified, diagnostics for all languages are
    * returned.
    */
-  list(
-    buildID: string,
-    query: DiagnosticListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BuildDiagnosticsPage, BuildDiagnostic> {
-    return this._client.getAPIList(path`/v0/builds/${buildID}/diagnostics`, Page<BuildDiagnostic>, {
-      query,
-      ...options,
-    });
+  list(buildID: string, query: DiagnosticListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BuildDiagnosticsPage, BuildDiagnostic> {
+    return this._client.getAPIList(path`/v0/builds/${buildID}/diagnostics`, Page<BuildDiagnostic>, { query, ...options });
   }
 }
 
-export type BuildDiagnosticsPage = Page<BuildDiagnostic>;
+export type BuildDiagnosticsPage = Page<BuildDiagnostic>
 
 export interface BuildDiagnostic {
   /**
@@ -60,7 +53,7 @@ export interface BuildDiagnostic {
   oas_ref?: string;
 }
 
-export type BuildDiagnosticMore = BuildDiagnosticMore.Markdown | BuildDiagnosticMore.Raw;
+export type BuildDiagnosticMore = BuildDiagnosticMore.Markdown | BuildDiagnosticMore.Raw
 
 export namespace BuildDiagnosticMore {
   export interface Markdown {
@@ -98,6 +91,6 @@ export declare namespace Diagnostics {
     type BuildDiagnostic as BuildDiagnostic,
     type BuildDiagnosticMore as BuildDiagnosticMore,
     type BuildDiagnosticsPage as BuildDiagnosticsPage,
-    type DiagnosticListParams as DiagnosticListParams,
+    type DiagnosticListParams as DiagnosticListParams
   };
 }

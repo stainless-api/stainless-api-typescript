@@ -2,18 +2,15 @@
 
 import Stainless from '@stainless-api/sdk';
 
-const client = new Stainless({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Stainless({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource branches', () => {
   test('create: only required params', async () => {
     const responsePromise = client.projects.branches.create({
-      project: 'project',
-      branch: 'branch',
-      branch_from: 'branch_from',
-    });
+    project: 'project',
+    branch: 'branch',
+    branch_from: 'branch_from',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -25,11 +22,11 @@ describe('resource branches', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.projects.branches.create({
-      project: 'project',
-      branch: 'branch',
-      branch_from: 'branch_from',
-      force: true,
-    });
+    project: 'project',
+    branch: 'branch',
+    branch_from: 'branch_from',
+    force: true,
+  });
   });
 
   test('retrieve: only required params', async () => {
@@ -60,10 +57,10 @@ describe('resource branches', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.projects.branches.list({
-      project: 'project',
-      cursor: 'cursor',
-      limit: 1,
-    });
+    project: 'project',
+    cursor: 'cursor',
+    limit: 1,
+  });
   });
 
   test('delete: only required params', async () => {
@@ -108,9 +105,6 @@ describe('resource branches', () => {
   });
 
   test('reset: required and optional params', async () => {
-    const response = await client.projects.branches.reset('branch', {
-      project: 'project',
-      target_config_sha: 'target_config_sha',
-    });
+    const response = await client.projects.branches.reset('branch', { project: 'project', target_config_sha: 'target_config_sha' });
   });
 });

@@ -2,20 +2,17 @@
 
 import Stainless from '@stainless-api/sdk';
 
-const client = new Stainless({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Stainless({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource projects', () => {
   test('create: only required params', async () => {
     const responsePromise = client.projects.create({
-      display_name: 'display_name',
-      org: 'org',
-      revision: { foo: { content: 'content' } },
-      slug: 'slug',
-      targets: ['node'],
-    });
+    display_name: 'display_name',
+    org: 'org',
+    revision: { foo: { content: 'content' } },
+    slug: 'slug',
+    targets: ['node'],
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,12 +24,12 @@ describe('resource projects', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.projects.create({
-      display_name: 'display_name',
-      org: 'org',
-      revision: { foo: { content: 'content' } },
-      slug: 'slug',
-      targets: ['node'],
-    });
+    display_name: 'display_name',
+    org: 'org',
+    revision: { foo: { content: 'content' } },
+    slug: 'slug',
+    targets: ['node'],
+  });
   });
 
   test('retrieve: only required params', async () => {
@@ -78,25 +75,22 @@ describe('resource projects', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.list(
-        {
-          cursor: 'cursor',
-          limit: 1,
-          org: 'org',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Stainless.NotFoundError);
+    await expect(client.projects.list({
+    cursor: 'cursor',
+    limit: 1,
+    org: 'org',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Stainless.NotFoundError);
   });
 
   test('generateCommitMessage: only required params', async () => {
     const responsePromise = client.projects.generateCommitMessage({
-      project: 'project',
-      target: 'python',
-      base_ref: 'base_ref',
-      head_ref: 'head_ref',
-    });
+    project: 'project',
+    target: 'python',
+    base_ref: 'base_ref',
+    head_ref: 'head_ref',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -108,10 +102,10 @@ describe('resource projects', () => {
 
   test('generateCommitMessage: required and optional params', async () => {
     const response = await client.projects.generateCommitMessage({
-      project: 'project',
-      target: 'python',
-      base_ref: 'base_ref',
-      head_ref: 'head_ref',
-    });
+    project: 'project',
+    target: 'python',
+    base_ref: 'base_ref',
+    head_ref: 'head_ref',
+  });
   });
 });

@@ -4,13 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as BuildsAPI from './builds';
 import * as Shared from '../shared';
 import * as DiagnosticsAPI from './diagnostics';
-import {
-  BuildDiagnostic,
-  BuildDiagnosticMore,
-  BuildDiagnosticsPage,
-  DiagnosticListParams,
-  Diagnostics,
-} from './diagnostics';
+import { BuildDiagnostic, BuildDiagnosticMore, BuildDiagnosticsPage, DiagnosticListParams, Diagnostics } from './diagnostics';
 import * as TargetOutputsAPI from './target-outputs';
 import { TargetOutputRetrieveParams, TargetOutputRetrieveResponse, TargetOutputs } from './target-outputs';
 import { APIPromise } from '../../core/api-promise';
@@ -29,7 +23,7 @@ export class Builds extends APIResource {
    * points to the one specified by the input revision.
    */
   create(params: BuildCreateParams, options?: RequestOptions): APIPromise<Build> {
-    const { project = this._client.project, ...body } = params;
+    const { project = this._client.project, ...body } = params
     return this._client.post('/v0/builds', { body: { project, ...body }, ...options });
   }
 
@@ -46,11 +40,8 @@ export class Builds extends APIResource {
    * An optional revision can be specified to filter by config commit SHA, or hashes
    * of file contents.
    */
-  list(
-    params: BuildListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BuildsPage, Build> {
-    const { project = this._client.project, ...query } = params ?? {};
+  list(params: BuildListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BuildsPage, Build> {
+    const { project = this._client.project, ...query } = params ?? {}
     return this._client.getAPIList('/v0/builds', Page<Build>, { query: { project, ...query }, ...options });
   }
 
@@ -66,12 +57,12 @@ export class Builds extends APIResource {
    * the set of config files, and any custom code.
    */
   compare(params: BuildCompareParams, options?: RequestOptions): APIPromise<BuildCompareResponse> {
-    const { project = this._client.project, ...body } = params;
+    const { project = this._client.project, ...body } = params
     return this._client.post('/v0/builds/compare', { body: { project, ...body }, ...options });
   }
 }
 
-export type BuildsPage = Page<Build>;
+export type BuildsPage = Page<Build>
 
 export interface Build {
   /**
@@ -141,12 +132,7 @@ export namespace Build {
 }
 
 export interface BuildTarget {
-  commit:
-    | BuildTarget.NotStarted
-    | BuildTarget.Waiting
-    | BuildTarget.Queued
-    | BuildTarget.InProgress
-    | BuildTarget.Completed;
+  commit: BuildTarget.NotStarted | BuildTarget.Waiting | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
 
   install_url: string | null;
 
@@ -188,19 +174,7 @@ export namespace BuildTarget {
 
     completed_at: string;
 
-    conclusion:
-      | 'error'
-      | 'warning'
-      | 'note'
-      | 'success'
-      | 'merge_conflict'
-      | 'upstream_merge_conflict'
-      | 'fatal'
-      | 'payment_required'
-      | 'cancelled'
-      | 'timed_out'
-      | 'noop'
-      | 'version_bump';
+    conclusion: 'error' | 'warning' | 'note' | 'success' | 'merge_conflict' | 'upstream_merge_conflict' | 'fatal' | 'payment_required' | 'cancelled' | 'timed_out' | 'noop' | 'version_bump';
 
     merge_conflict_pr: Completed.MergeConflictPr | null;
 
@@ -216,19 +190,7 @@ export namespace BuildTarget {
 
       completed_at: string;
 
-      conclusion:
-        | 'error'
-        | 'warning'
-        | 'note'
-        | 'success'
-        | 'merge_conflict'
-        | 'upstream_merge_conflict'
-        | 'fatal'
-        | 'payment_required'
-        | 'cancelled'
-        | 'timed_out'
-        | 'noop'
-        | 'version_bump';
+      conclusion: 'error' | 'warning' | 'note' | 'success' | 'merge_conflict' | 'upstream_merge_conflict' | 'fatal' | 'payment_required' | 'cancelled' | 'timed_out' | 'noop' | 'version_bump';
 
       merge_conflict_pr: Completed.MergeConflictPr | null;
     }
@@ -269,12 +231,7 @@ export namespace BuildTarget {
   }
 }
 
-export type CheckStep =
-  | CheckStep.NotStarted
-  | CheckStep.Waiting
-  | CheckStep.Queued
-  | CheckStep.InProgress
-  | CheckStep.Completed;
+export type CheckStep = CheckStep.NotStarted | CheckStep.Waiting | CheckStep.Queued | CheckStep.InProgress | CheckStep.Completed
 
 export namespace CheckStep {
   export interface NotStarted {
@@ -317,14 +274,7 @@ export namespace CheckStep {
      * deprecated
      */
     export interface Completed {
-      conclusion:
-        | 'success'
-        | 'failure'
-        | 'skipped'
-        | 'cancelled'
-        | 'action_required'
-        | 'neutral'
-        | 'timed_out';
+      conclusion: 'success' | 'failure' | 'skipped' | 'cancelled' | 'action_required' | 'neutral' | 'timed_out';
 
       url: string | null;
     }
@@ -530,7 +480,7 @@ export declare namespace Builds {
     type BuildsPage as BuildsPage,
     type BuildCreateParams as BuildCreateParams,
     type BuildListParams as BuildListParams,
-    type BuildCompareParams as BuildCompareParams,
+    type BuildCompareParams as BuildCompareParams
   };
 
   export {
@@ -538,12 +488,12 @@ export declare namespace Builds {
     type BuildDiagnostic as BuildDiagnostic,
     type BuildDiagnosticMore as BuildDiagnosticMore,
     type BuildDiagnosticsPage as BuildDiagnosticsPage,
-    type DiagnosticListParams as DiagnosticListParams,
+    type DiagnosticListParams as DiagnosticListParams
   };
 
   export {
     TargetOutputs as TargetOutputs,
     type TargetOutputRetrieveResponse as TargetOutputRetrieveResponse,
-    type TargetOutputRetrieveParams as TargetOutputRetrieveParams,
+    type TargetOutputRetrieveParams as TargetOutputRetrieveParams
   };
 }
