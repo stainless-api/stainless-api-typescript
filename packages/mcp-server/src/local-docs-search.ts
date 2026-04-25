@@ -64,23 +64,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.projects.retrieve(project: string): { config_repo: string; display_name: string; object: 'project'; org: string; slug: string; targets: target[]; }`\n\n**get** `/v0/projects/{project}`\n\nRetrieve a project by name.\n\n### Parameters\n\n- `project: string`\n\n### Returns\n\n- `{ config_repo: string; display_name: string; object: 'project'; org: string; slug: string; targets: string[]; }`\n  A project is a collection of SDKs generated from the same set of config files.\n\n  - `config_repo: string`\n  - `display_name: string`\n  - `object: 'project'`\n  - `org: string`\n  - `slug: string`\n  - `targets: string[]`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst project = await client.projects.retrieve({ project: 'project' });\n\nconsole.log(project);\n```",
     perLanguage: {
-      cli: {
-        method: 'projects retrieve',
-        example: "stl projects retrieve \\\n  --api-key 'My API Key' \\\n  --project project",
-      },
-      csharp: {
-        method: 'Projects.Retrieve',
+      typescript: {
+        method: 'client.projects.retrieve',
         example:
-          'ProjectRetrieveParams parameters = new() { Project = "project" };\n\nvar project = await client.Projects.Retrieve(parameters);\n\nConsole.WriteLine(project);',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst project = await client.projects.retrieve({ project: 'project' });\n\nconsole.log(project.config_repo);",
       },
-      go: {
-        method: 'client.Projects.Get',
+      python: {
+        method: 'projects.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tproject, err := client.Projects.Get(context.TODO(), stainless.ProjectGetParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", project.ConfigRepo)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject = client.projects.retrieve(\n    project="project",\n)\nprint(project.config_repo)',
       },
       java: {
         method: 'projects().retrieve',
@@ -92,25 +84,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.Project\nimport com.configure_me_stainless_v0.api.models.projects.ProjectRetrieveParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val project: Project = client.projects().retrieve()\n}',
       },
-      php: {
-        method: 'projects->retrieve',
+      go: {
+        method: 'client.Projects.Get',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->retrieve(project: 'project');\n\nvar_dump($project);",
-      },
-      python: {
-        method: 'projects.retrieve',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject = client.projects.retrieve(\n    project="project",\n)\nprint(project.config_repo)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tproject, err := client.Projects.Get(context.TODO(), stainless.ProjectGetParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", project.ConfigRepo)\n}\n',
       },
       ruby: {
         method: 'projects.retrieve',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nproject = stainless.projects.retrieve(project: "project")\n\nputs(project)',
       },
-      typescript: {
-        method: 'client.projects.retrieve',
+      cli: {
+        method: 'projects retrieve',
+        example: "stl projects retrieve \\\n  --api-key 'My API Key' \\\n  --project project",
+      },
+      php: {
+        method: 'projects->retrieve',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst project = await client.projects.retrieve({ project: 'project' });\n\nconsole.log(project.config_repo);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->retrieve(project: 'project');\n\nvar_dump($project);",
+      },
+      csharp: {
+        method: 'Projects.Retrieve',
+        example:
+          'ProjectRetrieveParams parameters = new() { Project = "project" };\n\nvar project = await client.Projects.Retrieve(parameters);\n\nConsole.WriteLine(project);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -128,23 +128,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.projects.update(project: string, display_name?: string): { config_repo: string; display_name: string; object: 'project'; org: string; slug: string; targets: target[]; }`\n\n**patch** `/v0/projects/{project}`\n\nUpdate a project's properties.\n\n### Parameters\n\n- `project: string`\n\n- `display_name?: string`\n\n### Returns\n\n- `{ config_repo: string; display_name: string; object: 'project'; org: string; slug: string; targets: string[]; }`\n  A project is a collection of SDKs generated from the same set of config files.\n\n  - `config_repo: string`\n  - `display_name: string`\n  - `object: 'project'`\n  - `org: string`\n  - `slug: string`\n  - `targets: string[]`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst project = await client.projects.update({ project: 'project' });\n\nconsole.log(project);\n```",
     perLanguage: {
-      cli: {
-        method: 'projects update',
-        example: "stl projects update \\\n  --api-key 'My API Key' \\\n  --project project",
-      },
-      csharp: {
-        method: 'Projects.Update',
+      typescript: {
+        method: 'client.projects.update',
         example:
-          'ProjectUpdateParams parameters = new() { Project = "project" };\n\nvar project = await client.Projects.Update(parameters);\n\nConsole.WriteLine(project);',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst project = await client.projects.update({ project: 'project' });\n\nconsole.log(project.config_repo);",
       },
-      go: {
-        method: 'client.Projects.Update',
+      python: {
+        method: 'projects.update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tproject, err := client.Projects.Update(context.TODO(), stainless.ProjectUpdateParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", project.ConfigRepo)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT \\\n    -X PATCH \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject = client.projects.update(\n    project="project",\n)\nprint(project.config_repo)',
       },
       java: {
         method: 'projects().update',
@@ -156,25 +148,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.Project\nimport com.configure_me_stainless_v0.api.models.projects.ProjectUpdateParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val project: Project = client.projects().update()\n}',
       },
-      php: {
-        method: 'projects->update',
+      go: {
+        method: 'client.Projects.Update',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->update(\n  project: 'project', displayName: 'display_name'\n);\n\nvar_dump($project);",
-      },
-      python: {
-        method: 'projects.update',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject = client.projects.update(\n    project="project",\n)\nprint(project.config_repo)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tproject, err := client.Projects.Update(context.TODO(), stainless.ProjectUpdateParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", project.ConfigRepo)\n}\n',
       },
       ruby: {
         method: 'projects.update',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nproject = stainless.projects.update(project: "project")\n\nputs(project)',
       },
-      typescript: {
-        method: 'client.projects.update',
+      cli: {
+        method: 'projects update',
+        example: "stl projects update \\\n  --api-key 'My API Key' \\\n  --project project",
+      },
+      php: {
+        method: 'projects->update',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst project = await client.projects.update({ project: 'project' });\n\nconsole.log(project.config_repo);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->update(\n  project: 'project', displayName: 'display_name'\n);\n\nvar_dump($project);",
+      },
+      csharp: {
+        method: 'Projects.Update',
+        example:
+          'ProjectUpdateParams parameters = new() { Project = "project" };\n\nvar project = await client.Projects.Update(parameters);\n\nConsole.WriteLine(project);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT \\\n    -X PATCH \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -192,23 +192,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.projects.list(cursor?: string, limit?: number, org?: string): { config_repo: string; display_name: string; object: 'project'; org: string; slug: string; targets: target[]; }`\n\n**get** `/v0/projects`\n\nList projects in an organization, from oldest to newest.\n\n### Parameters\n\n- `cursor?: string`\n  Pagination cursor from a previous response\n\n- `limit?: number`\n  Maximum number of projects to return, defaults to 10 (maximum: 100).\n\n- `org?: string`\n\n### Returns\n\n- `{ config_repo: string; display_name: string; object: 'project'; org: string; slug: string; targets: string[]; }`\n  A project is a collection of SDKs generated from the same set of config files.\n\n  - `config_repo: string`\n  - `display_name: string`\n  - `object: 'project'`\n  - `org: string`\n  - `slug: string`\n  - `targets: string[]`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\n// Automatically fetches more pages as needed.\nfor await (const project of client.projects.list()) {\n  console.log(project);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'projects list',
-        example: "stl projects list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Projects.List',
+      typescript: {
+        method: 'client.projects.list',
         example:
-          'ProjectListParams parameters = new();\n\nvar page = await client.Projects.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const project of client.projects.list()) {\n  console.log(project.config_repo);\n}",
       },
-      go: {
-        method: 'client.Projects.List',
+      python: {
+        method: 'projects.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Projects.List(context.TODO(), stainless.ProjectListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\npage = client.projects.list()\npage = page.data[0]\nprint(page.config_repo)',
       },
       java: {
         method: 'projects().list',
@@ -220,25 +212,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.ProjectListPage\nimport com.configure_me_stainless_v0.api.models.projects.ProjectListParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val page: ProjectListPage = client.projects().list()\n}',
       },
-      php: {
-        method: 'projects->list',
+      go: {
+        method: 'client.Projects.List',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->projects->list(cursor: 'cursor', limit: 1, org: 'org');\n\nvar_dump($page);",
-      },
-      python: {
-        method: 'projects.list',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\npage = client.projects.list()\npage = page.data[0]\nprint(page.config_repo)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Projects.List(context.TODO(), stainless.ProjectListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'projects.list',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\npage = stainless.projects.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.projects.list',
+      cli: {
+        method: 'projects list',
+        example: "stl projects list \\\n  --api-key 'My API Key'",
+      },
+      php: {
+        method: 'projects->list',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const project of client.projects.list()) {\n  console.log(project.config_repo);\n}",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->projects->list(cursor: 'cursor', limit: 1, org: 'org');\n\nvar_dump($page);",
+      },
+      csharp: {
+        method: 'Projects.List',
+        example:
+          'ProjectListParams parameters = new();\n\nvar page = await client.Projects.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -262,24 +262,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.projects.create(display_name: string, org: string, revision: object, slug: string, targets: string[]): { config_repo: string; display_name: string; object: 'project'; org: string; slug: string; targets: target[]; }`\n\n**post** `/v0/projects`\n\nCreate a new project.\n\n### Parameters\n\n- `display_name: string`\n  Human-readable project name\n\n- `org: string`\n  Organization name\n\n- `revision: object`\n  File contents to commit\n\n- `slug: string`\n  Project name/slug\n\n- `targets: string[]`\n  Targets to generate for\n\n### Returns\n\n- `{ config_repo: string; display_name: string; object: 'project'; org: string; slug: string; targets: string[]; }`\n  A project is a collection of SDKs generated from the same set of config files.\n\n  - `config_repo: string`\n  - `display_name: string`\n  - `object: 'project'`\n  - `org: string`\n  - `slug: string`\n  - `targets: string[]`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst project = await client.projects.create({\n  display_name: 'display_name',\n  org: 'org',\n  revision: { foo: { content: 'content' } },\n  slug: 'slug',\n  targets: ['node'],\n});\n\nconsole.log(project);\n```",
     perLanguage: {
-      cli: {
-        method: 'projects create',
+      typescript: {
+        method: 'client.projects.create',
         example:
-          "stl projects create \\\n  --api-key 'My API Key' \\\n  --display-name display_name \\\n  --org org \\\n  --revision '{foo: {content: content}}' \\\n  --slug slug \\\n  --target node",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst project = await client.projects.create({\n  display_name: 'display_name',\n  org: 'org',\n  revision: { foo: { content: 'content' } },\n  slug: 'slug',\n  targets: ['node'],\n});\n\nconsole.log(project.config_repo);",
       },
-      csharp: {
-        method: 'Projects.Create',
+      python: {
+        method: 'projects.create',
         example:
-          'ProjectCreateParams parameters = new()\n{\n    DisplayName = "display_name",\n    Org = "org",\n    Revision = new Dictionary<string, FileInput>()\n    {\n        { "foo", new Content("content") }\n    },\n    Slug = "slug",\n    Targets =\n    [\n        Target.Node\n    ],\n};\n\nvar project = await client.Projects.Create(parameters);\n\nConsole.WriteLine(project);',
-      },
-      go: {
-        method: 'client.Projects.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n\t"github.com/stainless-api/stainless-api-go/shared"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tproject, err := client.Projects.New(context.TODO(), stainless.ProjectNewParams{\n\t\tDisplayName: "display_name",\n\t\tOrg:         "org",\n\t\tRevision: map[string]shared.FileInputUnionParam{\n\t\t\t"foo": {\n\t\t\t\tOfFileInputContent: &shared.FileInputContentParam{\n\t\t\t\t\tContent: "content",\n\t\t\t\t},\n\t\t\t},\n\t\t},\n\t\tSlug:    "slug",\n\t\tTargets: []shared.Target{shared.TargetNode},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", project.ConfigRepo)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "display_name": "display_name",\n          "org": "org",\n          "revision": {\n            "foo": {\n              "content": "content"\n            }\n          },\n          "slug": "slug",\n          "targets": [\n            "node"\n          ]\n        }\'',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject = client.projects.create(\n    display_name="display_name",\n    org="org",\n    revision={\n        "foo": {\n            "content": "content"\n        }\n    },\n    slug="slug",\n    targets=["node"],\n)\nprint(project.config_repo)',
       },
       java: {
         method: 'projects().create',
@@ -291,25 +282,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.core.JsonValue\nimport com.configure_me_stainless_v0.api.models.Target\nimport com.configure_me_stainless_v0.api.models.projects.Project\nimport com.configure_me_stainless_v0.api.models.projects.ProjectCreateParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val params: ProjectCreateParams = ProjectCreateParams.builder()\n        .displayName("display_name")\n        .org("org")\n        .revision(ProjectCreateParams.Revision.builder()\n            .putAdditionalProperty("foo", JsonValue.from(mapOf("content" to "content")))\n            .build())\n        .slug("slug")\n        .addTarget(Target.NODE)\n        .build()\n    val project: Project = client.projects().create(params)\n}',
       },
-      php: {
-        method: 'projects->create',
+      go: {
+        method: 'client.Projects.New',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->create(\n  displayName: 'display_name',\n  org: 'org',\n  revision: ['foo' => ['content' => 'content']],\n  slug: 'slug',\n  targets: [Target::NODE],\n);\n\nvar_dump($project);",
-      },
-      python: {
-        method: 'projects.create',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject = client.projects.create(\n    display_name="display_name",\n    org="org",\n    revision={\n        "foo": {\n            "content": "content"\n        }\n    },\n    slug="slug",\n    targets=["node"],\n)\nprint(project.config_repo)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n\t"github.com/stainless-api/stainless-api-go/shared"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tproject, err := client.Projects.New(context.TODO(), stainless.ProjectNewParams{\n\t\tDisplayName: "display_name",\n\t\tOrg:         "org",\n\t\tRevision: map[string]shared.FileInputUnionParam{\n\t\t\t"foo": {\n\t\t\t\tOfFileInputContent: &shared.FileInputContentParam{\n\t\t\t\t\tContent: "content",\n\t\t\t\t},\n\t\t\t},\n\t\t},\n\t\tSlug:    "slug",\n\t\tTargets: []shared.Target{shared.TargetNode},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", project.ConfigRepo)\n}\n',
       },
       ruby: {
         method: 'projects.create',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nproject = stainless.projects.create(\n  display_name: "display_name",\n  org: "org",\n  revision: {foo: {content: "content"}},\n  slug: "slug",\n  targets: [:node]\n)\n\nputs(project)',
       },
-      typescript: {
-        method: 'client.projects.create',
+      cli: {
+        method: 'projects create',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst project = await client.projects.create({\n  display_name: 'display_name',\n  org: 'org',\n  revision: { foo: { content: 'content' } },\n  slug: 'slug',\n  targets: ['node'],\n});\n\nconsole.log(project.config_repo);",
+          "stl projects create \\\n  --api-key 'My API Key' \\\n  --display-name display_name \\\n  --org org \\\n  --revision '{foo: {content: content}}' \\\n  --slug slug \\\n  --target node",
+      },
+      php: {
+        method: 'projects->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$project = $client->projects->create(\n  displayName: 'display_name',\n  org: 'org',\n  revision: ['foo' => ['content' => 'content']],\n  slug: 'slug',\n  targets: [Target::NODE],\n);\n\nvar_dump($project);",
+      },
+      csharp: {
+        method: 'Projects.Create',
+        example:
+          'ProjectCreateParams parameters = new()\n{\n    DisplayName = "display_name",\n    Org = "org",\n    Revision = new Dictionary<string, FileInput>()\n    {\n        { "foo", new Content("content") }\n    },\n    Slug = "slug",\n    Targets =\n    [\n        Target.Node\n    ],\n};\n\nvar project = await client.Projects.Create(parameters);\n\nConsole.WriteLine(project);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "display_name": "display_name",\n          "org": "org",\n          "revision": {\n            "foo": {\n              "content": "content"\n            }\n          },\n          "slug": "slug",\n          "targets": [\n            "node"\n          ]\n        }\'',
       },
     },
   },
@@ -326,24 +326,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## generate_commit_message\n\n`client.projects.generateCommitMessage(project: string, target: string, base_ref: string, head_ref: string): { ai_commit_message: string; }`\n\n**post** `/v0/projects/{project}/generate_commit_message`\n\nGenerates an AI commit message by comparing two git refs in the SDK repository.\n\n### Parameters\n\n- `project: string`\n\n- `target: string`\n  Language target\n\n- `base_ref: string`\n  Base ref for comparison\n\n- `head_ref: string`\n  Head ref for comparison\n\n### Returns\n\n- `{ ai_commit_message: string; }`\n\n  - `ai_commit_message: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst response = await client.projects.generateCommitMessage({\n  project: 'project',\n  target: 'python',\n  base_ref: 'base_ref',\n  head_ref: 'head_ref',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'projects generate_commit_message',
+      typescript: {
+        method: 'client.projects.generateCommitMessage',
         example:
-          "stl projects generate-commit-message \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --target python \\\n  --base-ref base_ref \\\n  --head-ref head_ref",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.projects.generateCommitMessage({\n  project: 'project',\n  target: 'python',\n  base_ref: 'base_ref',\n  head_ref: 'head_ref',\n});\n\nconsole.log(response.ai_commit_message);",
       },
-      csharp: {
-        method: 'Projects.GenerateCommitMessage',
+      python: {
+        method: 'projects.generate_commit_message',
         example:
-          'ProjectGenerateCommitMessageParams parameters = new()\n{\n    Project = "project",\n    Target = Target.Python,\n    BaseRef = "base_ref",\n    HeadRef = "head_ref",\n};\n\nvar response = await client.Projects.GenerateCommitMessage(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Projects.GenerateCommitMessage',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Projects.GenerateCommitMessage(context.TODO(), stainless.ProjectGenerateCommitMessageParams{\n\t\tProject: stainless.String("project"),\n\t\tTarget:  stainless.ProjectGenerateCommitMessageParamsTargetPython,\n\t\tBaseRef: "base_ref",\n\t\tHeadRef: "head_ref",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.AICommitMessage)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/generate_commit_message \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "base_ref": "base_ref",\n          "head_ref": "head_ref"\n        }\'',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.projects.generate_commit_message(\n    project="project",\n    target="python",\n    base_ref="base_ref",\n    head_ref="head_ref",\n)\nprint(response.ai_commit_message)',
       },
       java: {
         method: 'projects().generateCommitMessage',
@@ -355,25 +346,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.ProjectGenerateCommitMessageParams\nimport com.configure_me_stainless_v0.api.models.projects.ProjectGenerateCommitMessageResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val params: ProjectGenerateCommitMessageParams = ProjectGenerateCommitMessageParams.builder()\n        .target(ProjectGenerateCommitMessageParams.Target.PYTHON)\n        .baseRef("base_ref")\n        .headRef("head_ref")\n        .build()\n    val response: ProjectGenerateCommitMessageResponse = client.projects().generateCommitMessage(params)\n}',
       },
-      php: {
-        method: 'projects->generateCommitMessage',
+      go: {
+        method: 'client.Projects.GenerateCommitMessage',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->projects->generateCommitMessage(\n  project: 'project', target: 'python', baseRef: 'base_ref', headRef: 'head_ref'\n);\n\nvar_dump($response);",
-      },
-      python: {
-        method: 'projects.generate_commit_message',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.projects.generate_commit_message(\n    project="project",\n    target="python",\n    base_ref="base_ref",\n    head_ref="head_ref",\n)\nprint(response.ai_commit_message)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Projects.GenerateCommitMessage(context.TODO(), stainless.ProjectGenerateCommitMessageParams{\n\t\tProject: stainless.String("project"),\n\t\tTarget:  stainless.ProjectGenerateCommitMessageParamsTargetPython,\n\t\tBaseRef: "base_ref",\n\t\tHeadRef: "head_ref",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.AICommitMessage)\n}\n',
       },
       ruby: {
         method: 'projects.generate_commit_message',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nresponse = stainless.projects.generate_commit_message(\n  project: "project",\n  target: :python,\n  base_ref: "base_ref",\n  head_ref: "head_ref"\n)\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.projects.generateCommitMessage',
+      cli: {
+        method: 'projects generate_commit_message',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.projects.generateCommitMessage({\n  project: 'project',\n  target: 'python',\n  base_ref: 'base_ref',\n  head_ref: 'head_ref',\n});\n\nconsole.log(response.ai_commit_message);",
+          "stl projects generate-commit-message \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --target python \\\n  --base-ref base_ref \\\n  --head-ref head_ref",
+      },
+      php: {
+        method: 'projects->generateCommitMessage',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->projects->generateCommitMessage(\n  project: 'project', target: 'python', baseRef: 'base_ref', headRef: 'head_ref'\n);\n\nvar_dump($response);",
+      },
+      csharp: {
+        method: 'Projects.GenerateCommitMessage',
+        example:
+          'ProjectGenerateCommitMessageParams parameters = new()\n{\n    Project = "project",\n    Target = Target.Python,\n    BaseRef = "base_ref",\n    HeadRef = "head_ref",\n};\n\nvar response = await client.Projects.GenerateCommitMessage(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/generate_commit_message \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "base_ref": "base_ref",\n          "head_ref": "head_ref"\n        }\'',
       },
     },
   },
@@ -392,24 +392,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.projects.branches.create(project: string, branch: string, branch_from: string, force?: boolean): { branch: string; config_commit: object; latest_build: build; object: 'project_branch'; org: string; project: string; }`\n\n**post** `/v0/projects/{project}/branches`\n\nCreate a new branch for a project.\n\nThe branch inherits the config files from the revision pointed to by the\n`branch_from` parameter. In addition, if the revision is a branch name,\nthe branch will also inherit custom code changes from that branch.\n\n### Parameters\n\n- `project: string`\n\n- `branch: string`\n  Branch name\n\n- `branch_from: string`\n  Branch or commit SHA to branch from\n\n- `force?: boolean`\n  Whether to throw an error if the branch already exists. Defaults to false.\n\n### Returns\n\n- `{ branch: string; config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }; latest_build: { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }; object: 'project_branch'; org: string; project: string; }`\n  A project branch names a line of development for a project. Like a Git\nbranch, it points to a Git commit with a set of config files. In addition, a\nproject branch also points to a set of custom code changes, corresponding to\nGit branches in the staging repos.\n\n  - `branch: string`\n  - `config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }`\n  - `latest_build: { id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n  - `object: 'project_branch'`\n  - `org: string`\n  - `project: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst projectBranch = await client.projects.branches.create({\n  project: 'project',\n  branch: 'branch',\n  branch_from: 'branch_from',\n});\n\nconsole.log(projectBranch);\n```",
     perLanguage: {
-      cli: {
-        method: 'branches create',
+      typescript: {
+        method: 'client.projects.branches.create',
         example:
-          "stl projects:branches create \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch \\\n  --branch-from branch_from",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst projectBranch = await client.projects.branches.create({\n  project: 'project',\n  branch: 'branch',\n  branch_from: 'branch_from',\n});\n\nconsole.log(projectBranch.branch);",
       },
-      csharp: {
-        method: 'Projects.Branches.Create',
+      python: {
+        method: 'projects.branches.create',
         example:
-          'BranchCreateParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n    BranchFrom = "branch_from",\n};\n\nvar projectBranch = await client.Projects.Branches.Create(parameters);\n\nConsole.WriteLine(projectBranch);',
-      },
-      go: {
-        method: 'client.Projects.Branches.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tprojectBranch, err := client.Projects.Branches.New(context.TODO(), stainless.ProjectBranchNewParams{\n\t\tProject:    stainless.String("project"),\n\t\tBranch:     "branch",\n\t\tBranchFrom: "branch_from",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", projectBranch.Branch)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/branches \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "branch": "branch",\n          "branch_from": "branch_from"\n        }\'',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject_branch = client.projects.branches.create(\n    project="project",\n    branch="branch",\n    branch_from="branch_from",\n)\nprint(project_branch.branch)',
       },
       java: {
         method: 'projects().branches().create',
@@ -421,25 +412,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchCreateParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.ProjectBranch\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val params: BranchCreateParams = BranchCreateParams.builder()\n        .branch("branch")\n        .branchFrom("branch_from")\n        .build()\n    val projectBranch: ProjectBranch = client.projects().branches().create(params)\n}',
       },
-      php: {
-        method: 'projects->branches->create',
+      go: {
+        method: 'client.Projects.Branches.New',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->create(\n  project: 'project', branch: 'branch', branchFrom: 'branch_from', force: true\n);\n\nvar_dump($projectBranch);",
-      },
-      python: {
-        method: 'projects.branches.create',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject_branch = client.projects.branches.create(\n    project="project",\n    branch="branch",\n    branch_from="branch_from",\n)\nprint(project_branch.branch)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tprojectBranch, err := client.Projects.Branches.New(context.TODO(), stainless.ProjectBranchNewParams{\n\t\tProject:    stainless.String("project"),\n\t\tBranch:     "branch",\n\t\tBranchFrom: "branch_from",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", projectBranch.Branch)\n}\n',
       },
       ruby: {
         method: 'projects.branches.create',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nproject_branch = stainless.projects.branches.create(project: "project", branch: "branch", branch_from: "branch_from")\n\nputs(project_branch)',
       },
-      typescript: {
-        method: 'client.projects.branches.create',
+      cli: {
+        method: 'branches create',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst projectBranch = await client.projects.branches.create({\n  project: 'project',\n  branch: 'branch',\n  branch_from: 'branch_from',\n});\n\nconsole.log(projectBranch.branch);",
+          "stl projects:branches create \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch \\\n  --branch-from branch_from",
+      },
+      php: {
+        method: 'projects->branches->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->create(\n  project: 'project', branch: 'branch', branchFrom: 'branch_from', force: true\n);\n\nvar_dump($projectBranch);",
+      },
+      csharp: {
+        method: 'Projects.Branches.Create',
+        example:
+          'BranchCreateParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n    BranchFrom = "branch_from",\n};\n\nvar projectBranch = await client.Projects.Branches.Create(parameters);\n\nConsole.WriteLine(projectBranch);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/branches \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "branch": "branch",\n          "branch_from": "branch_from"\n        }\'',
       },
     },
   },
@@ -457,24 +457,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.projects.branches.retrieve(project: string, branch: string): { branch: string; config_commit: object; latest_build: build; object: 'project_branch'; org: string; project: string; }`\n\n**get** `/v0/projects/{project}/branches/{branch}`\n\nRetrieve a project branch by name.\n\n### Parameters\n\n- `project: string`\n\n- `branch: string`\n\n### Returns\n\n- `{ branch: string; config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }; latest_build: { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }; object: 'project_branch'; org: string; project: string; }`\n  A project branch names a line of development for a project. Like a Git\nbranch, it points to a Git commit with a set of config files. In addition, a\nproject branch also points to a set of custom code changes, corresponding to\nGit branches in the staging repos.\n\n  - `branch: string`\n  - `config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }`\n  - `latest_build: { id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n  - `object: 'project_branch'`\n  - `org: string`\n  - `project: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst projectBranch = await client.projects.branches.retrieve('branch', { project: 'project' });\n\nconsole.log(projectBranch);\n```",
     perLanguage: {
-      cli: {
-        method: 'branches retrieve',
+      typescript: {
+        method: 'client.projects.branches.retrieve',
         example:
-          "stl projects:branches retrieve \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst projectBranch = await client.projects.branches.retrieve('branch', { project: 'project' });\n\nconsole.log(projectBranch.branch);",
       },
-      csharp: {
-        method: 'Projects.Branches.Retrieve',
+      python: {
+        method: 'projects.branches.retrieve',
         example:
-          'BranchRetrieveParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Retrieve(parameters);\n\nConsole.WriteLine(projectBranch);',
-      },
-      go: {
-        method: 'client.Projects.Branches.Get',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tprojectBranch, err := client.Projects.Branches.Get(\n\t\tcontext.TODO(),\n\t\t"branch",\n\t\tstainless.ProjectBranchGetParams{\n\t\t\tProject: stainless.String("project"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", projectBranch.Branch)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/branches/$BRANCH \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject_branch = client.projects.branches.retrieve(\n    branch="branch",\n    project="project",\n)\nprint(project_branch.branch)',
       },
       java: {
         method: 'projects().branches().retrieve',
@@ -486,25 +477,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchRetrieveParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.ProjectBranch\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val projectBranch: ProjectBranch = client.projects().branches().retrieve("branch")\n}',
       },
-      php: {
-        method: 'projects->branches->retrieve',
+      go: {
+        method: 'client.Projects.Branches.Get',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->retrieve(\n  'branch', project: 'project'\n);\n\nvar_dump($projectBranch);",
-      },
-      python: {
-        method: 'projects.branches.retrieve',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject_branch = client.projects.branches.retrieve(\n    branch="branch",\n    project="project",\n)\nprint(project_branch.branch)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tprojectBranch, err := client.Projects.Branches.Get(\n\t\tcontext.TODO(),\n\t\t"branch",\n\t\tstainless.ProjectBranchGetParams{\n\t\t\tProject: stainless.String("project"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", projectBranch.Branch)\n}\n',
       },
       ruby: {
         method: 'projects.branches.retrieve',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nproject_branch = stainless.projects.branches.retrieve("branch", project: "project")\n\nputs(project_branch)',
       },
-      typescript: {
-        method: 'client.projects.branches.retrieve',
+      cli: {
+        method: 'branches retrieve',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst projectBranch = await client.projects.branches.retrieve('branch', { project: 'project' });\n\nconsole.log(projectBranch.branch);",
+          "stl projects:branches retrieve \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
+      },
+      php: {
+        method: 'projects->branches->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->retrieve(\n  'branch', project: 'project'\n);\n\nvar_dump($projectBranch);",
+      },
+      csharp: {
+        method: 'Projects.Branches.Retrieve',
+        example:
+          'BranchRetrieveParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Retrieve(parameters);\n\nConsole.WriteLine(projectBranch);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/branches/$BRANCH \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -522,23 +522,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.projects.branches.list(project: string, cursor?: string, limit?: number): { branch: string; config_commit: object; latest_build_id: string; object: 'project_branch'; org: string; project: string; }`\n\n**get** `/v0/projects/{project}/branches`\n\nRetrieve a project branch by name.\n\n### Parameters\n\n- `project: string`\n\n- `cursor?: string`\n  Pagination cursor from a previous response\n\n- `limit?: number`\n  Maximum number of items to return, defaults to 10 (maximum: 100).\n\n### Returns\n\n- `{ branch: string; config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }; latest_build_id: string; object: 'project_branch'; org: string; project: string; }`\n  A project branch names a line of development for a project. Like a Git\nbranch, it points to a Git commit with a set of config files. In addition, a\nproject branch also points to a set of custom code changes, corresponding to\nGit branches in the staging repos.\n\n  - `branch: string`\n  - `config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }`\n  - `latest_build_id: string`\n  - `object: 'project_branch'`\n  - `org: string`\n  - `project: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\n// Automatically fetches more pages as needed.\nfor await (const branchListResponse of client.projects.branches.list({ project: 'project' })) {\n  console.log(branchListResponse);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'branches list',
-        example: "stl projects:branches list \\\n  --api-key 'My API Key' \\\n  --project project",
-      },
-      csharp: {
-        method: 'Projects.Branches.List',
+      typescript: {
+        method: 'client.projects.branches.list',
         example:
-          'BranchListParams parameters = new() { Project = "project" };\n\nvar page = await client.Projects.Branches.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const branchListResponse of client.projects.branches.list({ project: 'project' })) {\n  console.log(branchListResponse.latest_build_id);\n}",
       },
-      go: {
-        method: 'client.Projects.Branches.List',
+      python: {
+        method: 'projects.branches.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Projects.Branches.List(context.TODO(), stainless.ProjectBranchListParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/branches \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\npage = client.projects.branches.list(\n    project="project",\n)\npage = page.data[0]\nprint(page.latest_build_id)',
       },
       java: {
         method: 'projects().branches().list',
@@ -550,25 +542,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchListPage\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchListParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val page: BranchListPage = client.projects().branches().list()\n}',
       },
-      php: {
-        method: 'projects->branches->list',
+      go: {
+        method: 'client.Projects.Branches.List',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->projects->branches->list(\n  project: 'project', cursor: 'cursor', limit: 1\n);\n\nvar_dump($page);",
-      },
-      python: {
-        method: 'projects.branches.list',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\npage = client.projects.branches.list(\n    project="project",\n)\npage = page.data[0]\nprint(page.latest_build_id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Projects.Branches.List(context.TODO(), stainless.ProjectBranchListParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'projects.branches.list',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\npage = stainless.projects.branches.list(project: "project")\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.projects.branches.list',
+      cli: {
+        method: 'branches list',
+        example: "stl projects:branches list \\\n  --api-key 'My API Key' \\\n  --project project",
+      },
+      php: {
+        method: 'projects->branches->list',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const branchListResponse of client.projects.branches.list({ project: 'project' })) {\n  console.log(branchListResponse.latest_build_id);\n}",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->projects->branches->list(\n  project: 'project', cursor: 'cursor', limit: 1\n);\n\nvar_dump($page);",
+      },
+      csharp: {
+        method: 'Projects.Branches.List',
+        example:
+          'BranchListParams parameters = new() { Project = "project" };\n\nvar page = await client.Projects.Branches.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/branches \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -585,24 +585,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.projects.branches.delete(project: string, branch: string): object`\n\n**delete** `/v0/projects/{project}/branches/{branch}`\n\nDelete a project branch by name.\n\n### Parameters\n\n- `project: string`\n\n- `branch: string`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst branch = await client.projects.branches.delete('branch', { project: 'project' });\n\nconsole.log(branch);\n```",
     perLanguage: {
-      cli: {
-        method: 'branches delete',
+      typescript: {
+        method: 'client.projects.branches.delete',
         example:
-          "stl projects:branches delete \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst branch = await client.projects.branches.delete('branch', { project: 'project' });\n\nconsole.log(branch);",
       },
-      csharp: {
-        method: 'Projects.Branches.Delete',
+      python: {
+        method: 'projects.branches.delete',
         example:
-          'BranchDeleteParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar branch = await client.Projects.Branches.Delete(parameters);\n\nConsole.WriteLine(branch);',
-      },
-      go: {
-        method: 'client.Projects.Branches.Delete',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbranch, err := client.Projects.Branches.Delete(\n\t\tcontext.TODO(),\n\t\t"branch",\n\t\tstainless.ProjectBranchDeleteParams{\n\t\t\tProject: stainless.String("project"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", branch)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/branches/$BRANCH \\\n    -X DELETE \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nbranch = client.projects.branches.delete(\n    branch="branch",\n    project="project",\n)\nprint(branch)',
       },
       java: {
         method: 'projects().branches().delete',
@@ -614,25 +605,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchDeleteParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchDeleteResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val branch: BranchDeleteResponse = client.projects().branches().delete("branch")\n}',
       },
-      php: {
-        method: 'projects->branches->delete',
+      go: {
+        method: 'client.Projects.Branches.Delete',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$branch = $client->projects->branches->delete('branch', project: 'project');\n\nvar_dump($branch);",
-      },
-      python: {
-        method: 'projects.branches.delete',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nbranch = client.projects.branches.delete(\n    branch="branch",\n    project="project",\n)\nprint(branch)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbranch, err := client.Projects.Branches.Delete(\n\t\tcontext.TODO(),\n\t\t"branch",\n\t\tstainless.ProjectBranchDeleteParams{\n\t\t\tProject: stainless.String("project"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", branch)\n}\n',
       },
       ruby: {
         method: 'projects.branches.delete',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nbranch = stainless.projects.branches.delete("branch", project: "project")\n\nputs(branch)',
       },
-      typescript: {
-        method: 'client.projects.branches.delete',
+      cli: {
+        method: 'branches delete',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst branch = await client.projects.branches.delete('branch', { project: 'project' });\n\nconsole.log(branch);",
+          "stl projects:branches delete \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
+      },
+      php: {
+        method: 'projects->branches->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$branch = $client->projects->branches->delete('branch', project: 'project');\n\nvar_dump($branch);",
+      },
+      csharp: {
+        method: 'Projects.Branches.Delete',
+        example:
+          'BranchDeleteParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar branch = await client.Projects.Branches.Delete(parameters);\n\nConsole.WriteLine(branch);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/branches/$BRANCH \\\n    -X DELETE \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -651,24 +651,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## rebase\n\n`client.projects.branches.rebase(project: string, branch: string, base?: string): { branch: string; config_commit: object; latest_build: build; object: 'project_branch'; org: string; project: string; }`\n\n**put** `/v0/projects/{project}/branches/{branch}/rebase`\n\nRebase a project branch.\n\nThe branch is rebased onto the `base` branch or commit SHA, inheriting\nany config and custom code changes.\n\n### Parameters\n\n- `project: string`\n\n- `branch: string`\n\n- `base?: string`\n  The branch or commit SHA to rebase onto. Defaults to \"main\".\n\n### Returns\n\n- `{ branch: string; config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }; latest_build: { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }; object: 'project_branch'; org: string; project: string; }`\n  A project branch names a line of development for a project. Like a Git\nbranch, it points to a Git commit with a set of config files. In addition, a\nproject branch also points to a set of custom code changes, corresponding to\nGit branches in the staging repos.\n\n  - `branch: string`\n  - `config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }`\n  - `latest_build: { id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n  - `object: 'project_branch'`\n  - `org: string`\n  - `project: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst projectBranch = await client.projects.branches.rebase('branch', { project: 'project' });\n\nconsole.log(projectBranch);\n```",
     perLanguage: {
-      cli: {
-        method: 'branches rebase',
+      typescript: {
+        method: 'client.projects.branches.rebase',
         example:
-          "stl projects:branches rebase \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst projectBranch = await client.projects.branches.rebase('branch', { project: 'project' });\n\nconsole.log(projectBranch.branch);",
       },
-      csharp: {
-        method: 'Projects.Branches.Rebase',
+      python: {
+        method: 'projects.branches.rebase',
         example:
-          'BranchRebaseParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Rebase(parameters);\n\nConsole.WriteLine(projectBranch);',
-      },
-      go: {
-        method: 'client.Projects.Branches.Rebase',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tprojectBranch, err := client.Projects.Branches.Rebase(\n\t\tcontext.TODO(),\n\t\t"branch",\n\t\tstainless.ProjectBranchRebaseParams{\n\t\t\tProject: stainless.String("project"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", projectBranch.Branch)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/branches/$BRANCH/rebase \\\n    -X PUT \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject_branch = client.projects.branches.rebase(\n    branch="branch",\n    project="project",\n)\nprint(project_branch.branch)',
       },
       java: {
         method: 'projects().branches().rebase',
@@ -680,25 +671,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchRebaseParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.ProjectBranch\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val projectBranch: ProjectBranch = client.projects().branches().rebase("branch")\n}',
       },
-      php: {
-        method: 'projects->branches->rebase',
+      go: {
+        method: 'client.Projects.Branches.Rebase',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->rebase(\n  'branch', project: 'project', base: 'base'\n);\n\nvar_dump($projectBranch);",
-      },
-      python: {
-        method: 'projects.branches.rebase',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject_branch = client.projects.branches.rebase(\n    branch="branch",\n    project="project",\n)\nprint(project_branch.branch)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tprojectBranch, err := client.Projects.Branches.Rebase(\n\t\tcontext.TODO(),\n\t\t"branch",\n\t\tstainless.ProjectBranchRebaseParams{\n\t\t\tProject: stainless.String("project"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", projectBranch.Branch)\n}\n',
       },
       ruby: {
         method: 'projects.branches.rebase',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nproject_branch = stainless.projects.branches.rebase("branch", project: "project")\n\nputs(project_branch)',
       },
-      typescript: {
-        method: 'client.projects.branches.rebase',
+      cli: {
+        method: 'branches rebase',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst projectBranch = await client.projects.branches.rebase('branch', { project: 'project' });\n\nconsole.log(projectBranch.branch);",
+          "stl projects:branches rebase \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
+      },
+      php: {
+        method: 'projects->branches->rebase',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->rebase(\n  'branch', project: 'project', base: 'base'\n);\n\nvar_dump($projectBranch);",
+      },
+      csharp: {
+        method: 'Projects.Branches.Rebase',
+        example:
+          'BranchRebaseParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Rebase(parameters);\n\nConsole.WriteLine(projectBranch);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/branches/$BRANCH/rebase \\\n    -X PUT \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -717,24 +717,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## reset\n\n`client.projects.branches.reset(project: string, branch: string, target_config_sha?: string): { branch: string; config_commit: object; latest_build: build; object: 'project_branch'; org: string; project: string; }`\n\n**put** `/v0/projects/{project}/branches/{branch}/reset`\n\nReset a project branch.\n\nIf `branch` === `main`, the branch is reset to `target_config_sha`. Otherwise, the\nbranch is reset to `main`.\n\n### Parameters\n\n- `project: string`\n\n- `branch: string`\n\n- `target_config_sha?: string`\n  The commit SHA to reset the main branch to. Required if resetting the main branch; disallowed otherwise.\n\n### Returns\n\n- `{ branch: string; config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }; latest_build: { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }; object: 'project_branch'; org: string; project: string; }`\n  A project branch names a line of development for a project. Like a Git\nbranch, it points to a Git commit with a set of config files. In addition, a\nproject branch also points to a set of custom code changes, corresponding to\nGit branches in the staging repos.\n\n  - `branch: string`\n  - `config_commit: { repo: { branch: string; host: string; name: string; owner: string; }; sha: string; stats: { additions: number; deletions: number; total: number; }; tree_oid: string; }`\n  - `latest_build: { id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n  - `object: 'project_branch'`\n  - `org: string`\n  - `project: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst projectBranch = await client.projects.branches.reset('branch', { project: 'project' });\n\nconsole.log(projectBranch);\n```",
     perLanguage: {
-      cli: {
-        method: 'branches reset',
+      typescript: {
+        method: 'client.projects.branches.reset',
         example:
-          "stl projects:branches reset \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst projectBranch = await client.projects.branches.reset('branch', { project: 'project' });\n\nconsole.log(projectBranch.branch);",
       },
-      csharp: {
-        method: 'Projects.Branches.Reset',
+      python: {
+        method: 'projects.branches.reset',
         example:
-          'BranchResetParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Reset(parameters);\n\nConsole.WriteLine(projectBranch);',
-      },
-      go: {
-        method: 'client.Projects.Branches.Reset',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tprojectBranch, err := client.Projects.Branches.Reset(\n\t\tcontext.TODO(),\n\t\t"branch",\n\t\tstainless.ProjectBranchResetParams{\n\t\t\tProject: stainless.String("project"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", projectBranch.Branch)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/branches/$BRANCH/reset \\\n    -X PUT \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject_branch = client.projects.branches.reset(\n    branch="branch",\n    project="project",\n)\nprint(project_branch.branch)',
       },
       java: {
         method: 'projects().branches().reset',
@@ -746,25 +737,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.branches.BranchResetParams\nimport com.configure_me_stainless_v0.api.models.projects.branches.ProjectBranch\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val projectBranch: ProjectBranch = client.projects().branches().reset("branch")\n}',
       },
-      php: {
-        method: 'projects->branches->reset',
+      go: {
+        method: 'client.Projects.Branches.Reset',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->reset(\n  'branch', project: 'project', targetConfigSha: 'target_config_sha'\n);\n\nvar_dump($projectBranch);",
-      },
-      python: {
-        method: 'projects.branches.reset',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nproject_branch = client.projects.branches.reset(\n    branch="branch",\n    project="project",\n)\nprint(project_branch.branch)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tprojectBranch, err := client.Projects.Branches.Reset(\n\t\tcontext.TODO(),\n\t\t"branch",\n\t\tstainless.ProjectBranchResetParams{\n\t\t\tProject: stainless.String("project"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", projectBranch.Branch)\n}\n',
       },
       ruby: {
         method: 'projects.branches.reset',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nproject_branch = stainless.projects.branches.reset("branch", project: "project")\n\nputs(project_branch)',
       },
-      typescript: {
-        method: 'client.projects.branches.reset',
+      cli: {
+        method: 'branches reset',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst projectBranch = await client.projects.branches.reset('branch', { project: 'project' });\n\nconsole.log(projectBranch.branch);",
+          "stl projects:branches reset \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --branch branch",
+      },
+      php: {
+        method: 'projects->branches->reset',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$projectBranch = $client->projects->branches->reset(\n  'branch', project: 'project', targetConfigSha: 'target_config_sha'\n);\n\nvar_dump($projectBranch);",
+      },
+      csharp: {
+        method: 'Projects.Branches.Reset',
+        example:
+          'BranchResetParams parameters = new()\n{\n    Project = "project",\n    Branch = "branch",\n};\n\nvar projectBranch = await client.Projects.Branches.Reset(parameters);\n\nConsole.WriteLine(projectBranch);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/branches/$BRANCH/reset \\\n    -X PUT \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -781,23 +781,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.projects.configs.retrieve(project: string, branch?: string, include?: string): object`\n\n**get** `/v0/projects/{project}/configs`\n\n\n    Retrieve the configuration files for a given project.\n\n### Parameters\n\n- `project: string`\n\n- `branch?: string`\n  Branch name, defaults to \"main\".\n\n- `include?: string`\n\n### Returns\n\n- `object`\n  Config files contents\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst config = await client.projects.configs.retrieve({ project: 'project' });\n\nconsole.log(config);\n```",
     perLanguage: {
-      cli: {
-        method: 'configs retrieve',
-        example: "stl projects:configs retrieve \\\n  --api-key 'My API Key' \\\n  --project project",
-      },
-      csharp: {
-        method: 'Projects.Configs.Retrieve',
+      typescript: {
+        method: 'client.projects.configs.retrieve',
         example:
-          'ConfigRetrieveParams parameters = new() { Project = "project" };\n\nvar config = await client.Projects.Configs.Retrieve(parameters);\n\nConsole.WriteLine(config);',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst config = await client.projects.configs.retrieve({ project: 'project' });\n\nconsole.log(config);",
       },
-      go: {
-        method: 'client.Projects.Configs.Get',
+      python: {
+        method: 'projects.configs.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tconfig, err := client.Projects.Configs.Get(context.TODO(), stainless.ProjectConfigGetParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", config)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/configs \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nconfig = client.projects.configs.retrieve(\n    project="project",\n)\nprint(config)',
       },
       java: {
         method: 'projects().configs().retrieve',
@@ -809,25 +801,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.configs.ConfigRetrieveParams\nimport com.configure_me_stainless_v0.api.models.projects.configs.ConfigRetrieveResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val config: ConfigRetrieveResponse = client.projects().configs().retrieve()\n}',
       },
-      php: {
-        method: 'projects->configs->retrieve',
+      go: {
+        method: 'client.Projects.Configs.Get',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$config = $client->projects->configs->retrieve(\n  project: 'project', branch: 'branch', include: 'include'\n);\n\nvar_dump($config);",
-      },
-      python: {
-        method: 'projects.configs.retrieve',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nconfig = client.projects.configs.retrieve(\n    project="project",\n)\nprint(config)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tconfig, err := client.Projects.Configs.Get(context.TODO(), stainless.ProjectConfigGetParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", config)\n}\n',
       },
       ruby: {
         method: 'projects.configs.retrieve',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nconfig = stainless.projects.configs.retrieve(project: "project")\n\nputs(config)',
       },
-      typescript: {
-        method: 'client.projects.configs.retrieve',
+      cli: {
+        method: 'configs retrieve',
+        example: "stl projects:configs retrieve \\\n  --api-key 'My API Key' \\\n  --project project",
+      },
+      php: {
+        method: 'projects->configs->retrieve',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst config = await client.projects.configs.retrieve({ project: 'project' });\n\nconsole.log(config);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$config = $client->projects->configs->retrieve(\n  project: 'project', branch: 'branch', include: 'include'\n);\n\nvar_dump($config);",
+      },
+      csharp: {
+        method: 'Projects.Configs.Retrieve',
+        example:
+          'ConfigRetrieveParams parameters = new() { Project = "project" };\n\nvar config = await client.Projects.Configs.Retrieve(parameters);\n\nConsole.WriteLine(config);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/configs \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -844,24 +844,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## guess\n\n`client.projects.configs.guess(project: string, spec: string, branch?: string): object`\n\n**post** `/v0/projects/{project}/configs/guess`\n\n\n    Generate suggestions for changes to config files based on an OpenAPI spec.\n\n### Parameters\n\n- `project: string`\n\n- `spec: string`\n  OpenAPI spec\n\n- `branch?: string`\n  Branch name\n\n### Returns\n\n- `object`\n  Config files contents\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst response = await client.projects.configs.guess({ project: 'project', spec: 'spec' });\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'configs guess',
+      typescript: {
+        method: 'client.projects.configs.guess',
         example:
-          "stl projects:configs guess \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --spec spec",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.projects.configs.guess({ project: 'project', spec: 'spec' });\n\nconsole.log(response);",
       },
-      csharp: {
-        method: 'Projects.Configs.Guess',
+      python: {
+        method: 'projects.configs.guess',
         example:
-          'ConfigGuessParams parameters = new()\n{\n    Project = "project",\n    Spec = "spec",\n};\n\nvar response = await client.Projects.Configs.Guess(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Projects.Configs.Guess',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Projects.Configs.Guess(context.TODO(), stainless.ProjectConfigGuessParams{\n\t\tProject: stainless.String("project"),\n\t\tSpec:    "spec",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/projects/$PROJECT/configs/guess \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "spec": "spec"\n        }\'',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.projects.configs.guess(\n    project="project",\n    spec="spec",\n)\nprint(response)',
       },
       java: {
         method: 'projects().configs().guess',
@@ -873,25 +864,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.projects.configs.ConfigGuessParams\nimport com.configure_me_stainless_v0.api.models.projects.configs.ConfigGuessResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val params: ConfigGuessParams = ConfigGuessParams.builder()\n        .spec("spec")\n        .build()\n    val response: ConfigGuessResponse = client.projects().configs().guess(params)\n}',
       },
-      php: {
-        method: 'projects->configs->guess',
+      go: {
+        method: 'client.Projects.Configs.Guess',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->projects->configs->guess(\n  project: 'project', spec: 'spec', branch: 'branch'\n);\n\nvar_dump($response);",
-      },
-      python: {
-        method: 'projects.configs.guess',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.projects.configs.guess(\n    project="project",\n    spec="spec",\n)\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Projects.Configs.Guess(context.TODO(), stainless.ProjectConfigGuessParams{\n\t\tProject: stainless.String("project"),\n\t\tSpec:    "spec",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'projects.configs.guess',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nresponse = stainless.projects.configs.guess(project: "project", spec: "spec")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.projects.configs.guess',
+      cli: {
+        method: 'configs guess',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.projects.configs.guess({ project: 'project', spec: 'spec' });\n\nconsole.log(response);",
+          "stl projects:configs guess \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --spec spec",
+      },
+      php: {
+        method: 'projects->configs->guess',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->projects->configs->guess(\n  project: 'project', spec: 'spec', branch: 'branch'\n);\n\nvar_dump($response);",
+      },
+      csharp: {
+        method: 'Projects.Configs.Guess',
+        example:
+          'ConfigGuessParams parameters = new()\n{\n    Project = "project",\n    Spec = "spec",\n};\n\nvar response = await client.Projects.Configs.Guess(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/projects/$PROJECT/configs/guess \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "spec": "spec"\n        }\'',
       },
     },
   },
@@ -916,23 +916,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.builds.list(project: string, branch?: string, cursor?: string, limit?: number, revision?: string | object): { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }`\n\n**get** `/v0/builds`\n\nList user-triggered builds for a given project.\n\nAn optional revision can be specified to filter by config commit SHA, or\nhashes of file contents.\n\n### Parameters\n\n- `project: string`\n  Project name\n\n- `branch?: string`\n  Branch name\n\n- `cursor?: string`\n  Pagination cursor from a previous response.\n\n- `limit?: number`\n  Maximum number of builds to return, defaults to 10 (maximum: 100).\n\n- `revision?: string | object`\n  A config commit SHA used for the build\n\n### Returns\n\n- `{ id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n\n  - `id: string`\n  - `config_commit: string`\n  - `created_at: string`\n  - `documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }`\n  - `object: 'build'`\n  - `org: string`\n  - `project: string`\n  - `targets: { cli?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; csharp?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; go?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; java?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; kotlin?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; node?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; openapi?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; php?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; python?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; ruby?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; sql?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; terraform?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; typescript?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; }`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\n// Automatically fetches more pages as needed.\nfor await (const build of client.builds.list({ project: 'project' })) {\n  console.log(build);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'builds list',
-        example: "stl builds list \\\n  --api-key 'My API Key' \\\n  --project project",
-      },
-      csharp: {
-        method: 'Builds.List',
+      typescript: {
+        method: 'client.builds.list',
         example:
-          'BuildListParams parameters = new() { Project = "project" };\n\nvar page = await client.Builds.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const build of client.builds.list({ project: 'project' })) {\n  console.log(build.id);\n}",
       },
-      go: {
-        method: 'client.Builds.List',
+      python: {
+        method: 'builds.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Builds.List(context.TODO(), stainless.BuildListParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/builds \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\npage = client.builds.list(\n    project="project",\n)\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'builds().list',
@@ -944,25 +936,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.BuildListPage\nimport com.configure_me_stainless_v0.api.models.builds.BuildListParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.builder()\n        .fromEnv()\n        .project("example-project")\n        .build()\n\n    val page: BuildListPage = client.builds().list()\n}',
       },
-      php: {
-        method: 'builds->list',
+      go: {
+        method: 'client.Builds.List',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->builds->list(\n  project: 'project',\n  branch: 'branch',\n  cursor: 'cursor',\n  limit: 1,\n  revision: 'string',\n);\n\nvar_dump($page);",
-      },
-      python: {
-        method: 'builds.list',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\npage = client.builds.list(\n    project="project",\n)\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Builds.List(context.TODO(), stainless.BuildListParams{\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'builds.list',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\npage = stainless.builds.list(project: "project")\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.builds.list',
+      cli: {
+        method: 'builds list',
+        example: "stl builds list \\\n  --api-key 'My API Key' \\\n  --project project",
+      },
+      php: {
+        method: 'builds->list',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const build of client.builds.list({ project: 'project' })) {\n  console.log(build.id);\n}",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->builds->list(\n  project: 'project',\n  branch: 'branch',\n  cursor: 'cursor',\n  limit: 1,\n  revision: 'string',\n);\n\nvar_dump($page);",
+      },
+      csharp: {
+        method: 'Builds.List',
+        example:
+          'BuildListParams parameters = new() { Project = "project" };\n\nvar page = await client.Builds.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/builds \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -990,24 +990,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.builds.create(project: string, revision: string | object, allow_empty?: boolean, branch?: string, commit_message?: string, enable_ai_commit_message?: boolean, target_commit_messages?: { cli?: string; csharp?: string; go?: string; java?: string; kotlin?: string; node?: string; openapi?: string; php?: string; python?: string; ruby?: string; sql?: string; terraform?: string; typescript?: string; }, targets?: string[]): { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }`\n\n**post** `/v0/builds`\n\nCreate a build, on top of a project branch, against a given input revision.\n\nThe project branch will be modified so that its latest set of config files\npoints to the one specified by the input revision.\n\n### Parameters\n\n- `project: string`\n  Project name\n\n- `revision: string | object`\n  Specifies what to build: a branch name, commit SHA, merge command\n(\"base..head\"), or file contents.\n\n- `allow_empty?: boolean`\n  Whether to allow empty commits (no changes). Defaults to false.\n\n- `branch?: string`\n  The project branch to use for the build. If not specified, the\nbranch is inferred from the `revision`, and will 400 when that\nis not possible.\n\n- `commit_message?: string`\n  Optional commit message to use when creating a new commit.\n\n- `enable_ai_commit_message?: boolean`\n  Whether to generate AI-powered commit messages for the build.\nCannot be combined with `commit_message` or `target_commit_messages`.\n\n- `target_commit_messages?: { cli?: string; csharp?: string; go?: string; java?: string; kotlin?: string; node?: string; openapi?: string; php?: string; python?: string; ruby?: string; sql?: string; terraform?: string; typescript?: string; }`\n  Optional commit messages to use for each SDK when making a new commit.\nSDKs not represented in this object will fallback to the optional\n`commit_message` parameter, or will fallback further to the default\ncommit message.\n  - `cli?: string`\n  - `csharp?: string`\n  - `go?: string`\n  - `java?: string`\n  - `kotlin?: string`\n  - `node?: string`\n  - `openapi?: string`\n  - `php?: string`\n  - `python?: string`\n  - `ruby?: string`\n  - `sql?: string`\n  - `terraform?: string`\n  - `typescript?: string`\n\n- `targets?: string[]`\n  Optional list of SDK targets to build. If not specified, all configured\ntargets will be built.\n\n### Returns\n\n- `{ id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n\n  - `id: string`\n  - `config_commit: string`\n  - `created_at: string`\n  - `documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }`\n  - `object: 'build'`\n  - `org: string`\n  - `project: string`\n  - `targets: { cli?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; csharp?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; go?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; java?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; kotlin?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; node?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; openapi?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; php?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; python?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; ruby?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; sql?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; terraform?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; typescript?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; }`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst build = await client.builds.create({ project: 'project', revision: 'string' });\n\nconsole.log(build);\n```",
     perLanguage: {
-      cli: {
-        method: 'builds create',
+      typescript: {
+        method: 'client.builds.create',
         example:
-          "stl builds create \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --revision string",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst build = await client.builds.create({ project: 'project', revision: 'string' });\n\nconsole.log(build.id);",
       },
-      csharp: {
-        method: 'Builds.Create',
+      python: {
+        method: 'builds.create',
         example:
-          'BuildCreateParams parameters = new()\n{\n    Project = "project",\n    Revision = "string",\n};\n\nvar build = await client.Builds.Create(parameters);\n\nConsole.WriteLine(build);',
-      },
-      go: {
-        method: 'client.Builds.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbuild, err := client.Builds.New(context.TODO(), stainless.BuildNewParams{\n\t\tProject: stainless.String("project"),\n\t\tRevision: stainless.BuildNewParamsRevisionUnion{\n\t\t\tOfString: stainless.String("string"),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", build.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/builds \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "project": "project",\n          "revision": "string"\n        }\'',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nbuild = client.builds.create(\n    project="project",\n    revision="string",\n)\nprint(build.id)',
       },
       java: {
         method: 'builds().create',
@@ -1019,25 +1010,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildCreateParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val params: BuildCreateParams = BuildCreateParams.builder()\n        .project("project")\n        .revision("string")\n        .build()\n    val build: Build = client.builds().create(params)\n}',
       },
-      php: {
-        method: 'builds->create',
+      go: {
+        method: 'client.Builds.New',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$build = $client->builds->create(\n  project: 'project',\n  revision: 'string',\n  allowEmpty: true,\n  branch: 'branch',\n  commitMessage: 'commit_message',\n  enableAICommitMessage: true,\n  targetCommitMessages: [\n    'cli' => 'cli',\n    'csharp' => 'csharp',\n    'go' => 'go',\n    'java' => 'java',\n    'kotlin' => 'kotlin',\n    'node' => 'node',\n    'openAPI' => 'openapi',\n    'php' => 'php',\n    'python' => 'python',\n    'ruby' => 'ruby',\n    'sql' => 'sql',\n    'terraform' => 'terraform',\n    'typescript' => 'typescript',\n  ],\n  targets: [Target::NODE],\n);\n\nvar_dump($build);",
-      },
-      python: {
-        method: 'builds.create',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nbuild = client.builds.create(\n    project="project",\n    revision="string",\n)\nprint(build.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbuild, err := client.Builds.New(context.TODO(), stainless.BuildNewParams{\n\t\tProject: stainless.String("project"),\n\t\tRevision: stainless.BuildNewParamsRevisionUnion{\n\t\t\tOfString: stainless.String("string"),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", build.ID)\n}\n',
       },
       ruby: {
         method: 'builds.create',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nbuild = stainless.builds.create(project: "project", revision: "string")\n\nputs(build)',
       },
-      typescript: {
-        method: 'client.builds.create',
+      cli: {
+        method: 'builds create',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst build = await client.builds.create({ project: 'project', revision: 'string' });\n\nconsole.log(build.id);",
+          "stl builds create \\\n  --api-key 'My API Key' \\\n  --project project \\\n  --revision string",
+      },
+      php: {
+        method: 'builds->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$build = $client->builds->create(\n  project: 'project',\n  revision: 'string',\n  allowEmpty: true,\n  branch: 'branch',\n  commitMessage: 'commit_message',\n  enableAICommitMessage: true,\n  targetCommitMessages: [\n    'cli' => 'cli',\n    'csharp' => 'csharp',\n    'go' => 'go',\n    'java' => 'java',\n    'kotlin' => 'kotlin',\n    'node' => 'node',\n    'openAPI' => 'openapi',\n    'php' => 'php',\n    'python' => 'python',\n    'ruby' => 'ruby',\n    'sql' => 'sql',\n    'terraform' => 'terraform',\n    'typescript' => 'typescript',\n  ],\n  targets: [Target::NODE],\n);\n\nvar_dump($build);",
+      },
+      csharp: {
+        method: 'Builds.Create',
+        example:
+          'BuildCreateParams parameters = new()\n{\n    Project = "project",\n    Revision = "string",\n};\n\nvar build = await client.Builds.Create(parameters);\n\nConsole.WriteLine(build);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/builds \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "project": "project",\n          "revision": "string"\n        }\'',
       },
     },
   },
@@ -1055,23 +1055,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.builds.retrieve(buildId: string): { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }`\n\n**get** `/v0/builds/{buildId}`\n\nRetrieve a build by its ID.\n\n### Parameters\n\n- `buildId: string`\n  Build ID\n\n### Returns\n\n- `{ id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n\n  - `id: string`\n  - `config_commit: string`\n  - `created_at: string`\n  - `documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }`\n  - `object: 'build'`\n  - `org: string`\n  - `project: string`\n  - `targets: { cli?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; csharp?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; go?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; java?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; kotlin?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; node?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; openapi?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; php?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; python?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; ruby?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; sql?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; terraform?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; typescript?: { commit: { status: 'not_started'; } | { status: 'waiting'; } | { status: 'queued'; } | { status: 'in_progress'; } | { commit: commit; completed: object; completed_at: string; conclusion: string; merge_conflict_pr: object; status: 'completed'; }; install_url: string; object: 'build_target'; status: 'not_started' | 'codegen' | 'postgen' | 'completed'; build?: object | object | object | object | object; lint?: object | object | object | object | object; test?: object | object | object | object | object; }; }`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst build = await client.builds.retrieve('buildId');\n\nconsole.log(build);\n```",
     perLanguage: {
-      cli: {
-        method: 'builds retrieve',
-        example: "stl builds retrieve \\\n  --api-key 'My API Key' \\\n  --build-id buildId",
-      },
-      csharp: {
-        method: 'Builds.Retrieve',
+      typescript: {
+        method: 'client.builds.retrieve',
         example:
-          'BuildRetrieveParams parameters = new() { BuildID = "buildId" };\n\nvar build = await client.Builds.Retrieve(parameters);\n\nConsole.WriteLine(build);',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst build = await client.builds.retrieve('buildId');\n\nconsole.log(build.id);",
       },
-      go: {
-        method: 'client.Builds.Get',
+      python: {
+        method: 'builds.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbuild, err := client.Builds.Get(context.TODO(), "buildId")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", build.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/builds/$BUILD_ID \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nbuild = client.builds.retrieve(\n    "buildId",\n)\nprint(build.id)',
       },
       java: {
         method: 'builds().retrieve',
@@ -1083,25 +1075,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.Build\nimport com.configure_me_stainless_v0.api.models.builds.BuildRetrieveParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val build: Build = client.builds().retrieve("buildId")\n}',
       },
-      php: {
-        method: 'builds->retrieve',
+      go: {
+        method: 'client.Builds.Get',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$build = $client->builds->retrieve('buildId');\n\nvar_dump($build);",
-      },
-      python: {
-        method: 'builds.retrieve',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nbuild = client.builds.retrieve(\n    "buildId",\n)\nprint(build.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbuild, err := client.Builds.Get(context.TODO(), "buildId")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", build.ID)\n}\n',
       },
       ruby: {
         method: 'builds.retrieve',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nbuild = stainless.builds.retrieve("buildId")\n\nputs(build)',
       },
-      typescript: {
-        method: 'client.builds.retrieve',
+      cli: {
+        method: 'builds retrieve',
+        example: "stl builds retrieve \\\n  --api-key 'My API Key' \\\n  --build-id buildId",
+      },
+      php: {
+        method: 'builds->retrieve',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst build = await client.builds.retrieve('buildId');\n\nconsole.log(build.id);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$build = $client->builds->retrieve('buildId');\n\nvar_dump($build);",
+      },
+      csharp: {
+        method: 'Builds.Retrieve',
+        example:
+          'BuildRetrieveParams parameters = new() { BuildID = "buildId" };\n\nvar build = await client.Builds.Retrieve(parameters);\n\nConsole.WriteLine(build);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/builds/$BUILD_ID \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -1125,24 +1125,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## compare\n\n`client.builds.compare(base: { branch: string; revision: string | object; commit_message?: string; }, head: { branch: string; revision: string | object; commit_message?: string; }, project: string, targets?: string[]): { base: build; head: build; }`\n\n**post** `/v0/builds/compare`\n\nCreate two builds whose outputs can be directly compared with each other.\n\nCreated builds _modify_ their project branches so that their latest sets of\nconfig files point to the ones specified by the input revision.\n\nThis endpoint is useful because a build has more inputs than the set of\nconfig files it uses, so comparing two builds directly may return spurious\ndifferences. Builds made via this endpoint are guaranteed to have\ndifferences arising from the set of config files, and any custom code.\n\n### Parameters\n\n- `base: { branch: string; revision: string | object; commit_message?: string; }`\n  Parameters for the base build\n  - `branch: string`\n    Branch to use. When using a branch name as revision, this must match or be\nomitted.\n  - `revision: string | object`\n    Specifies what to build: a branch name, a commit SHA, or file contents.\n  - `commit_message?: string`\n    Optional commit message to use when creating a new commit.\n\n- `head: { branch: string; revision: string | object; commit_message?: string; }`\n  Parameters for the head build\n  - `branch: string`\n    Branch to use. When using a branch name as revision, this must match or be\nomitted.\n  - `revision: string | object`\n    Specifies what to build: a branch name, a commit SHA, or file contents.\n  - `commit_message?: string`\n    Optional commit message to use when creating a new commit.\n\n- `project: string`\n  Project name\n\n- `targets?: string[]`\n  Optional list of SDK targets to build. If not specified, all configured\ntargets will be built.\n\n### Returns\n\n- `{ base: { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }; head: { id: string; config_commit: string; created_at: string; documented_spec: object | object; object: 'build'; org: string; project: string; targets: object; updated_at: string; }; }`\n\n  - `base: { id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n  - `head: { id: string; config_commit: string; created_at: string; documented_spec: { content: string; type: 'content'; } | { expires: string; type: 'url'; url: string; }; object: 'build'; org: string; project: string; targets: { cli?: object; csharp?: object; go?: object; java?: object; kotlin?: object; node?: object; openapi?: object; php?: object; python?: object; ruby?: object; sql?: object; terraform?: object; typescript?: object; }; updated_at: string; }`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst response = await client.builds.compare({\n  base: { branch: 'branch', revision: 'string' },\n  head: { branch: 'branch', revision: 'string' },\n  project: 'project',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'builds compare',
+      typescript: {
+        method: 'client.builds.compare',
         example:
-          "stl builds compare \\\n  --api-key 'My API Key' \\\n  --base '{branch: branch, revision: string}' \\\n  --head '{branch: branch, revision: string}' \\\n  --project project",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.builds.compare({\n  base: { branch: 'branch', revision: 'string' },\n  head: { branch: 'branch', revision: 'string' },\n  project: 'project',\n});\n\nconsole.log(response.base);",
       },
-      csharp: {
-        method: 'Builds.Compare',
+      python: {
+        method: 'builds.compare',
         example:
-          'BuildCompareParams parameters = new()\n{\n    Base = new()\n    {\n        Branch = "branch",\n        Revision = "string",\n        CommitMessage = "commit_message",\n    },\n    Head = new()\n    {\n        Branch = "branch",\n        Revision = "string",\n        CommitMessage = "commit_message",\n    },\n    Project = "project",\n};\n\nvar response = await client.Builds.Compare(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Builds.Compare',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Builds.Compare(context.TODO(), stainless.BuildCompareParams{\n\t\tBase: stainless.BuildCompareParamsBase{\n\t\t\tBranch: "branch",\n\t\t\tRevision: stainless.BuildCompareParamsBaseRevisionUnion{\n\t\t\t\tOfString: stainless.String("string"),\n\t\t\t},\n\t\t},\n\t\tHead: stainless.BuildCompareParamsHead{\n\t\t\tBranch: "branch",\n\t\t\tRevision: stainless.BuildCompareParamsHeadRevisionUnion{\n\t\t\t\tOfString: stainless.String("string"),\n\t\t\t},\n\t\t},\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Base)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/builds/compare \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "base": {\n            "branch": "branch",\n            "revision": "string"\n          },\n          "head": {\n            "branch": "branch",\n            "revision": "string"\n          },\n          "project": "project"\n        }\'',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.builds.compare(\n    base={\n        "branch": "branch",\n        "revision": "string",\n    },\n    head={\n        "branch": "branch",\n        "revision": "string",\n    },\n    project="project",\n)\nprint(response.base)',
       },
       java: {
         method: 'builds().compare',
@@ -1154,25 +1145,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.BuildCompareParams\nimport com.configure_me_stainless_v0.api.models.builds.BuildCompareResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val params: BuildCompareParams = BuildCompareParams.builder()\n        .base(BuildCompareParams.Base.builder()\n            .branch("branch")\n            .revision("string")\n            .build())\n        .head(BuildCompareParams.Head.builder()\n            .branch("branch")\n            .revision("string")\n            .build())\n        .project("project")\n        .build()\n    val response: BuildCompareResponse = client.builds().compare(params)\n}',
       },
-      php: {
-        method: 'builds->compare',
+      go: {
+        method: 'client.Builds.Compare',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->builds->compare(\n  base: [\n    'branch' => 'branch',\n    'revision' => 'string',\n    'commitMessage' => 'commit_message',\n  ],\n  head: [\n    'branch' => 'branch',\n    'revision' => 'string',\n    'commitMessage' => 'commit_message',\n  ],\n  project: 'project',\n  targets: [Target::NODE],\n);\n\nvar_dump($response);",
-      },
-      python: {
-        method: 'builds.compare',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.builds.compare(\n    base={\n        "branch": "branch",\n        "revision": "string",\n    },\n    head={\n        "branch": "branch",\n        "revision": "string",\n    },\n    project="project",\n)\nprint(response.base)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Builds.Compare(context.TODO(), stainless.BuildCompareParams{\n\t\tBase: stainless.BuildCompareParamsBase{\n\t\t\tBranch: "branch",\n\t\t\tRevision: stainless.BuildCompareParamsBaseRevisionUnion{\n\t\t\t\tOfString: stainless.String("string"),\n\t\t\t},\n\t\t},\n\t\tHead: stainless.BuildCompareParamsHead{\n\t\t\tBranch: "branch",\n\t\t\tRevision: stainless.BuildCompareParamsHeadRevisionUnion{\n\t\t\t\tOfString: stainless.String("string"),\n\t\t\t},\n\t\t},\n\t\tProject: stainless.String("project"),\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Base)\n}\n',
       },
       ruby: {
         method: 'builds.compare',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nresponse = stainless.builds.compare(\n  base: {branch: "branch", revision: "string"},\n  head: {branch: "branch", revision: "string"},\n  project: "project"\n)\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.builds.compare',
+      cli: {
+        method: 'builds compare',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.builds.compare({\n  base: { branch: 'branch', revision: 'string' },\n  head: { branch: 'branch', revision: 'string' },\n  project: 'project',\n});\n\nconsole.log(response.base);",
+          "stl builds compare \\\n  --api-key 'My API Key' \\\n  --base '{branch: branch, revision: string}' \\\n  --head '{branch: branch, revision: string}' \\\n  --project project",
+      },
+      php: {
+        method: 'builds->compare',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$response = $client->builds->compare(\n  base: [\n    'branch' => 'branch',\n    'revision' => 'string',\n    'commitMessage' => 'commit_message',\n  ],\n  head: [\n    'branch' => 'branch',\n    'revision' => 'string',\n    'commitMessage' => 'commit_message',\n  ],\n  project: 'project',\n  targets: [Target::NODE],\n);\n\nvar_dump($response);",
+      },
+      csharp: {
+        method: 'Builds.Compare',
+        example:
+          'BuildCompareParams parameters = new()\n{\n    Base = new()\n    {\n        Branch = "branch",\n        Revision = "string",\n        CommitMessage = "commit_message",\n    },\n    Head = new()\n    {\n        Branch = "branch",\n        Revision = "string",\n        CommitMessage = "commit_message",\n    },\n    Project = "project",\n};\n\nvar response = await client.Builds.Compare(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/builds/compare \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY" \\\n    -d \'{\n          "base": {\n            "branch": "branch",\n            "revision": "string"\n          },\n          "head": {\n            "branch": "branch",\n            "revision": "string"\n          },\n          "project": "project"\n        }\'',
       },
     },
   },
@@ -1197,23 +1197,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.builds.diagnostics.list(buildId: string, cursor?: string, limit?: number, severity?: 'fatal' | 'error' | 'warning' | 'note', targets?: string): { code: string; ignored: boolean; level: 'fatal' | 'error' | 'warning' | 'note'; message: string; more: build_diagnostic_more; config_ref?: string; oas_ref?: string; }`\n\n**get** `/v0/builds/{buildId}/diagnostics`\n\nGet the list of diagnostics for a given build.\n\nIf no language targets are specified, diagnostics for all languages are returned.\n\n### Parameters\n\n- `buildId: string`\n  Build ID\n\n- `cursor?: string`\n  Pagination cursor from a previous response\n\n- `limit?: number`\n  Maximum number of diagnostics to return, defaults to 100 (maximum: 100)\n\n- `severity?: 'fatal' | 'error' | 'warning' | 'note'`\n  Includes the given severity and above (fatal > error > warning > note).\n\n- `targets?: string`\n  Optional comma-delimited list of language targets to filter diagnostics by\n\n### Returns\n\n- `{ code: string; ignored: boolean; level: 'fatal' | 'error' | 'warning' | 'note'; message: string; more: { markdown: string; type: 'markdown'; } | { raw: string; type: 'raw'; }; config_ref?: string; oas_ref?: string; }`\n\n  - `code: string`\n  - `ignored: boolean`\n  - `level: 'fatal' | 'error' | 'warning' | 'note'`\n  - `message: string`\n  - `more: { markdown: string; type: 'markdown'; } | { raw: string; type: 'raw'; }`\n  - `config_ref?: string`\n  - `oas_ref?: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\n// Automatically fetches more pages as needed.\nfor await (const buildDiagnostic of client.builds.diagnostics.list('buildId')) {\n  console.log(buildDiagnostic);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'diagnostics list',
-        example: "stl builds:diagnostics list \\\n  --api-key 'My API Key' \\\n  --build-id buildId",
-      },
-      csharp: {
-        method: 'Builds.Diagnostics.List',
+      typescript: {
+        method: 'client.builds.diagnostics.list',
         example:
-          'DiagnosticListParams parameters = new() { BuildID = "buildId" };\n\nvar page = await client.Builds.Diagnostics.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const buildDiagnostic of client.builds.diagnostics.list('buildId')) {\n  console.log(buildDiagnostic.code);\n}",
       },
-      go: {
-        method: 'client.Builds.Diagnostics.List',
+      python: {
+        method: 'builds.diagnostics.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Builds.Diagnostics.List(\n\t\tcontext.TODO(),\n\t\t"buildId",\n\t\tstainless.BuildDiagnosticListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/builds/$BUILD_ID/diagnostics \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\npage = client.builds.diagnostics.list(\n    build_id="buildId",\n)\npage = page.data[0]\nprint(page.code)',
       },
       java: {
         method: 'builds().diagnostics().list',
@@ -1225,25 +1217,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.diagnostics.DiagnosticListPage\nimport com.configure_me_stainless_v0.api.models.builds.diagnostics.DiagnosticListParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val page: DiagnosticListPage = client.builds().diagnostics().list("buildId")\n}',
       },
-      php: {
-        method: 'builds->diagnostics->list',
+      go: {
+        method: 'client.Builds.Diagnostics.List',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->builds->diagnostics->list(\n  'buildId', cursor: 'cursor', limit: 1, severity: 'fatal', targets: 'targets'\n);\n\nvar_dump($page);",
-      },
-      python: {
-        method: 'builds.diagnostics.list',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\npage = client.builds.diagnostics.list(\n    build_id="buildId",\n)\npage = page.data[0]\nprint(page.code)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Builds.Diagnostics.List(\n\t\tcontext.TODO(),\n\t\t"buildId",\n\t\tstainless.BuildDiagnosticListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'builds.diagnostics.list',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\npage = stainless.builds.diagnostics.list("buildId")\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.builds.diagnostics.list',
+      cli: {
+        method: 'diagnostics list',
+        example: "stl builds:diagnostics list \\\n  --api-key 'My API Key' \\\n  --build-id buildId",
+      },
+      php: {
+        method: 'builds->diagnostics->list',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const buildDiagnostic of client.builds.diagnostics.list('buildId')) {\n  console.log(buildDiagnostic.code);\n}",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$page = $client->builds->diagnostics->list(\n  'buildId', cursor: 'cursor', limit: 1, severity: 'fatal', targets: 'targets'\n);\n\nvar_dump($page);",
+      },
+      csharp: {
+        method: 'Builds.Diagnostics.List',
+        example:
+          'DiagnosticListParams parameters = new() { BuildID = "buildId" };\n\nvar page = await client.Builds.Diagnostics.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/builds/$BUILD_ID/diagnostics \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -1268,24 +1268,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.builds.targetOutputs.retrieve(build_id: string, target: string, type: string, output?: 'url' | 'git', path?: string): { output: 'url'; target: target; type: string; url: string; path?: string; } | { token: string; output: 'git'; ref: string; target: target; type: string; url: string; }`\n\n**get** `/v0/build_target_outputs`\n\nRetrieve a method to download an output for a given build target.\n\nIf the requested type of output is `source`, and the requested output\nmethod is `url`, a download link to a tarball of the source files is\nreturned. If the requested output method is `git`, a Git remote, ref,\nand access token (if necessary) is returned.\n\nOtherwise, the possible types of outputs are specific to the requested\ntarget, and the output method _must_ be `url`. See the documentation for\n`type` for more information.\n\n### Parameters\n\n- `build_id: string`\n  Build ID\n\n- `target: string`\n  SDK language target name\n\n- `type: string`\n\n- `output?: 'url' | 'git'`\n  Output format: url (download URL) or git (temporary access token).\n\n- `path?: string`\n  The path of the file to get when used with \"type\": \"file\".\n\n### Returns\n\n- `{ output: 'url'; target: string; type: string; url: string; path?: string; } | { token: string; output: 'git'; ref: string; target: string; type: string; url: string; }`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst targetOutput = await client.builds.targetOutputs.retrieve({\n  build_id: 'build_id',\n  target: 'node',\n  type: 'source',\n});\n\nconsole.log(targetOutput);\n```",
     perLanguage: {
-      cli: {
-        method: 'target_outputs retrieve',
+      typescript: {
+        method: 'client.builds.targetOutputs.retrieve',
         example:
-          "stl builds:target-outputs retrieve \\\n  --api-key 'My API Key' \\\n  --build-id build_id \\\n  --target node \\\n  --type source",
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst targetOutput = await client.builds.targetOutputs.retrieve({\n  build_id: 'build_id',\n  target: 'node',\n  type: 'source',\n});\n\nconsole.log(targetOutput);",
       },
-      csharp: {
-        method: 'Builds.TargetOutputs.Retrieve',
+      python: {
+        method: 'builds.target_outputs.retrieve',
         example:
-          'TargetOutputRetrieveParams parameters = new()\n{\n    BuildID = "build_id",\n    Target = Target.Node,\n    Type = Type.Source,\n};\n\nvar targetOutput = await client.Builds.TargetOutputs.Retrieve(parameters);\n\nConsole.WriteLine(targetOutput);',
-      },
-      go: {
-        method: 'client.Builds.TargetOutputs.Get',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\ttargetOutput, err := client.Builds.TargetOutputs.Get(context.TODO(), stainless.BuildTargetOutputGetParams{\n\t\tBuildID: "build_id",\n\t\tTarget:  stainless.BuildTargetOutputGetParamsTargetNode,\n\t\tType:    stainless.BuildTargetOutputGetParamsTypeSource,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", targetOutput)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/build_target_outputs \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\ntarget_output = client.builds.target_outputs.retrieve(\n    build_id="build_id",\n    target="node",\n    type="source",\n)\nprint(target_output)',
       },
       java: {
         method: 'builds().targetOutputs().retrieve',
@@ -1297,25 +1288,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.builds.targetoutputs.TargetOutputRetrieveParams\nimport com.configure_me_stainless_v0.api.models.builds.targetoutputs.TargetOutputRetrieveResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val params: TargetOutputRetrieveParams = TargetOutputRetrieveParams.builder()\n        .buildId("build_id")\n        .target(TargetOutputRetrieveParams.Target.NODE)\n        .type(TargetOutputRetrieveParams.Type.SOURCE)\n        .build()\n    val targetOutput: TargetOutputRetrieveResponse = client.builds().targetOutputs().retrieve(params)\n}',
       },
-      php: {
-        method: 'builds->targetOutputs->retrieve',
+      go: {
+        method: 'client.Builds.TargetOutputs.Get',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$targetOutput = $client->builds->targetOutputs->retrieve(\n  buildID: 'build_id',\n  target: 'node',\n  type: 'source',\n  output: 'url',\n  path: 'path',\n);\n\nvar_dump($targetOutput);",
-      },
-      python: {
-        method: 'builds.target_outputs.retrieve',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\ntarget_output = client.builds.target_outputs.retrieve(\n    build_id="build_id",\n    target="node",\n    type="source",\n)\nprint(target_output)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\ttargetOutput, err := client.Builds.TargetOutputs.Get(context.TODO(), stainless.BuildTargetOutputGetParams{\n\t\tBuildID: "build_id",\n\t\tTarget:  stainless.BuildTargetOutputGetParamsTargetNode,\n\t\tType:    stainless.BuildTargetOutputGetParamsTypeSource,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", targetOutput)\n}\n',
       },
       ruby: {
         method: 'builds.target_outputs.retrieve',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\ntarget_output = stainless.builds.target_outputs.retrieve(build_id: "build_id", target: :node, type: :source)\n\nputs(target_output)',
       },
-      typescript: {
-        method: 'client.builds.targetOutputs.retrieve',
+      cli: {
+        method: 'target_outputs retrieve',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst targetOutput = await client.builds.targetOutputs.retrieve({\n  build_id: 'build_id',\n  target: 'node',\n  type: 'source',\n});\n\nconsole.log(targetOutput);",
+          "stl builds:target-outputs retrieve \\\n  --api-key 'My API Key' \\\n  --build-id build_id \\\n  --target node \\\n  --type source",
+      },
+      php: {
+        method: 'builds->targetOutputs->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$targetOutput = $client->builds->targetOutputs->retrieve(\n  buildID: 'build_id',\n  target: 'node',\n  type: 'source',\n  output: 'url',\n  path: 'path',\n);\n\nvar_dump($targetOutput);",
+      },
+      csharp: {
+        method: 'Builds.TargetOutputs.Retrieve',
+        example:
+          'TargetOutputRetrieveParams parameters = new()\n{\n    BuildID = "build_id",\n    Target = Target.Node,\n    Type = Type.Source,\n};\n\nvar targetOutput = await client.Builds.TargetOutputs.Retrieve(parameters);\n\nConsole.WriteLine(targetOutput);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/build_target_outputs \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -1332,23 +1332,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.orgs.list(): { data: org[]; has_more: boolean; next_cursor?: string; }`\n\n**get** `/v0/orgs`\n\nList organizations accessible to the current authentication method.\n\n### Returns\n\n- `{ data: { display_name: string; enable_ai_commit_messages: boolean; object: 'org'; slug: string; }[]; has_more: boolean; next_cursor?: string; }`\n\n  - `data: { display_name: string; enable_ai_commit_messages: boolean; object: 'org'; slug: string; }[]`\n  - `has_more: boolean`\n  - `next_cursor?: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst orgs = await client.orgs.list();\n\nconsole.log(orgs);\n```",
     perLanguage: {
-      cli: {
-        method: 'orgs list',
-        example: "stl orgs list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Orgs.List',
+      typescript: {
+        method: 'client.orgs.list',
         example:
-          'OrgListParams parameters = new();\n\nvar orgs = await client.Orgs.List(parameters);\n\nConsole.WriteLine(orgs);',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst orgs = await client.orgs.list();\n\nconsole.log(orgs.data);",
       },
-      go: {
-        method: 'client.Orgs.List',
+      python: {
+        method: 'orgs.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\torgs, err := client.Orgs.List(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", orgs.Data)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/orgs \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\norgs = client.orgs.list()\nprint(orgs.data)',
       },
       java: {
         method: 'orgs().list',
@@ -1360,25 +1352,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.orgs.OrgListParams\nimport com.configure_me_stainless_v0.api.models.orgs.OrgListResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val orgs: OrgListResponse = client.orgs().list()\n}',
       },
-      php: {
-        method: 'orgs->list',
+      go: {
+        method: 'client.Orgs.List',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$orgs = $client->orgs->list();\n\nvar_dump($orgs);",
-      },
-      python: {
-        method: 'orgs.list',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\norgs = client.orgs.list()\nprint(orgs.data)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\torgs, err := client.Orgs.List(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", orgs.Data)\n}\n',
       },
       ruby: {
         method: 'orgs.list',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\norgs = stainless.orgs.list\n\nputs(orgs)',
       },
-      typescript: {
-        method: 'client.orgs.list',
+      cli: {
+        method: 'orgs list',
+        example: "stl orgs list \\\n  --api-key 'My API Key'",
+      },
+      php: {
+        method: 'orgs->list',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst orgs = await client.orgs.list();\n\nconsole.log(orgs.data);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$orgs = $client->orgs->list();\n\nvar_dump($orgs);",
+      },
+      csharp: {
+        method: 'Orgs.List',
+        example:
+          'OrgListParams parameters = new();\n\nvar orgs = await client.Orgs.List(parameters);\n\nConsole.WriteLine(orgs);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/orgs \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -1395,23 +1395,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.orgs.retrieve(org: string): { display_name: string; enable_ai_commit_messages: boolean; object: 'org'; slug: string; }`\n\n**get** `/v0/orgs/{org}`\n\nRetrieve an organization by name.\n\n### Parameters\n\n- `org: string`\n\n### Returns\n\n- `{ display_name: string; enable_ai_commit_messages: boolean; object: 'org'; slug: string; }`\n\n  - `display_name: string`\n  - `enable_ai_commit_messages: boolean`\n  - `object: 'org'`\n  - `slug: string`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst org = await client.orgs.retrieve('org');\n\nconsole.log(org);\n```",
     perLanguage: {
-      cli: {
-        method: 'orgs retrieve',
-        example: "stl orgs retrieve \\\n  --api-key 'My API Key' \\\n  --org org",
-      },
-      csharp: {
-        method: 'Orgs.Retrieve',
+      typescript: {
+        method: 'client.orgs.retrieve',
         example:
-          'OrgRetrieveParams parameters = new() { Org = "org" };\n\nvar org = await client.Orgs.Retrieve(parameters);\n\nConsole.WriteLine(org);',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst org = await client.orgs.retrieve('org');\n\nconsole.log(org.display_name);",
       },
-      go: {
-        method: 'client.Orgs.Get',
+      python: {
+        method: 'orgs.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\torg, err := client.Orgs.Get(context.TODO(), "org")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", org.DisplayName)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/orgs/$ORG \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\norg = client.orgs.retrieve(\n    "org",\n)\nprint(org.display_name)',
       },
       java: {
         method: 'orgs().retrieve',
@@ -1423,25 +1415,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.orgs.Org\nimport com.configure_me_stainless_v0.api.models.orgs.OrgRetrieveParams\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val org: Org = client.orgs().retrieve("org")\n}',
       },
-      php: {
-        method: 'orgs->retrieve',
+      go: {
+        method: 'client.Orgs.Get',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$org = $client->orgs->retrieve('org');\n\nvar_dump($org);",
-      },
-      python: {
-        method: 'orgs.retrieve',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\norg = client.orgs.retrieve(\n    "org",\n)\nprint(org.display_name)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\torg, err := client.Orgs.Get(context.TODO(), "org")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", org.DisplayName)\n}\n',
       },
       ruby: {
         method: 'orgs.retrieve',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\norg = stainless.orgs.retrieve("org")\n\nputs(org)',
       },
-      typescript: {
-        method: 'client.orgs.retrieve',
+      cli: {
+        method: 'orgs retrieve',
+        example: "stl orgs retrieve \\\n  --api-key 'My API Key' \\\n  --org org",
+      },
+      php: {
+        method: 'orgs->retrieve',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst org = await client.orgs.retrieve('org');\n\nconsole.log(org.display_name);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$org = $client->orgs->retrieve('org');\n\nvar_dump($org);",
+      },
+      csharp: {
+        method: 'Orgs.Retrieve',
+        example:
+          'OrgRetrieveParams parameters = new() { Org = "org" };\n\nvar org = await client.Orgs.Retrieve(parameters);\n\nConsole.WriteLine(org);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/orgs/$ORG \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
@@ -1457,23 +1457,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.user.retrieve(): { id: string; email: string; github: object; name: string; object: 'user'; }`\n\n**get** `/v0/user`\n\nRetrieve the currently authenticated user's information.\n\n### Returns\n\n- `{ id: string; email: string; github: { username: string; }; name: string; object: 'user'; }`\n\n  - `id: string`\n  - `email: string`\n  - `github: { username: string; }`\n  - `name: string`\n  - `object: 'user'`\n\n### Example\n\n```typescript\nimport Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless();\n\nconst user = await client.user.retrieve();\n\nconsole.log(user);\n```",
     perLanguage: {
-      cli: {
-        method: 'user retrieve',
-        example: "stl user retrieve \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'User.Retrieve',
+      typescript: {
+        method: 'client.user.retrieve',
         example:
-          'UserRetrieveParams parameters = new();\n\nvar user = await client.User.Retrieve(parameters);\n\nConsole.WriteLine(user);',
+          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst user = await client.user.retrieve();\n\nconsole.log(user.id);",
       },
-      go: {
-        method: 'client.User.Get',
+      python: {
+        method: 'user.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tuser, err := client.User.Get(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", user.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.stainless.com/v0/user \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
+          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nuser = client.user.retrieve()\nprint(user.id)',
       },
       java: {
         method: 'user().retrieve',
@@ -1485,25 +1477,33 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.configure_me_stainless_v0.api.example\n\nimport com.configure_me_stainless_v0.api.client.StainlessClient\nimport com.configure_me_stainless_v0.api.client.okhttp.StainlessOkHttpClient\nimport com.configure_me_stainless_v0.api.models.user.UserRetrieveParams\nimport com.configure_me_stainless_v0.api.models.user.UserRetrieveResponse\n\nfun main() {\n    val client: StainlessClient = StainlessOkHttpClient.fromEnv()\n\n    val user: UserRetrieveResponse = client.user().retrieve()\n}',
       },
-      php: {
-        method: 'user->retrieve',
+      go: {
+        method: 'client.User.Get',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$user = $client->user->retrieve();\n\nvar_dump($user);",
-      },
-      python: {
-        method: 'user.retrieve',
-        example:
-          'import os\nfrom stainless_v0 import Stainless\n\nclient = Stainless(\n    api_key=os.environ.get("STAINLESS_API_KEY"),  # This is the default and can be omitted\n)\nuser = client.user.retrieve()\nprint(user.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-api/stainless-api-go"\n\t"github.com/stainless-api/stainless-api-go/option"\n)\n\nfunc main() {\n\tclient := stainless.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tuser, err := client.User.Get(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", user.ID)\n}\n',
       },
       ruby: {
         method: 'user.retrieve',
         example:
           'require "stainless_v0"\n\nstainless = StainlessV0::Client.new(\n  api_key: "My API Key",\n  environment: "staging" # defaults to "production"\n)\n\nuser = stainless.user.retrieve\n\nputs(user)',
       },
-      typescript: {
-        method: 'client.user.retrieve',
+      cli: {
+        method: 'user retrieve',
+        example: "stl user retrieve \\\n  --api-key 'My API Key'",
+      },
+      php: {
+        method: 'user->retrieve',
         example:
-          "import Stainless from '@stainless-api/sdk';\n\nconst client = new Stainless({\n  apiKey: process.env['STAINLESS_API_KEY'], // This is the default and can be omitted\n});\n\nconst user = await client.user.retrieve();\n\nconsole.log(user.id);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key', environment: 'staging');\n\n$user = $client->user->retrieve();\n\nvar_dump($user);",
+      },
+      csharp: {
+        method: 'User.Retrieve',
+        example:
+          'UserRetrieveParams parameters = new();\n\nvar user = await client.User.Retrieve(parameters);\n\nConsole.WriteLine(user);',
+      },
+      http: {
+        example:
+          'curl https://api.stainless.com/v0/user \\\n    -H "Authorization: Bearer $STAINLESS_API_KEY"',
       },
     },
   },
