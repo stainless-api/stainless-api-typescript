@@ -9,8 +9,11 @@ export class Configs extends APIResource {
   /**
    * Retrieve the configuration files for a given project.
    */
-  retrieve(params: ConfigRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<ConfigRetrieveResponse> {
-    const { project = this._client.project, ...query } = params ?? {}
+  retrieve(
+    params: ConfigRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ConfigRetrieveResponse> {
+    const { project = this._client.project, ...query } = params ?? {};
     return this._client.get(path`/v0/projects/${project}/configs`, { query, ...options });
   }
 
@@ -18,7 +21,7 @@ export class Configs extends APIResource {
    * Generate suggestions for changes to config files based on an OpenAPI spec.
    */
   guess(params: ConfigGuessParams, options?: RequestOptions): APIPromise<ConfigGuessResponse> {
-    const { project = this._client.project, ...body } = params
+    const { project = this._client.project, ...body } = params;
     return this._client.post(path`/v0/projects/${project}/configs/guess`, { body, ...options });
   }
 }
@@ -26,7 +29,7 @@ export class Configs extends APIResource {
 /**
  * Config files contents
  */
-export type ConfigRetrieveResponse = { [key: string]: ConfigRetrieveResponse.item }
+export type ConfigRetrieveResponse = { [key: string]: ConfigRetrieveResponse.item };
 
 export namespace ConfigRetrieveResponse {
   export interface item {
@@ -40,7 +43,7 @@ export namespace ConfigRetrieveResponse {
 /**
  * Config files contents
  */
-export type ConfigGuessResponse = { [key: string]: ConfigGuessResponse.item }
+export type ConfigGuessResponse = { [key: string]: ConfigGuessResponse.item };
 
 export namespace ConfigGuessResponse {
   export interface item {
@@ -90,6 +93,6 @@ export declare namespace Configs {
     type ConfigRetrieveResponse as ConfigRetrieveResponse,
     type ConfigGuessResponse as ConfigGuessResponse,
     type ConfigRetrieveParams as ConfigRetrieveParams,
-    type ConfigGuessParams as ConfigGuessParams
+    type ConfigGuessParams as ConfigGuessParams,
   };
 }

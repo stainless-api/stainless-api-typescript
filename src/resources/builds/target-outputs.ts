@@ -18,12 +18,17 @@ export class TargetOutputs extends APIResource {
    * and the output method _must_ be `url`. See the documentation for `type` for more
    * information.
    */
-  retrieve(query: TargetOutputRetrieveParams, options?: RequestOptions): APIPromise<TargetOutputRetrieveResponse> {
+  retrieve(
+    query: TargetOutputRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<TargetOutputRetrieveResponse> {
     return this._client.get('/v0/build_target_outputs', { query, ...options });
   }
 }
 
-export type TargetOutputRetrieveResponse = TargetOutputRetrieveResponse.URL | TargetOutputRetrieveResponse.Git
+export type TargetOutputRetrieveResponse =
+  | TargetOutputRetrieveResponse.URL
+  | TargetOutputRetrieveResponse.Git;
 
 export namespace TargetOutputRetrieveResponse {
   export interface URL {
@@ -31,7 +36,14 @@ export namespace TargetOutputRetrieveResponse {
 
     target: Shared.Target;
 
-    type: 'source' | 'dist' | 'wheel' | 'openapi-with-transforms' | 'openapi-with-code-samples' | 'openapi-sdk-spec' | 'file';
+    type:
+      | 'source'
+      | 'dist'
+      | 'wheel'
+      | 'openapi-with-transforms'
+      | 'openapi-with-code-samples'
+      | 'openapi-sdk-spec'
+      | 'file';
 
     /**
      * URL for direct download
@@ -60,7 +72,14 @@ export namespace TargetOutputRetrieveResponse {
 
     target: Shared.Target;
 
-    type: 'source' | 'dist' | 'wheel' | 'openapi-with-transforms' | 'openapi-with-code-samples' | 'openapi-sdk-spec' | 'file';
+    type:
+      | 'source'
+      | 'dist'
+      | 'wheel'
+      | 'openapi-with-transforms'
+      | 'openapi-with-code-samples'
+      | 'openapi-sdk-spec'
+      | 'file';
 
     /**
      * URL to git remote
@@ -78,9 +97,29 @@ export interface TargetOutputRetrieveParams {
   /**
    * SDK language target name
    */
-  target: 'node' | 'typescript' | 'python' | 'go' | 'java' | 'kotlin' | 'ruby' | 'terraform' | 'cli' | 'php' | 'csharp' | 'sql' | 'openapi';
+  target:
+    | 'node'
+    | 'typescript'
+    | 'python'
+    | 'go'
+    | 'java'
+    | 'kotlin'
+    | 'ruby'
+    | 'terraform'
+    | 'cli'
+    | 'php'
+    | 'csharp'
+    | 'sql'
+    | 'openapi';
 
-  type: 'source' | 'dist' | 'wheel' | 'openapi-with-transforms' | 'openapi-with-code-samples' | 'openapi-sdk-spec' | 'file';
+  type:
+    | 'source'
+    | 'dist'
+    | 'wheel'
+    | 'openapi-with-transforms'
+    | 'openapi-with-code-samples'
+    | 'openapi-sdk-spec'
+    | 'file';
 
   /**
    * Output format: url (download URL) or git (temporary access token).
@@ -96,6 +135,6 @@ export interface TargetOutputRetrieveParams {
 export declare namespace TargetOutputs {
   export {
     type TargetOutputRetrieveResponse as TargetOutputRetrieveResponse,
-    type TargetOutputRetrieveParams as TargetOutputRetrieveParams
+    type TargetOutputRetrieveParams as TargetOutputRetrieveParams,
   };
 }

@@ -16,31 +16,45 @@ export class Branches extends APIResource {
    * branch will also inherit custom code changes from that branch.
    */
   create(params: BranchCreateParams, options?: RequestOptions): APIPromise<ProjectBranch> {
-    const { project = this._client.project, ...body } = params
+    const { project = this._client.project, ...body } = params;
     return this._client.post(path`/v0/projects/${project}/branches`, { body, ...options });
   }
 
   /**
    * Retrieve a project branch by name.
    */
-  retrieve(branch: string, params: BranchRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<ProjectBranch> {
-    const { project = this._client.project } = params ?? {}
+  retrieve(
+    branch: string,
+    params: BranchRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectBranch> {
+    const { project = this._client.project } = params ?? {};
     return this._client.get(path`/v0/projects/${project}/branches/${branch}`, options);
   }
 
   /**
    * Retrieve a project branch by name.
    */
-  list(params: BranchListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BranchListResponsesPage, BranchListResponse> {
-    const { project = this._client.project, ...query } = params ?? {}
-    return this._client.getAPIList(path`/v0/projects/${project}/branches`, Page<BranchListResponse>, { query, ...options });
+  list(
+    params: BranchListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BranchListResponsesPage, BranchListResponse> {
+    const { project = this._client.project, ...query } = params ?? {};
+    return this._client.getAPIList(path`/v0/projects/${project}/branches`, Page<BranchListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
    * Delete a project branch by name.
    */
-  delete(branch: string, params: BranchDeleteParams | null | undefined = {}, options?: RequestOptions): APIPromise<unknown> {
-    const { project = this._client.project } = params ?? {}
+  delete(
+    branch: string,
+    params: BranchDeleteParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<unknown> {
+    const { project = this._client.project } = params ?? {};
     return this._client.delete(path`/v0/projects/${project}/branches/${branch}`, options);
   }
 
@@ -50,9 +64,16 @@ export class Branches extends APIResource {
    * The branch is rebased onto the `base` branch or commit SHA, inheriting any
    * config and custom code changes.
    */
-  rebase(branch: string, params: BranchRebaseParams | null | undefined = {}, options?: RequestOptions): APIPromise<ProjectBranch> {
-    const { project = this._client.project, base } = params ?? {}
-    return this._client.put(path`/v0/projects/${project}/branches/${branch}/rebase`, { query: { base }, ...options });
+  rebase(
+    branch: string,
+    params: BranchRebaseParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectBranch> {
+    const { project = this._client.project, base } = params ?? {};
+    return this._client.put(path`/v0/projects/${project}/branches/${branch}/rebase`, {
+      query: { base },
+      ...options,
+    });
   }
 
   /**
@@ -61,13 +82,20 @@ export class Branches extends APIResource {
    * If `branch` === `main`, the branch is reset to `target_config_sha`. Otherwise,
    * the branch is reset to `main`.
    */
-  reset(branch: string, params: BranchResetParams | null | undefined = {}, options?: RequestOptions): APIPromise<ProjectBranch> {
-    const { project = this._client.project, target_config_sha } = params ?? {}
-    return this._client.put(path`/v0/projects/${project}/branches/${branch}/reset`, { query: { target_config_sha }, ...options });
+  reset(
+    branch: string,
+    params: BranchResetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ProjectBranch> {
+    const { project = this._client.project, target_config_sha } = params ?? {};
+    return this._client.put(path`/v0/projects/${project}/branches/${branch}/reset`, {
+      query: { target_config_sha },
+      ...options,
+    });
   }
 }
 
-export type BranchListResponsesPage = Page<BranchListResponse>
+export type BranchListResponsesPage = Page<BranchListResponse>;
 
 /**
  * A project branch names a line of development for a project. Like a Git branch,
@@ -197,7 +225,7 @@ export namespace BranchListResponse {
   }
 }
 
-export type BranchDeleteResponse = unknown
+export type BranchDeleteResponse = unknown;
 
 export interface BranchCreateParams {
   /**
@@ -278,6 +306,6 @@ export declare namespace Branches {
     type BranchListParams as BranchListParams,
     type BranchDeleteParams as BranchDeleteParams,
     type BranchRebaseParams as BranchRebaseParams,
-    type BranchResetParams as BranchResetParams
+    type BranchResetParams as BranchResetParams,
   };
 }
