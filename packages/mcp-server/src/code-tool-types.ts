@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { ClientOptions } from '@stainless-api/sdk'
+import { ClientOptions } from '@stainless-api/sdk';
 
 export type WorkerInput = {
   project_name: string;

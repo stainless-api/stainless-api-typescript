@@ -40,8 +40,5 @@ export interface OrgListResponse {
 }
 
 export declare namespace Orgs {
-  export {
-    type Org as Org,
-    type OrgListResponse as OrgListResponse
-  };
+  export { type Org as Org, type OrgListResponse as OrgListResponse };
 }

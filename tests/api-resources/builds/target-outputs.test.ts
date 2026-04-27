@@ -2,15 +2,18 @@
 
 import Stainless from '@stainless-api/sdk';
 
-const client = new Stainless({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Stainless({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource targetOutputs', () => {
   test('retrieve: only required params', async () => {
     const responsePromise = client.builds.targetOutputs.retrieve({
-    build_id: 'build_id',
-    target: 'node',
-    type: 'source',
-  });
+      build_id: 'build_id',
+      target: 'node',
+      type: 'source',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,11 +25,11 @@ describe('resource targetOutputs', () => {
 
   test('retrieve: required and optional params', async () => {
     const response = await client.builds.targetOutputs.retrieve({
-    build_id: 'build_id',
-    target: 'node',
-    type: 'source',
-    output: 'url',
-    path: 'path',
-  });
+      build_id: 'build_id',
+      target: 'node',
+      type: 'source',
+      output: 'url',
+      path: 'path',
+    });
   });
 });
