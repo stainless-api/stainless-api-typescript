@@ -68,12 +68,15 @@ in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User
 If you use Claude Code, you can install the MCP server by running one of the commands below in your terminal.
 
 #### Using the CLI
+
 ```
 claude mcp add stainless -- stl mcp
 ```
 
 #### Using npx
+
 You will need to set your environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
+
 ```
 claude mcp add stainless_api_sdk_mcp_api --header "x-stainless-api-key: My API Key" --transport http https://stainless-v0.stlmcp.com
 ```
