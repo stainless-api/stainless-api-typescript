@@ -144,6 +144,8 @@ export namespace ProjectBranch {
     export interface Repo {
       branch: string;
 
+      host: string;
+
       name: string;
 
       owner: string;
@@ -205,6 +207,8 @@ export namespace BranchListResponse {
   export namespace ConfigCommit {
     export interface Repo {
       branch: string;
+
+      host: string;
 
       name: string;
 

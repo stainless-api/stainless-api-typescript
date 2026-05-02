@@ -141,7 +141,12 @@ export namespace Build {
 }
 
 export interface BuildTarget {
-  commit: BuildTarget.NotStarted | BuildTarget.Queued | BuildTarget.InProgress | BuildTarget.Completed;
+  commit:
+    | BuildTarget.NotStarted
+    | BuildTarget.Waiting
+    | BuildTarget.Queued
+    | BuildTarget.InProgress
+    | BuildTarget.Completed;
 
   install_url: string | null;
 
@@ -159,6 +164,10 @@ export interface BuildTarget {
 export namespace BuildTarget {
   export interface NotStarted {
     status: 'not_started';
+  }
+
+  export interface Waiting {
+    status: 'waiting';
   }
 
   export interface Queued {
@@ -233,6 +242,8 @@ export namespace BuildTarget {
 
       export namespace MergeConflictPr {
         export interface Repo {
+          host: string;
+
           name: string;
 
           owner: string;
@@ -248,6 +259,8 @@ export namespace BuildTarget {
 
     export namespace MergeConflictPr {
       export interface Repo {
+        host: string;
+
         name: string;
 
         owner: string;
@@ -256,11 +269,22 @@ export namespace BuildTarget {
   }
 }
 
-export type CheckStep = CheckStep.NotStarted | CheckStep.Queued | CheckStep.InProgress | CheckStep.Completed;
+export type CheckStep =
+  | CheckStep.NotStarted
+  | CheckStep.Waiting
+  | CheckStep.Queued
+  | CheckStep.InProgress
+  | CheckStep.Completed;
 
 export namespace CheckStep {
   export interface NotStarted {
     status: 'not_started';
+  }
+
+  export interface Waiting {
+    status: 'waiting';
+
+    url: string | null;
   }
 
   export interface Queued {
