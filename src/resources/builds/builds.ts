@@ -347,7 +347,7 @@ export interface BuildCreateParams {
    * Specifies what to build: a branch name, commit SHA, merge command
    * ("base..head"), or file contents.
    */
-  revision: string | { [key: string]: Shared.FileInput };
+  revision: BuildCreateParams.UnionMember0 | string | { [key: string]: Shared.FileInput };
 
   /**
    * Whether to allow empty commits (no changes). Defaults to false.
@@ -386,6 +386,22 @@ export interface BuildCreateParams {
 }
 
 export namespace BuildCreateParams {
+  /**
+   * A merge command combined with explicit file contents. The files are committed to
+   * the merge target (`base`) without performing an auto-merge.
+   */
+  export interface UnionMember0 {
+    /**
+     * File contents to commit directly
+     */
+    files: { [key: string]: Shared.FileInput };
+
+    /**
+     * A merge command in the format "base..head"
+     */
+    merge: string;
+  }
+
   /**
    * Optional commit messages to use for each SDK when making a new commit. SDKs not
    * represented in this object will fallback to the optional `commit_message`
@@ -488,12 +504,30 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents.
      */
-    revision: string | { [key: string]: Shared.FileInput };
+    revision: Base.UnionMember0 | string | { [key: string]: Shared.FileInput };
 
     /**
      * Optional commit message to use when creating a new commit.
      */
     commit_message?: string;
+  }
+
+  export namespace Base {
+    /**
+     * A merge command combined with explicit file contents. The files are committed to
+     * the merge target (`base`) without performing an auto-merge.
+     */
+    export interface UnionMember0 {
+      /**
+       * File contents to commit directly
+       */
+      files: { [key: string]: Shared.FileInput };
+
+      /**
+       * A merge command in the format "base..head"
+       */
+      merge: string;
+    }
   }
 
   /**
@@ -509,12 +543,30 @@ export namespace BuildCompareParams {
     /**
      * Specifies what to build: a branch name, a commit SHA, or file contents.
      */
-    revision: string | { [key: string]: Shared.FileInput };
+    revision: Head.UnionMember0 | string | { [key: string]: Shared.FileInput };
 
     /**
      * Optional commit message to use when creating a new commit.
      */
     commit_message?: string;
+  }
+
+  export namespace Head {
+    /**
+     * A merge command combined with explicit file contents. The files are committed to
+     * the merge target (`base`) without performing an auto-merge.
+     */
+    export interface UnionMember0 {
+      /**
+       * File contents to commit directly
+       */
+      files: { [key: string]: Shared.FileInput };
+
+      /**
+       * A merge command in the format "base..head"
+       */
+      merge: string;
+    }
   }
 }
 

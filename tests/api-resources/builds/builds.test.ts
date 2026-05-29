@@ -9,7 +9,13 @@ const client = new Stainless({
 
 describe('resource builds', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.builds.create({ project: 'project', revision: 'string' });
+    const responsePromise = client.builds.create({
+      project: 'project',
+      revision: {
+        files: { foo: { content: 'content' } },
+        merge: 'merge',
+      },
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +28,10 @@ describe('resource builds', () => {
   test('create: required and optional params', async () => {
     const response = await client.builds.create({
       project: 'project',
-      revision: 'string',
+      revision: {
+        files: { foo: { content: 'content' } },
+        merge: 'merge',
+      },
       allow_empty: true,
       branch: 'branch',
       commit_message: 'commit_message',
@@ -80,8 +89,20 @@ describe('resource builds', () => {
 
   test('compare: only required params', async () => {
     const responsePromise = client.builds.compare({
-      base: { branch: 'branch', revision: 'string' },
-      head: { branch: 'branch', revision: 'string' },
+      base: {
+        branch: 'branch',
+        revision: {
+          files: { foo: { content: 'content' } },
+          merge: 'merge',
+        },
+      },
+      head: {
+        branch: 'branch',
+        revision: {
+          files: { foo: { content: 'content' } },
+          merge: 'merge',
+        },
+      },
       project: 'project',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -97,12 +118,18 @@ describe('resource builds', () => {
     const response = await client.builds.compare({
       base: {
         branch: 'branch',
-        revision: 'string',
+        revision: {
+          files: { foo: { content: 'content' } },
+          merge: 'merge',
+        },
         commit_message: 'commit_message',
       },
       head: {
         branch: 'branch',
-        revision: 'string',
+        revision: {
+          files: { foo: { content: 'content' } },
+          merge: 'merge',
+        },
         commit_message: 'commit_message',
       },
       project: 'project',

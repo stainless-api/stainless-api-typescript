@@ -93,7 +93,12 @@ describe('resource branches', () => {
   });
 
   test('rebase: required and optional params', async () => {
-    const response = await client.projects.branches.rebase('branch', { project: 'project', base: 'base' });
+    const response = await client.projects.branches.rebase('branch', {
+      project: 'project',
+      base: 'base',
+      commit_message: 'commit_message',
+      files: { foo: { content: 'content' } },
+    });
   });
 
   test('reset: only required params', async () => {
