@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as BuildsAPI from '../builds/builds';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
@@ -63,15 +64,19 @@ export class Branches extends APIResource {
    *
    * The branch is rebased onto the `base` branch or commit SHA, inheriting any
    * config and custom code changes.
+   *
+   * If `files` is provided, the auto-rebase is skipped: the branch is hard-reset to
+   * `base` and the provided files are committed on top.
    */
   rebase(
     branch: string,
     params: BranchRebaseParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<ProjectBranch> {
-    const { project = this._client.project, base } = params ?? {};
+    const { project = this._client.project, base, ...body } = params ?? {};
     return this._client.put(path`/v0/projects/${project}/branches/${branch}/rebase`, {
       query: { base },
+      body,
       ...options,
     });
   }
@@ -280,6 +285,18 @@ export interface BranchRebaseParams {
    * Query param: The branch or commit SHA to rebase onto. Defaults to "main".
    */
   base?: string;
+
+  /**
+   * Body param: Optional commit message to use when `files` is provided.
+   */
+  commit_message?: string;
+
+  /**
+   * Body param: File contents to commit directly on top of `base`. When provided,
+   * the auto-rebase is skipped and the branch is hard-reset to `base` before the
+   * files are committed.
+   */
+  files?: { [key: string]: Shared.FileInput };
 }
 
 export interface BranchResetParams {
