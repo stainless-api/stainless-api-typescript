@@ -29,6 +29,7 @@ describe('resource targetOutputs', () => {
       target: 'node',
       type: 'source',
       output: 'url',
+      path: 'path',
     });
   });
 });

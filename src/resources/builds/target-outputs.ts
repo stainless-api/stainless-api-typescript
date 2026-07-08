@@ -15,8 +15,12 @@ export class TargetOutputs extends APIResource {
    * necessary) is returned.
    *
    * Otherwise, the possible types of outputs are specific to the requested target,
-   * and the output method _must_ be `url`. See the documentation for `type` for more
-   * information.
+   * and the output method _must_ be `url` or `content`. See the documentation for
+   * `type` for more information.
+   *
+   * The `content` output method returns the raw content of the output inline,
+   * instead of a download URL, and is only supported for the `openapi-*` and `file`
+   * types.
    */
   retrieve(
     query: TargetOutputRetrieveParams,
@@ -28,7 +32,8 @@ export class TargetOutputs extends APIResource {
 
 export type TargetOutputRetrieveResponse =
   | TargetOutputRetrieveResponse.URL
-  | TargetOutputRetrieveResponse.Git;
+  | TargetOutputRetrieveResponse.Git
+  | TargetOutputRetrieveResponse.Content;
 
 export namespace TargetOutputRetrieveResponse {
   export interface URL {
@@ -42,12 +47,19 @@ export namespace TargetOutputRetrieveResponse {
       | 'wheel'
       | 'openapi-with-transforms'
       | 'openapi-with-code-samples'
-      | 'openapi-sdk-spec';
+      | 'openapi-sdk-spec'
+      | 'file';
 
     /**
      * URL for direct download
      */
     url: string;
+
+    /**
+     * The path of the file, which is only present when using with the type "file"
+     * option.
+     */
+    path?: string;
   }
 
   export interface Git {
@@ -71,12 +83,39 @@ export namespace TargetOutputRetrieveResponse {
       | 'wheel'
       | 'openapi-with-transforms'
       | 'openapi-with-code-samples'
-      | 'openapi-sdk-spec';
+      | 'openapi-sdk-spec'
+      | 'file';
 
     /**
      * URL to git remote
      */
     url: string;
+  }
+
+  export interface Content {
+    /**
+     * The raw content of the output
+     */
+    content: string;
+
+    output: 'content';
+
+    target: Shared.Target;
+
+    type:
+      | 'source'
+      | 'dist'
+      | 'wheel'
+      | 'openapi-with-transforms'
+      | 'openapi-with-code-samples'
+      | 'openapi-sdk-spec'
+      | 'file';
+
+    /**
+     * The path of the file, which is only present when using with the type "file"
+     * option.
+     */
+    path?: string;
   }
 }
 
@@ -110,12 +149,19 @@ export interface TargetOutputRetrieveParams {
     | 'wheel'
     | 'openapi-with-transforms'
     | 'openapi-with-code-samples'
-    | 'openapi-sdk-spec';
+    | 'openapi-sdk-spec'
+    | 'file';
 
   /**
-   * Output format: url (download URL) or git (temporary access token).
+   * Output format: url (download URL), git (temporary access token), or content (raw
+   * content returned inline, only supported for the "openapi-\*" and "file" types).
    */
-  output?: 'url' | 'git';
+  output?: 'url' | 'git' | 'content';
+
+  /**
+   * The path of the file to get when used with "type": "file".
+   */
+  path?: string;
 }
 
 export declare namespace TargetOutputs {

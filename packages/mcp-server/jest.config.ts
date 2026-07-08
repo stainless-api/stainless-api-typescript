@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^@stainless-api/mcp$': '<rootDir>/src/index.ts',
-    '^@stainless-api/mcp/(.*)$': '<rootDir>/src/$1',
+    '^@stainless-api/sdk-mcp$': '<rootDir>/src/index.ts',
+    '^@stainless-api/sdk-mcp/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],
